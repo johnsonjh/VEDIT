@@ -12,15 +12,16 @@ supported until 1988, when it was superseded by VEDIT 3, and is the
 direct predecessor of the current [vEdit](https://www.vedit.com/)
 product available from VEDIT, Inc.
 
-This VEDIT / VEDIT-PLUS source code can be assembled to produce binaries
-compatible with various processors (8080, Z80, etc.) and operating systems
-(CP/M, MP/M, CDOS, etc.).
+This VEDIT / VEDIT-PLUS source code can be assembled to produce
+binaries compatible with various processors (8080, Z80, etc.) and
+operating systems (CP/M, MP/M, CDOS, etc.).
 
-Historically, compatible VEDIT / VEDIT-PLUS versions were adapted for
-CP/M-80, MP/M-80, CDOS, CP/M-86, Concurrent CP/M-86, CP/M-68K, SCP 86-DOS,
-MS-DOS, Cromix, and Turbo DOS.  Later versions were produced for PC-MOS/386,
-IBM 4960/FlexOS, UNIX/Xenix, QNX, OS/2, and Microsoft Windows (both 16-bit
-Windows 3.1 and 32-bit Windows NT versions).  Companion programs (V-PRINT,
+Historically, compatible VEDIT / VEDIT-PLUS versions were adapted
+for CP/M-80, MP/M-80, CDOS, CP/M-86, MP/M-86, Concurrent CP/M-86,
+SCP 86-DOS, MS-DOS, Cromix, and Turbo DOS.  Later versions were
+available for PC-MOS/386, CP/M-68K, IBM 4960/FlexOS, UNIX/Xenix,
+QNX, OS/2, and Microsoft Windows (both 16-bit Windows 3.1 and
+32-bit Windows 95/NT versions). Companion programs (V-PRINT,
 V-SPELL, etc.) were also produced.
 
 ## Introduction
@@ -67,3 +68,13 @@ applications and personal preferences exist, VEDIT is supplied with a
 customization (installation) program in order to let users create
 versions of VEDIT which are most suitable to their hardware, keyboard,
 applications and preferences.
+
+## External links
+
+* [VEDIT, Inc.](https://www.vedit.com/)
+* [VEDIT History](https://web.archive.org/web/20130805180830/http://vedit.com/20Years.htm)
+* [VEDIT Manual (1981)](http://www.bitsavers.org/pdf/compuview/Compuview_VEDIT_1981.pdf)
+* [VEDIT Manual (1984)](http://www.bitsavers.org/pdf/compuview/VEDIT_Users_Manual_Nov84.pdf)
+* [Wikipedia: VEDIT](https://en.wikipedia.org/wiki/VEDIT#cite_note-2)
+* [Rosetta Code: VEDIT Language](https://rosettacode.org/wiki/Category:Vedit_macro_language)
+* [EDM2: VEDIT](https://web.archive.org/web/20210324052916/http://www.edm2.com/index.php/VEDIT)
