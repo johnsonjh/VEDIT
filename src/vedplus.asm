@@ -20,7 +20,7 @@
 ;		     TnT - Apr. 09 - 2.33b changes
 ;		     Ted - Apr. 18 - WWMODE  = -1 when window first created
 ;
-	.DEFINE	DATE	= [04/27/87]
+;	.DEFINE	DATE	= [04/27/87]
 
 	.INSERT	VEDITA1		;Conditional assembly & CPU dependent assignments
 	.INSERT	VCONST.ASM
@@ -149,7 +149,7 @@ VRSNUM	=	141
 	DB	'0' + (VRSNUM-(VRSNUM/10)*10)
 	DC	'b '
 
-	DC	DATE [00]
+	DC	'04/27/87' [00]
 ;
 ;	Console output control values
 ;

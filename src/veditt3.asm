@@ -925,7 +925,7 @@ VEXIT:	CALL	CRTEXT		;Reset CRT with escape sequences
 KDISPY:	XRA	A		;0 for CRT's
 	RET
 ;
-	IF	P8086, [
+;	IF	P8086, [
 	PUBLIC	HCRSOF
 HCRSOF:	RET			;Fewer modules need re-assembly
-	]
+;	]

@@ -69,6 +69,108 @@ customization (installation) program in order to let users create
 versions of VEDIT which are most suitable to their hardware, keyboard,
 applications, and preferences.
 
+## Building
+
+Currently, I have only tested building the full VEDIT-PLUS package for
+Z80 and 8080 using the Technical Design Labs, Inc. Z80
+Relocating/Linking Disk Assembler (TDL ZASM) version 2.21.
+
+The VEDIT / VEDIT-PLUS sources are closely integrated with the TDL
+ZASM conditional build system, and relies heavily on it's specific
+quirks.
+
+TDL ZASM only outputs diagnostics to the CP/M LIST device, usually a
+line printer.  Be sure to have a list device configured and available
+if you need to examine the assembler output. Be aware that TDL ZASM
+makes no real distinction between non-fatal warnings and fatal errors
+in the build summary.  Determining the actual error severity requires
+examining the output sent to the list device.
+
+The source code was very lightly modified to support building with
+this particular version of the assembler.  These changes include
+removing the DATE definition, and a small patch to VEDITT3.ASM to
+expose the HCRSOF symbol when targeting the 8080/Z80.
+
+The HEX output of the assembler can be directly converted to an
+executable COM file using the HEXCOM utility.
+
+Working versions of these tools are included in the `dev` directory of
+this distribution for convenience - they are not an official part of
+the VEDIT / VEDIT-PLUS source distribution.
+
+* Build example:
+
+  ```
+  >ZASM VEDPLUS.ASM
+
+  VEDIT (0) or VEDIT PLUS (1) ?: 1
+
+  Full version, Z-80, CRT           (1)
+  Full version, Z-80, Memory mapped (2)
+  Full version, 8080, CRT           (3)   note:Versions 1-8 have I/O polling
+  Full version, 8080, Memory mapped (4)        set on and org. @ 0000H. CRT
+  Mini version, Z-80, CRT           (5)        versions are 24X80 while MEM
+  Mini version, Z-80, Memory mapped (6)        mapp`d versions are 16X64.
+  Mini version, 8080, CRT           (7)
+  Mini version, 8080, Memory mapped (8)        CRT emulation is always ON.
+  Full version, Z-80, Model II, P&T (9)
+  Full version, Z-80, Model II, Gen (10)
+  Full version, Z-80, Piiceon @ 90H (11)
+  Other version made to custom specs.(12)
+         enter a version number (1 to 12) : 3
+
+  INCLUDE PRINT FORMATTER? (0=NO) (1=YES): 1
+
+  INCLUDE WINDOWS? (0=NO) (1=YES): 1
+
+  DEMO VERSION? (0=NO) (1=YES): 0
+
+  DEVELOPMENT VERSION?  (0=NO) (1=DEVELOPMENT) (2=ALPHA) (3=BETA): 0
+
+  PRODUCE LISTING?  (0=NO) (1=YES) (2=CUSTOMER PATCH ONLY): 0
+
+  VEDIT
+  VEDITT3
+  VEDITIO
+  VPLUSB1
+  VEDITF1
+  VEDITF2
+  VEDITC1
+  VPLUSE1
+  VEDITC2
+  VEDITC4
+  VPLUSSR
+  VEDIT-CP
+  VPLUS-R1
+  VEDITV0
+  VEDITV1
+  VEDITV2
+  VEDITW1
+  VEDITV3
+  VEDITV4
+  VEDITG2
+   ERRORS WERE DETECTED *****
+
+  >HEXCOM VEDPLUS
+
+  HEXCOM  VERS: 3.00
+
+  FIRST ADDRESS 0100
+  LAST  ADDRESS 89CD
+  BYTES READ    833E
+  RECORDS WRITTEN 12
+  ```
+
+With any luck, you will now have a working `VEDPLUS.COM` executable.
+
+Help files are included in the `hlp` directory.  These help files
+should be verified and possibly customized to ensure the key
+bindings match what you are "shipping to the customer".
+
+## Future
+
+Building for CP/M-86 and DOS should be figured out and documented.
+
 ## External links
 
 * [VEDIT, Inc.](https://www.vedit.com/)
