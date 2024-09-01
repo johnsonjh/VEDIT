@@ -8,7 +8,7 @@ programming language, produced by Theodore Green and Greenview Data
 Inc. (formerly CompuView Products, Inc.) of Ann Arbor, Michigan.
 
 This incarnation of VEDIT was created in 1979 and was commercially
-supported until 1988, when it was superseded by VEDIT 3, and is the
+supported until 1988 (when it was superseded by VEDIT 3) and is the
 direct predecessor of the current [vEdit](https://www.vedit.com/)
 product available from VEDIT, Inc.
 
@@ -33,7 +33,7 @@ you get" type editing, which continuously displays a region of your file
 on the screen and allows any changes made to the screen display to become
 the changes in the file.  You can change the screen display by moving the
 displayed cursor to any place in the file and then typing in new text or
-typing an edit function key.  These insertions, deletions and corrections
+typing an edit function key.  These insertions, deletions, and corrections
 are immediately seen on the screen and become the changes to the file.
 
 You can also perform the common word processing operations of wrapping
@@ -47,16 +47,16 @@ languages, simplify and enhance program development editing.
 
 VEDIT also provides a very flexible and powerful Command Mode, which
 serves the dual purpose of separating the less commonly used functions
-from the Visual Mode and of making VEDIT a text oriented programming
-language.  Repetitive editing operations can be performed, blocks of
+from the Visual Mode, and of making VEDIT a text oriented programming
+language.  Repetitive editing operations can be performed and blocks of
 text may be copied or moved within the current file and other files in
 an almost unlimited manner.  The extensive file handling allows multiple
-files to be edited, split and merged, other files to be viewed and
+files to be edited, split, and merged, other files to be viewed, and
 specified portions of other files to be extracted.  The command macro
 capability allows complex editing tasks to be performed automatically.
 Examples of such tasks include numerous search/replace operations on
 multiple files and source code translations.  The command macros can be
-saved on disk for future user.  On line help is available.
+saved on disk for future use.  On line help is available.
 
 You can edit files of virtually any size with little concern over the
 actual size of the files.  You can also recover from common disk write
@@ -64,10 +64,10 @@ errors, such as running out of disk space, by deleting files or inserting
 another disk.
 
 Since so many different hardware configurations, keyboards, editing
-applications and personal preferences exist, VEDIT is supplied with a
+applications, and personal preferences exist, VEDIT is supplied with a
 customization (installation) program in order to let users create
 versions of VEDIT which are most suitable to their hardware, keyboard,
-applications and preferences.
+applications, and preferences.
 
 ## External links
 
