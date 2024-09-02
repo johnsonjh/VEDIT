@@ -96,38 +96,43 @@ applications, and preferences.
 
 Currently, only the full VEDIT-PLUS builds (for both Z80 and 8080)
 have been tested, using the Technical Design Labs, Inc. Z80
-Relocating/Linking Disk Assembler (TDL ZASM) version 2.21 (1978).
+Relocating/Linking Disk Assembler (TDL ZASM) version 2.21 (1978),
+and Phoenix Software Associates Ltd. PSA Macro Assembler version 1.0
+(04/28/1980).
 
 The VEDIT / VEDIT-PLUS sources are closely integrated with the TDL
-ZASM conditional build system, and rely heavily on this assembler's
-quirks.
+ZASM / PSA PASM conditional build system, and rely heavily on the
+features and quirks of these particular assemblers.
 
-TDL ZASM only outputs diagnostics to the CP/M `LIST` device, usually
-a line printer.  Be sure to have a list device configured and
-available if you need to examine the assembler output.
+TDL ZASM / PSA PASM only outputs diagnostics to the CP/M `LIST`
+device, usually a line printer.  Be sure to have a list device
+configured and online if you need to examine the assembler output.
 
-*Be aware that TDL ZASM makes no real distinction between non-fatal
-warnings and fatal errors in the build summary.  Some (non-fatal)
-errors currently occur and are not a major concern.  Determining the
-actual error severity requires examining the output sent to the
-list device.*
+*Be aware that TDL ZASM / PSA PASM makes minimal distinctions
+between non-fatal warnings and fatal errors in the build summary.
+Some (non-fatal) errors currently occur and are not of major concern.
+Determining the actual error severity requires carefully examining
+the output sent to the list device.*
 
 The source code was very lightly modified to support building with
-this particular version of the assembler.  These changes include
-removing the `DATE` definition, and a small patch to `VEDITT3` to
-expose the `HCRSOF` symbol when targeting the 8080/Z80.
+these particular assembler versions.  These changes include removing
+the `DATE` definition, and a small patch to `VEDITT3` to expose the
+`HCRSOF` symbol when targeting the 8080/Z80.
 
-The HEX output of the assembler can be directly converted to an
-executable COM file using the `HEXCOM` utility.
+The HEX output produced by these assemblers can be directly converted
+to an executable COM file using the `HEXCOM` utility.
 
 Working versions of these tools are included in the `dev` directory of
-this distribution for convenience - they are *not* an official part of
+this repository for convenience - they are *not* an official part of
 the VEDIT / VEDIT-PLUS source distribution.
 
 * Build example:
 
   ```
-  >ZASM VEDPLUS.ASM
+  >PASM VEDPLUS.ASM
+
+  PSA Macro Assembler [C12011-0102 ]
+  C. 1980 by Phoenix Software Associates Ltd.
 
   VEDIT (0) or VEDIT PLUS (1) ?: 1
 
@@ -155,6 +160,25 @@ the VEDIT / VEDIT-PLUS source distribution.
 
   PRODUCE LISTING?  (0=NO) (1=YES) (2=CUSTOMER PATCH ONLY): 0
 
+  VEDITT3
+  VEDITIO
+  VPLUSB1
+  VEDITF1
+  VEDITF2
+  VEDITC1
+  VPLUSE1
+  VEDITC2
+  VEDITC4
+  VPLUSSR
+  VEDIT-CP
+  VPLUS-R1
+  VEDITV0
+  VEDITV1
+  VEDITV2
+  VEDITW1
+  VEDITV3
+  VEDITV4
+  VEDITG2
   VEDIT
   VEDITT3
   VEDITIO
@@ -175,7 +199,7 @@ the VEDIT / VEDIT-PLUS source distribution.
   VEDITV3
   VEDITV4
   VEDITG2
-   ERRORS WERE DETECTED *****
+   Errors Were Detected *****
 
   >HEXCOM VEDPLUS
 
