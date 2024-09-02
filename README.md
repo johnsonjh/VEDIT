@@ -184,12 +184,16 @@ bindings match what you are "shipping to the customer".
 
 * Building for CP/M-86 and DOS should be figured out and documented.
 
-## External links
+## User's Manuals
+
+* [VEDIT User's Manual (1981)](http://www.bitsavers.org/pdf/compuview/Compuview_VEDIT_1981.pdf)
+* [VEDIT User's Manual (1983)](http://www.bitsavers.org/pdf/picklesAndTrout/PT_VEDIT_Users_Manual_1983.pdf)
+* [VEDIT User's Manual (1984)](http://www.bitsavers.org/pdf/compuview/VEDIT_Users_Manual_Nov84.pdf)
+
+## Links
 
 * [VEDIT, Inc.](https://www.vedit.com/)
 * [VEDIT History](https://web.archive.org/web/20130805180830/http://vedit.com/20Years.htm)
-* [VEDIT Manual (1981)](http://www.bitsavers.org/pdf/compuview/Compuview_VEDIT_1981.pdf)
-* [VEDIT Manual (1984)](http://www.bitsavers.org/pdf/compuview/VEDIT_Users_Manual_Nov84.pdf)
 * [Wikipedia: VEDIT](https://en.wikipedia.org/wiki/VEDIT#cite_note-2)
 * [Rosetta Code: VEDIT Language](https://rosettacode.org/wiki/Category:Vedit_macro_language)
 * [EDM2: VEDIT](https://web.archive.org/web/20210324052916/http://www.edm2.com/index.php/VEDIT)
