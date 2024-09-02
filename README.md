@@ -5,6 +5,19 @@ COMMAND: EV
 VEDIT PLUS Ver. 2.33b 04/27/87
 ```
 
+## Table of Contents
+
+<!-- toc -->
+
+- [Overview](#overview)
+- [Introduction](#introduction)
+- [Building](#building)
+- [Future](#future)
+- [User's Manuals](#users-manuals)
+- [Links](#links)
+
+<!-- tocstop -->
+
 ## Overview
 
 This is the source code for **VEDIT** / **VEDIT-PLUS** for CP/M,
