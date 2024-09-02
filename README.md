@@ -1,5 +1,10 @@
 # VEDIT / VEDIT-PLUS for CP/M
 
+```
+COMMAND: EV
+VEDIT PLUS Ver. 2.33b 04/27/87
+```
+
 ## Overview
 
 This is the source code to VEDIT / VEDIT-PLUS for CP/M version 2.33b
