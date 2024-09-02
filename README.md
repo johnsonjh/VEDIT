@@ -7,10 +7,11 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 
 ## Overview
 
-This is the source code to VEDIT / VEDIT-PLUS for CP/M version 2.33b
-(04/27/1987), the commercial text editing system and text-oriented
-programming language, produced by Theodore Green and Greenview Data
-Inc. (formerly CompuView Products, Inc.) of Ann Arbor, Michigan.
+This is the source code for **VEDIT** / **VEDIT-PLUS** for CP/M,
+version 2.33b (04/27/87), the commercial text editing system and
+text-oriented programming language, produced by Theodore Green
+and Greenview Data Inc. (formerly CompuView Products, Inc.) of
+Ann Arbor, Michigan.
 
 This incarnation of VEDIT was created in 1979 and was commercially
 supported until 1988 (when it was superseded by VEDIT 3) and is the
@@ -23,13 +24,17 @@ operating systems (CP/M, MP/M, CDOS, etc.).
 
 Historically, compatible VEDIT / VEDIT-PLUS versions were adapted
 for CP/M-80, MP/M-80, CDOS, CP/M-86, MP/M-86, Concurrent CP/M-86,
-SCP 86-DOS, MS-DOS, Cromix, and Turbo DOS.  Later versions were
-available for PC-MOS/386, CP/M-68K, IBM 4960/FlexOS, UNIX/Xenix,
-QNX, OS/2, and Microsoft Windows (both 16-bit Windows 3.1 and
-32-bit Windows 95/NT versions). Companion programs (V-PRINT,
-V-SPELL, etc.) were also produced.
+SCP 86-DOS, MS-DOS, Cromix, and Turbo DOS.
+
+Later versions were available for PC-MOS/386, CP/M-68K, IBM
+4960/FlexOS, IBM OS/2, UNIX/Xenix, QNX, and Microsoft Windows (both
+16-bit Windows 3.1 and 32-bit Windows 95/NT).
+
+Companion programs (**V-PRINT**, **V-SPELL**, etc.) were also produced.
 
 ## Introduction
+
+(*from the VEDIT User's Manual*)
 
 VEDIT is an editor designed to take full advantage of a CRT display to
 make your word processing and program development editing as fast and
@@ -61,7 +66,7 @@ specified portions of other files to be extracted.  The command macro
 capability allows complex editing tasks to be performed automatically.
 Examples of such tasks include numerous search/replace operations on
 multiple files and source code translations.  The command macros can be
-saved on disk for future use.  On line help is available.
+saved on disk for future use.  Online help is available.
 
 You can edit files of virtually any size with little concern over the
 actual size of the files.  You can also recover from common disk write
@@ -76,31 +81,34 @@ applications, and preferences.
 
 ## Building
 
-Currently, I have only tested building the full VEDIT-PLUS package for
-Z80 and 8080 using the Technical Design Labs, Inc. Z80
-Relocating/Linking Disk Assembler (TDL ZASM) version 2.21.
+Currently, only the full VEDIT-PLUS builds (for both Z80 and 8080)
+have been tested, using the Technical Design Labs, Inc. Z80
+Relocating/Linking Disk Assembler (TDL ZASM) version 2.21 (1978).
 
 The VEDIT / VEDIT-PLUS sources are closely integrated with the TDL
-ZASM conditional build system, and relies heavily on it's specific
+ZASM conditional build system, and rely heavily on this assembler's
 quirks.
 
-TDL ZASM only outputs diagnostics to the CP/M LIST device, usually a
-line printer.  Be sure to have a list device configured and available
-if you need to examine the assembler output. Be aware that TDL ZASM
-makes no real distinction between non-fatal warnings and fatal errors
-in the build summary.  Determining the actual error severity requires
-examining the output sent to the list device.
+TDL ZASM only outputs diagnostics to the CP/M `LIST` device, usually
+a line printer.  Be sure to have a list device configured and
+available if you need to examine the assembler output.
+
+*Be aware that TDL ZASM makes no real distinction between non-fatal
+warnings and fatal errors in the build summary.  Some (non-fatal)
+errors currently occur and are not a major concern.  Determining the
+actual error severity requires examining the output sent to the
+list device.*
 
 The source code was very lightly modified to support building with
 this particular version of the assembler.  These changes include
-removing the DATE definition, and a small patch to VEDITT3.ASM to
-expose the HCRSOF symbol when targeting the 8080/Z80.
+removing the `DATE` definition, and a small patch to `VEDITT3` to
+expose the `HCRSOF` symbol when targeting the 8080/Z80.
 
 The HEX output of the assembler can be directly converted to an
-executable COM file using the HEXCOM utility.
+executable COM file using the `HEXCOM` utility.
 
 Working versions of these tools are included in the `dev` directory of
-this distribution for convenience - they are not an official part of
+this distribution for convenience - they are *not* an official part of
 the VEDIT / VEDIT-PLUS source distribution.
 
 * Build example:
@@ -174,7 +182,7 @@ bindings match what you are "shipping to the customer".
 
 ## Future
 
-Building for CP/M-86 and DOS should be figured out and documented.
+* Building for CP/M-86 and DOS should be figured out and documented.
 
 ## External links
 
