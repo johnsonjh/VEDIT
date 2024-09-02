@@ -219,12 +219,16 @@ bindings match what you are "shipping to the customer".
 
 ## Future
 
-* Building for CP/M-86 and DOS, if possible (as the sources seem to
-  support), should be worked out and documented.  It appears when
-  building for 8086, the source was first transformed by a currently
-  unknown program, and then built using an (8086?) "PASM" assembler
-  and "PLINK" linker, possibly from Phoenix.  Further investigation
-  is required.
+* Building for CP/M-86 and MS-DOS, if possible (as the sources
+  seem to support), needs to be worked out and documented.
+  * It seems that when building for 8086, the sources would be
+    further translated by means of a currently unknown program;
+    many such programs were historically commercially available.
+  * When trying to assemble with `P8086` defined, two missing source
+    files, `MAC1.ASM` and `MAC2.ASM`, are referenced.  It is assumed
+    that these files would have been part of the currently unknown
+    translation package (or cross-assembler software).
+  * Further investigation is required.
 
 ## User's Manuals
 
