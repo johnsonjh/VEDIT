@@ -195,7 +195,8 @@ bindings match what you are "shipping to the customer".
 
 ## Future
 
-* Building for CP/M-86 and DOS should be figured out and documented.
+* Building for CP/M-86 and DOS, if possible (as the sources seem
+  to support), should be worked out and documented.
 
 ## User's Manuals
 
