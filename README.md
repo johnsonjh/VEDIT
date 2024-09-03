@@ -139,6 +139,8 @@ compressor.
 
 ### Cross-development
 
+The following cross-development tools are highly recommended:
+
 * **ccom** is a cross-platform CP/M-80 2.2 emulator *that supports
   redirecting the list device output to a file*, suitable for running
   the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX-like host.  It
