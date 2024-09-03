@@ -94,7 +94,7 @@ applications, and preferences.
 
 ## Building
 
-Currently, the full VEDIT-PLUS (both Z80 and 8080) builds along with
+Currently, the full VEDIT-PLUS (both Z80 and 8080) builds, along with
 the TRS-80 Model II variants have been built and tested using either
 the *Technical Design Labs, Inc.* Z80 Relocating/Linking Disk
 Assembler (TDL ZASM) version 2.21 (1978), or the *Phoenix Software
@@ -113,6 +113,10 @@ between non-fatal warnings and fatal errors in the build summary.
 Some (non-fatal) errors currently occur and are not of major concern.
 Determining the actual error severity requires carefully examining
 the output sent to the list device.*
+
+* **CCOM** is a cross-platform CP/M-80 2.2 emulator that supports
+  redirecting the list device output to a file; it is available as
+  part of the [PMINCE](https://github.com/johnsonjh/pmince) repository.
 
 The source code was very lightly modified to support building with
 these particular assembler versions.  These changes include removing
