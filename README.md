@@ -47,8 +47,8 @@ Later versions were available for PC‑MOS/386, CP/M‑68K, IBM
 4960/FlexOS, IBM OS/2, UNIX/Xenix, QNX, and Microsoft Windows (both
 16-bit Windows 3.1 and 32-bit Windows 95/NT).
 
-Companion programs (*i.e.* **V‑PRINT**, **V‑SPELL**, a
-[**Z80‑8086 Translator**](zilint), etc.) were also produced.
+Companion programs (*i.e.* V‑PRINT, V‑SPELL, a
+[Z80‑8086 Translator](zilint), etc.) were also produced.
 
 ## Introduction
 
