@@ -12,6 +12,9 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 - [Overview](#overview)
 - [Introduction](#introduction)
 - [Building](#building)
+  - [Cross-development](#cross-development)
+  - [Example](#example)
+- [Extras](#extras)
 - [Future](#future)
 - [User's Manuals](#users-manuals)
 - [Links](#links)
@@ -28,7 +31,7 @@ Ann Arbor, Michigan.
 
 This incarnation of VEDIT was created in 1979 and was commercially
 supported until 1988 (when it was superseded by VEDIT 3) and is the
-direct predecessor of the current [vEdit](https://www.vedit.com/)
+direct predecessor of the current [VEDIT](https://www.vedit.com/)
 product available from VEDIT, Inc.
 
 This VEDIT / VEDIT-PLUS source code can be assembled to produce
@@ -114,10 +117,6 @@ Some (non-fatal) errors currently occur and are not of major concern.
 Determining the actual error severity requires carefully examining
 the output sent to the list device.*
 
-* **CCOM** is a cross-platform CP/M-80 2.2 emulator that supports
-  redirecting the list device output to a file; it is available as
-  part of the [PMINCE](https://github.com/johnsonjh/pmince) repository.
-
 The source code was very lightly modified to support building with
 these particular assembler versions.  These changes include removing
 the `DATE` definition, and a small patch to `VEDITT3` to expose the
@@ -126,9 +125,31 @@ the `DATE` definition, and a small patch to `VEDITT3` to expose the
 The HEX output produced by these assemblers can be directly converted
 to an executable COM file using the `HEXCOM` utility.
 
-Working versions of these tools are included in the `dev` directory of
-this repository for convenience - they are *not* an official part of
-the VEDIT / VEDIT-PLUS source distribution.
+For Z80 variants, the final executable can be reduced in size by about
+25% while remaining directly executable using the  `POPCOM` compressor.
+
+* Working versions of these tools are included in the `dev` directory
+  of this repository for convenience - they are *not* an official part
+  of the VEDIT / VEDIT-PLUS source distribution.
+
+### Cross-development
+
+* **CCOM** is a cross-platform CP/M-80 2.2 emulator *that supports
+  redirecting the list device output to a file*, suitable for running
+  the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX-like host.  It
+  is available as part of the
+  [PMINCE](https://github.com/johnsonjh/pmince) repository.
+
+* [**CPM**](https://github.com/jhallen/cpm) is Joe Allen's portable
+  CP/M-80 2.2 emulator.  Although it does not support saving the list
+  device output, it's BDOS simulation makes it suitable for running
+  the `POPCOM` executable compressor.
+
+* [**tnylpo**](https://gitlab.com/gbrein/tnylpo) is yet another
+  CP/M-80 2.2 emulator, written by Georg Brein, with excellent
+  compatibility and curses-based VT-52 terminal emulation.
+
+### Example
 
 * Build example:
 
@@ -215,11 +236,13 @@ the VEDIT / VEDIT-PLUS source distribution.
   RECORDS WRITTEN 12
   ```
 
-With any luck, you will now have a working `VEDPLUS.COM` executable.
+* With any luck, you will now have a working `VEDPLUS.COM` executable.
 
-Help files are included in the `hlp` directory.  These help files
-should be verified and possibly customized to ensure the key
-bindings match what you are "shipping to the customer".
+## Extras
+
+* Help files are included in the `hlp` directory.  These help files
+  should be verified and possibly customized to ensure the key
+  bindings match what you are "shipping to the customer".
 
 ## Future
 
@@ -236,8 +259,8 @@ bindings match what you are "shipping to the customer".
 []()
 
 []()
-* There are many other files that were included on the VEDIT
-  distribution diskettes, which should be included in the repository.
+* There were many other files shipped on the retail VEDIT distribution
+  diskettes, which should be reviewed for inclusion in this repository.
 
 ## User's Manuals
 
