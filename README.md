@@ -1,4 +1,4 @@
-# VEDIT / VEDIT‑PLUS for CP⧸M
+# VEDIT / VEDIT‑PLUS for CP/M
 
 ```
 COMMAND: EV
