@@ -48,7 +48,7 @@ Later versions were available for PC‑MOS/386, CP/M‑68K, IBM
 16-bit Windows 3.1 and 32-bit Windows 95/NT).
 
 Companion programs (*i.e.* **V‑PRINT**, **V‑SPELL**, a
-[**Z80-8086 Translator**](zil-int), etc.) were also produced.
+[**Z80‑8086 Translator**](zilint), etc.) were also produced.
 
 ## Introduction
 
@@ -268,7 +268,7 @@ are also available and useful for cross-development.
   * It seems that when building for 8086, the sources would be
     further translated by means of a currently unknown program;
     many such programs were historically commercially available,
-    including CompuView's own [Z80-8086 Translator](zilint) (which,
+    including CompuView's own [Z80‑8086 Translator](zilint) (which,
     unfortunately, does not include the required `MAC` source files).
   * When trying to assemble with `P8086` defined, two missing source
     files, `MAC1.ASM` and `MAC2.ASM`, are referenced.  It is assumed
