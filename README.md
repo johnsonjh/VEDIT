@@ -1,4 +1,4 @@
-# VEDIT / VEDIT-PLUS for CP/M
+# VEDIT / VEDIT‑PLUS for CP/M
 
 ```
 COMMAND: EV
@@ -24,7 +24,7 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 
 ## Overview
 
-This is the source code for **VEDIT** / **VEDIT-PLUS** for CP/M,
+This is the source code for **VEDIT** / **VEDIT‑PLUS** for CP/M,
 version 2.33b (04/27/87), the commercial text editing system and
 text-oriented programming language, produced by Theodore Green
 and Greenview Data Inc. (formerly CompuView Products, Inc.) of
@@ -35,19 +35,19 @@ supported until 1988 (when it was superseded by VEDIT 3) and is the
 direct predecessor of the current [VEDIT](https://www.vedit.com/)
 product available from VEDIT, Inc.
 
-This VEDIT / VEDIT-PLUS source code can be assembled to produce
+This VEDIT / VEDIT‑PLUS source code can be assembled to produce
 binaries compatible with various processors (8080, Z80, etc.) and
 operating systems (CP/M, MP/M, CDOS, etc.).
 
-Historically, compatible VEDIT / VEDIT-PLUS versions were adapted
-for CP/M-80, MP/M-80, CDOS, CP/M-86, MP/M-86, Concurrent CP/M-86,
-SCP 86-DOS, MS-DOS, Cromix, and Turbo DOS.
+Historically, compatible VEDIT / VEDIT‑PLUS versions were adapted
+for CP/M‑80, MP/M‑80, CDOS, CP/M‑86, MP/M‑86, Concurrent CP/M‑86,
+SCP 86‑DOS, MS‑DOS, Cromix, and Turbo DOS.
 
-Later versions were available for PC-MOS/386, CP/M-68K, IBM
+Later versions were available for PC‑MOS/386, CP/M‑68K, IBM
 4960/FlexOS, IBM OS/2, UNIX/Xenix, QNX, and Microsoft Windows (both
 16-bit Windows 3.1 and 32-bit Windows 95/NT).
 
-Companion programs (**V-PRINT**, **V-SPELL**, etc.) were also produced.
+Companion programs (**V‑PRINT**, **V‑SPELL**, etc.) were also produced.
 
 ## Introduction
 
@@ -101,16 +101,16 @@ applications, and preferences.
 
 ## Building
 
-Currently, the full VEDIT-PLUS (both Z80 and 8080) configurations,
-along with the TRS-80 Model II variants, have been built and tested.
-The Pπceon V-100 video variant has not yet been tested.
+Currently, the full VEDIT‑PLUS (both Z80 and 8080) configurations,
+along with the TRS‑80 Model II variants, have been built and tested.
+The Pπceon V‑100 video variant has not yet been tested.
 
-VEDIT / VEDIT-PLUS is built using either the *Technical Design Labs,
+VEDIT / VEDIT‑PLUS is built using either the *Technical Design Labs,
 Inc.* Z80 Relocating/Linking Disk Assembler (*TDL ZASM*) version 2.21
 (1978), or the *Phoenix Software Associates Ltd.* Macro Assembler
 (*PSA PASM*) version 1.0 (1980).
 
-The VEDIT / VEDIT-PLUS sources are closely integrated with the TDL
+The VEDIT / VEDIT‑PLUS sources are closely integrated with the TDL
 ZASM / PSA PASM conditional build system, and rely heavily on the
 features and quirks of these particular assemblers.
 
@@ -137,32 +137,32 @@ For Z80 variants, the final executable can be reduced in size by about
 compressor.
 
 * Working versions of these tools are included in the [`dev`](dev)
-  directory of this repository for convenience - they are *not* an
-  official part of the VEDIT / VEDIT-PLUS source distribution.
+  directory of this repository for convenience — they are *not* an
+  official part of the VEDIT / VEDIT‑PLUS source distribution.
 
 ### Cross-development
 
 The following cross-development tools are highly recommended:
 
-* **ccom** is a cross-platform CP/M-80 2.2 emulator *that supports
+* **ccom** is a cross-platform CP/M‑80 2.2 emulator *that supports
   redirecting the list device output to a file*, suitable for running
   the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX-like host.  It
   is available as part of the
   [Portable MINCE](https://github.com/johnsonjh/pmince) repository.
 
 * [**cpm**](https://github.com/jhallen/cpm) is *Joe Allen*'s portable
-  CP/M-80 2.2 emulator.  Although it does not support saving the list
+  CP/M‑80 2.2 emulator.  Although it does not support saving the list
   device output, it's `BDOS` simulation makes it suitable for running
   the `POPCOM` executable compressor.
 
 * [**tnylpo**](https://gitlab.com/gbrein/tnylpo) is yet another
-  CP/M-80 2.2 emulator, written by *Georg Brein*, with excellent
-  compatibility and curses-based VT-52/VT-100 terminal emulation.
+  CP/M‑80 2.2 emulator, written by *Georg Brein*, with excellent
+  compatibility and curses-based VT‑52/VT‑100 terminal emulation.
 
 Full system simulators (*e.g.*
 [Z80PACK](https://www.icl1900.co.uk/unix4fun/z80pack/),
 [Open SIMH](https://opensimh.org/),
-[YAZE-AG](https://www.mathematik.uni-ulm.de/users/ag/yaze-ag/), etc.)
+[YAZE‑AG](https://www.mathematik.uni-ulm.de/users/ag/yaze-ag/), etc.)
 are also available and useful for cross-development.
 
 ### Example
@@ -262,7 +262,7 @@ are also available and useful for cross-development.
 
 ## Future
 
-* Building for CP/M-86 and MS-DOS, if possible (as the sources
+* Building for CP/M‑86 and MS‑DOS, if possible (as the sources
   seem to support), needs to be worked out and documented.
   * It seems that when building for 8086, the sources would be
     further translated by means of a currently unknown program;
@@ -275,7 +275,7 @@ are also available and useful for cross-development.
 []()
 
 []()
-* There were many other files shipped on the retail VEDIT / VEDIT-PLUS
+* There were many other files shipped on the retail VEDIT / VEDIT‑PLUS
   distribution diskettes, which should be reviewed for inclusion in
   this repository.
 []()
@@ -285,7 +285,7 @@ are also available and useful for cross-development.
 
 ## License
 
-* VEDIT / VEDIT-PLUS for CP/M is [freely redistributable for
+* VEDIT / VEDIT‑PLUS for CP/M is [freely redistributable for
   non-commercial purposes](LICENSE).
 
 ## User's Manuals
