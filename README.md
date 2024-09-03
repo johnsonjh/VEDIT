@@ -154,6 +154,12 @@ compressor.
   CP/M-80 2.2 emulator, written by Georg Brein, with excellent
   compatibility and curses-based VT-52 terminal emulation.
 
+Full system simulators (*e.g.*
+[Z80PACK](https://www.icl1900.co.uk/unix4fun/z80pack/),
+[Open SIMH](https://opensimh.org/),
+[YAZE-AG](https://www.mathematik.uni-ulm.de/users/ag/yaze-ag/))
+are also available and useful for cross-development.
+
 ### Example
 
 * Build example:
