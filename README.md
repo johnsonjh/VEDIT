@@ -55,40 +55,43 @@ Companion programs (**V-PRINT**, **V-SPELL**, etc.) were also produced.
 
 VEDIT is an editor designed to take full advantage of a CRT display to
 make your word processing and program development editing as fast and
-easy as possible.  VEDIT's Visual Mode offers true "What you see is what
-you get" type editing, which continuously displays a region of your file
-on the screen and allows any changes made to the screen display to become
-the changes in the file.  You can change the screen display by moving the
-displayed cursor to any place in the file and then typing in new text or
-typing an edit function key.  These insertions, deletions, and corrections
-are immediately seen on the screen and become the changes to the file.
+easy as possible.  VEDIT's Visual Mode offers true "What you see is
+what you get" type editing, which continuously displays a region of
+your file on the screen and allows any changes made to the screen
+display to become the changes in the file.  You can change the screen
+display by moving the displayed cursor to any place in the file and
+then typing in new text or typing an edit function key.  These
+insertions, deletions, and corrections are immediately seen on the
+screen and become the changes to the file.
 
 You can also perform the common word processing operations of wrapping
 words at the end of lines and formatting paragraphs between right and
-left margins.  It is easy to print any portion of the text being worked
-on. Horizontal scrolling allows editing of very long lines.  Ten
-scratchpad buffers may be used for extensive "cut and paste" operations.
-Powerful search and selective replace operations simplify editing.
-Other features, such as automatic indenting for structured programming
-languages, simplify and enhance program development editing.
+left margins.  It is easy to print any portion of the text being
+worked on. Horizontal scrolling allows editing of very long lines.
+Ten scratchpad buffers may be used for extensive "cut and paste"
+operations.  Powerful search and selective replace operations simplify
+editing.  Other features, such as automatic indenting for structured
+programming languages, simplify and enhance program development
+editing.
 
 VEDIT also provides a very flexible and powerful Command Mode, which
 serves the dual purpose of separating the less commonly used functions
 from the Visual Mode, and of making VEDIT a text oriented programming
-language.  Repetitive editing operations can be performed and blocks of
-text may be copied or moved within the current file and other files in
-an almost unlimited manner.  The extensive file handling allows multiple
-files to be edited, split, and merged, other files to be viewed, and
-specified portions of other files to be extracted.  The command macro
-capability allows complex editing tasks to be performed automatically.
-Examples of such tasks include numerous search/replace operations on
-multiple files and source code translations.  The command macros can be
-saved on disk for future use.  Online help is available.
+language.  Repetitive editing operations can be performed and blocks
+of text may be copied or moved within the current file and other files
+in an almost unlimited manner.  The extensive file handling allows
+multiple files to be edited, split, and merged, other files to be
+viewed, and specified portions of other files to be extracted.  The
+command macro capability allows complex editing tasks to be performed
+automatically.  Examples of such tasks include numerous search/replace
+operations on multiple files and source code translations.  The
+command macros can be saved on disk for future use.  Online help is
+available.
 
 You can edit files of virtually any size with little concern over the
 actual size of the files.  You can also recover from common disk write
-errors, such as running out of disk space, by deleting files or inserting
-another disk.
+errors, such as running out of disk space, by deleting files or
+inserting another disk.
 
 Since so many different hardware configurations, keyboards, editing
 applications, and personal preferences exist, VEDIT is supplied with a
@@ -127,7 +130,8 @@ The HEX output produced by these assemblers can be directly converted
 to an executable COM file using the `HEXCOM` utility.
 
 For Z80 variants, the final executable can be reduced in size by about
-25% while remaining directly executable using the  `POPCOM` compressor.
+25% while remaining directly executable using the  `POPCOM`
+compressor.
 
 * Working versions of these tools are included in the [`dev`](dev)
   directory of this repository for convenience - they are *not* an
@@ -135,13 +139,13 @@ For Z80 variants, the final executable can be reduced in size by about
 
 ### Cross-development
 
-* **CCOM** is a cross-platform CP/M-80 2.2 emulator *that supports
+* **ccom** is a cross-platform CP/M-80 2.2 emulator *that supports
   redirecting the list device output to a file*, suitable for running
   the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX-like host.  It
   is available as part of the
-  [PMINCE](https://github.com/johnsonjh/pmince) repository.
+  [Portable MINCE](https://github.com/johnsonjh/pmince) repository.
 
-* [**CPM**](https://github.com/jhallen/cpm) is Joe Allen's portable
+* [**cpm**](https://github.com/jhallen/cpm) is Joe Allen's portable
   CP/M-80 2.2 emulator.  Although it does not support saving the list
   device output, it's BDOS simulation makes it suitable for running
   the `POPCOM` executable compressor.
@@ -263,6 +267,10 @@ For Z80 variants, the final executable can be reduced in size by about
 * There were many other files shipped on the retail VEDIT / VEDIT-PLUS
   distribution diskettes, which should be reviewed for inclusion in
   this repository.
+[]()
+
+[]()
+* The VEDIT 2.33b manual should be located and included.
 
 ## License
 
