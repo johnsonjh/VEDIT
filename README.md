@@ -101,11 +101,12 @@ applications, and preferences.
 
 ## Building
 
-Currently, the full VEDIT-PLUS (both Z80 and 8080) builds, along with
-the TRS-80 Model II variants have been built and tested using either
-the *Technical Design Labs, Inc.* Z80 Relocating/Linking Disk
-Assembler (TDL ZASM) version 2.21 (1978), or the *Phoenix Software
-Associates Ltd.* Macro Assembler version 1.0 (1980).
+Currently, the full VEDIT-PLUS (both Z80 and 8080) configurations,
+along with the TRS-80 Model II variants, have been built and tested
+using either the *Technical Design Labs, Inc.* Z80 Relocating/Linking
+Disk Assembler (*TDL ZASM*) version 2.21 (1978), or the *Phoenix
+Software Associates Ltd.* Macro Assembler (*PSA PASM*) version 1.0
+(1980).
 
 The VEDIT / VEDIT-PLUS sources are closely integrated with the TDL
 ZASM / PSA PASM conditional build system, and rely heavily on the
@@ -147,19 +148,19 @@ The following cross-development tools are highly recommended:
   is available as part of the
   [Portable MINCE](https://github.com/johnsonjh/pmince) repository.
 
-* [**cpm**](https://github.com/jhallen/cpm) is Joe Allen's portable
+* [**cpm**](https://github.com/jhallen/cpm) is *Joe Allen*'s portable
   CP/M-80 2.2 emulator.  Although it does not support saving the list
-  device output, it's BDOS simulation makes it suitable for running
+  device output, it's `BDOS` simulation makes it suitable for running
   the `POPCOM` executable compressor.
 
 * [**tnylpo**](https://gitlab.com/gbrein/tnylpo) is yet another
-  CP/M-80 2.2 emulator, written by Georg Brein, with excellent
-  compatibility and curses-based VT-52 terminal emulation.
+  CP/M-80 2.2 emulator, written by *Georg Brein*, with excellent
+  compatibility and curses-based VT-52/VT-100 terminal emulation.
 
 Full system simulators (*e.g.*
 [Z80PACK](https://www.icl1900.co.uk/unix4fun/z80pack/),
 [Open SIMH](https://opensimh.org/),
-[YAZE-AG](https://www.mathematik.uni-ulm.de/users/ag/yaze-ag/))
+[YAZE-AG](https://www.mathematik.uni-ulm.de/users/ag/yaze-ag/), etc.)
 are also available and useful for cross-development.
 
 ### Example
