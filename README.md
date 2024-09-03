@@ -233,6 +233,11 @@ bindings match what you are "shipping to the customer".
     that these files would have been part of the currently unknown
     translation package (or cross-assembler software).
   * Further investigation is required.
+[]()
+
+[]()
+* There are many other files that were included on the VEDIT
+  distribution diskettes, which should be included in the repository.
 
 ## User's Manuals
 
