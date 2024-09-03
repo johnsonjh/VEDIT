@@ -129,9 +129,9 @@ to an executable COM file using the `HEXCOM` utility.
 For Z80 variants, the final executable can be reduced in size by about
 25% while remaining directly executable using the  `POPCOM` compressor.
 
-* Working versions of these tools are included in the `dev` directory
-  of this repository for convenience - they are *not* an official part
-  of the VEDIT / VEDIT-PLUS source distribution.
+* Working versions of these tools are included in the [`dev`](dev)
+  directory of this repository for convenience - they are *not* an
+  official part of the VEDIT / VEDIT-PLUS source distribution.
 
 ### Cross-development
 
@@ -241,8 +241,8 @@ For Z80 variants, the final executable can be reduced in size by about
 
 ## Extras
 
-* Help files are included in the `hlp` directory.  These help files
-  should be verified and possibly customized to ensure the key
+* Help files are included in the [`hlp`](hlp) directory.  These help
+  files should be verified and possibly customized to ensure the key
   bindings match what you are "shipping to the customer".
 
 ## Future
@@ -266,10 +266,8 @@ For Z80 variants, the final executable can be reduced in size by about
 
 ## License
 
-* VEDIT / VEDIT-PLUS for CP/M is freely redistributable for
-  non-commercial use.  See the [LICENSE](LICENSE) text for complete
-  details.
-
+* VEDIT / VEDIT-PLUS for CP/M is [freely redistributable for
+  non-commercial purposes](LICENSE).
 
 ## User's Manuals
 
