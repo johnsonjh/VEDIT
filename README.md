@@ -1,4 +1,4 @@
-# VEDIT / VEDIT‑PLUS for CP/M
+# VEDIT ⧸ VEDIT‑PLUS for CP/M
 
 ```
 COMMAND: EV
@@ -24,7 +24,7 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 
 ## Overview
 
-This is the source code for **VEDIT** / **VEDIT‑PLUS** for CP/M,
+This is the source code for **VEDIT** ⧸ **VEDIT‑PLUS** for CP/M,
 version 2.33b (04/27/87), the commercial text editing system and
 text-oriented programming language, produced by Theodore Green
 and Greenview Data Inc. (formerly CompuView Products, Inc.) of
@@ -35,11 +35,11 @@ supported until 1988 (when it was superseded by VEDIT 3) and is the
 direct predecessor of the current [VEDIT](https://www.vedit.com/)
 product available from VEDIT, Inc.
 
-This VEDIT / VEDIT‑PLUS source code can be assembled to produce
+This VEDIT ⧸ VEDIT‑PLUS source code can be assembled to produce
 binaries compatible with various processors (8080, Z80, etc.) and
 operating systems (CP/M, MP/M, CDOS, etc.).
 
-Historically, compatible VEDIT / VEDIT‑PLUS versions were adapted
+Historically, compatible VEDIT ⧸ VEDIT‑PLUS versions were adapted
 for CP/M‑80, MP/M‑80, CDOS, CP/M‑86, MP/M‑86, Concurrent CP/M‑86,
 SCP 86‑DOS, MS‑DOS, Cromix, and Turbo DOS.
 
@@ -105,20 +105,20 @@ Currently, the full VEDIT‑PLUS (both Z80 and 8080) configurations,
 along with the TRS‑80 Model II variants, have been built and tested.
 The Pπceon V‑100 video variant has not yet been tested.
 
-VEDIT / VEDIT‑PLUS is built using either the *Technical Design Labs,
+VEDIT ⧸ VEDIT‑PLUS is built using either the *Technical Design Labs,
 Inc.* Z80 Relocating/Linking Disk Assembler (*TDL ZASM*) version 2.21
 (1978), or the *Phoenix Software Associates Ltd.* Macro Assembler
 (*PSA PASM*) version 1.0 (1980).
 
-The VEDIT / VEDIT‑PLUS sources are closely integrated with the TDL
-ZASM / PSA PASM conditional build system, and rely heavily on the
+The VEDIT ⧸ VEDIT‑PLUS sources are closely integrated with the TDL
+ZASM ⧸ PSA PASM conditional build system, and rely heavily on the
 features and quirks of these particular assemblers.
 
-TDL ZASM / PSA PASM only outputs diagnostics to the CP/M `LIST`
+TDL ZASM ⧸ PSA PASM only outputs diagnostics to the CP/M `LIST`
 device, usually a line printer.  Be sure to have a list device
 configured and online if you need to examine the assembler output.
 
-*Be aware that TDL ZASM / PSA PASM make minimal distinctions
+*Be aware that TDL ZASM ⧸ PSA PASM make minimal distinctions
 between non-fatal warnings and fatal errors in the build summary.
 Some (non-fatal) errors currently occur and are not of major concern.
 Determining the actual error severity requires carefully examining
@@ -138,7 +138,7 @@ compressor.
 
 * Working versions of these tools are included in the [`dev`](dev)
   directory of this repository for convenience — they are *not* an
-  official part of the VEDIT / VEDIT‑PLUS source distribution.
+  official part of the VEDIT ⧸ VEDIT‑PLUS source distribution.
 
 ### Cross-development
 
@@ -275,7 +275,7 @@ are also available and useful for cross-development.
 []()
 
 []()
-* There were many other files shipped on the retail VEDIT / VEDIT‑PLUS
+* There were many other files shipped on the retail VEDIT ⧸ VEDIT‑PLUS
   distribution diskettes, which should be reviewed for inclusion in
   this repository.
 []()
@@ -285,7 +285,7 @@ are also available and useful for cross-development.
 
 ## License
 
-* VEDIT / VEDIT‑PLUS for CP/M is [freely redistributable for
+* VEDIT ⧸ VEDIT‑PLUS for CP/M is [freely redistributable for
   non-commercial purposes](LICENSE).
 
 ## User's Manuals
