@@ -94,11 +94,11 @@ applications, and preferences.
 
 ## Building
 
-Currently, only the full VEDIT-PLUS builds (for both Z80 and 8080)
-have been tested, using the Technical Design Labs, Inc. Z80
-Relocating/Linking Disk Assembler (TDL ZASM) version 2.21 (1978),
-and Phoenix Software Associates Ltd. PSA Macro Assembler version 1.0
-(04/28/1980).
+Currently, the full VEDIT-PLUS (both Z80 and 8080) builds along with
+the TRS-80 Model II variants have been built and tested using either
+the *Technical Design Labs, Inc.* Z80 Relocating/Linking Disk
+Assembler (TDL ZASM) version 2.21 (1978), or the *Phoenix Software
+Associates Ltd.* Macro Assembler version 1.0 (1980).
 
 The VEDIT / VEDIT-PLUS sources are closely integrated with the TDL
 ZASM / PSA PASM conditional build system, and rely heavily on the
@@ -108,7 +108,7 @@ TDL ZASM / PSA PASM only outputs diagnostics to the CP/M `LIST`
 device, usually a line printer.  Be sure to have a list device
 configured and online if you need to examine the assembler output.
 
-*Be aware that TDL ZASM / PSA PASM makes minimal distinctions
+*Be aware that TDL ZASM / PSA PASM make minimal distinctions
 between non-fatal warnings and fatal errors in the build summary.
 Some (non-fatal) errors currently occur and are not of major concern.
 Determining the actual error severity requires carefully examining
