@@ -1,0 +1,290 @@
+
+		ZILOG TO INTEL TRANSLATION MACRO FOR VEDIT
+
+     The following macro will perform a reasonably good translation of a
+Z80 program from ZILOG mnemonics to INTEL mnemonics using the Z80
+additions used by the Digital Research MAC assembler.  This macro is
+currently not complete since not all instructions are translated, but
+about 99% of all instruction should be translated correctly.  Those which
+are not translated will result in assembly errors, and you will then need
+to hand translate them.  This macro is therefore supplied "AS IS"; we
+make no guarantee that it operates correctly, nor do we support it.
+However, we will appreciate written feedback on improvements, problems,
+etc.  We always appreciate listings of any VEDIT macros you have written
+and found useful.  Good Luck.
+
+     To use the macro, delete all of this text up to and including the dashed
+line from this file.  Invoke VEDIT on the file you wish to translate, i.e.
+
+VEDIT PROGRAM.ASM
+
+Enter command mode and load the translation macro into text register 0:
+
+RL0ZIL-INT.EXC
+
+Invoke the macro with the command:
+
+M0$$                 where "$" represents the [ESC] key
+
+The macro will take several minutes to execute on a large file.  If the file
+being translated is larger than memory, you will have to invoke the macro
+repeatedly until the entire file is translated, i.e. give the commands:
+
+#W$$                 to write the translated segment out to disk
+0A$$                 to read in more of the file
+M0$$                 to translate the next segment of the file
+
+           ------------------  Delete up to and including this line
+
+ES 8 1
+ES 9 1
+ES 5 0
+
+B[S/	JP	C,/	JC	/]
+B[S/	JP	NC,/	JNC	/]
+B[S/	JP	Z,/	JZ	/]
+B[S/	JP	NZ,/	JNZ	/]
+B[S/	JP	M,/	JM	/]
+B[S/	JP	P,/	JP	/]
+B[S/	JP	/	JMP	/]
+B[S/	JR	NC,/	JRNC	/]
+B[S/	JR	C,/	JRC	/]
+B[S/	JR	NZ,/	JRNZ	/]
+B[S/	JR	Z,/	JRZ	/]
+B[S/	JR	/	JR	/]
+
+B[S/	CALL	C,/	CC	/]
+B[S/	CALL	NC,/	CNC	/]
+B[S/	CALL	Z,/	CZ	/]
+B[S/	CALL	NZ,/	CNZ	/]
+B[S/	CALL	M,/	CM	/]
+B[S/	CALL	P,/	CP	/]
+B[S/RET	NC/RNC	/]
+B[S/RET	C/RC	/]
+B[S/RET	NZ/RNZ	/]
+B[S/RET	Z/RZ	/]
+B[S/RET	P/RP	/]
+B[S/RET	M/RM	/]
+
+B[S/EX	DE,HL/XCHG	/]
+B[S/EX	(SP),HL/XTHL	/]
+B[S/ADD	HL,HL/DAD	H/]
+B[S/ADD	HL,DE/DAD	D/]
+B[S/ADD	HL,BC/DAD	B/]
+
+B[S/LD	IX,/LXIX	/]
+B[S/LD	IY,/LXIY	/]
+
+B[S/LD	B,A/MOV	B,A/]
+B[S/LD	B,C/MOV	B,C/]
+B[S/LD	B,D/MOV	B,D/]
+B[S/LD	B,E/MOV	B,E/]
+B[S/LD	B,H/MOV	B,H/]
+B[S/LD	B,L/MOV	B,L/]
+B[S/LD	B,(HL)/MOV	B,M/]
+B[S/LD	B,/MVI	B,/]
+B[S/LD	C,A/MOV	C,A/]
+B[S/LD	C,B/MOV	C,B/]
+B[S/LD	C,D/MOV	C,D/]
+B[S/LD	C,E/MOV	C,E/]
+B[S/LD	C,H/MOV	C,H/]
+B[S/LD	C,L/MOV	C,L/]
+B[S/LD	C,(HL)/MOV	C,M/]
+B[S/LD	C/MVI	C/]
+B[S/LD	D,A/MOV	D,A/]
+B[S/LD	D,B/MOV	D,B/]
+B[S/LD	D,C/MOV	D,C/]
+B[S/LD	D,E/MOV	D,E/]
+B[S/LD	D,H/MOV	D,H/]
+B[S/LD	D,L/MOV	D,L/]
+B[S/LD	D,(HL)/MOV	D,M/]
+B[S/LD	D,/MVI	D,/]
+B[S/LD	E,A/MOV	E,A/]
+B[S/LD	E,B/MOV	E,B/]
+B[S/LD	E,C/MOV	E,C/]
+B[S/LD	E,D/MOV	E,D/]
+B[S/LD	E,H/MOV	E,H/]
+B[S/LD	E,L/MOV	C,L/]
+B[S/LD	E,(HL)/MOV	E,M/]
+B[S/LD	E/MVI	E/]
+B[S/LD	L,A/MOV	L,A/]
+B[S/LD	L,B/MOV	L,B/]
+B[S/LD	L,D/MOV	L,D/]
+B[S/LD	L,E/MOV	L,E/]
+B[S/LD	L,H/MOV	L,H/]
+B[S/LD	L,C/MOV	L,C/]
+B[S/LD	L,(HL)/MOV	L,M/]
+B[S/LD	L/MVI	L/]
+B[S/LD	H,A/MOV	H,A/]
+B[S/LD	H,B/MOV	H,B/]
+B[S/LD	H,D/MOV	H,D/]
+B[S/LD	H,E/MOV	H,E/]
+B[S/LD	H,L/MOV	H,L/]
+B[S/LD	H,C/MOV	H,C/]
+B[S/LD	H,(HL)/MOV	H,M/]
+B[S/LD	H,/MVI	H,/]
+B[S/LD	(HL),A/MOV	(HL),A/]
+B[S/LD	(HL),B/MOV	(HL),B/]
+B[S/LD	(HL),D/MOV	(HL),D/]
+B[S/LD	(HL),E/MOV	(HL),E/]
+B[S/LD	(HL),H/MOV	(HL),H/]
+B[S/LD	(HL),L/MOV	(HL),L/]
+B[S/LD	(HL),C/MOV	(HL),C/]
+B[S/LD	(HL),/MVI	M,/]
+
+B[S/LD	(DE),A/STAX	D/]
+B[S/LD	(BC),A/STAX	B/]
+
+B[S/LD	A,A/MOV	A,A/]
+B[S/LD	A,B/MOV	A,B/]
+B[S/LD	A,C/MOV	A,C/]
+B[S/LD	A,D/MOV	A,D/]
+B[S/LD	A,E/MOV	A,E/]
+B[S/LD	A,H/MOV	A,H/]
+B[S/LD	A,L/MOV	A,L/]
+B[S/LD	A,B/MOV	A,B/]
+B[S/LD	A,(HL)/MOV	A,M/]
+B[S/LD	A,(DE)/LDAX	D/]
+B[S/LD	A,(BC)/LDAX	B/]
+B[S/LD	A,(IX/LDX	A,/S/)//]
+B[S/LD	A,(IY/LDY	A,/S/)//]
+B[F/LD	A,(/-6DI/LDA	/F/)/-D]
+B[S/LD	A,/MVI	A,/]
+
+B[S/IN	A,(/IN	/F/)/-D]
+B[S/OUT	(/OUT	/F/)/-D2D]
+B[S/OTI/OUTI/]
+B[S/OTIR/OUTIR/]
+B[S/OTD/OUTD/]
+B[S/OTDR/OUTDR/]
+
+B[S/),A/	/0LS/LD	(/STA	/]
+B[S/),HL/	/0LS/LD	(/SHLD	/]
+B[S/),DE/	/0LS/LD	(/SDED	/]
+B[S/),BC/	/0LS/LD	(/SBCD	/]
+B[S/LD	HL,(/LHLD	/F/)/-D]
+B[S/LD	DE,(/LDED	/F/)/-D]
+B[S/LD	BC,(/LBCD	/F/)/-D]
+B[S/LD	BC,/LXI	B,/]
+B[S/LD	DE,/LXI	D,/]
+B[S/LD	HL,/LXI	H,/]
+B[S/LD	SP,/LXI	SP,/]
+
+B[S/INC	HL/INX	H/]
+B[S/INC	DE/INX	D/]
+B[S/INC	BC/INX	B/]
+B[S/DEC	HL/DCX	H/]
+B[S/DEC	DE/DCX	D/]
+B[S/DEC	BC/DCX	B/]
+
+B[S/INC	A/INR	A/]
+B[S/INC	B/INR	B/]
+B[S/INC	C/INR	C/]
+B[S/INC	D/INR	D/]
+B[S/INC	E/INR	E/]
+B[S/INC	H/INR	H/]
+B[S/INC	L/INR	L/]
+B[S/INC	(HL)/INR	M/]
+B[S/DEC	A/DCR	A/]
+B[S/DEC	B/DCR	B/]
+B[S/DEC	C/DCR	C/]
+B[S/DEC	D/DCR	D/]
+B[S/DEC	E/DCR	E/]
+B[S/DEC	H/DCR	H/]
+B[S/DEC	L/DCR	L/]
+B[S/DEC	(HL)/INR	M/]
+
+B[S/CP	(IX/CMPX	/S/)//]
+B[S/CP	(IY/CMPY	/S/)//]
+B[S/CP	A/CMP	A/]
+B[S/CP	B/CMP	B/]
+B[S/CP	C/CMP	C/]
+B[S/CP	D/CMP	D/]
+B[S/CP	E/CMP	E/]
+B[S/CP	H/CMP	H/]
+B[S/CP	L/CMP	L/]
+B[S/CP	(HL)/CMP	M/]
+B[S/	CP	/	CPI	/]
+
+B[S/AND	(IX/ANDX	/S/)//]
+B[S/AND	(IY/ANDY	/S/)//]
+B[S/AND	A/ANA	A/]
+B[S/AND	B/ANA	B/]
+B[S/AND	C/ANA	C/]
+B[S/AND	D/ANA	D/]
+B[S/AND	E/ANA	E/]
+B[S/AND	H/ANA	H/]
+B[S/AND	L/ANA	L/]
+B[S/AND	(HL)/ANA	M/]
+B[S/	AND	/	ANI	/]
+
+
+B[S/XOR	(IX/XORX	/S/)//]
+B[S/XOR	(IY/XORY	/S/)//]
+B[S/XOR	A/XRA	A/]
+B[S/XOR	B/XRA	B/]
+B[S/XOR	C/XRA	C/]
+B[S/XOR	D/XRA	D/]
+B[S/XOR	E/XRA	E/]
+B[S/XOR	H/XRA	H/]
+B[S/XOR	L/XRA	L/]
+B[S/XOR	(HL)/XRA	M/]
+B[S/	XOR	/	XRI	/]
+
+B[S/ADD	A,(IX/ADDX	/S/)//]
+B[S/ADD	A,(IY/ADDX	/S/)//]
+B[S/ADD	A,A/ADD	A/]
+B[S/ADD	B,A/ADD	B/]
+B[S/ADD	C,A/ADD	C/]
+B[S/ADD	D,A/ADD	D/]
+B[S/ADD	E,A/ADD	E/]
+B[S/ADD	H,A/ADD	H/]
+B[S/ADD	L,A/ADD	L/]
+B[S/ADD	(HL),A/ADD	M/]
+B[S/ADD	A,/ADI	/]
+
+B[S/SUB	(IX/SUBX	/S/)//]
+B[S/SUB	(IY/SUBY	/S/)//]
+B[S/SUB	A/\|\	A/]
+B[S/SUB	B/\|\	B/]
+B[S/SUB	C/\|\	C/]
+B[S/SUB	D/\|\	D/]
+B[S/SUB	E/\|\	E/]
+B[S/SUB	H/\|\	H/]
+B[S/SUB	L/\|\	L/]
+B[S/SUB	(HL)/\|\	M/]
+B[S/SUB	/SUI	/]
+B[S/\|\/SUB/]
+
+B[S/	OR	/	ORA	/]
+
+B[S/PUSH	HL/PUSH	H/]
+B[S/PUSH	DE/PUSH	D/]
+B[S/PUSH	BC/PUSH	B/]
+B[S/PUSH	AF/PUSH	PSW/]
+B[S/POP	HL/POP	H/]
+B[S/POP	DE/POP	D/]
+B[S/POP	BC/POP	B/]
+B[S/POP	AF/POP	PSW/]
+
+B[S/	SCF	/	STC	/]
+
+B[S/	RLCA	/	RLC	/]
+B[S/	RLA	/	RAL	/]
+B[S/	RRCA	/	RRC	/]
+B[S/	RRA	/	RAR	/]
+B[S/	RLC	/	RLCR	/]
+B[S/	RL	/	RALR	/]
+B[S/	RRC	/	RRCR	/]
+B[S/	RR	/	RARR	/]
+B[S/	SLA	/	SLAR	/]
+B[S/	SRA	/	SRAR	/]
+B[S/	SRL	/	SRLR	/]
+
+B[S/	(HL)/	M/]
+
+B[S/DEFB	/DB	/]
+B[S/DEFW	/DW	/]
+B[S/DEFM	/DB	/]
+B[S/DEFS	/DS	/]
+

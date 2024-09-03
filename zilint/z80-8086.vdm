@@ -1,0 +1,471 @@
+!		  Z80 (TDL) to 8086 Translator.
+!
+!To run this macro, enter the commands "RL0 Z80-8086.VDM$ M0 $$".
+!
+!After putting the following sub-macros into their proper registers,
+!this macro: 1) queries the user for the name of the Z80 input file
+!and stores the response in Register I;  2) displays the message
+!"Opening X for input" where "X" is the user's input response;  3) opens
+!file "X"  for reading;  4) creates the name of the 8086 output file
+!by editing the user's response, deleting the file extension, if any, and
+!appending ".A86";  5) displays the message "Opening x.A86 for output." and
+!opens it;  6) invokes macro G to carry out the Z80 to 8086 translation.
+!
+!When user variable Q8 is non zero (default is zero), changes are echoed
+!on the screen as they are made. To turn Q8 on, issue the command 1XS8 before
+!invoking this macro.
+
+
+@YT*
+Loading register macros ...*
+
+!G                      Defines Q9 (for Macro-L).
+!QR-G is the driver macro.  It is responsible for
+!reading in a buffer from the input file, invoking the conversion
+!process & writing out the converted buffer to the output file.
+!When the entire input file has been converted, the output file is closed.
+
+@RIG\
+-0p0 @ri0/rcg/
+@YT/
+
+
+
+
+
+
+		          Z80 to 8086 Translator
+
+				  by
+	        	 Compuview Products, Inc.
+
+
+
+
+
+
+
+
+
+
+
+
+/
+@:RGi/
+Please enter name of Z80 source file (TDL mnemonics): / !Get name into Reg-I.
+@YT/
+Opening /				!Display "Opening NAME for input."
+RTi
+@YT/ for input./
+ER|Ri					!Open filename in Reg-I for input.
+EEo					!Open Reg-O for editing.
+B#K					!Erase any junk.
+Gi					!Get input filename from Reg-I.
+B
+[@:F/./ -D #D JL ]			!Look for period. Delete it & extension.
+Z					!In case no extension present.
+@I/.A86/				!Append ".A86" extension.
+
+EE@					!Return to main edit buffer.
+@YT/
+Opening /
+RTo					!Display "Opening NAME for output."
+@YT/ for output.
+/
+EW|Ro					!Open filename in REg-O for output.
+@YT/Working .../
+
+0XS9  [ .efJL   250A MZ  #W
+B ^M:YD .y-1: @YT/ lines translated .../
+]  EF
+
+
+@YT/
+Translation finished.  File /
+RTo
+@YT/ closed.
+/
+\
+
+
+!C                      Defines Q20, q25.   Returns q25.
+!QR-C is invoked to determine whether the character preceeding the edit
+!point lies withing a comment field (after a semicolon) or within a string
+!(singly or doubly quoted) on the current line.
+!
+!Should the pointer lie on or past comment or string delimiter, then this
+!macro returns q25 positive, else it returns q25 negative.
+
+@RIC\
+
+.pXS20 (.c=^J)[-c] 0L
+[   (.c="'  ^  .c=";  ^  .c="") @JP.OUT. (.c=^M) @JP.OUT2.  C ]
+
+!OUT!  (Q20-.p-1) XS25  Q20EJ   JM
+!OUT2!         -1 XS25  Q20EJ   JM
+\
+
+
+!D				Defines Q0.
+!QR-D scans past spaces and tabs then examines the next character and
+!inserts a character following it to create an 8086 mnemonic compatible
+!double register designator.  Thus B=>CX, D=>DX, H=>BX, and PSW is untouched.
+!"Sx", presumably "SP" is passed over.
+!The cursor is left after the last char processed.
+
+@RID\
+MS .c&95_XS0  C
+(Q0="B)[-D @I CX  JM]
+(Q0="D)[-D @I DX  JM]
+(Q0="H)[-D @I BX  JM]
+(Q0="S)[ C JM ]
+\
+
+
+!E
+!QR-E scans to the start of the comment field or to the end of the
+!current line if there is no comment.  It then scans back past
+!blanks and tabs so that the cursor is positioned just after the
+!last operand character.
+
+@RIE\
+[ (.c=";  ^  .c=^M)JL  (.c=^z)JO  C ]  -C  [ (.c<>^I  &  .c<>" )JL  -C ] C
+\
+
+!L				Defines Q10, Needs Q9 (byte pointer)
+!QR-L skips over blanks & tabs, then converts single register mnemonic.
+!Thus A=>AL, B=>CH, C=>CL, D=>DH, E=>DL, H=>BH, L=>BL & M=>[BX].
+!Moves cursor past possible register delimiting ","
+
+@RIL\
+MS      .c&95_XS10    C
+
+	Q10="A @JP AL
+	Q10="B @JP CH
+	Q10="C @JP CL
+	Q10="D @JP DH
+	Q10="E @JP DL
+	Q10="H @JP BH
+	Q10="L @JP BL
+	Q10="M @JP BX
+JM
+
+!AL! -D @I AL   C   JM
+!CH! -D @I CH   C   JM
+!CL! -D @I CL   C   JM
+!DH! -D @I DH   C   JM
+!DL! -D @I DL   C   JM
+!BH! -D @I BH   C   JM
+!BL! -D @I BL   C   JM
+
+!BX! -D (Q9 <= 0) @JP NO-BP   @I-BYTE PTR -
+!NO-BP!                       @i [BX]   C
+\
+
+
+!R
+!QR-R scans backwards over blanks and tabs and checks for and
+!deletes ":" if present.  The cursor is then restored to is former position.
+
+@RIR\
+[ -C  (.c <> ^I  &  .c <> " )JL ]
+
+(.c = ":) @JP DELETE   C  MS  JM
+             !DELETE!  D  MS
+\
+
+
+!S
+!QR-S scans past spaces and tabs
+
+@RIS\ [ (.c <> ^I   &   .c <> " )JL  C ] \
+
+
+!T
+!QR-T prints out the current line if Q-register 8 is nonzero.
+
+@RIT\ (Q8<>0)[0TT] \
+
+
+!V
+!QR-V Put OFFSET in front of labels in the operand field
+
+@RIV\
+.pXS16  ME  .pXS17 MC (Q25>=0)JM  Q16EJ
+[
+[ @:F/|f/  .p>Q17 [Q17 EJ  JM] -C @EM/|d/ .rv>0 JL @F/|s/ ]
+@I/(OFFSET /  8XA17
+[@F/|s/ -C  (.c<>"$   &  .c<>"%   &  .c<>".)  JL  C ]
+@I/)/ XA17
+]\
+
+
+!X
+!QR-X CONTAINS SOME OF THE PSEUDO OP TRANSFORMS.
+
+@RIX\
+b[@:f/|T.IF|X|X/(.er)jl	mc (q25<0)[ me @i/	;&&&IF&&&/ mt] l]
+
+b[@:f/|T.IFE|T/ (.er)jl mc (q25<0)[ -5c 4d @i/IF NOT (/ me -d me -d @i/ )/ mt] l]
+
+b[@:f/|TIF|T/   (.er)jl mc (q25<0)[ me -d me -d mt] l]
+
+b[@:f/|T.IFN|T/ (.er)jl mc (q25<0)[ -5c 4d @i/IF/ me -d me -d mt] l]
+
+b[ "[XS14  @:f/|T]|T/    (.er)jl mc (q25<0)[ -2c d @i/ENDIF/ mt] l]
+
+b[@:f/|T==|T/   (.er)jl	mc (q25<0)[ -3c 2d @i/EQU/ mv mt] l]
+
+b[@:f/|T=|T/    (.er)jl	mc (q25<0)[ -2c  d @i/EQU/ mv mt] l]
+
+b[@:f/|TORG|T/  (.er)jl	mc (q25<0)[ -c mv mt] l]
+
+b[@:f/.PAGE/    (.er)jl	mc (q25<0)[ -5d @i/EJECT/ mt] l]
+
+b[@:f/.IDENT/   (.er)jl	mc (q25<0)[ -6d @i/TITLE '/ me @i/'/ mt] l]
+
+b[@:f/.TITLE/   (.er)jl	mc (q25<0)[ -6c d mt] l]
+
+b[@:f/.XLIST/   (.er)jl	mc (q25<0)[ -6d @i/NOLIST/ mt] l]
+
+b[@:f/.LIST/    (.er)jl	mc (q25<0)[ -5c d mt] l]
+
+b[@:f/.PRNTX/   (.er)jl	mc (q25<0)[ -6c @i/;	/ mt] l]
+
+b[@:f/.END/     (.er)jl	mc (q25<0)[ -4c d mt] l]
+
+
+b[@:f/|TDSW|T/  (.er)jl	mc (q25<0)[ -4c mr 3d @i/RW/ mt] l]
+
+b[@:f/|TDS|T/   (.er)jl	 mc (q25<0)[ -3c mr 2d @i/RB/ mt] l]
+
+b[@:f/|TDB|T/   (.er)jl	mc (q25<0)[ -3c mr mt] l]
+
+b[@:f/|TDW|T/   (.er)jl	mc (q25<0)[ -3c mr mt] l]
+
+b[@:f/|TDC|T/   (.er)jl	mc (q25<0)[ -3c mr 2d @i/DB/ mt] l]
+
+b[@:f/|TDCS|T/  (.er)jl	mc (q25<0)[ -4c mr 3d @i/DBS/ mt] l]
+
+\
+
+!Y
+!QR-Y CONTAINS MORE TRANSFORMS
+
+@RIY\
+
+b[@:f/|TRST|T/(.er)jl mc (q25<0)[ @i/&&&&&&&&&&&/ mt] l]
+
+b[@:f/|TSBB|T/(.er)jl mc (q25<0)[ ms @i/AL,/ ml mt] l]
+
+b[@:f/|TSBI|T/(.er)jl mc (q25<0)[-2c d @i/B/ ms @i/AL,/ mt] l]
+
+b[@:f/|TSHLD$|T/(.er)jl mc (q25<0)[-6c 5d @i/MOV/ ms me @i/,BX/ mt] l]
+
+b[@:f/|TSBCD$|T/(.er)jl mc (q25<0)[-6c 5d @i/MOV/ ms me @i/,CX/ mt] l]
+
+b[@:f/|TSDED$|T/(.er)jl mc (q25<0)[-6c 5d @i/MOV/ ms me @i/,DX/ mt] l]
+
+b[@:f/|TSHLD|T/(.er)jl mc (q25<0)[-5c 4d @i/MOV/ ms me @i/,BX/ mt] l]
+
+b[@:f/|TSBCD|T/(.er)jl mc (q25<0)[-5c 4d @i/MOV/ ms me @i/,CX/ mt] l]
+
+b[@:f/|TSDED|T/(.er)jl mc (q25<0)[-5c 4d @i/MOV/ ms me @i/,DX/ mt] l]
+
+b[@:f/|TSSPD|T/(.er)jl mc (q25<0)[-5c 4d @i/MOV/ ms me @i/,SP/ mt] l]
+
+b[@:f/|TSPHL|T/(.er)jl mc (q25<0)[-c -4d @i/JMP	BX/ mt] l]
+
+b[@:f/|TSTA|T/(.er)jl mc (q25<0)[-4c 3d @i/MOV/ ms  me @i/,AL/ mt] l]
+
+b[@:f/|TSTAX|T/(.er)jl mc (q25<0)[ -5c 4d @i/MOV	DI,/ md @i/
+	MOV	[DI],AL
+			/ mt] l]
+
+b[@:f/|TSUB|T/(.er)jl mc (q25<0)[ ms @i/AL,/ ml mt] l]
+
+b[@:f/|TSUI|T/(.er)jl mc (q25<0)[-2c d @i/B/ ms @i/AL,/ mt] l]
+
+
+b[@:f/|TDSBC|T/(.er)jl mc (q25<0)[ -5c 4d @i/SUB/ ms  @i/BX,/ md mt] l]
+
+b[@:f/|TDADC|T/(.er)jl mc (q25<0)[ -5c 4d @i/ADC/ ms  @i/BX,/ md mt] l]
+
+
+b[@:f/|TXRA|T/(.er)jl mc (q25<0)[-c -2d @i/OR/ ms @i/AL,/ ml mt] l]
+
+b[@:f/|TXRI|T/(.er)jl mc (q25<0)[-3c 2d @i/OR/ ms @i/AL,/ mt] l]
+
+\
+
+
+
+!Z
+!QR-Z is the translation macro.  Each iteration repeatedly searches the
+!text buffer for occurrences of its 8080 mnemonic, converting each
+!instance to the corresponding 8086 mnemonic.
+!
+
+@RIZ\
+b
+(.c="*)[@O/;/ mt]
+#[@:s/
+*/
+;/(.er)jl mt]
+
+MX
+
+b[@:f/|TMOV|T/(.er)jl  mc (q25<0)[ ml  ml mt] l]
+
+b[@:f/|TPOP|T/(.er)jl  mc (q25<0)[ md -c @em/PSW/  (.rv=0)[
+-4d @i/ AX ! SAHF/] mt] l]
+
+
+b[@:f/|TPUSH|T/(.er)jl .pXS1  mc (q25<0)[ md -c @em/PSW/  (.rv=0)[
+Q1-5ej  @i/LAHF ! /  @s/psw/AX/ ] mt] l]
+
+
+b[@:f/|TXCHG|T/(.er)jl mc (q25<0)[ -5c 4d @i/XCHG    DX,BX/ mt] l]
+
+b[@:f/|TXTHL|T/(.er)JL mc (q25<0)[ -5c 4d
+	@i/MOV		DI,SP
+	XCHG	[DI],BX/ mt] l]
+
+MY
+
+b[@:f/|TJZ|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNE $+5 ! JMP/ me (.c=^I)[d]  mt] l]
+
+b[@:f/|TJNZ|T/(.er)jl mc (q25<0)[ -4c 3d @i/JE $+5  ! JMP/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TJP|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JS $+5 ! JMP/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TJM|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNS $+5  ! JMP/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TJC|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNB $+5 ! JMP/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TJNC|T/(.er)jl mc (q25<0)[ -4c 3d @i/JB $+5  ! JMP/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TJPE|T/(.er)jl mc (q25<0)[ -4c 3d @i/JNP $+5 ! JMP/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TJPO|T/(.er)jl mc (q25<0)[ -4c 3d @i/JP $+5  ! JMP/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TCZ|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNZ $+5 ! CALL/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TCNZ|T/(.er)jl mc (q25<0)[ -4c 3d @i/JZ $+5  ! CALL/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TCC|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNB $+5 ! CALL/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TCNC|T/(.er)jl mc (q25<0)[ -4c 3d @i/JB $+5  ! CALL/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TCP|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JS $+5 ! CALL/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TCM|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNS  $+5 ! CALL/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TCPE|T/(.er)jl mc (q25<0)[ -3c 2d @i/JNP $+5 ! CALL/ me (.c=^I)[d] mt] l]
+
+b[@:f/|TCPO|T/(.er)jl mc (q25<0)[ -3c 2d @i/JP  $+5 ! CALL/ me (.c=^I)[d] mt] l]
+
+
+b[@:f/|TRZ|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNZ $+3 ! RET/ (.c=^I)[d] mt] l]
+
+b[@:f/|TRNZ|T/(.er)jl mc (q25<0)[ -4c 3d @i/JZ $+3  ! RET/ (.c=^I)[d] mt] l]
+
+b[@:f/|TRC|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNB $+3 ! RET/ (.c=^I)[d] mt] l]
+
+b[@:f/|TRNC|T/(.er)jl mc (q25<0)[ -4c 3d @i/JB $+3  ! RET/ (.c=^I)[d] mt] l]
+
+b[@:f/|TRP|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JS $+3 ! RET/ (.c=^I)[d] mt] l]
+
+b[@:f/|TRM|T/(.er)jl  mc (q25<0)[ -3c 2d @i/JNS  $+3 ! RET/ (.c=^I)[d] mt] l]
+
+b[@:f/|TRPE|T/(.er)jl mc (q25<0)[ -3c 2d @i/JNP $+3 ! RET/ (.c=^I)[d] mt] l]
+
+b[@:f/|TRPO|T/(.er)jl mc (q25<0)[ -3c 2d @i/JP  $+3 ! RET/ (.c=^I)[d] mt] l]
+
+
+b[@:f/|TADC|T/(.er)jl mc (q25<0)[ms     @i/AL,/ ml mt] l]
+b[@:f/|TADD|T/(.er)jl mc (q25<0)[ms     @i/AL,/ ml mt] l]
+b[@:f/|TANA|T/(.er)jl mc (q25<0)[-c -d  @i/D/ ms @i/AL,/ ml mt] l]
+b[@:f/|TACI|T/(.er)jl mc (q25<0)[-3c 2d @i/DC/ ms @i/AL,/ mt] l]
+b[@:f/|TADI|T/(.er)jl mc (q25<0)[-2c d  @i/D/ ms @i/AL,/ mt] l]
+b[@:f/|TANI|T/(.er)jl mc (q25<0)[-2c d  @i/D/ ms @i/AL,/ mt] l]
+b[@:f/|TCMA|T/(.er)jl mc (q25<0)[-c -3d @i/NOT	AL/ mt] l]
+b[@:f/|TCMP|T/(.er)jl mc (q25<0)[ms     @i/AL,/ ml mt] l]
+
+b[@:f/|TCPI|T/(.er)jl mc (q25<0)[-3c 2d @i/MP/ ms @i/AL,/ mt] l]
+
+b[@:f/|TDAD|T/(.er)jl mc (q25<0)[-4c 3d @i/ADD/ ms @i/BX,/ md mt] l]
+
+b[@:f/|TDCR|T/(.er)jl mc (q25<0)[-3c 2d @i/EC/ 1XS9 ml 0XS9 mt] l]
+
+b[@:f/|TDCX|T/(.er)jl mc (q25<0)[-4c @i/PUSHF
+	DEC/ 3d md mt l @i/	POPF
+/ -2c mt]  l]
+
+b[@:f/|TINR|T/(.er)jl mc (q25<0)[-2c d @i/C/ 1XS9 ml 0XS9 mt] l]
+
+b[@:f/|TINX|T/(.er)jl mc (q25<0)[-4c @i/PUSHF
+	INC/ 3d md mt l @i/	POPF
+/ -2c mt]  l]
+
+b[@:f/|TIN|T/(.er)jl  mc (q25<0)[ms @i/AL,/  mt] l]
+
+
+b[@:f/|TJMPR|T/(.er)jl mc (q25<0)[ -2c 1d @i/S/  mt] l]
+
+b[@:f/|TJRNZ|T/(.er)jl mc (q25<0)[ -4c 3d @i/NZ/ mt] l]
+
+b[@:f/|TJRZ|T/(.er)jl  mc (q25<0)[ -3c 2d @i/Z/  mt] l]
+
+b[@:f/|TJRC|T/(.er)jl  mc (q25<0)[ -3c 2d @i/B/  mt] l]
+
+b[@:f/|TJRNC|T/(.er)jl mc (q25<0)[ -4c 3d @i/NB/ mt] l]
+
+
+b[@:f/|TLDA|T/(.er)jl mc (q25<0)[ -4c 3d @i/MOV/ ms @i/AL,/ mt] l]
+
+b[@:f/|TLDAX|T/(.er)jl mc (q25<0)[ -5c 4d @i/MOV	DI,/ md @i/
+	MOV	AL,[DI]
+			/  mt] l]
+
+b[@:f/|TLHLD$|T/(.er)jl mc (q25<0)[ -6c 5d @i/MOV/ ms @i/BX,/ mt] l]
+
+b[@:f/|TLDED$|T/(.er)jl mc (q25<0)[ -6c 5d @i/MOV/ ms @i/DX,/ mt] l]
+
+b[@:f/|TLBCD$|T/(.er)jl mc (q25<0)[ -6c 5d @i/MOV/ ms @i/CX,/ mt] l]
+
+b[@:f/|TLHLD|T/(.er)jl  mc (q25<0)[ -5c 4d @i/MOV/ ms @i/BX,/ mt] l]
+
+b[@:f/|TLDED|T/(.er)jl  mc (q25<0)[ -5c 4d @i/MOV/ ms @i/DX,/ mt] l]
+
+b[@:f/|TLBCD|T/(.er)jl  mc (q25<0)[ -5c 4d @i/MOV/ ms @i/CX,/ mt] l]
+
+b[@:f/|TLSPD|T/(.er)jl  mc (q25<0)[ -5c 4d @i/MOV/ ms @i/SP,/ mt] l]
+
+b[@:f/|TLXI|T/(.er)jl   mc (q25<0)[ -4c 3d @i/MOV/ md mv  mt] l]
+
+b[@:f/|TMVI|T/(.er)jl   mc (q25<0)[ 1XS9 -4c 3d @i/MOV/ ml 0XS9  mv  mt] l]
+
+b[@:f/|TNEG|T/(.er)jl   mc (q25<0)[ ms @i/AL/ mt] l]
+
+b[@:f/|TORA|T/(.er)jl   mc (q25<0)[-c -d ms @i/AL,/ ml mt] l]
+
+b[@:f/|TORI|T/(.er)jl   mc (q25<0)[-2c d ms @i/AL,/    mt] l]
+
+b[@:f/|TOUT|T/(.er)jl   mc (q25<0)[ms  me @i/,AL/ mt] l]
+
+b[@:f/|TPCHL|T/(.er)jl  mc (q25<0)[-5c 4d @i/JMP	BX/ mt] l]
+
+b[@:f/|TRAL|T/(.er)jl   mc (q25<0)[-3c 2d @i/CL	AL,1/ mt] l]
+
+b[@:f/|TRAR|T/(.er)jl   mc (q25<0)[-3c 2d @i/CR	AL,1/ mt] l]
+
+b[@:f/|TRLC|T/(.er)jl   mc (q25<0)[-3c 2d @i/OL	AL,1/ mt] l]
+
+b[@:f/|TRRC|T/(.er)jl   mc (q25<0)[-3c 2d @i/OR	AL,1/ mt] l]
+
+\
+rcg				!!Begin execution
+
+		!END of Z80-8086
+
