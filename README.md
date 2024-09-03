@@ -16,6 +16,7 @@ VEDIT PLUS Ver. 2.33b 04/27/87
   - [Example](#example)
 - [Extras](#extras)
 - [Future](#future)
+- [License](#license)
 - [User's Manuals](#users-manuals)
 - [Links](#links)
 
@@ -259,8 +260,16 @@ For Z80 variants, the final executable can be reduced in size by about
 []()
 
 []()
-* There were many other files shipped on the retail VEDIT distribution
-  diskettes, which should be reviewed for inclusion in this repository.
+* There were many other files shipped on the retail VEDIT / VEDIT-PLUS
+  distribution diskettes, which should be reviewed for inclusion in
+  this repository.
+
+## License
+
+* VEDIT / VEDIT-PLUS for CP/M is freely redistributable for
+  non-commercial use.  See the [LICENSE](LICENSE) text for complete
+  details.
+
 
 ## User's Manuals
 
