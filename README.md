@@ -55,14 +55,14 @@ Companion programs (**V-PRINT**, **V-SPELL**, etc.) were also produced.
 
 VEDIT is an editor designed to take full advantage of a CRT display to
 make your word processing and program development editing as fast and
-easy as possible.  VEDIT's Visual Mode offers true "What you see is
-what you get" type editing, which continuously displays a region of
-your file on the screen and allows any changes made to the screen
-display to become the changes in the file.  You can change the screen
-display by moving the displayed cursor to any place in the file and
-then typing in new text or typing an edit function key.  These
-insertions, deletions, and corrections are immediately seen on the
-screen and become the changes to the file.
+easy as possible.  VEDIT's "Visual Mode" offers true
+"What-you-see-is-what-you-get" type editing, which continuously
+displays a region of your file on the screen and allows any changes
+made to the screen display to become the changes in the file.  You can
+change the screen display by moving the displayed cursor to any place
+in the file and then typing in new text or typing an edit function
+key.  These insertions, deletions, and corrections are immediately
+seen on the screen and become the changes to the file.
 
 You can also perform the common word processing operations of wrapping
 words at the end of lines and formatting paragraphs between right and
@@ -74,19 +74,19 @@ editing.  Other features, such as automatic indenting for structured
 programming languages, simplify and enhance program development
 editing.
 
-VEDIT also provides a very flexible and powerful Command Mode, which
+VEDIT also provides a very flexible and powerful "Command Mode", which
 serves the dual purpose of separating the less commonly used functions
-from the Visual Mode, and of making VEDIT a text oriented programming
-language.  Repetitive editing operations can be performed and blocks
-of text may be copied or moved within the current file and other files
-in an almost unlimited manner.  The extensive file handling allows
-multiple files to be edited, split, and merged, other files to be
-viewed, and specified portions of other files to be extracted.  The
-command macro capability allows complex editing tasks to be performed
-automatically.  Examples of such tasks include numerous search/replace
-operations on multiple files and source code translations.  The
-command macros can be saved on disk for future use.  Online help is
-available.
+from the "Visual Mode", and of making VEDIT a text oriented
+programming language.  Repetitive editing operations can be performed
+and blocks of text may be copied or moved within the current file and
+other files in an almost unlimited manner.  The extensive file
+handling allows multiple files to be edited, split, and merged, other
+files to be viewed, and specified portions of other files to be
+extracted.  The command macro capability allows complex editing tasks
+to be performed automatically.  Examples of such tasks include
+numerous search/replace operations on multiple files and source code
+translations.  The command macros can be saved on disk for future use.
+Online help is available.
 
 You can edit files of virtually any size with little concern over the
 actual size of the files.  You can also recover from common disk write
