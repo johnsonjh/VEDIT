@@ -279,9 +279,12 @@ are also available and useful for cross-development.
 
 ## Future
 
-* A few files still need to be located:
-  * `VPLUSZM.SET`: File to configure the Z80 Memory mapped version.
-  * `VPLUS8M.SET`: File to configure the 8080 Memory mapped version.
+* A few files still need to be located, for completeness.  Of course,
+  these variants can be easily created from the included sources, but
+  having them as exactly as originally distributed would be useful
+  for comparison and archival purposes:
+  * `VPLUSZM.SET`: Pre-built "factory" Z80 Memory mapped version.
+  * `VPLUS8M.SET`: Pre-built "factory" 8080 Memory mapped version.
 []()
 
 []()
