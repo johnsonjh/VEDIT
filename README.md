@@ -285,9 +285,6 @@ are also available and useful for cross-development.
   this repository.
 []()
 
-[]()
-* The VEDIT 2.33b manual should be located and included.
-
 ## License
 
 * VEDIT ⧸ VEDIT‑PLUS for CP/M is [freely redistributable for
@@ -295,6 +292,17 @@ are also available and useful for cross-development.
 
 ## User's Manuals
 
+* VEDIT Manual (1987):
+  * [Introduction](doc/introdiction.pdf)
+  * [Tutorial](doc/tutorial.pdf)
+  * [User Guide](doc/user_guide.pdf)
+  * [Programming Guide](doc/programming_guide.pdf)
+  * [Installation](doc/installation.pdf)
+  * [Quick Reference](doc/quick_reference.pdf)
+  * [Index](doc/index.pdf)
+[] ()
+
+[] ()
 * [VEDIT User's Manual (1981)](http://www.bitsavers.org/pdf/compuview/Compuview_VEDIT_1981.pdf)
 * [VEDIT User's Manual (1983)](http://www.bitsavers.org/pdf/picklesAndTrout/PT_VEDIT_Users_Manual_1983.pdf)
 * [VEDIT User's Manual (1984)](http://www.bitsavers.org/pdf/compuview/VEDIT_Users_Manual_Nov84.pdf)
