@@ -6,45 +6,45 @@
 
 MEMORY MAPPED VERSUS CRT VERSION
 
-The file VPLUS.CMD contains the memory mapped version of VEDIT PLUS.  
-It provides very high speed screen updating and is the preferred 
-version to use.  However, it does not support Concurrent's "windows".  
-If you are using Concurrent's "windows" you must use the CRT terminal 
-version of VEDIT PLUS in the file VPLUS86C.SET.  The disadvantage of 
+The file VPLUS.CMD contains the memory mapped version of VEDIT PLUS.
+It provides very high speed screen updating and is the preferred
+version to use.  However, it does not support Concurrent's "windows".
+If you are using Concurrent's "windows" you must use the CRT terminal
+version of VEDIT PLUS in the file VPLUS86C.SET.  The disadvantage of
 the CRT version is that it does not update the screen nearly as fast.
 
 
 THE PROGRAMMED FUNCTION KEYS WITH CONCURRENT CP/M-86
 
-Concurrent CP/M-86 on the IBM PC normally has the function keys 
-expanded to emit 'strings' such as "DIR A:".  (See CCP/M-86 FUNCTION 
-command.)  Such key expansion is not usable with VEDIT PLUS.  Therefore, 
-VEDIT PLUS must be setup to reprogram the function keys.  With 
-Concurrent CP/M-86 versions 3.0 and later, this is easy; sending the 
-escape sequence "ESC 6" disables the key expansion and lets VEDIT PLUS 
-use the function keys.  However, with earlier versions of Concurrent 
-CP/M-86, all of the function keys must be reprogrammed.  The CRT version 
-automatically disables key expansion during editing when you pick "IBM 
+Concurrent CP/M-86 on the IBM PC normally has the function keys
+expanded to emit 'strings' such as "DIR A:".  (See CCP/M-86 FUNCTION
+command.)  Such key expansion is not usable with VEDIT PLUS.  Therefore,
+VEDIT PLUS must be setup to reprogram the function keys.  With
+Concurrent CP/M-86 versions 3.0 and later, this is easy; sending the
+escape sequence "ESC 6" disables the key expansion and lets VEDIT PLUS
+use the function keys.  However, with earlier versions of Concurrent
+CP/M-86, all of the function keys must be reprogrammed.  The CRT version
+automatically disables key expansion during editing when you pick "IBM
 PC (CONC. CP/M-86)" as the terminal type during Installation.
 
-For the memory mapped version, you can have VEDIT PLUS reprogram the 
-function keys (or disable key expansion) using its autostartup feature.  
-To use the autostartup feature rename the supplied file VEDITCC.INI to 
-VEDIT.INI and copy it to User 0 of your hard disk (or system disk). 
-With early versions of Concurrent CP/M-86 you must also copy the 
-supplied file IBMSETUP to User 0 of your hard disk.  With Concurrent 
-version 3.0 or later you must copy the supplied file ESC6 to User 0 on 
+For the memory mapped version, you can have VEDIT PLUS reprogram the
+function keys (or disable key expansion) using its autostartup feature.
+To use the autostartup feature rename the supplied file VEDITCC.INI to
+VEDIT.INI and copy it to User 0 of your hard disk (or system disk).
+With early versions of Concurrent CP/M-86 you must also copy the
+supplied file IBMSETUP to User 0 of your hard disk.  With Concurrent
+version 3.0 or later you must copy the supplied file ESC6 to User 0 on
 the hard disk and rename it to IBMSETUP.
 
 
 INSTALLATION NOTES:
 
-Before performing the Installation you must reprogram the function keys 
+Before performing the Installation you must reprogram the function keys
 (or disable key expansion) by giving the command:
 
 	TYPE IBMSETUP
 
-The commands to install the Memory Mapped and CRT versions of VEDIT 
+The commands to install the Memory Mapped and CRT versions of VEDIT
 PLUS are respectively:
 
 	INSTALL VPLUS.CMD
@@ -55,40 +55,40 @@ For the CRT version Installation you must run Task 12 and select
 "IBM PC (CONC. CP/M-86)" as the terminal type.
 
 
-We have found so much variation between different versions of 
-Concurrent CP/M-86 that it is impossible to predict which keyboard 
-layouts will work.  Early versions did not support things like 
-"<ALT>-F1", while later releases do.  Therefore, early versions will 
-require setting up the keyboard as on page 330 of the manual.  Later 
-versions can use the normal keyboard layout or "Expert" keyboard 
-layout.  However, even the later versions have differences.  Therefore, 
-if the preconfigured VPLUS.CMD does not respond properly to the 
+We have found so much variation between different versions of
+Concurrent CP/M-86 that it is impossible to predict which keyboard
+layouts will work.  Early versions did not support things like
+"<ALT>-F1", while later releases do.  Therefore, early versions will
+require setting up the keyboard as on page 330 of the manual.  Later
+versions can use the normal keyboard layout or "Expert" keyboard
+layout.  However, even the later versions have differences.  Therefore,
+if the preconfigured VPLUS.CMD does not respond properly to the
 keyboard, you should try performing Task 2 of the Installation.
 
 
 DETAILS OF AUTOSTARTUP
 
-When VEDIT is invoked to edit a file on disk, it can search the default 
-drive and a specified drive for a file called 'VEDIT.INI'.  The details 
-of this search are controlled by Task 9 of the Installation.  VEDIT 
-treats the contents of VEDIT.INI as command mode instructions and 
+When VEDIT is invoked to edit a file on disk, it can search the default
+drive and a specified drive for a file called 'VEDIT.INI'.  The details
+of this search are controlled by Task 9 of the Installation.  VEDIT
+treats the contents of VEDIT.INI as command mode instructions and
 executes before you begin editing.
 
-It is important to remember that VEDIT will not give an error message 
-if there is no VEDIT.INI file on the disk and consequently will not 
-program the keys for use with VEDIT.  
+It is important to remember that VEDIT will not give an error message
+if there is no VEDIT.INI file on the disk and consequently will not
+program the keys for use with VEDIT.
 
-The file VEDITCC.INI contains the following commands: 
+The file VEDITCC.INI contains the following commands:
 
 
-+RL1 IBMSETUP       VEDIT searches for  the  file  "IBMSETUP"  and,  if 
++RL1 IBMSETUP       VEDIT searches for  the  file  "IBMSETUP"  and,  if
 		    found,  copies  its contents into TEXT REGISTER "1".
 
-YO RD1 -YO          The  contents  of  register  "1",  i.e.  the file 
-		    IBMSETUP is sent to the operating system.   Control 
-		    characters are not expanded.  Concurrent intercepts 
-		    these characters  and  reprograms  the  keys.  (The 
-		    undocumented  command YO reroutes console output to 
+YO RD1 -YO          The  contents  of  register  "1",  i.e.  the file
+		    IBMSETUP is sent to the operating system.   Control
+		    characters are not expanded.  Concurrent intercepts
+		    these characters  and  reprograms  the  keys.  (The
+		    undocumented  command YO reroutes console output to
 		    the operating system.)
 
 RE1                 The text in register "1" is emptied.
@@ -96,13 +96,13 @@ RE1                 The text in register "1" is emptied.
 
 After the auto-startup file has executed, VEDIT lets you begin editing.
 
-Concurrent CP/M-86 allows the function keys to be re-programmed by 
-typing out an appropriate file (in this case IBMSETUP).  Concurrent 
-CP/M-86 programs the keys initially with its Startup feature, when it 
-is booted, by invoking the program FUNCTION.  It is important to note 
-that FUNCTION must have been run before the IBMSETUP file will work 
-properly.  This is not normally a problem because FUNCTION is 
-automatically run at startup.  However, if you disable the startup, the 
-typing of IBMSETUP may "hang" the system.  Therefore, FUNCTION must be 
-run sometime prior to typing IBMSETUP.  
-
+Concurrent CP/M-86 allows the function keys to be re-programmed by
+typing out an appropriate file (in this case IBMSETUP).  Concurrent
+CP/M-86 programs the keys initially with its Startup feature, when it
+is booted, by invoking the program FUNCTION.  It is important to note
+that FUNCTION must have been run before the IBMSETUP file will work
+properly.  This is not normally a problem because FUNCTION is
+automatically run at startup.  However, if you disable the startup, the
+typing of IBMSETUP may "hang" the system.  Therefore, FUNCTION must be
+run sometime prior to typing IBMSETUP.
+
