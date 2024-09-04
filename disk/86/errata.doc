@@ -1,0 +1,376 @@
+
+
+		MANUAL ERRATA and Recent Changes
+		--------------------------------
+
+
+There are several typos in the manual which you should correct.  Several
+last minute enhancements to the program are also not reflected in the manual.
+We apologize for the inconvenience.
+
+To print this file, give the DOS command:
+
+	VPLUS -X PRINT.EXC ERRATA.DOC
+
+
+Note that the on-line help file VPHELP.HLP is completely up to date.
+
+
+
+ERRATA
+------
+
+Pg 45		Second and third sentences of last paragraph should read:
+
+		"All markers are initially reset.  Jumping to a reset marker 
+		has no effect.  If text containing a marker is written to 
+		disk, that marker is reset."		
+
+Pg 86		Second to last paragraph.  The references to "YL" and "YK"
+		are reversed.
+
+Pg 89		Second prompt should read "Enter Edit Buffer Name:".
+
+Pg 91		First and third prompts should read "Enter Edit Buffer Name:".
+
+Pg 94		Description for "[D]elete" should read:
+
+		"Prompts for the name of the window to be deleted.  Switches 
+		to the main "@" edit buffer and window.  Only the "@" window 
+		cannot be deleted.  Exiting or quitting an edit buffer does 
+		NOT delete its corresponding window."
+		
+Pg 94, 95	The prompts "Enter Window Name" and "Top Bottom Left Right"
+		and their corresponding descriptions are reversed.
+
+Pg 106		Step 2. should read "0L 1RC9 L RG9 -L".
+
+Pg 133		Note that the function [WINDOW]-Switch can be used to switch
+		between edit buffers even if you haven't split your screen
+		into "windows".
+
+Pg 150		Delete the last sentence on the page beginning with
+		"Additionally ...".  See "Enhancements" below.
+
+Pg 158		The example near the bottom of the page should read "EP 4 2".
+
+Pg 261		The "OC" command follows the rules of explicit delimiters. 
+		An alternative to the example is: "@OC/VPRINT CHAPTER1/". 
+		The "|Rr" construct may be used to access the DOS command 
+		stored in register 'r'.
+
+Pg 288		The "Notes" can be ignored.  Windows can be deleted in a 
+		random order.  See the "YWD" command enhancement below.  
+
+Pg 289		The examples should read "YWR1 40" and "YWB$ 5".  In other
+		words, there must be no space before the window name.
+
+Pg 311		Delete the last sentence for Task 7.2.  (This parameter
+		can now be changed without having to perform the keyboard
+		layout again.)
+
+Pg 329		The "Expert" keyboard layout supplied in the file EXPERT.COM
+		(see below) includes three additional keystroke macros:
+
+		[GOTO]-Home	<ALT-H>
+		[GOTO]-Zend	<ALT-Z>
+		[PRINT]-Block	<CTRL-P>
+
+Pg 331		The pre-installed value for "DELAY FOR COMMAND MODE
+		SCROLLING" is 00.  You can change it to 50 if the
+		screen scrolls too fast for you in Command Mode.
+
+Pg 346		In [FIND] description.  Should read "... up to 80 
+		characters ...".
+
+Pg 359		"YEE" is incorrect; it should be "YEL".
+
+		The "YWI" command was left out.  "YWI" initializes
+		the screen back to a single window.
+
+		The "YWS" command was left out.  "YWSw" switches to
+		window 'w'.  "YWS" switches to window "@".
+
+
+
+FILES
+-----
+
+EXPERT.COM	This is a runnable VEDIT PLUS preconfigured to the "Expert"
+		keyboard layout.  See page 328.  Unless you have a very
+		strong inclination to have the "menu-functions" assigned to
+		the function keys, we highly recommend the "Expert" layout.
+
+KEYS.IBM	This is a graphic representation of the pre-configured 
+		keyboard layout for the IBM PC.  It is three screens long and
+		may be used to replace the first two screens of the on-line
+		help file VVHELP.HLP.
+
+CV203.VDM	This is a macro which converts version 2.02 macros into
+		2.03 macros.
+
+STRIPV.VDM	This macro strips comments from VEDIT PLUS macros.  Primarily
+		for CP/M (8080 / Z80) machines, where it is important to save
+		memory space.
+
+
+
+ENHANCEMENTS
+------------
+
+EM command	You can use the command form "nEM" to indicate that the 
+		command is to be performed 'n' times.
+
+EP, ES, ET	(See Page 150.)  VEDIT PLUS maintains a separate set
+  commands	of "EP", "ES" and "ET" values for each edit buffer.
+		Changing these values will only affect the current and
+		subsequently created edit buffers.  Alternatively, you
+		can use the command forms "-EP n k", "-ES n k" and 
+		"ET n1 n2 ..." to change only the values for the current
+		edit buffer.
+
+ER command	The command "+ER<ESC>" displays the current input filename 
+		and includes its drive and/or path.  ("ER<ESC>" only displays 
+		the filename.)
+
+EW command	The command "+EW<ESC>" displays the current output filename 
+		and includes its drive and/or path.
+
+OD		Displays the system date.  ":OD" suppresses the final <CR>
+		<LF>.  Use the command "YI OD -YI" to insert the date into
+		your text.
+
+OT		Displays the system time.  ":OD" suppresses the final <CR>
+		<LF>.
+
+PE command	The command "-PE" resets the internal line counter for 
+		printing without ejecting a page on the printer.  Primarily
+		useful in printing macros which change the "PP" parameters.
+
+XT command	The command form "-XTr" will left justify the number.
+		("XTr" right justifies the number.)
+
+YL command	The command form "+YL file" performs an extended search for
+		the keyboard layout file 'file'.
+
+YWD command	The command "YWDw" deletes window 'w'.
+		("YWD" deletes the current window.)
+
+V command	The command "-V" performs an update-only of the visual mode 
+		window.  Its only real use is inside macros which need to
+		update a window.  (Otherwise any visual mode windows only
+		update while waiting for keyboard input from Command mode.)
+
+.lm value	The internal value ".lm" is the current left margin, i,e.
+		the indent position in Visual Mode.
+
+.rtR value	The internal value ".rtR" returns the "type" for register 'R':
+		0 = unused, 1 = text register, 2 = edit buffer.
+
+.wd value	The internal value ".wd" is the current display type:
+		0 = CRT terminal,   1 = Non-IBM memory mapped
+		2 = IBM Monochrome, 3 = IBM Color (CGA or EGA)
+
+.wx value	The internal value ".wx" contains the horizontal ("x")
+		position of the cursor in the window.
+
+.wy value	The internal value ".wy" contains the vertical ("y")
+		position of the cursor in the window.
+
+
+
+[CANCEL] and <CTRL-C>
+---------------------
+
+On the IBM PC, [CANCEL] can now be used as an alternative to <CTRL-C> to 
+cancel edit functions which are prompting on the status line.  [CANCEL] can 
+also be used in place of <CTRL-C> in Command Mode to abort macros, etc.
+
+
+
+CAPS Lock / NUM Lock / Scroll Lock  (IBM PC Only)
+----------------------------------
+
+On the IBM PC, the status of the Caps/Num/Scroll Lock is now displayed on 
+the status line with the single letters "C", "N" and "S".
+
+
+
+Keystroke Macros
+----------------
+
+When the manual was written, keystroke macros could only be used in Visual 
+Mode.  Now they can also be used in Command Mode.  For example, you could
+use the [DEFINE] function to assign the command "ED *.ASM <RETURN>" to the key
+<SHIFT-F1>.  Pressing <SHIFT-F1> in Command Mode would then execute the 
+command.  There is one restriction: keystroke macros used in Command Mode 
+cannot be accessed via multi-key "escape sequences".  This is a serious 
+restriction for CRT terminals, but not for the IBM PC.
+
+Visual Mode keystroke macros can be a combination of visual mode functions 
+and Command Mode commands.  This allows virtually any edit function to be 
+created.  Here are a few examples:
+
+Example: Function to "open" a blank line above the current one.
+	 (Similar to "open-line" in EMACS)
+
+	 [VISUAL EXIT] 0L @I/<RETURN>/ -L
+
+Example: Function to transpose two letters.
+
+	 [VISUAL EXIT] .p,.p+1RCT D -C RGT
+
+Example: Function to delete characters from the beginning of the line up
+	 to the cursor.
+
+	 [VISUAL EXIT] 0K
+
+
+Be sure to use [VISUAL EXIT]; [VISUAL ESCAPE] will not work.
+
+NOTE:	DO NOT END THE MACRO WITH A "V"; OTHERWISE ERRORS WILL OCCUR!
+	The macro will automatically reenter Visual Mode.
+
+Any desired keystroke macros can be built into VEDIT PLUS during 
+Installation.  There is no absolute limit to how many keystroke macros can be 
+built in or added with [DEFINE].  Of course, keystroke macros take up memory 
+space.  INSTALL limits the length of EACH keystroke macro to 200 characters.  
+The "VPLUS.COM" file will grow in size as keystroke macros are added.
+
+Both status line prompts for the [DEFINE] function can be aborted by pressing
+[BACKSPACE].  This implies that [BACKSPACE] cannot be part of a keystroke
+macro.  However, you can perform the equivalent function with [CURSOR LEFT]
+and [DELETE].  Alternatively, [BACKSPACE] may be built in during Installation.
+
+
+
+GRAPHICS CHARACTERS  (IBM PC Only)
+-------------------
+
+The IBM PC <ALT>-keypad feature can be used to directly enter graphics 
+characters into the text.  Contrary to the description on page 75, it is NOT 
+necessary to precede the character with [NEXT CHAR LITERAL].
+
+You can easily create the following box top with a 50 character width.
+
+Example:   浜様様様様様様様様様様様様様様様様様様様様様様様融
+
+First type "<ALT>-201" (hold down the <ALT> key and type 201 on the keypad).
+Then press [REPEAT], type "48" and "<ALT>-205".  Last type "<ALT>-187".
+
+
+
+CURSOR TYPE / COLOR  (IBM PC Only)
+-------------------
+
+You can select from four different cursor types are described on page 306. 
+For types 1, 2, and 3 the cursor's color is normally set to the background 
+color.  If desired, you can override this during Installation with Task 
+11.5.  This value is normally set to 0.  Any other value sets the override 
+attribute for the cursor.  For example, a value of "C0" gives a red cursor 
+regardless of the color of the text characters.  (This is not documented in 
+the manual.)
+
+If you choose a highlighted color such as yellow (attribute 14 decimal) for 
+your text, you may not like the resulting cursor color.  In this case you can 
+set Installation Task 11.5 to the desired cursor color.
+
+
+
+DEMO
+----
+
+For a quick demonstration of some of VEDIT PLUS's windowing and macro
+capabilities, locate two of your files which are similar, but contain a few
+differences.  Then compare them using the supplied COMPARE macro.  Just
+give the command:
+
+VPLUS -X COMPARE.VDM
+
+The macro prompts for the information it needs.  See Pages 112-113 in the
+manual for more information on using this macro.  
+
+One COMPARE feature not described in the manual is that you can use the 
+[WINDOW]-Switch operation to quickly switch between the "active" and the 
+"template" files.  Press [WINDOW]-Switch and "P" to switch to the template 
+file; press [WINDOW]-Switch and RETURN to switch back to the active file.
+
+
+
+SMALL MEMORY MODE  (8086 Only)
+-----------------
+
+For optimum performance VEDIT PLUS will use a lot, or even all, of memory.  
+In particular, it will try to reserve one 64K memory segment for the text 
+registers, another 64K for the main edit buffer, and additional 64K segments 
+for each edit buffer, until all memory is used up.  The program itself takes 
+another 35K.  Normally this works best.  However, if you try to run other 
+programs from within VEDIT PLUS (via the "OC" and "OS" commands), you may 
+find that you don't have enough memory left.  If this happens you should 
+first "quit" any unused edit buffers.  If this is not enough, you can run 
+VEDIT PLUS in its "small memory mode", in which it only uses 64K of memory 
+for all edit buffers and text registers.  (Total memory usage = 99K).  You 
+may also want to run in "small memory mode" with multi-tasking programs such 
+as TopView, Microsoft Windows or DESQView.  To run in "small memory mode", 
+invoke VEDIT PLUS as follows:
+
+	VPLUS -S filename
+
+
+
+ERROR HANDLING  (MS-DOS Only)
+--------------
+
+VEDIT PLUS handles all disk errors, including having a disk drive door open, 
+read and write errors.  It also handles printer errors.  When an error 
+occurs, the status line displays a descriptive message and prompts with:
+
+CANCEL, IGNORE, RETRY (C/I/R)?
+
+Type "C" to cancel the operation.  This is safe because it returns to VEDIT 
+PLUS.  Type "R" to re-try the operation, such as after closing the drive 
+door.  You can type "I" to ignore, but this usually just leads to another 
+error.
+
+
+
+PRESERVING YOUR FILES
+---------------------
+
+VEDIT PLUS is designed to make it as unlikely as possible for you to 
+accidentally lose a file or your edited text.  However, nothing is foolproof.  
+The best safeguard is to save your edited file to disk at least once an hour 
+(using [FILE]-Save or the "EA" command) and backing up your work at the end 
+of each day.  
+
+You should use the following commands with additional care:
+
+1.  The "EK" command erases files similar to the DOS "ERASE" command.  
+    Fortunately, the "EK" is actually safer to use since it displays the 
+    filenames about to be erased and requests confirmation.
+
+2.  The "EQ" and "EZ" commands and the [FILE]-Quit operation abandon the edit 
+    changes you have just made.  They are very useful, but you don't want to 
+    use them when you really wanted to save your changes.  These commands 
+    request confirmation before throwing your text away.  Also, they do not 
+    change or erase the original files on disk.
+
+3.  The "EF" command is primarily intended for splitting large files into 
+    smaller ones.  "EF" is almost always preceded by a "W" command.  Don't 
+    use "EF" to quit or save your editing.  This command requests confirmation.
+
+4.  The "OS" command lets you enter DOS for as long as you wish.  However, it
+    does not save the files you are editing to disk.  Therefore, be sure to 
+    return to VEDIT PLUS (with the DOS command "EXIT") to save your files.
+    It is easy to forget that you are still in VEDIT PLUS and turn the
+    computer off - losing your edit changes.  As a safeguard, you may wish
+    to save your files (use "EY" or "EA" commands) before entering DOS.
+
+As an additional safeguard, VEDIT PLUS always creates a "backup" when you 
+revise an existing file.  The backup has a filename extension of ".BAK" and 
+is created whenever you save the newest revisions to disk.  Therefore, if you 
+accidentally erase an important file (either with VEDIT PLUS or DOS) you will 
+still have the backup (unless you explicitly erased it).  To use the backup, 
+just rename it to the desired filename; you cannot directly edit a ".BAK" 
+file.
+

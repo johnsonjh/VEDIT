@@ -259,20 +259,32 @@ are also available and useful for cross-development.
 
 ## Extras
 
-* Other files that were shipped on the original CP/M-80 distribution
-  media are included in the [`disk`](disk) directory.  This includes
-  the `INSTALL.COM` and `INTCOM.COM` utilities used to tailor the
-  (uncompressed, if using `POPCOM`) executable to your system.
+* The files that were shipped on the original CP/M‑80 and CP/M‑86
+  distribution media are included in the [`disk`](disk) directory,
+  with 8086-specific files in the [`disk/86`](disk/86) subdirectory.
+  * This includes the `INSTALL.COM`/`INSTALL.CMD` and `INTCOM.COM`
+  utilities used to tailor the (uncompressed, if using `POPCOM` on
+  CP/M‑80) executable to your specific system.
 
 * Help files are included in the [`hlp`](hlp) directory.  These help
   files should be verified and possibly customized to ensure the key
-  bindings match what you are "shipping to the customer".
+  bindings or other source customization match what you are "shipping
+  to the customer".
 
-* The [`zilint`](zilint) directory contains the CompuView Z80‑8086
-  Translator macros. 
+* The [`zilint`](zilint) directory contains CompuView's Z80‑8086
+  Translator macros.
+
+* The [`bin`](bin) directory currently contains a pre-built CP/M‑86
+  VEDIT‑PLUS executable
 
 ## Future
 
+* A few files still need to be located:
+  * `VPLUSZM.SET`: File to configure the Z80 Memory mapped version.
+  * `VPLUS8M.SET`: File to configure the 8080 Memory mapped version.
+[]()
+
+[]()
 * Building for CP/M‑86 and MS‑DOS, if possible (as the sources
   seem to support), needs to be worked out and documented.
   * It seems that when building for 8086, the sources would be
