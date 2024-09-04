@@ -260,8 +260,8 @@ are also available and useful for cross-development.
 ## Extras
 
 * The files that were shipped on the original CP/M‑80 and CP/M‑86
-  distribution media are included in the [`disk`](disk) directory,
-  with 8086-specific files in the [`disk/86`](disk/86) subdirectory.
+  distribution media are included in the [`disk`](disk) and
+  [`disk/86`](disk/86) directories, respectively.
   * This includes the `INSTALL.COM`/`INSTALL.CMD` and `INTCOM.COM`
   utilities used to tailor the (uncompressed, if using `POPCOM` on
   CP/M‑80) executable to your specific system.
