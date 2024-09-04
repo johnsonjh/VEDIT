@@ -269,8 +269,8 @@ are also available and useful for cross-development.
 
 []()
 * Help files are included in the [`hlp`](hlp) directory.  These help
-  files should be verified and possibly customized to ensure the key
-  bindings or other source customization match what you are "shipping
+  files should be verified and possibly modified to ensure the key
+  bindings or other source customizations match what you are "shipping
   to the customer".
 []()
 
