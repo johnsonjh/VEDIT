@@ -291,7 +291,7 @@ are also available and useful for cross-development.
 []()
 
 []()
-* Building for CP/M‑86 and MS‑DOS, if possible (as the sources
+* Building for CP/M‑86 (or MS‑DOS), if even possible (as the sources
   seem to support), needs to be worked out and documented.
   * It seems that when building for 8086, the sources would be
     further translated by means of a currently unknown program;
