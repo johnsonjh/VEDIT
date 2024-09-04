@@ -265,15 +265,21 @@ are also available and useful for cross-development.
   * This includes the `INSTALL.COM`/`INSTALL.CMD` and `INTCOM.COM`
   utilities used to tailor the (uncompressed, if using `POPCOM` on
   CP/M‑80) executable to your specific system.
+[]()
 
+[]()
 * Help files are included in the [`hlp`](hlp) directory.  These help
   files should be verified and possibly customized to ensure the key
   bindings or other source customization match what you are "shipping
   to the customer".
+[]()
 
+[]()
 * The [`zilint`](zilint) directory contains CompuView's Z80‑8086
   Translator macros.
+[]()
 
+[]()
 * The [`bin`](bin) directory currently contains a pre-built CP/M‑86
   VEDIT‑PLUS executable
 
