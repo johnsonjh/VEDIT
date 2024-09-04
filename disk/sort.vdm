@@ -1,0 +1,219 @@
+R*
+R*			VEDIT SORT MACRO
+R*
+R*		     Written by Thomas C. Burt
+R*			  December, 1984
+R*
+R*		     Updated October 8, 1985
+R*		     Converted for 2.x3 October, 1986
+R*
+R* To run this macro:	RX0 SORT.VDM
+R*
+R*		Enter the name of the file to be sorted when prompted.
+R*		The file is sorted one record at a time into edit buffer S.
+R*
+R* To re-run:		MG
+R*
+R* This macro loads its self-conained submacros into their proper registers
+R* then jumps to the main driver macro G for execution.
+R*
+R******************    Macro B    *****************************************
+R*
+R* Macro B does a binary search from the current position back towards the
+R* beginning of the sort buffer S.  When the proper position is located for
+R* the current input record that record is inserted.
+R*
+@RIB\
+(Q2+Q1)/2_EJ
+MU
+(.p=q1)[RJW]
+RJM
+\
+
+R******************    Macro D    *****************************************
+R*
+R* Macro D moves down and sets Q5 to the top of the next sort record.
+R*
+@RID\
+[ @:F/|L|L/
+  [ #@EM/|L/ @EM/|W/ (.rv<>0)[0L .pXS5 JM] ]
+]
+
+Z
+.pXS5
+\
+
+R******************    Macro F    *****************************************
+R*
+R* Macro F moves forward in the file to the record that is about midway
+R* between the records pointed to by Q1 & Q2 (moving forward to the next
+R* record from the exact midpoint.
+R*
+R* When this point = Q2, the edit point is set to Q1 and control is
+R* given to Macro W to find the correct insertion point for the new record.
+R* Otherwise control is given to Macro M to continue the binary search process.
+R*
+@RIF\
+(Q2+Q1)/2_EJ
+MD
+(.c=^z)[Q1_EJ RJW]
+RJM
+\
+R******************    Macro G    *****************************************
+R*
+R* Macro G is the main driver macro (Go)
+R*
+@RIG\
++ES 8 0 .RVXS18
++ES 9 0 .RVXS19
++RAQ
+
+15[@YT/
+/ ]@YT/
+			    VEDIT's
+			Mail List Sorter
+/
+
+-EE@ EZY EES EZY
+
+12[@YT/
+/  ]
+@:RQO/Please enter name of mail list: /
+
+@YT/Opening / RTO ^MYD
+ER|RO
+
+RE0
+@:RQ0/
+Please enter filename for sorted output (RETURN if same):  /
+EE@
+(.u0=0)[EW|RO ][EW|R0 ]
+
+@YT/Sorting ...
+/
+
+0XS5 0XS6
+!Begin looping!
+[
+  R* Check whether entire source list has been sorted, if so exit
+  -EES (.c=^z)&(.ef)[RJX]
+
+  R* Check whether there is enough text in current buffer.  If not, get more
+  Z .yXS25 B .yXS24  (Q25-Q24 < 13)[ 31 A]
+
+  R* Get next record & put 1st line into pattern register P
+  [ #@EM/|L/ @EM/|W/ (.rv<>0)JL ] 0L -#K 1RCP
+
+  R* Insert source record into main buffer.
+  R* Start by comparing to last record inserted followed by the record before
+  R* or after it.  If the new record doesn't go there, use binary search to find
+  R* where it does go.
+
+  -EE@   0XS1   Z   .pXS2   Q5_EJ
+
+  !LP! RMP (.rv=0)[ MD @JP.LP.]
+	   (.rv=1)[ Q5XS2 MB JN ]
+	   (.rv=2)[ MD (.c=^z)[MI JN ]
+		    Q5XS1 MF JN]
+]
+\
+
+R******************    Macro I    *****************************************
+R*
+R* Macro I inserts the current source record into the main edit buffer
+R* at the beginning of the current sort record pointed to by Q5.
+R*
+@RII\
+Q5_EJ
+-EES .pXS1
+[ @:F/|L|L/
+  [#@EM/|L/ @EM/|W/;] 0L
+  .pXS2
+  Q1,Q2_RC0 Q1,Q2_K
+  -EE@ RG0
+  XA6 ^m:YD Q6:
+  JM
+]
+
+Z
+.pXS2
+Q1,Q2_RC0 Q1,Q2_K
+-EE@ RG0
+XA6 ^m:YD Q6:
+\
+
+R******************    Macro M    *****************************************
+R*
+R* Macro M matches the current source sort line in pattern record P
+R* against the current record in the main edit buffer.
+R*
+R* If there is a match, the Macro I is invoked to insert the source record.
+R* Otherwise, control is given to macro B (back) or F (forward) to find the
+R* next sorted record to be examined (and perform the insertion if there
+R* is none.)
+R*
+@RIM\
+RMP
+(.rv=0)[MD RJI]
+(.rv=1)[Q5XS2 RJB]
+(.rv=2)[Q5XS1 RJF]
+\
+
+R******************    Macro Q    *****************************************
+R*
+R* Macro Q quits the sort process and exits to VEDIT after restoring
+R* user configured edit parameters that may have been altered by SORT.
+R*
+R* This macro has been defined as the macro-interrupt handler.
+R*
+@RIQ\
++ES 8 Q18
++ES 9 Q19
+RA0
+
+-EE@
+JO
+\
+
+R******************    Macro U    *****************************************
+R*
+R* Macro U moves up and sets Q5 to the top of the current sort record.
+R*
+@RIU\
+0L (.c=^z)[-1_:l]
+[ @EM/|W/ @EM/|L/  (.rv <> 0)_JL   -2L  ]
+
+[ -:L @EM/|W/ @EM/|L/  (.rv=0)[.pXS5 JM] ]
+0XS5
+\
+
+R******************    Macro W    *****************************************
+R*
+R* Macro W walks through the main edit buffer until pattern buffer P
+R* is less than the current record.  The current source record is thereupon
+R* inserted.
+R*
+@RIW\
+.pXS5
+[(.c=^z)[RJI] RMP (.rv=1)[RJI] MD]
+\
+
+R******************    Macro X    *****************************************
+R*
+R* Macro X exits normally, saving the sorted output file.
+R*
+@RIX\
+-EE@
+@YT/
+Saving / :ew
+EY
+RJQ
+\
+
+R******************    End of sub-macros section    ***********************
+R*
+
+RJG			!Go to it
+
+R*		End of Mail list sort macro
+

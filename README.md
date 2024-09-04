@@ -259,9 +259,17 @@ are also available and useful for cross-development.
 
 ## Extras
 
+* Other files that were shipped on the original CP/M-80 distribution
+  media are included in the [`disk`](disk) directory.  This includes
+  the `INSTALL.COM` and `INTCOM.COM` utilities used to tailor the
+  (uncompressed, if using `POPCOM`) executable to your system.
+
 * Help files are included in the [`hlp`](hlp) directory.  These help
   files should be verified and possibly customized to ensure the key
   bindings match what you are "shipping to the customer".
+
+* The [`zilint`](zilint) directory contains the CompuView Z80‑8086
+  Translator macros. 
 
 ## Future
 
@@ -277,13 +285,6 @@ are also available and useful for cross-development.
     that these files would have been part of the currently unknown
     translation package (or cross-assembler software).
   * Further investigation is required.
-[]()
-
-[]()
-* There were many other files shipped on the retail VEDIT ⧸ VEDIT‑PLUS
-  distribution diskettes, which should be reviewed for inclusion in
-  this repository.
-[]()
 
 ## License
 

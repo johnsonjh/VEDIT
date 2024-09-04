@@ -1,0 +1,81 @@
+R*
+R*	Macro STRIPV:	Strips comments and surrounding white space from
+R*			VEDIT PLUS macros.
+R*
+R*	Usage:		Reduces the size of macros to save memory space
+R*			inside of VEDIT PLUS.  This also speeds up
+R*			macro execution by a little.  Large macros may
+R*			have to be stripped before they will run on
+R*			CP/M machines.
+R*
+R*	Warning:	If a text string in the macro being stripped
+R*			contains " R*" or " !" it will be misinterpreted
+R*			as an embedded comment and incorrectly destroyed.
+R*
+
+es 8 2  .rvxs2
+
+R*
+R* Strip lines beginning with 'R*' and any following white space.
+R*
+
+_b[@:N/|<R*/; 0kk [.pxs0 @em/|w/ #@em/|L/ (.p=q0)jl .p,q0k] ]
+
+R*
+R* Strip lines beginning with '!' and any following white space, unless
+R* another '!' is encountered in the line.
+R*
+
+@ri0/!,
+/				R* Pattern for checking for 2d '!' in line
+
+_b
+[ @:N/|<!/;			R* Find line starting with '!'
+  @N/|P0/;			R* Another '!' in the line?
+  (.n=1)jn			!If so (just 1 char matched) next iteration
+  -k				!No, comment line;  delete it
+
+  .pxs0				!Mark beginning of white space
+  [				!WHITE SPACE SCANNING
+    @em/|w/			!Scan past white space
+    #@em/|L/			!Scan past any EOL's
+    (.es<>0)jl			!Exit loop if none
+  ]
+ .p,q0d				!Delete any white space
+
+]
+
+R*
+R* Strip in-line 'R*' comments and any preceding/following white space.
+R* Presumes at least one space precedes 'R*'.
+R*
+
+_b
+[@:N/|WR*/; -.nc -@i/
+/ k
+[.pxs0 @em/|w/ #@em/|L/ (.p=q0)jl .p,q0k]
+]
+
+R*
+R* Strip in-line '!' comments and any preceding/following white space.
+R*
+
+@ri0/!,
+/
+_b
+
+[ @:N/|W!/; .p-.nxs0
+  @N/|P0/;
+  (.n=1)jn
+
+  [
+    @em/|w/ #@em/|L/
+    (.es<>0)jl
+  ]
+  .p,q0k
+  @i/
+/
+  ]
+
+es 8 q2
+

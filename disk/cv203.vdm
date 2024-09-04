@@ -1,0 +1,106 @@
+R*
+R*	CV203 assists in converting VEDIT PLUS 2.x2 macros to version 2.x3
+R*
+R*	Invoke VEDIT PLUS with the file to be converted: VPLUS x.vdm
+R*	Invoke this macro-converter:  rxz cv203.vdm
+R*
+R*				OR
+R*
+R*	Do both of the above at once by:  VPLUS -X CV203.VDM x.vdm
+R*
+R*		This macro searches the file 'x.vdm' for all occurrences of
+R*		each specific VEDIT PLUS command that is to be changed.  The
+R*		macro pauses in visual mode with the cursor at the point of a
+R*		possible change.  If it is at an old VEDIT PLUS command, the
+R*		user should convert the command to the new form.  When ready
+R*		for the conversion to resume, he merely presses [VISUAL EXIT]
+R*		(not [VISUAL ESCAPE] which would terminate the conversion
+R*		process).
+R*
+R*		Some VEDIT PLUS commands are converted directly by CV203
+R*		The user need then only verify that the conversion is correct
+R*		and press [VISUAL EXIT] for the process to continue.
+R*
+R*	Save the converted macro x.VDM by the command 'EX' or 'EY'.
+R*
+
+
+R*	The following several conversions are performed most easily in REPLACE mode
+
+
+
+R*		Changing RCr to RJr
+
+_b
+[@:_f/RC|f|s/; -(.n-1)c v]
+
+
+R*		Changing RGr/RG#r to RQr/RQ#r
+
+@ri0/#|d,|f/
+_B
+[@:_f/RG|p0|s/; -(.n-1)c v]
+
+
+R*		Changing XGr/XG#r to XQr/XQ#r
+
+@ri0/#|d,|f/
+[@:_f/XG|p0|s/; -3c v]
+
+
+R*		Changing YL to YP (just stop) and
+R*		changing YR/YW to ER$/EW$ (stop after making change)
+
+@ri0/R,W,L/
+_b
+[@:_f |sY|p0|s ; -2c
+ (.c&95<>"L)[ -c (.c="y)[-"eei][-"Eei] c 27ei]
+ v
+]
+
+
+R*	The remaining conversions should be performed in INSERT mode.
+
+
+
+R*		Changing  Gr/G#r to RGr/RG#r
+
+@ri0/#|d,|f/
+_b
+[@:_f/G|p0|s/; -.nc v c]
+
+
+R*		Changing 0Pr/0P#r to REr/RE#r
+
+@ri0/#|d,|f/
+_b
+[@:_f/0P|p0/;  -(.n+1)c (.c="-)[-"+ei][c] -@i/RE/ c v]
+
+
+R*		Changing Pr/P#r  to RCr/RC#r
+
+@ri0/#|d,|f/
+_b
+[@:_f/|n|aP|p0|s/; -(.n-1)c v c]
+
+
+R*		Changing EP 12 r  to  RAr
+
+_b
+[@:_f/ep/ .p-.nxs0 (.v<>12)jn @EM/|W/ @EM/,/ .vxs1 ^mei ^jei
+
+    q0ej (q1=0)[@i/
+R*  Cannot auto-execute Register 0.  Convert macro to use another register.
+R*  / ]
+
+    (q1<10)[@i/+RA/ yi q1+"0:yd][
+    (q1<36)[@i/+RA/ yi q1-10+"A:yd][
+	    @i/RA0/
+	    ]]  -yi
+
+    ^mei ^jei
+    @i/R* / 0l
+    v
+    @em/R*/ (.er=0)[1l]
+]
+

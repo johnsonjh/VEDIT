@@ -36,7 +36,7 @@ Press the key for the desired function or RETURN for next screen: 
 
 [BLOCK]-Copy		ESC - 4		[BLOCK]-Move		ESC - 5
 [BLOCK]-Insert		ESC - 6		[CANCEL]		ESC - 1
-[GOTO]-Mark		ESC - 7		[GOTO]-Jump		ESC - 8
+[GOTO]-Set		ESC - 7		[GOTO]-Jump		ESC - 8
 [GOTO]-Home		ESC - H		[GOTO]-Zend		ESC - Z
 
 Press the key for the desired function or RETURN for next screen: 
@@ -355,18 +355,18 @@ Type the word between "{" and "}" for help on above topics: 
 			the "H" and "EH" commands.
 \GO\
 
-[GOTO]	-- [B]egin [H]ome [M]ark [J]ump [L]ine [Z]end [E]nd
+[GOTO]	-- [B]egin [H]ome [S]et [J]ump [L]ine [Z]end [E]nd
 
 [B]egin		Moves cursor to first character in the file.
 
 [H]ome		Moves cursor to first character in edit buffer.
 
-[M]ark		Prompts for a digit "0 - 9".  Sets an invisible text marker to
+[S]et		Prompts for a digit "0 - 9".  Sets an invisible text marker to
 		which you can later "jump" back with [GOTO]-Jump.
 
-[J]ump		Prompts for a digit "0 - 9".  Moves the cursor to the
-		previously set text marker.  If the marker has not been set or
-		has been reset, moves the cursor home.
+[J]ump		Prompts for a digit "0 - 9".  "Jumps" to a previously set text
+		marker.  If the marker has not been set or has been reset the
+		cursor does not move.
 
 [L]ine		Prompts for a line number.  Moves the cursor to the beginning
 		of the specified line.
