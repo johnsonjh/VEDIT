@@ -32,11 +32,3 @@ To install the CRT version
 3. In the INSTALL (configuration) program's menu, be sure to
    select task 12 to select your particular CRT terminal type.
 
-
-On-line Help
-------------
-
-Unfortunately, the extensive manuals originally supplied with
-VEDIT PLUS for CP/M-86 are not available as text file or .PDF
-files. Therefore, use the extensive on-line help.
-
