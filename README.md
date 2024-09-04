@@ -294,7 +294,7 @@ are also available and useful for cross-development.
 ## User's Manuals
 
 * VEDIT Manual (1987):
-  * [Introduction](doc/introdiction.pdf)
+  * [Introduction](doc/introduction.pdf)
   * [Tutorial](doc/tutorial.pdf)
   * [User Guide](doc/user_guide.pdf)
   * [Programming Guide](doc/programming_guide.pdf)
