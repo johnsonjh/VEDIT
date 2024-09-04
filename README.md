@@ -274,8 +274,8 @@ are also available and useful for cross-development.
 * The [`zilint`](zilint) directory contains CompuView's Z80‑8086
   Translator macros.
 
-* The [`bin`](bin) directory currently contains a pre-built CP/M‑86
-  VEDIT‑PLUS executable
+* The [`bin`](bin/86) directory contains a pre-built CP/M‑86
+  VEDIT‑PLUS executable.
 
 ## Future
 
