@@ -440,5 +440,3 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * [VEDIT, Inc.](https://www.vedit.com/)
 * [VEDIT History](https://web.archive.org/web/20130805180830/http://vedit.com/20Years.htm)
 * [Wikipedia: VEDIT](https://en.wikipedia.org/wiki/VEDIT)
-* [Rosetta Code: VEDIT Language](https://rosettacode.org/wiki/Category:Vedit_macro_language)
-* [EDM2: VEDIT](https://web.archive.org/web/20210324052916/http://www.edm2.com/index.php/VEDIT)
