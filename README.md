@@ -29,9 +29,9 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 
 This is the source code for **VEDIT** ⧸ **VEDIT‑PLUS** for CP/M,
 version 2.33b (04/27/87), the commercial text editing system and
-text-oriented programming language, produced by Theodore Green
-and Greenview Data Inc. (formerly CompuView Products, Inc.) of
-Ann Arbor, Michigan.
+(TECO-derived) text-oriented programming language, produced by
+Theodore Green and Greenview Data Inc. (formerly CompuView Products,
+Inc.) of Ann Arbor, Michigan.
 
 This incarnation of VEDIT was created in 1979 and was commercially
 supported until 1988 (when it was superseded by VEDIT 3) and is the
@@ -57,30 +57,30 @@ Translator, etc.) were also produced.
 
 (*from the VEDIT User's Manual*)
 
-VEDIT is an editor designed to take full advantage of a CRT display to
-make your word processing and program development editing as fast and
-easy as possible.  VEDIT's "Visual Mode" offers true
+VEDIT is an editor designed to take full advantage of a CRT display
+to make your word processing and program development editing as fast
+and easy as possible.  VEDIT's "Visual Mode" offers true
 "What-you-see-is-what-you-get" type editing, which continuously
 displays a region of your file on the screen and allows any changes
-made to the screen display to become the changes in the file.  You can
-change the screen display by moving the displayed cursor to any place
-in the file and then typing in new text or typing an edit function
-key.  These insertions, deletions, and corrections are immediately
-seen on the screen and become the changes to the file.
+made to the screen display to become the changes in the file.  You
+can change the screen display by moving the displayed cursor to any
+place in the file and then typing in new text or typing an edit
+function key.  These insertions, deletions, and corrections are
+immediately seen on the screen and become the changes to the file.
 
-You can also perform the common word processing operations of wrapping
-words at the end of lines and formatting paragraphs between right and
-left margins.  It is easy to print any portion of the text being
-worked on. Horizontal scrolling allows editing of very long lines.
-Ten scratchpad buffers may be used for extensive "cut and paste"
-operations.  Powerful search and selective replace operations simplify
-editing.  Other features, such as automatic indenting for structured
-programming languages, simplify and enhance program development
-editing.
+You can also perform the common word processing operations of
+wrapping words at the end of lines and formatting paragraphs between
+right and left margins.  It is easy to print any portion of the text
+being worked on. Horizontal scrolling allows editing of very long
+lines.  Ten scratchpad buffers may be used for extensive "cut and
+paste" operations.  Powerful search and selective replace operations
+simplify editing.  Other features, such as automatic indenting for
+structured programming languages, simplify and enhance program
+development editing.
 
-VEDIT also provides a very flexible and powerful "Command Mode", which
-serves the dual purpose of separating the less commonly used functions
-from the "Visual Mode", and of making VEDIT a text oriented
+VEDIT also provides a very flexible and powerful "Command Mode",
+which serves the dual purpose of separating the less commonly used
+functions from the "Visual Mode", and of making VEDIT a text oriented
 programming language.  Repetitive editing operations can be performed
 and blocks of text may be copied or moved within the current file and
 other files in an almost unlimited manner.  The extensive file
@@ -93,21 +93,22 @@ translations.  The command macros can be saved on disk for future use.
 Online help is available.
 
 You can edit files of virtually any size with little concern over the
-actual size of the files.  You can also recover from common disk write
-errors, such as running out of disk space, by deleting files or
+actual size of the files.  You can also recover from common disk
+write errors, such as running out of disk space, by deleting files or
 inserting another disk.
 
 Since so many different hardware configurations, keyboards, editing
 applications, and personal preferences exist, VEDIT is supplied with
 a customization (installation) program in order to let users create
-versions of VEDIT which are most suitable to their hardware, keyboard,
-applications, and preferences.
+versions of VEDIT which are most suitable to their hardware,
+keyboard, applications, and preferences.
 
 ## Building
 
-Currently, the full VEDIT‑PLUS (both Z80 and 8080) CRT configurations,
-along with the TRS‑80 Model II variants, have been built and tested.
-The Pπceon V‑100 memory mapped video variant has not yet been tested.
+Currently, the full VEDIT‑PLUS (both Z80 and 8080) CRT
+configurations, along with the TRS‑80 Model II variants, have been
+built and tested.  The Pπceon V‑100 memory mapped video variant has
+not yet been tested.
 
 VEDIT ⧸ VEDIT‑PLUS is built using either the *Technical Design Labs,
 Inc.* Z80 Relocating/Linking Disk Assembler (*TDL ZASM*) version 2.21
@@ -136,8 +137,8 @@ the `DATE` definition, and a small patch to `VEDITT3` to expose the
 The HEX output produced by these assemblers can be directly converted
 to an executable COM file using the `HEXCOM` utility.
 
-For Z80 variants, the final executable can be reduced in size by about
-25% while remaining directly executable using the  `POPCOM`
+For Z80 variants, the final executable can be reduced in size by
+about 25% while remaining directly executable using the  `POPCOM`
 compressor.
 
 * Working versions of these tools are included in the [`dev`](dev)
@@ -390,11 +391,11 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 
 []()
 * Building these sources for CP/M‑86 or DOS should be possible.
-  * It seems that when building for 8086, the sources would be further
-    translated by means of a currently unknown program; many such
-    programs were historically commercially available, including
-    CompuView's own Translator (which, unfortunately, does not include
-    the required `MAC` source files needed).
+  * It seems that when building for 8086, the sources would be
+    further translated by means of a currently unknown program; many
+    such programs were historically commercially available, including
+    CompuView's own Translator (which, unfortunately, does *not*
+    include the required `MACx` source files as mentioned below).
   * When trying to assemble with `P8086` defined, two missing source
     files, `MAC1.ASM` and `MAC2.ASM`, are referenced.  It is assumed
     that these files would have been part of the currently unknown
