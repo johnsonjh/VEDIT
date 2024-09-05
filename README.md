@@ -110,10 +110,11 @@ configurations, along with the TRS‑80 Model II variants, have been
 built and tested.  The Pπceon V‑100 memory mapped video variant has
 not yet been tested.
 
-VEDIT ⧸ VEDIT‑PLUS is built using either the *Technical Design Labs,
-Inc.* Z80 Relocating/Linking Disk Assembler (*TDL ZASM*) version 2.21
-(1978), or the *Phoenix Software Associates Ltd.* Macro Assembler
-(*PSA PASM*) version 1.0 (1980).
+VEDIT ⧸ VEDIT‑PLUS is built using either the
+*Technical Design Labs, Inc.* Z80 Relocating/Linking Disk Assembler
+([*TDL ZASM*](docs/TDL_ZASM.pdf)) version 2.21 (1978), or the
+*Phoenix Software Associates Ltd.* Macro Assembler
+([*PSA PASM*](docs/PSA_PASM.pdf)) version 1.0 (1980).
 
 The VEDIT ⧸ VEDIT‑PLUS sources are closely integrated with the TDL
 ZASM ⧸ PSA PASM conditional build system, and rely heavily on the
