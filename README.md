@@ -19,7 +19,7 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 - [Extras](#extras)
 - [Future](#future)
 - [License](#license)
-- [User's Manuals](#users-manuals)
+- [Documentation](#documentation)
 - [Links](#links)
 
 <!-- tocstop -->
@@ -262,8 +262,8 @@ are also available and useful for cross-development.
 * The files that were shipped on the original CP/M‑80 and CP/M‑86
   distribution media are included in the [`disk`](disk) and
   [`disk/86`](disk/86) directories, respectively.
-  * This includes the `INSTALL` (and `INTCOM.COM`) utilities used
-  to tailor the executable to your specific system.
+  * This includes the `INSTALL` (and `INTCOM`) utilities used to
+    tailor the executable to your specific system.
 
 * Help files are included in the [`hlp`](hlp) directory.  These help
   files should be verified and possibly modified to ensure the key
@@ -275,10 +275,10 @@ are also available and useful for cross-development.
 
 ## Future
 
-* A few files still need to be located, for completeness.  Of course,
-  these variants can be easily created from the included sources, but
-  having them exactly as originally distributed would be useful for
-  comparison and archival purposes:
+* A few files still need to be located, for completeness.  (Of
+  course, these variants can be easily created from the included
+  sources, but having them *exactly* as originally distributed
+  would be useful for comparison and archival purposes):
   * `VPLUSZM.SET`: Pre-built "factory" Z80 Memory mapped version.
   * `VPLUS8M.SET`: Pre-built "factory" 8080 Memory mapped version.
 []()
@@ -296,15 +296,24 @@ are also available and useful for cross-development.
     that these files would have been part of the currently unknown
     translation package (or cross-assembler software).
   * Further investigation is required.
+[]()
+
+[]()
+* Find the source code for the `INSTALL` and `INTCOM` utilities.
+[]()
+
+[]()
+* Document `xterm`-compatible terminal settings for enabling arrow
+  directional keys, etc.
 
 ## License
 
 * VEDIT ⧸ VEDIT‑PLUS for CP/M is [freely redistributable for
   non-commercial purposes](LICENSE).
 
-## User's Manuals
+## Documentation
 
-* VEDIT Manual (1987):
+* VEDIT Manual (*1987*):
   * [Introduction](doc/introduction.pdf)
   * [Tutorial](doc/tutorial.pdf)
   * [User Guide](doc/user_guide.pdf)
@@ -315,9 +324,9 @@ are also available and useful for cross-development.
 []()
 
 []()
-* [VEDIT User's Manual (1981)](http://www.bitsavers.org/pdf/compuview/Compuview_VEDIT_1981.pdf)
-* [VEDIT User's Manual (1983)](http://www.bitsavers.org/pdf/picklesAndTrout/PT_VEDIT_Users_Manual_1983.pdf)
-* [VEDIT User's Manual (1984)](http://www.bitsavers.org/pdf/compuview/VEDIT_Users_Manual_Nov84.pdf)
+* [VEDIT Manual (*1981*)](http://www.bitsavers.org/pdf/compuview/Compuview_VEDIT_1981.pdf)
+* [VEDIT Manual (*1983*)](http://www.bitsavers.org/pdf/picklesAndTrout/PT_VEDIT_Users_Manual_1983.pdf)
+* [VEDIT Manual (*1984*)](http://www.bitsavers.org/pdf/compuview/VEDIT_Users_Manual_Nov84.pdf)
 
 ## Links
 
