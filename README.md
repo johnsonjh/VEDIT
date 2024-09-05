@@ -15,7 +15,8 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 - [Introduction](#introduction)
 - [Building](#building)
   - [Cross-development](#cross-development)
-  - [Example](#example)
+  - [Build Example](#build-example)
+  - [Configuration Example](#configuration-example)
 - [Extras](#extras)
 - [Future](#future)
 - [License](#license)
@@ -97,16 +98,16 @@ errors, such as running out of disk space, by deleting files or
 inserting another disk.
 
 Since so many different hardware configurations, keyboards, editing
-applications, and personal preferences exist, VEDIT is supplied with a
-customization (installation) program in order to let users create
+applications, and personal preferences exist, VEDIT is supplied with
+a customization (installation) program in order to let users create
 versions of VEDIT which are most suitable to their hardware, keyboard,
 applications, and preferences.
 
 ## Building
 
-Currently, the full VEDIT‑PLUS (both Z80 and 8080) configurations,
+Currently, the full VEDIT‑PLUS (both Z80 and 8080) CRT configurations,
 along with the TRS‑80 Model II variants, have been built and tested.
-The Pπceon V‑100 video variant has not yet been tested.
+The Pπceon V‑100 memory mapped video variant has not yet been tested.
 
 VEDIT ⧸ VEDIT‑PLUS is built using either the *Technical Design Labs,
 Inc.* Z80 Relocating/Linking Disk Assembler (*TDL ZASM*) version 2.21
@@ -168,94 +169,192 @@ Full system simulators (*e.g.*
 [YAZE‑AG](https://www.mathematik.uni-ulm.de/users/ag/yaze-ag/), etc.)
 are also available and useful for cross-development.
 
-### Example
+### Build Example
 
-* Build example:
+```
+V>PASM VEDPLUS.ASM
 
-  ```
-  >PASM VEDPLUS.ASM
+PSA Macro Assembler [C12011-0102 ]
+C. 1980 by Phoenix Software Associates Ltd.
 
-  PSA Macro Assembler [C12011-0102 ]
-  C. 1980 by Phoenix Software Associates Ltd.
+VEDIT (0) or VEDIT PLUS (1) ?: 1
 
-  VEDIT (0) or VEDIT PLUS (1) ?: 1
+Full version, Z-80, CRT           (1)
+Full version, Z-80, Memory mapped (2)
+Full version, 8080, CRT           (3)   note:Versions 1-8 have I/O polling
+Full version, 8080, Memory mapped (4)        set on and org. @ 0000H. CRT
+Mini version, Z-80, CRT           (5)        versions are 24X80 while MEM
+Mini version, Z-80, Memory mapped (6)        mapp`d versions are 16X64.
+Mini version, 8080, CRT           (7)
+Mini version, 8080, Memory mapped (8)        CRT emulation is always ON.
+Full version, Z-80, Model II, P&T (9)
+Full version, Z-80, Model II, Gen (10)
+Full version, Z-80, Piiceon @ 90H (11)
+Other version made to custom specs.(12)
+       enter a version number (1 to 12) : 3
 
-  Full version, Z-80, CRT           (1)
-  Full version, Z-80, Memory mapped (2)
-  Full version, 8080, CRT           (3)   note:Versions 1-8 have I/O polling
-  Full version, 8080, Memory mapped (4)        set on and org. @ 0000H. CRT
-  Mini version, Z-80, CRT           (5)        versions are 24X80 while MEM
-  Mini version, Z-80, Memory mapped (6)        mapp`d versions are 16X64.
-  Mini version, 8080, CRT           (7)
-  Mini version, 8080, Memory mapped (8)        CRT emulation is always ON.
-  Full version, Z-80, Model II, P&T (9)
-  Full version, Z-80, Model II, Gen (10)
-  Full version, Z-80, Piiceon @ 90H (11)
-  Other version made to custom specs.(12)
-         enter a version number (1 to 12) : 3
+INCLUDE PRINT FORMATTER? (0=NO) (1=YES): 1
 
-  INCLUDE PRINT FORMATTER? (0=NO) (1=YES): 1
+INCLUDE WINDOWS? (0=NO) (1=YES): 1
 
-  INCLUDE WINDOWS? (0=NO) (1=YES): 1
+DEMO VERSION? (0=NO) (1=YES): 0
 
-  DEMO VERSION? (0=NO) (1=YES): 0
+DEVELOPMENT VERSION?  (0=NO) (1=DEVELOPMENT) (2=ALPHA) (3=BETA): 0
 
-  DEVELOPMENT VERSION?  (0=NO) (1=DEVELOPMENT) (2=ALPHA) (3=BETA): 0
+PRODUCE LISTING?  (0=NO) (1=YES) (2=CUSTOMER PATCH ONLY): 0
 
-  PRODUCE LISTING?  (0=NO) (1=YES) (2=CUSTOMER PATCH ONLY): 0
+VEDITT3
+VEDITIO
+VPLUSB1
+VEDITF1
+VEDITF2
+VEDITC1
+VPLUSE1
+VEDITC2
+VEDITC4
+VPLUSSR
+VEDIT-CP
+VPLUS-R1
+VEDITV0
+VEDITV1
+VEDITV2
+VEDITW1
+VEDITV3
+VEDITV4
+VEDITG2
+VEDIT
+VEDITT3
+VEDITIO
+VPLUSB1
+VEDITF1
+VEDITF2
+VEDITC1
+VPLUSE1
+VEDITC2
+VEDITC4
+VPLUSSR
+VEDIT-CP
+VPLUS-R1
+VEDITV0
+VEDITV1
+VEDITV2
+VEDITW1
+VEDITV3
+VEDITV4
+VEDITG2
+ Errors Were Detected *****
 
-  VEDITT3
-  VEDITIO
-  VPLUSB1
-  VEDITF1
-  VEDITF2
-  VEDITC1
-  VPLUSE1
-  VEDITC2
-  VEDITC4
-  VPLUSSR
-  VEDIT-CP
-  VPLUS-R1
-  VEDITV0
-  VEDITV1
-  VEDITV2
-  VEDITW1
-  VEDITV3
-  VEDITV4
-  VEDITG2
-  VEDIT
-  VEDITT3
-  VEDITIO
-  VPLUSB1
-  VEDITF1
-  VEDITF2
-  VEDITC1
-  VPLUSE1
-  VEDITC2
-  VEDITC4
-  VPLUSSR
-  VEDIT-CP
-  VPLUS-R1
-  VEDITV0
-  VEDITV1
-  VEDITV2
-  VEDITW1
-  VEDITV3
-  VEDITV4
-  VEDITG2
-   Errors Were Detected *****
+V>HEXCOM VEDPLUS
 
-  >HEXCOM VEDPLUS
+HEXCOM  VERS: 3.00
 
-  HEXCOM  VERS: 3.00
+FIRST ADDRESS 0100
+LAST  ADDRESS 89CD
+BYTES READ    833E
+RECORDS WRITTEN 12
+```
 
-  FIRST ADDRESS 0100
-  LAST  ADDRESS 89CD
-  BYTES READ    833E
-  RECORDS WRITTEN 12
-  ```
+* With any luck, you will now have a working (but not yet configured)
+  `VEDPLUS.COM` executable.
 
-* With any luck, you will now have a working `VEDPLUS.COM` executable.
+### Configuration Example
+
+In the following example we configure a `VEDIT` executable that will
+work on most modern terminal emulators, such as `xterm`.  Many
+additional options are available in the various menus.
+
+```
+V>INSTALL VEDPLUS.COM VEDIT.COM
+INSTALL - Customization for VEDIT
+Copyright (c) 1985, 1987 CompuView Products, Inc.
+Last Change: Ted Green - April 20, 1987
+
+VEDIT Version Flags:
+1H: 8080 MM
+2H: 8086 MM
+4H: Crt versions
+8H: MS-DOS
+10H: CP/M-86
+20H: IBM
+40H: TI PC
+80H: TRS 80
+100H: Piiceon
+
+      Enter a version number: 4H
+
+VEDIT version: 233
+
+               MAIN MENU FOR VEDIT INSTALLATION
+
+      Keyboard Layout
+
+        1. Display or Print Keyboard Layout
+        2. Modify Keyboard Layout
+        3. Add Keystroke Macros to Layout
+
+      Operational Settings
+
+        4. Change Print Parameters (PP commands)
+        5. Change Edit Parameters (EP commands)
+        6. Change Edit Switch Settings (ES commands)
+        7. Change Visual Mode Interface
+        8. Change Command Mode Interface
+        9. Change File Handling Parameters
+
+      Machine Related Settings
+
+       10. Change Screen Display Parameters
+       11. Additional Memory Mapped Installation Features
+       12. Select CRT Terminal Type
+
+      Enter the option number or "E" to Exit: 12
+
+  Supported Computers and CRT Terminals:
+
+  1. ACT-IV                         17. DYNABYTE 57
+  2. ADDS REGENT 20, 25             18. EMULOG 200
+  3. ADDS REGENT 30, 35, 40, 60     19. FULCRUM VIO-X2
+  4. ADDS REGENT 100                20. HAZELTINE / VOLKER CRAIG ( ~ )
+  5. ADDS VIEWPOINT                 21. HAZELTINE / VOLKER CRAIG (ESC)
+  6. ADDS VIEWPOINT/3A PLUS         22. HEATH/ZENITH H19, H89
+  7. ADM-3A                         23. HP 125, 150
+  8. ADM-31                         24. HP 2621 - 2645
+  9. AMPEX DIALOGUE 80              25. HDS CONCEPT
+ 10. ANSI X3.64                     26. IBM DISPLAYWRITER
+ 11. BEEHIVE                        27. IBM 3101
+ 12. CONTROL DATA CD-110            28. IBM PC (ANSI)
+ 13. CONTROL DATA CD-722            29. IBM PC (CONC. CP/M-86)
+ 14. DATAMEDIA                      30. IBM PC (CP/M-86)
+ 15. DEC VT-100, VT-180, RAINBOW    31. INFOTON 100
+ 16. DEC VT-52                      32. INTERTUBE II (UP TO VER. 1.7)
+ 33. INTERTUBE II (LATER), III      49. TELERAY
+ 34. ISC 8063 AND OTHERS            50. TELEVIDEO 910
+ 35. KAYPRO ('83 MODELS)            51. TELEVIDEO 910 (DIM)
+ 36. KAYPRO ('84 MODELS)            52. TELEVIDEO 910+, 925, 950
+ 37. KIMTRON ABM 85                 53. TELEVIDEO 910+, 925, 950 (DIM)
+ 38. LINWOOD BETA BANDIT            54. TELEVIDEO 912, 920
+ 39. MORROW MDT 60                  55. TELEVIDEO 912, 920 (DIM)
+ 40. NEC APC                        56. TELEVIDEO 914, 924 (REVERSE)
+ 41. NORTH STAR ADVANTAGE           57. TI PROFESSIONAL (ANSI)
+ 42. PERKIN ELMER 1251/1245         58. VICTOR 9000
+ 43. PERKIN ELMER BANTAM 550        59. VOLKER-CRAIG 404
+ 44. SD VDB 8024                    60. WYSE WY-100
+ 45. SOROC IQ-120                   61. WYSE WY-50 (132 COLUMN)
+ 46. SOROC IQ-140                   62. WYSE WY-50 (80 COLUMN)
+ 47. SUPERBRAIN                     63. XEROX 820
+ 48. TEC 500                        64. ZENITH Z-100
+
+Type "H" if your terminal is not in the menu
+
+Enter the number of your terminal: 10
+
+[Main Menu] Enter the option number or "E" to Exit: E
+
+Ok to save changes in VEDIT.COM (Y/N)? Y
+```
+
+* You will now have a working — and configured — `VEDIT.COM`
+  executable.
 
 ## Extras
 
@@ -291,11 +390,11 @@ are also available and useful for cross-development.
 
 []()
 * Building these sources for CP/M‑86 or DOS should be possible.
-  * It seems that when building for 8086, the sources would be
-    further translated by means of a currently unknown program;
-    many such programs were historically commercially available,
-    including CompuView's own Translator (which, unfortunately, does
-    not include the required `MAC` source files needed).
+  * It seems that when building for 8086, the sources would be further
+    translated by means of a currently unknown program; many such
+    programs were historically commercially available, including
+    CompuView's own Translator (which, unfortunately, does not include
+    the required `MAC` source files needed).
   * When trying to assemble with `P8086` defined, two missing source
     files, `MAC1.ASM` and `MAC2.ASM`, are referenced.  It is assumed
     that these files would have been part of the currently unknown
