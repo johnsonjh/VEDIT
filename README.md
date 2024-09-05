@@ -429,9 +429,10 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 []()
 
 []()
-* [VEDIT Manual (*1981*)](http://www.bitsavers.org/pdf/compuview/Compuview_VEDIT_1981.pdf)
-* [VEDIT Manual (*1983*)](http://www.bitsavers.org/pdf/picklesAndTrout/PT_VEDIT_Users_Manual_1983.pdf)
-* [VEDIT Manual (*1984*)](http://www.bitsavers.org/pdf/compuview/VEDIT_Users_Manual_Nov84.pdf)
+* [VEDIT Manual (*1980*)](doc/vdoc1980.txt)
+* [VEDIT Manual (*1981*)](doc/Compuview_VEDIT_1981.pdf)
+* [VEDIT Manual (*1983*)](doc/PT_VEDIT_Users_Manual_1983.pdf)
+* [VEDIT Manual (*1984*)](doc/VEDIT_Users_Manual_Nov84.pdf)
 
 ## Links
 
