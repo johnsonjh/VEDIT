@@ -259,9 +259,10 @@ are also available and useful for cross-development.
 
 ## Extras
 
-* The files that were shipped on the original CP/M‑80 and CP/M‑86
-  distribution media are included in the [`disk`](disk) and
-  [`disk/86`](disk/86) directories, respectively.
+* The files that were shipped on the original CP/M‑80, CP/M‑86,
+  and DOS distribution media are included in the [`disk`](disk),
+  [`disk/86`](disk/86), and [`disk/dos`](disk/dos) directories,
+  respectively.
   * This includes the `INSTALL` (and `INTCOM`) utilities used to
     tailor the executable to your specific system.
 
@@ -276,16 +277,16 @@ are also available and useful for cross-development.
 ## Future
 
 * A few files still need to be located, for completeness.  (Of
-  course, these variants can be easily created from the included
-  sources, but having them *exactly* as originally distributed
-  would be useful for comparison and archival purposes):
-  * `VPLUSZM.SET`: Pre-built "factory" Z80 Memory mapped version.
-  * `VPLUS8M.SET`: Pre-built "factory" 8080 Memory mapped version.
+  course, the first two files can be easily created from the included
+  sources, but having them *exactly* as originally distributed would
+  be useful for comparison and archival purposes):
+  * `VPLUSZM.SET`: Pre-built CP/M‑80 Z80 Memory mapped version.
+  * `VPLUS8M.SET`: Pre-built CP/M‑80 8080 Memory mapped version.
+  * `VPLUS86M.SET`: Pre-built DOS 8086 Memory mapped version.
 []()
 
 []()
-* Building for CP/M‑86 (or MS‑DOS), if even possible (as the sources
-  seem to support), needs to be worked out and documented.
+* Building these sources for CP/M‑86 or DOS should be possible.
   * It seems that when building for 8086, the sources would be
     further translated by means of a currently unknown program;
     many such programs were historically commercially available,
@@ -295,7 +296,8 @@ are also available and useful for cross-development.
     files, `MAC1.ASM` and `MAC2.ASM`, are referenced.  It is assumed
     that these files would have been part of the currently unknown
     translation package (or cross-assembler software).
-  * Further investigation is required.
+  * Further investigation is required.  Once solved, the procedures
+    need to be worked out and properly documented.
 []()
 
 []()

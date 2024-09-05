@@ -1,0 +1,401 @@
+R* Menu Macro presumes it is being executed in Register Z.
+R* Updated & adapted for 2.x3, October, 1986
+
+!START!
++RAZ
+
++ES 8 2  .RVXS14
++ES 9 1  .RVXS15
+
+!BEGIN!
+^m:yd
+ywi
+YT/
+		         VEDIT PLUS - MAIN MENU
+
+			By William J. Vollano Jr.
+
+	    You Are Editing Buffer: /.B:YD  YT/     File  = / :EW .of=0[YT/'NONE'/]
+YT"
+
+                    1 = Normal Exit, Saving Your File
+		    2 = Quit - Any Edit Changes Are NOT Saved
+
+		    3 = Edit a New File (save any existing file)
+		    4 = Edit Another File (Multiple File Editing)
+
+		    5 = Directory
+		    6 = Erase Files
+		    7 = Examine / Change Edit Switches
+		    8 = Examine / Change Edit Parameters
+
+		    9 = Exit Menu to Command Mode
+                    0 = RETURN to Visual Mode
+
+"
+
+!BEGIN2!
+^M:yd
+yel
+YT"Enter Your Choice (0 - 9): "
+[xk1// Q1=^M JP/VISUAL/
+Q1>="0 & Q1<="9 JL]
+
+q1:yd
+q1="1 JP/SAVE/
+q1="2 JP/QUIT/
+q1="3 JP/NEW/
+q1="4 JP/MULTI/
+q1="5 JP/DIR/
+q1="6 JP/ERASE/
+q1="7 JP/ES/
+q1="8 JP/EP/
+q1="9 JP/COMMAND/
+JP/VISUAL/
+
+!DIR!
+rey
+^M:yd
+RQY"Press RETURN for current directory,
+or enter your choice (i.e. B:, B:*.com, *.txt)
+? "
+
+yec
+YT/
+		***************************
+		**       VEDIT PLUS      **
+		**   USER'S  DIRECTORY   **
+		***************************
+
+/
+-4ED|RY
+
+XK8/
+Press RETURN to continue.../
+
+JP/BEGIN/
+
+!QUIT!
+yec
+xk8/
+
+		1 = Quit this edit session (EQ)
+		2 = Quit but remain in current buffer (EZ)
+		3 = QUIT VEDIT discarding changes to all open files (EQA)
+
+			OR
+
+		RETURN   to Main Menu
+
+                ? /
+q8:yd
+q8="1[EQY]
+q8="2[EZY]
+q8="3[EQA]
+JP/BEGIN/
+
+!ES!
+yec
+YT'
+	      ***************************
+	      **      VEDIT PLUS       **
+	      **     EDIT  SWITCHES    **
+	      ***************************
+
+  EDIT SWITCH                                  SETTING
+    NUMBER
+
+      1) Expand Tab with Spaces
+      2) Auto Buffering in Visual Mode
+      3) Auto-Indent Mode
+      4) Point Past Text Reg. Insert
+      5) Equate UC/LC When Searching
+      6) MSDOS End-of-File Padding
+      7) Reverse Upper and Lower Case
+      8) Suppress Search Errors
+      9) Explicit String Delimiters
+      0) Global File Operations
+      X) Justify Paragraphs
+'
+
+riy/
+50yeh
+yel
+es q8
+.rvxs0
+(q8=8)[q14xs0]
+(q8=9)[q15xs0]
+(q0=0)[yt'NO
+'     ][(q8=2  & q0>1)[yt'BIDIRECTIONAL
+'     ][(q8=11 & q0>1)[yt'UNJUSTIFY
+'     ][yt'YES
+'     ]]]/
+
+10yev
+0xs8
+11[xa8 my]
+
+!ES0!
+22yev
+0yeh
+yel
+yt/Press RETURN for Main Menu or press the number of switch to change.../
+
+!ES1!
+23yev
+0yeh
+yel
+yt/? /
+
+[xk8// Q8=^m JP/BEGIN/
+q8>="0 & q8<="9JL
+(Q8&95)="X JP/ES11/
+]
+
+q8-"0xs8
+q8=0[10xs8]
+q8=2 JP/ES2/
+es q8
+(q8=8)[(q14=0)[1xs14][0xs14]][
+(q8=9)[(q15=0)[1xs15][0xs15]][
+(.rv=0)[es q8 1][es q8 0]]]
+
+!ESCMN!
+9+q8yev
+.wyxs0
+my
+q0yev
+JP/ES1/
+
+!ERROR!
+
+q8="8 [q6="Y [1xs14 ][ 0xs14]]
+q8="9 [q6="Y [1xs15 ][ 0xs15]]
+JP/ES/
+
+!ES2!
+^M:yd
+YT/Visual mode auto-buffering:  "Y" for yes, "N" for no, "B" for bidirectional: /
+[xk7// q7=^M JP/ES1/
+ q7&95XS6
+ q6="Y ^ q6="N ^ q6="B JL
+]
+q6="Y[+ES 2 1 ][ Q6="N[+ES 2 0 ][ +ES 2 2 ]]
+JP/ESCMN/
+
+!ES11!
+YT/Justification:  "Y" for yes, "N" for no, "U" for unjustify: /
+
+[xK7// q7=^M JP/ES/
+q7&95XS6
+q6="Y ^ q6="N ^ q6="U JL]
+q7:yd
+q6="Y[+ES 11 1 ][ Q6="N[+ES 11 0 ][ +ES 11 2 ]]
+11xs8
+JP/ESCMN/
+
+!EP!
+yec
+YT"
+	      ***************************
+	      **       VEDIT PLUS      **
+	      **    EDIT  PARAMETERS   **
+	      ***************************
+
+EDIT PARAMETER                                            VALUE
+  NUMBER
+   1) Cursor Type                         ( 0 - 4)
+   2) Cursor Blink Rate                   (10 - 255)
+   3) Indent Increment                    ( 1 - 20)
+   4) Lower/Upper Case Conversion         ( 0 - 3)
+   5  Conditional Conversion Character
+   6) Delay for Command Mode Scrolling    ( 0 - 255)
+   7) Right Margin for Word Wrap (0=Off)  ( 0 - 255)
+   8) Bit 8 Allowed                       ( 0 - 7)
+   9) Cursor Positioning Mode             ( 0 - 2)
+   0) Horizontal Scrolling Margin         (40 - 255)
+   X) Horizontal Scrolling Increment      ( 1 - 100)
+
+RETURN for Main Menu or press number of parameter you want to change...
+"
+
+riy/
+56yeh
+yel
+ep q8
+q8=5[yt'    ' .rvyd][.rvxs7 xt7]
+/
+
+9yev
+0xs8
+11[xa8 my]
+
+!EP0!
+22yev
+0yeh
+yel
+yt/? /
+
+[xk8// Q8=^m JP/BEGIN/
+ q8>="0 & q8<="9JL
+ (Q8&95)="X JL
+]
+
+q8-"0xs8
+q8=0[10xs8]
+q8>10[11xs8]
+q8=5 JP/SETEP5/
+
+^M:yd
+YT/EP #/ -:xt8
+:xq9/ new value (followed by RETURN): /
+.n=0 JP/EP0/
++ep q8 q9
+!EPCMN!
+8+q8yev
+.wyxs0
+my
+q0yev
+JP/EP0/
+
+!SETEP5!
+^M:yd
+xk9/Press new conditional-convert-character key: /
+q9=^M JP/EP0/
+q9:yd
++EP 5 q9
+JP/EPCMN/
+
+
+!ERASE!
+^M:yd
+:RQY/Enter name of file to erase or RETURN to Main Menu.../
+.Uy=0[.wy-1 yev JP/BEGIN2/]
+EK|rY
+JP/BEGIN/
+
+!NEW!
+.OF=0 JP/NEW2/
+YT/
+               FILE NAME = /EW
+YT/
+
+               1 = SAVE FILE AND EDIT ANOTHER
+               2 = SAVE FILE AND RETURN TO MAIN MENU
+          RETURN   FOR MAIN MENU /
+
+[XK8// Q8=^M JP/BEGIN/
+Q8 ="1 ^ Q8="2 JL]
+
+q8:yd
+q8="1 JP/NEW2A/
+q8="2[EY]
+JP/BEGIN/
+
+!NEW2A!
+EY
+RQY/
+Enter name of file to edit followed by a RETURN...  /
+eb|rY
+JP/BEGIN/
+
+!EMPTY!
+YT/
+      (No text, Nothing has been saved),
+      Do you want to open a file (Y,N) ? /
+[XK8//
+q8=^M JP/BEGIN/
+q8&95xs6
+q6="Y ^ q6="N JL]
+
+q8:yd
+q6="Y JP/NAME/
+JP/BEGIN/
+
+!NAME!
+RQY/
+Enter name of file to edit followed by a RETURN... /
+eb|ry
+JP/BEGIN/
+
+!NEW2!
+.BXS9
+.U#9 = 0 JP/EMPTY/
+@YT/
+      ***
+                CAN NOT SAVE CURRENT EDIT SESSION
+
+                  1 = OPEN FILE AND INSERT TEXT AT BEGINNING
+                  2 = SAVE TEXT AND EDIT ANOTHER
+
+             RETURN    FOR MAIN MENU /
+[xk8// q8=^M JP/BEGIN/
+q8="1 ^ q8="2 JL]
+
+q8:yd
+q8="1[RQY/
+Enter name of file to edit followed by a RETURN...  /
+eb|ry]
+
+q8="2[RQY/
+Enter name of the file to save the text in, followed by a RETURN.../
+eb|ry
+ey
+RQY/
+Enter name of new file to edit followed by a RETURN.../
+eb|ry]
+
+JP/BEGIN/
+
+!SAVE!
+20[@yt/
+/]
+yt/
+
+Press RETURN for Main Menu or
+       a 1 to save file and exit Vedit...
+               ? /
+[XK8// q8=^M JP/BEGIN/
+q8="1 JL]
+
+q8:yd
+q8="1[EX]
+JP/BEGIN/
+
+!VISUAL!
++ES 9 q15
++ES 8 q14
+v
+@JP/START/
+
+!MULTI!
+XK24/
+Press RETURN for Main Menu or
+Press the number of the register number to edit...
+                             ? /
+q24=^M JP/BEGIN/
+q24&95xs6
+q6="Y JP/MERROR/
+q6="Z JP/MERROR/
+
+EE#24
+YT/ REGISTER: /.B:yd
+JP/BEGIN/
+
+!MERROR!
+YT/
+ SORRY YOU MAY NOT EDIT REGISTERS Y OR Z,
+ THEY ARE IN USE FOR MENU...
+/
+JP/MULTI/
+
+!COMMAND!
+yec
+yt/
+TO RE-ENTER MENU TYPE "MZ" <RETURN>
+/
++ES 9 q15
++ES 8 q14
+RA0
+JO
+
