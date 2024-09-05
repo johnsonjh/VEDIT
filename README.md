@@ -265,12 +265,16 @@ are also available and useful for cross-development.
   respectively.
   * This includes the `INSTALL` (and `INTCOM`) utilities used to
     tailor the executable to your specific system.
+[]()
 
+[]()
 * Help files are included in the [`hlp`](hlp) directory.  These help
   files should be verified and possibly modified to ensure the key
   bindings (or other source customizations) match what you are
   "shipping to the customer".
+[]()
 
+[]()
 * The [`zilint`](zilint) directory contains CompuView's Z80‑8086
   Translator macros.
 
