@@ -391,7 +391,7 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 []()
 
 []()
-* Building these sources for CP/M‑86 or DOS should be possible.
+* Building these sources for CP/M‑86 or DOS should be possible:
   * It seems that when building for 8086, the sources would be
     further translated by means of a currently unknown program; many
     such programs were historically commercially available, including
@@ -412,6 +412,10 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 []()
 * Document `xterm`-compatible terminal settings for enabling arrow
   directional keys, etc.
+[]()
+
+[]()
+* Add V-PRINT, V-SPELL, V-COM, etc.
 
 ## License
 
