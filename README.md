@@ -376,8 +376,8 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 []()
 
 []()
-* The [`zilint`](zilint) directory contains CompuView's Z80‑8086
-  Translator macros.
+* The [`zilint`](zilint) directory contains the final release of
+  CompuView's Z80‑8086 Translator macros.
 []()
 
 []()
