@@ -1,0 +1,1057 @@
+
+
+
+VEDIT - Visual Editor					      Page 52
+Appendix A - Customizing with VEDSET
+
+
+			   Customizing VEDIT
+
+Introduction
+------------
+
+     VEDIT has to be customized before the  first time it is used, and
+can then be customized again, when the  user has a new keyboard, a new
+CRT terminal, just wishes  to change some default  parameters or try a
+new keyboard  layout.  Please  note  that  it  does  not  have  to  be
+customized every time  you use  it.  The greatest  benefit you receive
+from the customization  process is  probably the  ability to determine
+your own keyboard layout, which can  utilize any special function keys
+and accommodate personal preferences.
+
+     VEDIT is supplied  as a  disk file  with an  extension of ".SET",
+i.e. VEDITZM.SET, VEDITZC.SET,  which contains  the "prototype" editor
+to be customized.  The customization  process does not  alter the .SET
+file, but rather creates a new file  with the file extension of ".COM"
+which is the executable version of the customized editor.
+
+     The customization is  done with the  supplied programs VEDSET.COM
+for the memory mapped versions, and  VDSETCRT.COM for the CRT terminal
+versions.  Running VEDSET  (or  VDSETCRT)  simply  involves  typing  a
+control key or a  number in response to  the questions it asks.  Since
+the customization program is fairly easy to run, you will probably run
+it several times  in the  first week  until you  have everything "just
+right".  You can of course also create several versions of VEDIT, each
+for a special application.
+
+Getting started
+---------------
+
+     The following paragraphs  describe  the  various  aspects  of the
+customization in  some detail.  You  do not  need to  fully understand
+these details in order to get VEDIT up and running, since the enclosed
+"Example Keyboard Layout"  and the  next section  "Running VEDSET ..."
+give  recommended  values  for  every  question.  Once  you  are  more
+familiar  with  VEDIT,  you  will  probably  want  to  gain  a  better
+understanding  of  the  customization  in   order  to  create  a  more
+"personalized" version of VEDIT.
+
+     Determining the desired  keyboard layout for  the cursor movement
+and function keys is  the first  step of  the customization.  Since it
+could be  a  difficult  step,  several  example  keyboard  layouts are
+enclosed to help  out the  new user.  The  best layout  will depend to
+some extent upon your keyboard, especially  if you have one with extra
+keys which produce  control codes.  If  extra keys  are available, you
+may want to allocate them  to the most used  visual operations such as
+the cursor movements.  The  more extra  keys you  have, the  easier it
+becomes to remember the layout.
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 53
+Appendix A - Customizing with VEDSET
+
+
+     If and when you decide to try  out your own layout, you will want
+to avoid placing the keys  you least want to  hit by accident, such as
+[Erase End Of Line] or [Home], right next to the cursor movement keys.
+In the event  that  you  have  no  or  few  special  keys, most visual
+operations will involve  holding  the  CONTROL  key  while  you type a
+letter, or using escape  sequences.  In this  case, the  layout may be
+tight and difficult  to  organize.  One  strategy  is  to use mnemonic
+letters, such as CTRL-D for [DELETE]  and CTRL-U for [CURSOR UP], etc.
+Another is to arrange  the keys  in some  logical manner,  such as the
+cursor movement keys  on  one  side  of  the  keyboard  and the visual
+function keys on the other side.  You  can also simplify the layout by
+using at least a few escape sequences, especially for functions you do
+not use  often, or  don't want  to hit  by accident.  Trying  out some
+combinations on paper is  probably the  easiest way  to accomplish the
+layout task.
+
+     Besides responding to  the  customary  control  characters, VEDIT
+also handles multi  character  escape  sequences.  These  may  be user
+typed, or  may  result  from  pressing  a  special  function key.  For
+example, instead of  typing the  single character  CONTROL-Q, the user
+may type  two  characters,  i.e.  ESC  and  Q,  to  perform  a  visual
+operation.  All escape sequences  begin with  one of  two user defined
+escape characters (sometimes  called  Lead-in  characters).  While the
+ESC is a common  key to  use as  an escape  character, any other ASCII
+character may be used  as the escape  character, even displayable ones
+like "@".  The special function keys on some keyboards, like the Heath
+H19, Televideo 920C and  IBM  3101  also  send  multi character escape
+sequences.  Some terminals, like  the IBM  3101, also  send a Carriage
+Return at the  end  of  escape  sequences.  The keyboard customization
+detects this automatically and the user need not be concerned with it.
+
+     When  laying  out  the  keyboard,   you  may  therefore  use  any
+combination of control  characters, special  function keys  and escape
+sequences for the  visual operations.  Some  users will  prefer to use
+function  keys  and  control  characters  for  the  most  used  visual
+operations, and escape  sequences  for  the  less used operations.  If
+escape sequences are used,  a key like  ESC or FORM  FEED is suggested
+for the escape mode  character.  Any other character  may then follow,
+including  numbers,   control  characters   or  even   another  escape
+character.  Many keyboards have a numeric pad and these numbers can be
+used in escape sequences.  For  example, use ESC -  8 for [CURSOR UP],
+ESC - 2 for [CURSOR  DOWN], ESC -  4 for [CURSOR  LEFT] and so on.  In
+this case you  may wish  to attach  descriptive lables  on top  of the
+numeric keys.  An Escape and Control  character combination would be a
+good choice  for operations  you don't  want to  hit by  mistake, like
+[HOME], [ZEND] or  [RESTART EDITOR].  You  may use  an escape sequence
+consisting of two escape characters in a  row.  In fact, if ESC is the
+escape character, then "ESC - ESC"  is the suggested  sequence for the
+function [VISUAL ESCAPE].  In  the  unusual  case  that  a displayable
+character like "@" is  used as the escape  character, a "@ - @" cannot
+be used for a  visual operation, since in  this case,  "@ - @" will be
+treated by VEDIT as the normal "@" character.
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 54
+Appendix A - Customizing with VEDSET
+
+
+     While all of this is complicated  enough already, there are a few
+pitfalls to avoid  too.  (You  are  well  advised  to  use  one of the
+example keyboard layouts at  first.) The only  key which is predefined
+is the RETURN or CR  key which is  also CTRL-M and  cannot be used for
+any visual operation.  The  special  function  keys  on some keyboards
+send a code  identical  to  a  control  character.  You  may therefore
+unintentionally attempt to  use the  same control code  for two visual
+operations.  In this case,  VEDSET  or  VDSETCRT  will  give  an error
+message and request a new key  for that function.  Some keyboards have
+special function keys which  send  a  character  with  data  bit 7 set
+(sometimes called the  parity  bit).  These  work  properly  since the
+VEDIT programs decode all 8 bits.  (Technical note: An escape sequence
+treats the second character  as  having  Bit  7  set.  The escape mode
+characters themselves must not have Bit 7 set.)
+
+     The second decision  during  customization  is  to  determine the
+desired Tab positions and whether tabs should be expanded with spaces.
+Unless you have  some  special  application,  don't  expand  tabs with
+spaces, it will  use up  lots of  disk space.  Where  you set  the tab
+positions will only  be applicable  to VEDIT  since most  CP/M utility
+programs set the tab  positions at  every 8th  position.  This is thus
+the best choice for VEDIT, too.  One exception would be where you do a
+lot of word processing with the same tab positions.  Another exception
+would be if you are using a structured language compiler which perhaps
+set tabs at every  4th position for  easier indenting.  The values you
+enter for the tab  positions, the  switches and  the parameters below,
+are the defaults, they  may be changed  while running VEDIT.  Assuming
+you want the tabs at every 8th position, the tab positions would be:
+
+9 17 25 33 41 49 57 65 73 81 89 97 105 113 121 129 etc.
+
+     These are also the default positions.
+
+     Five special characters can also be customized.  The first is the
+line continuation indicator used in visual  mode in reserved column 0.
+We suggest a "-"  or reverse video  "-", codes "2D"  or "AD" hex.  The
+second is the command mode  "Escape character".  This will normally be
+the "ESCAPE" or "ESC" key  with a hex code  of "1B".  If your keyboard
+does not have an "ESC" key, you will need to choose some other control
+character, perhaps a "CTRL-Z"  with a hex code  of "1A".  The next two
+characters are the enclosing brackets  for iteration macros.  They are
+printed as "[" and  "]" in  this manual  (codes 5B  and 5D hex).  Some
+users may be more familiar with the  " " and " " angle brackets (codes
+3C and 3E  hex).  Use either  set, but  it may  help if  your keyboard
+produces one set without  needing the Shift  key.  The fifth character
+only applies to memory mapped versions,  and is the character used for
+the blinking "underline"  cursor.  While  this  would  normally be the
+underline character, (code 5F  hex), users with  displays which do not
+produce reverse video, such  as the  Sorcerer, may  wish to  try a hex
+code of "7F" which is commonly a solid block.
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 55
+Appendix A - Customizing with VEDSET
+
+
+     You even have  the choice of  whether the messages  on the status
+line appear in reverse  video  on  CRTs  which  support reverse video.
+Some displays, such  as on  the Sorcerer  and TRS-80  Model I,  do not
+produce reverse video.
+
+     Next you have to  decide on the default  settings of several more
+switches and parameters (switches (2) - (7) and parameters (1) - (5)).
+Remember that the switch  and parameter settings  can be changed while
+running  VEDIT.  Switch  (2)  determines   whether  auto-buffering  is
+enabled during  visual mode.  The  first time  around, we  suggest you
+enable auto-buffering.  After some practice and reading the section on
+Auto Read/Write,  you  may  decide  otherwise.  Switch  (3) determines
+whether VEDIT starts in  Visual mode or  command mode.  The first time
+around, we suggest  you  set  this  switch  on.  Switch (4) determines
+whether the edit pointer's  position (or  cursor's in  Visual mode) is
+moved just past  the newly  inserted text,  when the  text register is
+inserted.  Again, for the first  time around, we  suggest that you set
+this switch on.  After some practice with  the text register, you will
+know which way you prefer to  have this switch.  Switch (5) determines
+whether the difference between upper and lower case letters is ignored
+in  searches.  We  suggest   you  set  this   switch  on.  Switch  (6)
+determines whether the screen is cleared when visual mode is exited to
+command  mode.  We  suggest  you  set  this  switch  off.  Switch  (7)
+determines whether all letters typed on  the keyboard will be reversed
+with regard  to upper  and lower  case, i.e.,  upper case  letters are
+converted  to  lower  case  and  vise  versa.  Only  in  very  unusual
+situations would you want to  set this switch on,  so set it off.  For
+the TRS-80 Model I, you should set  this switch on, since the keyboard
+reverses upper and lower case.
+
+     Parameter (1) is only  applicable to memory  mapped versions, and
+determines  the   cursor  type.  The   cursor  types   are  0=Blinking
+Underline, 1=Blinking  Reverse  Video  Block,  2=Solid  Reverse  Video
+Block.  Most users seem to  prefer type "1",  but you must  use "0" if
+your display does not produce reverse video.  Parameter (2) determines
+the memory mapped cursor's blink rate.  Start with the value suggested
+by the   VEDSET   prompt.  Parameter   (3)   determines   the  "Indent
+Increment".  A value  of  4  is  common  when  structured  programming
+languages are being used.  Parameter (4)  controls lower to upper case
+conversion.  This is described  under the  "ES" command.  Start with a
+value of "0" for no conversion.  Parameter (5) is related to parameter
+(4) and again described under the  "ES" command.  Supplying a value of
+"3B" hex, makes the ";" the special conditional character.
+
+     Two more parameters that can be customized are dependent upon the
+memory size  of  CP/M  you  are  running.  For  details  on  these two
+parameters  please  refer  to  the  section  below.  While  these  two
+parameters can be specified for many  special applications, it is best
+to follow the table below  the first few times,  until you have a good
+'feel' of the  operational characteristics of  VEDIT.  The first value
+must be  specified in  bytes between  1024 and  32768, and  the second
+value must be specified in K bytes between 1 and 32.  (A "K byte" is a
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 56
+Appendix A - Customizing with VEDSET
+
+
+unit of 1024 bytes. 1024 = 2 ** 10.)
+
+CP/M size	Value for Spare		Value for Transfer
+
+16K		1526			2
+20K		2304			3
+24K		3072			4
+28K		4096			5
+32K		4096			6
+36K		5120			7
+40K		6144			8
+44K		6144			9
+48K		7168			10
+52K		7168			11
+56K		8192			12
+60K		8192			13
+64K		8192			14
+
+(In particular, do not make the "Spare Memory for Auto-Read" more than
+2 times  larger than  the value  in the  table, or  you may  produce a
+non-operational editor.  This value is NOT  the amount of memory VEDIT
+will use for  the text  buffers, since  VEDIT always  sizes memory and
+uses all that is available.  Rather, this value is the number of bytes
+that is free in the  text buffer after a file  is read which is larger
+than the available  memory space.  For  example, in  a 56K  system the
+available memory is about 41K.  If the table value of "8192" was used,
+and a very large file  edited, VEDIT would initially  read in only the
+first 33K  of  the  file,  leaving  "8192"  bytes  free.  This  can be
+verified with the "U" command.)
+
+    The last information  needed  for  customization  pertains to your
+display board or CRT terminal. First,  you  need to know the number of
+lines and the number of characters per line that it produces.  16 x 64
+and 24 x 80 are  the most common values.  You  also have the choice of
+how many columns on a line are  actually used.  You want to use all of
+them, unless you have a special application or unusual hardware.
+
+     For the  memory  mapped  versions,  you  also  need  to  know the
+beginning address of the  display board  in memory  in hexadecimal and
+whether it requires any data bytes output  to a port to initialize it.
+For example, many 16 x 64 boards have an address of CC00 hex.  Most of
+these 16 x  64 boards  do not  need any  initialization, one exception
+being the  Procesor Technology  VDM  board,  which  should  have  a 00
+output to Port C8  hex.  (The SOL-20 requires  a 00 output  to Port FE
+hex).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 57
+Appendix A - Customizing with VEDSET
+
+
+Running VEDSET or VDSETCRT
+--------------------------
+
+     The customization is  done with the  supplied programs VEDSET.COM
+for the memory mapped versions, and  VDSETCRT.COM for the CRT terminal
+versions.  Depending upon which  version you  have, your  diskette may
+contain several ".SET" files,  which will  be described  on a separate
+sheet entitled  "Description of Files".
+
+     Assuming you wish to  customize the Z80 CRT  version, with a file
+name of VEDITZC.SET, the  customized editor is to  be called VEDIT and
+the files VEDITZC.SET and VDSETCRT.COM are  on the currently logged in
+disk, the command to run VDSETCRT would be:
+
+VDSETCRT VEDITZC VEDIT
+
+     A similar command for the 8080 Memory Mapped version would be:
+
+VEDSET VEDIT8M VEDIT
+
+     VEDSET (VDSETCRT)  will  now  prompt  with  questions  which  are
+answered by typing the control  keys to setup the  keyboard, or with a
+number, or 'Y' for  Yes or 'N'  for No.  The questions  with a numeric
+answer also require a RETURN at the end of the line.  Unless otherwise
+specified, typing a  RUBOUT or CTRL-U  will ignore the  input for that
+question and repeat  the last question.  The  following steps describe
+the answer to each question.
+
+1.)   (CRT Terminal Only)
+
+      The CRT customization program begins by displaying a menu of CRT
+      terminals which are directly supported.  Type  any key after the
+      first part  of the  menu, since  the menu  is two  screens long.
+      When prompted, enter the  number of  the CRT  terminal which you
+      wish  to  use   VEDIT  on.  You   may  of   course  perform  the
+      customization  several  times   for  different   CRT  terminals.
+      Reference the disk file README.CRT in  case your CRT terminal is
+      not listed in the menu.
+
+2.)   ENTER ESCAPE MODE CHARACTER #1
+      If you choose to use escape sequences, or your keyboard produces
+      escape sequences with  special  function  keys,  type the escape
+      character, or the function key  lead-in character, most commonly
+      ESC.  Else type RETURN.
+
+      ENTER ESCAPE MODE CHARACTER #2
+      A second escape mode character  may also be specified, typically
+      for  other  function  keys.  If  not  needed,  type  RETURN.  (A
+      "CTRL-A" for the Televideo 920C).
+
+      ENTER COMMON 2ND CHARACTER IN ESCAPE SEQUENCE
+      Simply answer with  a  [RETURN]  if  you  are  not  using escape
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 58
+Appendix A - Customizing with VEDSET
+
+
+      sequences  or  are  typing  them   in  by  hand.  However,  some
+      terminal's  special  function  keys   send  3  character  escape
+      sequences where the  second  character  is  always  the same and
+      should be ignored.  In this  case type in  the second character.
+      (A "?" for the Heath H19)
+
+      TYPE CONTROL CHARACTERS FOR ....
+      When prompted for each visual operation, you may press a special
+      function key, a control  character or enter  an escape sequence.
+      Disallowed characters  are  the  normal  displayable characters.
+      Typing one of these  will give an error  and a reprompt.  If you
+      inadvertently attempt to use  the  same  key  code  for a second
+      operation, an error  and a  reprompt for  the operation  will be
+      given.  If you do not  want to  use a  particular function, just
+      type [RETURN]  to ignore  the function.  Specifically,  you will
+      probably want to use either [SET  INSERT MODE] and [RESET INSERT
+      MODE] or [SWITCH INSERT MODE], but not all three functions.  You
+      probably  won't  use  [RESTART],  since  the  function  is  also
+      available  in  command  mode.  Otherwise  choose  something  for
+      [RESTART] which you are very  unlikely to hit by mistake.  Don't
+      confuse [TAB CURSOR]  with  the  tab  character,  since  it is a
+      cursor movement operation.  If  you  make  a  mistake, just type
+      [RETURN] for the  rest  of  the  functions,  since the following
+      question will let you start over again.
+
+      WAS KEYBOARD LAYOUT CUSTOMIZED CORRECTLY? (Y OR N)
+      Enter 'Y' if the keyboard layout was customized correctly.  Else
+      enter 'N' to repeat this step.
+
+3.)   DO YOU WISH TO USE THE DEFAULT TAB POSITIONS? (Y OR N)
+      Enter "Y" if you want  the tabs at every  8th position, which is
+      the normal for  CP/M.  Otherwise,  enter  "N"  and the following
+      message appears:
+
+      ENTER UP TO 30 TAB POSITIONS IN DECIMAL
+      Enter the desired  tab  positions,  separating  the numbers with
+      spaces or commas and  following the  last number  with a RETURN.
+      Don't be concerned if your input line goes off the right side of
+      your terminal or screen.  Note that you  need no tab at position
+      1 and that  the positions  are counted  starting from  1, not 0.
+      You must also specify at least  one tab position per screen line
+      and the highest  allowed  position  is  254.  Entering  a number
+      outside of the range 1-254 will give  an error and a reprompt of
+      the question.  If you make  a mistake, type  CTRL-U or RUBOUT to
+      start the question over.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 59
+Appendix A - Customizing with VEDSET
+
+
+4.)							     Suggest
+      HEX CODE FOR SCREEN CONTINUATION CHARACTER		2D
+      HEX CODE FOR COMMAND MODE ESCAPE CHARACTER		1B
+      HEX CODE FOR COMMAND ITERATION LEFT BRACKET		5B
+      HEX CODE FOR COMMAND ITERATION RIGHT BRACKET		5D
+      HEX CODE FOR CURSOR CHARACTER				5F
+
+      Enter the number  in  hexadecimal  and  a  RETURN following each
+      question.  Always enter a value,  there are NO DEFAULTS.  Typing
+      a CTRL-U or  RUBOUT will  start over  with the  first character.
+      Note that the last  prompt relating  to the  cursor only appears
+      with the memory mapped customization.
+
+5.)   (CRT Terminal only)
+
+      ENTER DECIMAL VALUE (4MHZ = 76, 2MHZ = 38)
+      Enter a value of "38"  if you running a  2 Mhz processor or "76"
+      if you  are running  a 4  Mhz processor.  Interpolate  for other
+      processor speeds.  This  value  is  only  used  for  CRTs  which
+      require time delays  for some  functions.  The maximum  value is
+      255.
+
+6.)   REVERSE VIDEO ON STATUS LINE  (0=NO, 1=YES)
+      If your CRT  or  video  display  board  produces  reverse video,
+      answer  with   a  "1"   for  Yes.  If   you  have   a  Sorcerer,
+      TRS-80 Model I, or some  other  display  which  does not produce
+      reverse video, answer with a "0" for No.
+
+7.)                                                         Suggest
+      (1) EXPAND TAB WITH SPACES		(0=NO 1=YES)	0
+      (2) AUTO BUFFERING IN VISUAL MODE		(0=NO 1=YES)	1
+      (3) BEGIN IN VISUAL MODE			(0=NO 1=YES)	1
+      (4) POINT PAST TEXT REG. INSERT		(0=NO 1=YES)	1
+      (5) IGNORE UC/LC DISTINCTION ...		(0=NO 1=YES)	1
+      (6) CLEAR SCREEN ON VISUAL EXIT		(0=NO 1=YES)	0
+      (7) REVERSE UPPER AND LOWER CASE		(0=NO 1=YES)	0
+
+
+      (1) CURSOR TYPE				(0, 1 or 2)	1
+      (2) CURSOR BLINK RATE (10 is fastest)	(10 - 100)  See Prompt
+      (3) INDENT INCREMENT			(1 - 20)	4
+      (4) LOWER CASE CONVERT			(0, 1 or 2)	0
+      (5) CONDITIONAL CONVERT CHARACTER		(20 - 7E)	3B
+
+      Enter the number  in  hexadecimal  and  a  RETURN following each
+      question.  Type a CTRL-U or RUBOUT to  start over with the first
+      switch or  parameter.  CRT version  users may  answer parameters
+      (2) and (3) with an arbitrary  value.  Note that the prompts for
+      parameters (1) and (2)  relating to the  cursor only appear with
+      Memory Mapped versions of VEDIT.
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 60
+Appendix A - Customizing with VEDSET
+
+
+8.)   SIZE IN DECIMAL OF SPARE MEMORY FOR AUTO READ
+      See the table on page 57  for a recommended value depending upon
+      your memory  size.  Please read  the note  below the  table too.
+      Enter the decimal number followed  by a RETURN.  The number must
+      be in the range 1024  - 32768 or an error  and a reprompt of the
+      question will be given.  Type a CTRL-U  or RUBOUT to restart the
+      question.
+
+9.)   SIZE IN DECIMAL OF FILE MOVE TRANSFERS IN K BYTES
+      See the table on  page 57 again  for a recommended value.  Enter
+      the decimal number  signifying the  multiple of  1K (1024) bytes
+      desired, followed by a RETURN. The number entered must be in the
+      range 1 - 32.
+
+10.)  ENTER NUMBER OF SCREEN LINES IN DECIMAL
+      Enter the  number of  lines on  your CRT  display and  a RETURN.
+      While most terminals  have 24  lines, some  have a  25th "Status
+      Line".  On some of these, it is  possible for VEDIT to place its
+      status line on the 25th line.  These terminals are marked with a
+      "*" following the terminal's name in  the menu.  To use the 25th
+      line, answer this question with  a "25".  Note that the Intertec
+      Intertube II must be specified as having 25 lines.
+
+11.)  ENTER LINE MOVEMENT FOR PAGING IN DECIMAL
+      Enter  the  number  of  screen  lines  you  wish  [PAGE UP]  and
+      [PAGE DOWN] to move through the text by.  About 4/5 of the total
+      number of screen  lines is suggested,  i.e., "12" for  a 16 line
+      display and "20" for a 24 line display.
+
+12.)  ENTER TOP LINE FOR CURSOR IN DECIMAL
+      This sets the  top screen  line the  cursor can  normally be on,
+      before the screen  will begin to  scroll down.  This, therefore,
+      is the minimum  number of lines  you will always  see before the
+      line you are editing.  "3" is a good starting point.
+
+13.)  ENTER BOTTOM LINE FOR CURSOR IN DECIMAL
+      This is similar  to the previous  step, except that  it sets the
+      bottom line range for  the cursor.  This number  must be greater
+      than or equal to  the "Top Line  For Cursor" and  at most be one
+      less than the "Number  of Screen  Lines", since  the very bottom
+      line is only  used  for  status.  "4"  less  than  the number of
+      screen lines is a good starting point.
+
+14.)  ENTER SCREEN LINE LENGTH IN DECIMAL
+      Enter the number of characters per line your CRT display has and
+      a RETURN.  This number must  be  in  the  range  20 - 255.  This
+      value will be 80 for most CRT  terminals and either 64 or 80 for
+      most Memory Mapped  displays.  The  value  for  the MATROX video
+      display board is 128.
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 61
+Appendix A - Customizing with VEDSET
+
+
+15.)  ENTER LENGTH OF DISPLAYED LINE IN DECIMAL
+      Enter the number  of  characters  per  line  you  want  VEDIT to
+      actually display and a  RETURN.  This value will  normally be 80
+      or 64 since it  usually  is  equal  to  the  screen line length,
+      unless for some reason  you  don't  wish  to  use  the full line
+      length.  This number must  be less  than or  equal to  the above
+      length of a screen line.  The value for the MATROX video display
+      board is 80.
+
+16.)  (Memory Mapped Only)
+
+      ENTER ADDRESS OF SCREEN IN HEXADECIMAL
+      Enter the memory address of the  beginning of the video board in
+      hexadecimal and a RETURN.
+
+17.)  (Memory Mapped Only)
+
+      ENTER NUMBER OF VIDEO BOARD INITIALIZATION BYTES
+      Enter "0" if your  board requires no initialization.  Otherwise,
+      enter a  number between  "1" and  "5", for  the number  of "data
+      byte" / "port number" pairs needed for initialization.
+
+      ENTER [RUBOUT] OR [CTRL-U] TO START PAIR OVER
+      ENTER DATA BYTE
+      ENTER PORT NUMBER
+
+      The number of 'data byte'/ 'port number' pairs specified must be
+      entered in hexadecimal  with  each  number  followed  by RETURN.
+      Typing a CTRL-U or RUBOUT  will ignore  any values for that pair
+      and reprompt with the "ENTER DATA  BYTE" question for that pair.
+      (The Processor Technology  VDM board  requires one  pair, a "00"
+      sent to port "C8" hex,  and the SOL-20 a  "00" sent to port "FE"
+      hex.)
+
+18.)  WAS THE CUSTOMIZATION DONE CORRECTLY (Y OR N)
+      Enter 'Y'  if it  appears that  the customization  was performed
+      correctly, and your customized version  of VEDIT will be created
+      on disk.  Otherwise, enter 'N'  if you want  to start over again
+      at step 2.  At step  2  you  can  skip  customizing the keyboard
+      layout again.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 62
+Appendix A - Customizing with VEDSET
+
+
+More on the Memory Parameters for Customization.
+
+The first parameter determines how many bytes of memory are free after
+VEDIT does an auto-read (such as following an EB command) on files too
+large to fit in  memory  all  at  the  same  time.  This  size must be
+specified between 1024 and  32768.  A reasonable size  is about 1/4 of
+the size of the  text buffer for  small systems and  a little less for
+large systems.  The  CP/M operating  system (BDOS  and BIOS)  takes up
+about 4K of memory and VEDIT up  to 11K.  The rest of the memory space
+is for  the text  buffer and  text register.  Thus  a 24K  CP/M system
+would have a 9K buffer, and a  48K system a 33K buffer.  Choosing a 1K
+(1024 byte) multiple  makes  the  disk  read/write  work  a little bit
+faster.  The second parameter  specifies  the  size  of file transfers
+during auto-buffering  and for  the 'N'  command.  See the  section on
+auto-buffering for  details.  For normal  use, a  value about  1/3 the
+size of the text buffer is  good.  (Specifying a value larger than one
+half the maximum text buffer size  may create a non-working version of
+VEDIT.)
+
+When auto-buffering is  initiated,  an  attempt  is  made  to read the
+number of K bytes  specified during customization  under "Size of File
+Transfers".  If there is insufficient memory  space for appending this
+many bytes, this  many bytes  are written  from the  beginning  of the
+text buffer to the output file.  An  auto-read is then performed which
+reads in the rest of the input file,  or until the memory is filled to
+within the number of spare  bytes specified during customization under
+"Spare Memory for READ".
+
+A Word About Keyboards
+
+     With the simplest keyboards,  each visual operation  will have to
+be activated  by holding  the CONTROL  key and  typing some  letter or
+using an escape sequence.  Moving  up,  keyboards  will  have keys for
+Backspace, Tab and  Line  Feed,  which  can  be  used  to  perform the
+described function.  Some  keyboards  with  a  numeric  pad  can  send
+control codes by holding  the SHIFT or  CONTROL key and  typing one of
+the pad keys.  Numeric pad keys  can always be used  as part of escape
+sequences.  The  pad  can  then  be  used   for  most  of  the  visual
+operations. In some cases, the  keyboard will have many special  keys,
+which send a control  code just by  typing one of  them.  In the ideal
+case, these control codes will be sent  with the highest data bit set.
+(This is Bit 8 and is often called the parity bit.  The ASCII standard
+code does not use  Bit 8  and even  a "Full  ASCII" keyboard will send
+nothing on Bit  8  or  else  parity  information).  Some  very special
+keyboards, usually ones with 70-100 keys on  them, use Bit 8 to decode
+all those keys.  Since VEDIT and VEDSET  decode  all 8 data lines from
+the keyboard,  these  fancy  keyboards  can  be  used  to  their  full
+advantage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 63
+Appendix A - Customizing with VEDSET
+
+
+
+		   This page is intentionally blank.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 64
+Appendix B - Command reference
+
+
+	'n' denotes a positive number.  'm'  denotes a number which may
+	   be negative to denote backwards in the file.
+	'string','s1' and 's2'  are  strings  of  characters  which may
+	   include anything except an [ESC]. The special character "|"
+	   will also match any character during the search.
+
+nA		   Append 'n' lines from the input file. (0A)
+B		   Move the edit pointer to text beginning.
+mC		   Move the edit pointer by 'm' positions.
+mD		   Delete 'm' characters from the text.
+E		   First letter of extended two letter commands.
+nFstring[ESC]	   Search for 'n'th  occurrence of 'string'.
+G		   Insert the contents of the text register.
+Itext[ESC]	   Insert the 'text' into the text buffer.
+mK		   Kill 'm' lines.
+mL		   Move the edit pointer by 'm' lines.
+nNstring[ESC]	   Search for 'n'th occurrence of 'string' in file.
+mP		   Put 'm' lines of text into the text register.
+Ss1[ESC]s2[ESC]	   Search for and change 's1' to 's2'.
+mT		   Type 'm' lines.
+U		   Print # of unused, used and text register bytes.
+V		   Go into visual mode.
+nW		   Write 'n' lines to the output file. (0W)
+Z		   Move edit pointer to end of text.
+
+EA		   Restart the editor. (EX and EB).
+EBfile		   Open "file" for Read & Write, perform an auto-read.
+EC		   Change disks for reading or write error recovery.
+EDfile[ESC]	   Delete (erase) the file "file" from the disk.
+EF		   Close the current output file.
+EGfile[line range] Insert the specified line  number range of the file
+		   "file" into the text buffer at the edit position.
+nEI		   Insert the character whose decimal value is "n".
+EP n m		   Change the value of parameter "n" to "m".
+	1	   Cursor type				(0, 1 or 2)
+	2	   Cursor blink rate			(10 - 100)
+	3	   Indent Increment			(1 - 20)
+	4	   Lower case convert			(0, 1 or 2)
+	5	   Conditional convert character	(32 - 126)
+EQ		   Quit the current edit session.
+ERfile		   Open the file "file" for input.
+ES n m		   Change the value of switch "n" to "m".
+	1	   Expand Tab with spaces		(0=NO 1=YES)
+	2	   Auto buffering in visual mode	(0=NO 1=YES)
+	3	   Start in visual mode			(0=NO 1=YES)
+	4	   Point past text reg. insert		(0=NO 1=YES)
+	5	   Ignore UC/LC distinction in search	(0=NO 1=YES)
+	6	   Clear screen on visual exit		(0=NO 1=YES)
+	7	   Reverse Upper and Lower case		(0=NO 1=YES)
+ET		   Set new tab positions.
+EV		   Print the VEDIT version number.
+EWfile		   Open the file "file" for output.  Create Backup.
+EX		   Normal exit back to CP/M after writing output file.
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 65
+Appendix C - Error Messages
+
+
+     VEDIT prints a message (on the CP/M console device) when the user
+should be notified of  an unusual or  special condition.  All messages
+are descriptive, and  the user  should not  normally have  to refer to
+this appendix  in  order  to  understand  the  message  or error.  The
+messages fall into  three categories:  fatal errors,  non-fatal errors
+and other messages.  Fatal  errors  result  in  an  abort  of the disk
+operation being performed and  a return  to command  mode if possible,
+else a return  to  CP/M.  These  are  caused  by  certain  disk errors
+described below.  The non-fatal  errors  usually  just  signify that a
+typo was made or  that some  small detail  was overlooked.  These only
+result in a message and the user can try again.
+
+FATAL ERRORS
+------------
+
+OUT OF SPACE	The disk became full  before the entire output file
+		was  written.  As  much  of   the  output  file  as
+		possible was written.  Refer to the section on disk
+		write error recovery.
+
+CLOSE ERROR	The  output file  could not  be closed.  This  is a
+		very unusual condition,  but may occur  if the disk
+		becomes write protected.
+
+READ ERROR	An  error  occurred  reading  a  file.  This  error
+		should never  occur,  since  CP/M  itself  normally
+		gives an error if  there was a  problem reading the
+		disk.
+
+NO DIR SPACE	There was  no directory  space left  for the output
+		file.  Refer to the  section  on  disk  write error
+		recovery.
+
+NON-FATAL ERRORS
+----------------
+
+INVALID COMMAND	The specified letter is not a command.
+
+CANNOT FIND...	The specified  string could not  be found.  This is
+		the normal return for iteration macros which search
+		for all occurrences of a string.
+
+NESTING ERROR	You cannot nest macros deeper than 8 levels.
+
+BAD PARAMETER	Something was specified wrong with your "EI", "EP",
+		"ES" or "ET" command.
+
+NO INPUT FILE	There is  no input  file open  for doing  a read or
+		append.
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 66
+Appendix C - Error Messages
+
+
+NO OUTPUT FILE	There is no  output file open for  doing a write, a
+		close or an  exit  with  the  "EX" command.  If you
+		have already written out the text buffer and closed
+		the output file, exit with the "EQ" command.
+
+CANNOT OPEN TWO	You cannot have two  output files open and there is
+		already one open.  Also given if  an output file is
+		open at the time of an "EC" command.    Perhaps you
+		want to close it with the "EF" command.
+
+BAD FILE NAME	The  file name  you gave  does not  follow the CP/M
+		conventions.
+
+FILE NOT  FOUND	The file  you wanted  to open  for input  does not
+		exist.  Maybe you specified the wrong drive.
+
+OTHER MESSAGES
+--------------
+
+NEW FILE	The file specified with the  EB command or with the
+		invocation of VEDIT did not exist on disk and a new
+		file has been created.  If you typed the wrong file
+		name, you  may want  to start  over by  issuing the
+		"EQ" command.
+
+*BREAK*		The   command   execution   was   stopped   because
+		insufficient memory space remained  to complete the
+		command (I, S, G,  P and EG). For  the "I", "S" and
+		"EG"  commands,  as  much   text  as  possible  was
+		inserted.  For the "G" and "P" commands, no text at
+		all was copied  or inserted.   The  message is also
+		printed when command  execution is  stopped because
+		you typed [CTRL-C] on the keyboard in command mode.
+
+QUIT (Y/N)?	This  is  the  normal  prompt  following  the  "EQ"
+		command.  Type "Y" or  "y"  if  you  really want to
+		quit and  exit  to  CP/M,  otherwise  type anything
+		else.
+
+INSERT NEW DISK AND TYPE [RETURN]
+		This is the normal prompt  for inserting a new disk
+		with the "EC" command.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 67
+Appendix D - VEDIT Notes
+
+
+     We are interested in  hearing  from  users  about  any changes or
+additions they would  like to see  in VEDIT, or  even just information
+about  their  application.  We  are  also  interested  in  suggestions
+regarding this   manual.  Each   suggestion   will   receive  personal
+attention  and  helpful  suggestions  have  a  good  chance  of  being
+incorporated in future  releases, since we  are continuously expanding
+the features of VEDIT.
+
+     Currently we know of the following limitations to VEDIT.
+
+1.)   Lines longer than  258 characters,  not including  the CR,LF are
+      not handled well in  visual mode.  When the cursor  is on such a
+      line only the first  258 characters will  be displayed. The line
+      may be broken into smaller lines by deleting two characters with
+      the [Back Space], typing  [RETURN] to split the  line in two and
+      typing in the two deleted characters again.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

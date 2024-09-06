@@ -1,0 +1,925 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	                            VEDIT
+
+
+	                       A VISUAL EDITOR
+
+
+
+
+	                        USER'S MANUAL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	                     COPYRIGHT (C) 1980
+
+
+
+
+
+
+
+
+	                  COMPUVIEW PRODUCTS, INC.
+
+
+
+
+
+
+
+
+
+
+
+
+	                                                    Page 2
+
+
+
+
+
+
+
+	                              VEDIT
+
+	                         A Visual Editor
+
+	                          User's Manual
+
+
+
+	                           Written By
+
+	                         Theodore Green
+
+	                           April 1980
+
+
+
+	                    Compuview Products, Inc.
+	                          1531 Jones Dr
+	                    Ann Arbor, Michigan 48105
+
+	          Copyright (C)  1980  by  Theodore Green.  All
+	          rights reserved.  No part of this publication
+	          may be reproduced,  in  any  form  or  by any
+	          means, for  any commercial  purposes.  It may
+	          be   reproduced    for    educational,   non-
+	          commercial, purposes  on  the  condition that
+	          this copyright notice is included.
+
+	                           DISCLAIMER
+
+	          CompuView Products, Inc. and  the author make
+	          no claims or  warranties with  respect to the
+	          contents or accuracy of  this publication, or
+	          the  product  it   describes,  including  any
+	          warranties of fitness  or merchantability for
+	          a   particular   purpose.  Any    stated   or
+	          expressed  warranties  are  in  lieu  of  all
+	          obligations or  liability  for  any  damages,
+	          whether special,  indirect  or consequential,
+	          arising out of or in  connection with the use
+	          of  this  publication   or  the   product  it
+	          describes.  Furthermore,   the    right    is
+	          reserved to   make   any   changes   to  this
+	          publication without obligation  to notify any
+	          person of such changes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	                           Table of Contents
+	                           -----------------
+
+
+	Section                                                         Page
+
+	I.)  Introduction                                          2
+
+	II.) Getting Started                                       3
+
+	1.)  Overall Description                                   4
+
+	          Introduction                                     4
+	          Basic Editing Concepts                           4
+	          Auto Read/Write and Auto-Buffering               6
+	          The Text Register                                6
+	          Invoking VEDIT                                   7
+	          Visual Mode                                      7
+	          Command Mode                                     9
+	          Which Mode to use for What                       11
+
+	2.)  Visual Mode                                           13
+
+	          Properties                                       13
+	          Displayable Characters                           14
+	          Control Characters                               14
+	          Control Characters (Cursor Movement)             15
+	          Control Characters (Visual Functions)            16
+
+	3.)  Command Mode                                          18
+
+	          Properties                                       18
+	          Brief Command Description                        19
+	          Detailed Command Description                     22
+	          Command Line Editing                             45
+
+	4.)  Appendices
+
+	     A -  Command Reference                                46
+	     B -  Customizing with VEDSET                          47
+	     C -  Error Messages                                   56
+	     D -  VEDIT notes                                      58
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 2
+	Introduction
+
+
+
+
+
+	                         Introduction to VEDIT
+	                         ---------------------
+
+
+	     VEDIT is an editor  designed  to  take  full  advantage  of a CRT
+	display to make editing of  a file as fast  and easy as possible.  The
+	main feature of VEDIT  is its  visual mode  editing which continuously
+	displays a region  of the  user's file  on the  screen and  allows any
+	changes made to the screen display to  become the changes in the file.
+	The screen display  is changed by  moving the displayed  cursor to any
+	place in the file and  making necessary changes by  typing in new text
+	or hitting a  function key.  Even blocks  of text can  be moved within
+	visual mode.
+
+	     VEDIT also provides a very flexible and powerful command mode for
+	performing search operations, repetitive editing operations, text move
+	and extensive file handling.
+
+	     The  sophisticated  disk  buffering  in   VEDIT  is  designed  to
+	automatically perform the read/write  operations necessary for editing
+	files larger than  can  fit  in  the  main  memory  at one time.  This
+	applies mostly to  the visual  mode and  allows the  editing in visual
+	mode to be done  with little concern  over the size  of the file being
+	edited.
+
+	     Since  so  many  hardware  configurations,  different  keyboards,
+	editing applications and  personal  preferences  exist  in  the world,
+	VEDIT is supplied  with a  customization program  in order  to let the
+	user create versions  of VEDIT which  are best suitable  to the user's
+	hardware, keyboard, needs and desires.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 3
+	Getting Started
+
+
+	    This manual is organized  into four main  parts.  The next section
+	describes the overall operation  of VEDIT  in both  command and visual
+	mode without describing the  functions in either  mode in detail.  The
+	section also describes  basic  disk  file  editing  concepts and their
+	application to VEDIT.  The second section describes the visual mode in
+	detail, while the third  section is devoted  to a detailed description
+	of the command  mode.  The  last  section  contains  appendices of the
+	customization process,  a  reference  guide  of  the  commands  and  a
+	description of the error messages.
+
+	     The new  user of  VEDIT is  best off  to at  least skim  the next
+	section and the visual  mode description before  editing any important
+	files.  The anxious new user will probably want to immediately "tinker
+	around" and this is  probably the best  way to get  to know the visual
+	mode, as long as no important  files are clobbered.  Before you can do
+	this however, you will  have to go  through the customization process.
+	This delays things a  little at  the beginning  but is  well worth the
+	trouble.  The customization process leaves a lot of options up to your
+	choice.  Since you probably  won't  know  what  options  to choose the
+	first time, recommendations  are made for  the first time  or even the
+	first few times you  go through the  customization process.  Since the
+	customization process does not destroy or alter the "prototype" editor
+	files on  disk, but  rather creates  a new  file with  your customized
+	editor in it, you may go through the process as often as you like.  As
+	you gain experience  with  VEDIT  you  will  probably  go  through the
+	customization process  several  time  until  you  get  everything just
+	right.  You may also create  several versions of  VEDIT, although that
+	might confuse you more than help.
+
+	     Once the new user has  had some practice with  the visual mode of
+	VEDIT, he will  then want  to try  out the  command mode.  The command
+	mode is definitely  not as  easy to  use as  the visual  mode and more
+	references to this  manual  will  be  necessary.  A  nice  thing about
+	VEDIT is that you can do practically  all of your basic editing in the
+	easy to use visual  mode  and  can  learn  the  command mode little by
+	little.
+
+	     Visual mode is  so easy  to learn  and use  that even  a computer
+	novice can learn to  use it in ten  minutes.  Using VEDIT can actually
+	be an enjoyable experience, so don't be surprised if you find yourself
+	looking forward to using it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 4
+	Overall Description
+
+
+	Introduction
+	------------
+
+	     VEDIT is a visual  editor  which  currently  runs  under the CP/M
+	operating system.  It allows any text file to be created and/or edited
+	in a visual manner on systems  with certain types of CRT displays.  It
+	has two operating  modes: command  mode and  visual mode.  The command
+	mode allows the  execution  of  normal  editor  commands,  such as for
+	searching, printing and altering.  Commands are  provided for saving a
+	copy of lines in  a text  register and  inserting the  contents of the
+	text register at any point in  the file.  Command mode also allows for
+	explicit Read and Write commands  to be executed as  well as new Input
+	or Output files to be opened or closed.  Multiple iterations of single
+	commands or sets of commands called Iteration Macros is possible.  One
+	command puts the editor into visual mode.
+
+	Basic Editing Concepts
+	----------------------
+
+	     The purpose of editing is  to create or change  a file on disk so
+	that it may be saved for future  use and processed by another program,
+	such as a  word processing  program (text  formatter), a  compiler, or
+	simply be printed out.  When  the file  is first  created, the initial
+	text of the file is entered with the editor, corrections are made, and
+	then saved on disk.  When  a file  is to  be changed  or "edited", the
+	existing copy of the  file is read  from the disk  into the computer's
+	"main memory", the changes  are made by  the user with  the use of the
+	editor, and an entirely new copy of the file is saved on disk.
+
+	     Each file on disk has a name, and when a file is created with the
+	editor, the user assigns  the file its name.  It  is helpful to choose
+	names which mean something and are easy to remember.  The name LETTER1
+	is thus better  than  JV%8-G5F.  The  CP/M  operating  system has file
+	names which consist of two parts, the "filename" and the "filetype" or
+	"extension". A "." separates the two parts  and the filename may be up
+	to 8 characters long and the  extension up to 3 characters long.  When
+	a file is to be edited, its name  must be specified in order for it to
+	be read from the  disk.  The new  copy of  the file  may be written to
+	disk with a new name or with  the same name as before.  The normal way
+	of invoking and exiting VEDIT will  cause it to automatically write it
+	with its original name.  The question in this case is, what happens to
+	the original copy of the file.  VEDIT leaves the original copy on disk
+	too, but since you cannot  have two files on  disk with the same name,
+	the name of the  original  file  is  changed  to  have an extension of
+	".BAK".  This is refered to as the "backup" of the file.  Any previous
+	backup of the file on the disk will be deleted by this process.
+
+	    When a file  is read  from disk,  its contents  are stored  in the
+	"main memory" of the  computer.  The portion  of the  main memory used
+	for saving the file  is refered to as  the "text buffer".  All changes
+	made to the file are made in the main memory or text buffer.  When the
+	changes are complete, the  file is saved  again on disk.  This process
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 5
+	Overall Description
+
+
+	of reading a file from  disk (or creating a  new file), making changes
+	to the file and saving it on disk, is refered to as an "edit session".
+	Thus up to two  files  are  being  processed  while editing.  The file
+	being read is called  the "input" file  and the file  being written is
+	called the "output" file.  Specifying  to the editor  which file is to
+	be used for input or output is  refered to as "opening" the file.  The
+	way VEDIT is normally  invoked, i.e. "VEDIT  FILE.TXT", the named file
+	is opened for input, and another file  is opened for output which will
+	have the same name as the original input file when the edit session is
+	over.  At that time the original input file will still exist, but will
+	have been renamed to a backup file, i.e. "FILE.BAK".
+
+	     In some cases the  file to be  edited is larger  than the maximum
+	size of the text  buffer and only a  portion of it can  be in the text
+	buffer at  once  and  edited.  This  situtation  is  handled  by first
+	reading in the first portion  of the file, making  the edit changes to
+	it, writing part of the text buffer out  to disk, to make space in the
+	main memory, and then reading in more of the file being  edited and so
+	on.  (There are a lot more details involved in this process.) In order
+	to edit a  portion of the file which has already gone through the text
+	buffer and been written on disk, a new edit session has to be started.
+	VEDIT, especially in visual  mode, has the  capability to perform this
+	read/write process automatically.  When  the user  reaches the  end of
+	the text buffer in  visual mode, the  beginning of the  text buffer is
+	written out to disk  (to the output  file) and more  of the file being
+	edited (the input file) is  read or "appended" to  the end of the text
+	buffer.  This process,  when  done  automatically,  is  refered  to as
+	"auto-buffering".  Another automatic process  done in  both visual and
+	command mode is called "auto-read" which consists of reading the input
+	file until it is all read in, or until the main memory space is almost
+	full.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 6
+	Overall Description
+
+
+	Auto Read / Write and Auto-Buffering
+	------------------------------------
+
+	     Auto Read/Write refers to any disk  file reading or writing which
+	is done by VEDIT without the user having given the "A" or "W" commands
+	in command  mode.  (See  also  "Basic  Editing  Concepts" above).  The
+	simplest auto read/write involves reading the input file into the text
+	buffer when the editor is  invoked in the normal  way, and writing the
+	output file  when  the  editor  is  exited.  More  sophisticated  auto
+	read/write called  "Auto-Buffering"  can  take  place,  especially  in
+	visual mode.  Auto-buffering refers to the read/write operations which
+	VEDIT performs, especially in  visual mode  when the  user has reached
+	the end of the text buffer and not all of the input file has been read
+	yet.  It is only performed in command  mode for the "N" command, since
+	it would  otherwise interfere  with special  editing applications.  If
+	the text buffer fills  up in visual  mode while the  user is typing in
+	more text, VEDIT will also try to  write out 1K byte sections from the
+	beginning of the text  buffer to the output  file.  This is refered to
+	as  "Auto-Write".  For   more   details   see   Appendix   B,  "Memory
+	Parameters ...".
+
+	The Text Register
+	-----------------
+
+	     The text register  is used  for saving  a temporary  copy of text
+	which is independent of  the  text  buffer.  Its  main  purpose is for
+	copying or moving a  section or "block"  of text from  one area of the
+	file to  another.  The  text  register  is  not  changed  by  any disk
+	read/write operations, nor by the  "EA" or <RESTART> commands.  It can
+	thus also  be used  to extract  a section  of text  from one  file and
+	insert it anywhere in another file.  Commands exist for using the text
+	register from both command and visual  mode.  The text may be saved in
+	one mode and inserted in the other.  In  command mode the text save is
+	line oriented, while in visual  mode it is character oriented.  Visual
+	mode also has an  additional  text  register  operation  which moves a
+	block of text to the  text register and then  deletes it from the text
+	buffer.  The text register  is  thus  more  flexible  in  visual mode,
+	besides being much easier to use.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 7
+	Overall Description
+
+
+	Invoking VEDIT
+	--------------
+
+	     VEDIT is invoked  from CP/M  by typing  a command  of one  of the
+	following two forms:
+
+	VEDIT
+
+	or
+
+	VEDIT <filename.ext>
+
+	    The second form  is the  normal form  for creating  a new  file or
+	editing an existing file.  The  file  name  may  be  specified with an
+	optional drive name and file extension in the normal CP/M format.  The
+	named file is opened for  input if it exists  on disk and an auto-read
+	is done on it.  If the file does  not exist, the message "NEW FILE" is
+	printed.  An output file is also opened  which will have the specified
+	name when the edit session is over.  At  that time the input file will
+	have been renamed to 'filename'.BAK.
+
+	     The first form is used when VEDIT is to be loaded into memory and
+	the input and output files are to be specified from command mode.  The
+	second form is  equivalent to the  first form followed  by the command
+	"EB<filename.ext>".
+
+	     Following either command form, VEDIT  will begin in either visual
+	mode or command, depending upon how  the "Begin in Visual Mode" switch
+	was set during customization.
+
+	Visual Mode
+	-----------
+
+	     In visual mode,  the  screen  continuously  displays  the current
+	contents of the file,  in the  region  you are  editing, and a cursor.
+	The bottom line of  the screen is  used for status  information and is
+	normally filled with  the  "-"  character.  The  changes  made  to the
+	screen display by typing in new  text or control characters become the
+	changes to the file.  The  characters typed while  in visual mode fall
+	into two  categories: Displayable  characters and  Control characters.
+	The displayable characters are  displayed on the  screen at the cursor
+	position and cause  the  cursor  to  move  to  the right.  The control
+	characters fall into  two subcategories  - cursor  movement and visual
+	functions.  The cursor movement  operations  cause  no  change  to the
+	file, but rather move the  cursor a character  at a time,  a line at a
+	time or  a  screen  at  a  time.  Additional  cursor  movements  allow
+	movement to the next tab position and the beginning or end of the text
+	buffer.  The cursor can only point to characters in the file, it never
+	points to "space", i.e.  a position on  a screen line  past the end of
+	the text line.
+
+
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 8
+	Overall Description
+
+
+	     A useful feature in the visual mode is the ability to move a copy
+	of a section of text  to any other place  in the file.  The section or
+	block of text is  specified by  moving the  cursor to  the ends of the
+	text block, hitting a  function key  at each  end and  then moving the
+	cursor to the place  in the  file it  is to  be inserted.  Hitting one
+	more function key inserts a copy of the text at the cursor position.
+
+	     The visual mode handles text lines which are up to 260 characters
+	( 256 plus CR LF and two spare) long.  Text lines longer than a screen
+	line are handled  by  displaying  them  on  multiple  screen lines and
+	indicating in the first  reserved column  those screen  lines that are
+	continuations.  These continuation  lines  are  created  as  necessary
+	while you type.
+
+	     In visual mode, the disk buffering can perform automatic Read and
+	Write to handle files which are larger than the size of available main
+	memory.  This is explained above under  "Automatic Read / Write".  Its
+	purpose is to make the  size of the  file as invisible  to the user as
+	possible.  It  is  not  always  completely  invisible  however,  since
+	editing the portion of  the file which has  already passed through the
+	text buffer  requires  starting  a  new  edit  session.  The automatic
+	read/write in visual mode will also begin to write out the text buffer
+	if the memory becomes full and the user continues to type in new text.
+
+	     Tab characters may be inserted into  the text in both command and
+	visual mode.  Visual  mode can  optionally also  insert spaces  to the
+	next tab position when  the Tab key  is hit.  While this  uses up more
+	disk space and  is  not  recommended  for  normal  applications, it is
+	useful for applications  which require  an exact  layout which  is not
+	compatible with the tab positions of other programs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 9
+	Overall Description
+
+
+	Command Mode
+	------------
+
+	     In command mode, the  user enters command  lines which consist of
+	single  commands,  strings  of  commands  or  iteration  macros.  Each
+	command line, whether it consists of  one command or multiple commands
+	is ended with an [ESC] [ESC]; there is no [RETURN].
+
+	     Each command consists  of a single  letter or two  letters if the
+	first letter is "E" (Extended command).  Some commands may be preceded
+	by a number  to  signify  that  the  command  is  to  be  repeated, or
+	"iterated".  If no  number is  given, a  "1" is  used as  the default.
+	Multiple commands may  be typed one  after another on  a command line.
+	They are always executed  left to right.  Their effect  is the same as
+	if each command had been typed on its own command line.
+
+	     A group of  commands,  called  an  iteration  macro,  may also be
+	executed multiple times as  a group by enclosing  the group within "<"
+	and ">", and prefixing  the  "<"  with  the  iteration  number for the
+	entire group.  (Note:  The characters  for enclosing  iteration macros
+	are printed as "["  and "]"  in this  manual.  Some users  may be more
+	familiar  with  angle  brackets  and  can  choose  either  set  during
+	customization.) The effect is  to  execute  the  first  command of the
+	group through the last command of the  group and then start over again
+	with the first  command.  The group  is executed  the number  of times
+	specified by  the  iteration  macro.  For  example,  the  command "4T"
+	prints out four lines.  The  command "5<4T>" prints  out the same four
+	lines five times for a total of 20 printed lines.  The "<" and ">" may
+	also occur within each other ("be  nested") for more complicated macro
+	commands.  For example the  command "3<5<4T>4L>>" would  print out the
+	same four lines five times, then move to the next four lines and print
+	them out five times  and last, move  to the next  four lines and print
+	them out five  times.  The  leftmost  "3"  determines  that everything
+	inside the outside "<" and ">" will be executed three times.  This may
+	seem a  little  complicated  at  first,  but  it  becomes  useful with
+	practice.
+
+	     Many of the  commands make  a change  to the  text buffer  at the
+	position determined by the  "edit pointer".  The edit  pointer is very
+	much like the cursor in  visual mode, it is  just not as readily seen.
+	Commands exist to move the edit pointer  a character at a time, a line
+	at a time  or to  the beginning  or the  end of  the text buffer.  The
+	number of lines or characters the  edit pointer moves is determined by
+	the iteration number for the command.  Negative iteration numbers mean
+	backward movement, towards  the  beginning  of  the  text buffer.  One
+	command prints a  given  number  of  lines  before  or  after the edit
+	pointer to display the contents of the  file and "show" the user where
+	the edit pointer is.
+
+	    The commands which alter the text all operate from the position of
+	the edit pointer.  One  deletes  characters,  one  deletes  lines, one
+	inserts new text and  another searches for a  string of characters and
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 10
+	Overall Description
+
+
+	changes  them  to  another.  Other  commands  only  perform  searching
+	without alteration.  Two commands  are  used  to  manipulate  the text
+	register, with one making a copy of  the specified lines and the other
+	then inserting this  copy at  the edit  pointer.  Another two commands
+	are used to change  the switch  settings and  tab positions.  The last
+	two groups of commands deal with the  reading and writing of files and
+	with the opening and closing of input and output files.
+
+	     The commands fall into eight overlapping categories:
+
+	Edit pointer movement   -     B,  L,  C,  Z
+	Display text            -     T
+	Alter text              -     D,  I,  K,  S
+	Search                  -     F,  N,  S
+	Text Move               -     G,  P
+	Disk Buffering          -     A,  N,  W, EA, EX, EQ
+	File Handling           -    EB, EF, ER, EW
+	Switch and Tab Set      -    ES, ET
+
+	     Additionally the "V" command enters the  visual mode, and the "U"
+	command prints three memory usage numbers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 11
+	Overall Description
+
+
+	Which Mode to Use for What
+	--------------------------
+
+	     The visual mode  is  designed  to  satisfy  the  majority  of all
+	editing needs.  The bulk  of editing  consists of  inserting new text,
+	correcting typos, and  making revisions, which  includes moving blocks
+	of text around.  These are all readily  handled in visual mode and are
+	best done in that mode.  There is probably a three to one time savings
+	in inserting new  text and  correcting the  typos in  visual mode over
+	command mode.  There is probably  a ten to one  time savings in making
+	the revisions in visual mode over  command mode, even assuming you are
+	very practiced with the commands!
+
+	     Command mode is  most useful in  searching for text  in the file,
+	performing repetitive edit  changes  using  iteration  macros  and for
+	extensive file handling.  Searching  is used for  directly accessing a
+	particular word or string  in the file and  then entering visual mode.
+	When entering visual  mode, the  cursor takes  on the  position in the
+	text buffer of the edit pointer  in command mode.  When exiting visual
+	mode to command mode, the  edit pointer takes on  the last position of
+	the cursor.
+
+	     Searching is often  used  in  conjunction  with  the  visual mode
+	command in iteration macros for finding all occurrences of a string in
+	the file and then editing that region of the file in visual mode.  For
+	example, the following command will search  for all occurrences of the
+	word "temporary" and let those regions of the file be edited in visual
+	mode.
+
+	1000<Ntemporary$V>$$
+
+	     (Note that the  iteration number  "1000" is  chosen to  simply be
+	greater than the  number of  occurrences of  the string  that actually
+	exist in the file.  The "$"  character is used in  this manual for the
+	[ESC] control character, since the "$"  is echoed anytime the [ESC] is
+	typed in command mode.)
+
+	     Another common   operation   is   to   change   (substitute)  all
+	occurrences of a word to another and  check that it was done correctly
+	in visual mode.  For example, the following command could be used in a
+	form letter to  change the  string /name/  to the  desired name, check
+	that it was done  right  in  visual  mode,  and  if necessary make the
+	changes in that mode.
+
+	1000<S/name/$Mr. Jones$V>$$
+
+	     The visual mode has two  ways of exiting back  to command mode in
+	order to  help in  using iteration  macros.  The [visual  exit] simply
+	exits and lets  any command  iteration continue.  The  second, [visual
+	escape] exits to  command mode  but also  aborts any  iteration macro.
+	The latter is used when the user  realizes that the iteration macro is
+	not doing what was  intended and  does not  want the  macro to further
+
+
+
+
+
+
+
+
+
+
+	VEDIT - Visual Editor                                         Page 12
+	Overall Description
+
+
+	foul things up.  For example,  in order  to change  all occurrences of
+	the word "and" to "or", the following command may have been given:
+
+	1000<Sand$or$V>$$
+
+	The user might then  see  in  visual  mode  that  the  word "sand" was
+	changed to "sor",  which was  not the  intention.  The [visual escape]
+	would stop the command and the following correct command could then be
+	given:
+
+	1000<S and $ or $V>$$
+
+	     The commands "I" for Insert  and "T" for Type  are most useful in
+	iteration macros.  The "T"  can be used  to simply type  out the lines
+	that are changed in an iteration macro without going into visual mode.
+	The "I" command is  useful when the  same text is  to be inserted into
+	the text buffer many times.  For example, to begin creating a table of
+	60 lines, where each line begins with a tab and ".....", the following
+	command could be used  before  the  rest  of  the  table was filled in
+	visual mode:
+
+	60<I[TAB].....[CR]$>$$
+
+	     (The "[TAB]" is  the tab character  and the "[CR]"  is the RETURN
+	character which will cause  a  carriage  return  and  line  feed to be
+	inserted and printed.)
+
+	     Command mode is  also used  when the  edit session  involves more
+	than just making changes to a single file.  The file handling commands
+	allow several files to be  merged into one file or  a file to be split
+	into several smaller  ones.  Combined with the  text register commands
+	in either visual or  command mode, portions  of one file  can be found
+	and copied into the middle of another file.  Other possibilities exist
+	and some examples are  given in the  "Detailed Command Description" of
+	this manual.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

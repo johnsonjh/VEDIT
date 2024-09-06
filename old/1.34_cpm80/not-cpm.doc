@@ -1,0 +1,133 @@
+
+
+                  USER PATCH NOTES FOR VEDIT
+     These notes describe several patches  which can be made to
+the VEDIT programs  in order  to satisfy  special applications.
+In particular, these notes describe two patches:
+
+1.)  To allow  a  destinction  between  upper  and  lower  case
+     letters in escape sequences.
+
+2.)  To allow a change in the way console I/O is handled.  This
+may be useful to  users not running CP/M  or MP/M,to users with
+CRT emulation software instead  of a true  CRT terminal, and to
+user running with an interrupt driven keyboard.
+
+
+     -----------------------------------------------------
+
+     During the keyboard  layout customization,  VEDIT is setup
+to make no distinction between upper  and lower case letters in
+escape sequences.  Therefore, "ESC H" will  be treated the same
+as "ESC  h".  This is  to the  benefit of  users who  hand type
+escape sequences for some  of the visual  functions, and do not
+wish to be concerned over whether  the Alpha-Lock is enabled on
+their keyboard.  However, some  users  may  wish  to have VEDIT
+make a distinction  between  upper  and  lower  case letters in
+escape sequences.  For example,  Televideo  910,  920C  and 950
+users will probably want the  destinction, because the function
+keys on the terminal  send  an  escape  sequence  with a letter
+which is in upper or lower case depending upon the Shift Key.
+
+
+     These notes are  only  applicable  to  users  who  are not
+running CP/M or MP/M,  and  to  experienced  users  who wish to
+change the way console  I/O is  handled in  the VEDIT programs.
+The new VEDIT user running CP/M or MP/M therefore does not need
+to read or understand these notes!
+
+     The   VEDIT   programs   are    normally   configured   to
+automatically determine whether they  are running in  a CP/M or
+an MP/M  environment.  This is  accomplished by  performing the
+system call "12".  Under  CP/M,  console  I/O  is done directly
+through BIOS, while  in  MP/M,  the  system  call  "6" is used.
+While this works well with  CP/M and MP/M it  may not work with
+other "CP/M  compatible"  operating  systems.  Particularly, it
+will not  work  with  Cromemco's  CDOS,  which  has  a  totally
+different system call "12".  The CDOS  user will therefore need
+to patch one byte  in each  of the  VEDIT programs  so that the
+system  call  "12"  is  not  performed.  If  your  distribution
+diskette is marked "CDOS",  this byte has  already been patched
+to the correct  value.  This  byte  is  the  refered  to as the
+"SETBYT" and is described below.
+
+     VEDIT  performs frequent  polling  of  the  console status
+routine in order to permit type-ahead and prevent loosing typed
+characters.  The keyboard polling routine  inside VEDIT has two
+entry points.  One is used for very frequent polling, where the
+keyboard is  polled  once  for  every  character  send  to  the
+terminal and  about  once  every  millisecond  while performing
+internal operations.  The second  entry point is  used for much
+less frequent polling, about once  every 50 milliseconds, which
+is enough  to keep  up with  the fastest  typist, but  not fast
+enough for single key generated escape sequences.  The "SETBYT"
+
+
+
+                                                       Page 2
+
+also  determines  whether  the  fast  polling  entry  point  is
+disabled and even  allows all  polling to  be disabled.  In the
+normal distribution, the  CRT version  is setup  to do frequent
+polling under CP/M  and the  less frequent  polling under MP/M.
+All Memory Mapped  versions perform the  less frequent polling.
+Since the frequent polling slows things  down a little, you may
+wish to disable the fast polling in  the CRT version if you are
+not using a terminal  which sends single  key escape sequences,
+i.e. a Heath H19,  IBM 3101,  Televideo 920C,  etc.  If you are
+running with an  interrupt  driven  keyboard,  you  may wish to
+disable both the fast and slow polling.
+
+     The  "SETBYT"   in   the   VEDIT   programs  (VEDITZC.SET,
+VEDIT8M.SET, VEDSET.COM, VDSETCRT.COM)  is  always  at location
+010A Hex. (430A Hex in ORG 4200 systems).  It has 6 significant
+bits in the main  VEDIT programs and 2  significant bits in the
+VEDSET and VDSETCRT programs.  The bits are defined below:
+
+Bit 0     "1" means auto determination of CP/M or MP/M.
+          "0" means CP/M or MP/M is determined by Bit 1.
+Bit 1     Only significant when Bit 0 = "0".
+          "1" means MP/M using System call 6 for console I/O.
+          "0" means CP/M using direct BIOS calls.
+
+Bit 2     Bits 2 and 3 are only significant for CP/M.
+          "1" means disable all keyboard polling.
+          "0" means enable at least normal keyboard polling.
+Bit 3     "1" means disable frequent keyboard polling.
+          "0" means enable frequent keyboard polling.
+
+Bit 4     Bits 4 and 5 are only significant for MP/M.
+          "1" means disable all keyboard polling.
+          "0" means enable at least normal keyboard polling.
+Bit 5     "1" means disable frequent keyboard polling.
+          "0" means enable frequent keyboard polling.
+
+
+     The normal distribution  version  of  the  CRT  version of
+VEDIT has a "SETBYT" value of "00100001 Binary" (21 Hex) in the
+".SET" files  to signify  auto determination  of CP/M  or MP/M,
+fast polling for CP/M and  normal polling for MP/M.  Similarly,
+the Memory Mapped version  of  VEDIT  has  a  "SETBYT" value of
+"00101001 Binary" (29 Hex) in the  ".SET" files to signify auto
+determination of CP/M  or  MP/M,  normal  polling  for CP/M and
+normal polling for MP/M.  The normal distribution of VEDSET.COM
+and VDSETCRT.COM have a "SETBYT"  value of "00000001 Binary" to
+signify auto-determination of CP/M or MP/M.
+
+     The  CDOS  user  will  need  to  change  the  "SETBYT"  to
+"00100000 Binary" or  (20 Hex)  in the  appropriate ".SET" file
+and to "00 Hex" in the VEDSET.COM or VDSETCRT.COM files.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+
+
+		ADDING NEW CRT'S TO VEDIT (8080 and Z80 only)
+
+
+	Please follow this procedure to modify the CRT tables used
+in customizing VEDIT for different CRT terminals.  This procedure
+allows you to make the changes necessary for VEDIT to support a
+terminal which is not listed in the CRT terminal menu.
+
+
+1. Select a CRT entry in the file CRT.ASM for modification. (Usually
+   CUSTOMER 2 for new CRT terminals)
+
+2. Edit the relevant crt table. Look at the comments at the begining of
+   CRT.ASM for information about what each entry (line) in the crt table
+   represents.
+
+3. Assemble CRT.ASM
+
+4. Load CRT.HEX
+
+5. Erase CRT.TBL (this was the original crt table)
+
+6. Issue the command:REN CRT.TBL=CRT.COM <return>
+
+7. Now you may re-customize VEDIT and choose the number of the
+   CRT terminal which corresponds to the crt entry which has been
+   modified.
+
+
+
+NOTES:	1. Note that you may only modify an existing crt table in
+	   the file CRT.ASM, and that an error will occur if you
+	   attempt to add another entry to the CRT.ASM file.
+

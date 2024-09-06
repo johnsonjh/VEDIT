@@ -1,0 +1,362 @@
+
+A	Append file to text		B	Begin of text
+C	Change edit position		D	Delete characters
+F	Find string			G	Get text register
+H	Help				I	Insert text
+K	Kill text			L	Line change
+M	Macro execution			N	Next string
+P	Put into text register		S	Search and Replace
+T	Type text			U	Unused, used memory
+V	Visual mode			W	Write text
+Z	End of text
+
+EA	Edit Again			EB	Edit Backup
+EC	Change disks			ED	Display disk directory
+EF	Finish (Close file)		EG	Get external text
+EI	Insert special char.		EK	Erase (kill) file
+EL	Display line numbers		EO	Print (output) text
+EP	Edit parameters			EQ	Quit edit session, leave
+ER	Open Read file			ES	Edit switches
+ET	Set tab positions		EV	VEDIT version number
+EW	Open write file			EX	Normal exit
+EY	Edit second file		EZ	Quit edit session, remain
+
+Type <RETURN> for next screen or enter letter(s) for desired command: 
+
+YI	Insert console text		YP	Print console text
+YR	Type "read" file name		YS	Strip Bit 8 from text
+YT	Type text on console		YW	Type the "write" file name
+
+XA	Add to numeric register		XI	Insert value of numeric reg.
+XS	Set numeric register		XT	Type numeric register
+
+R*	Comment line			RD	Dump text register
+RI	Insert into text register	RL	Load register from file
+RP	Print text register		RS	Save register to file
+RT	Type text register 		RU	Display size of registers
+
+<CTRL-Q> Literal Character		<CTRL-C> BREAK out of command
+@	Explicit text delimiter		:	Suppress search errors
+_	Global file operations		#	Maximum number 32767
+|	Search pattern code
+
+Type <RETURN> for complete summary or enter letter(s) for desired command: 
+
+\A\
+nA	Append 'n' lines from the input file to the text buffer.
+0A	Append as much as possible.
+-nA	Read back 'n' lines from the Output file.
+-0A	reads back as much as possible.
+
+\B\
+B	Move the edit pointer to the beginning of the text buffer.
+_B	Moves to the beginning of the file.
+
+\C\
+mC	Move the edit pointer by 'm' positions.
+
+\D\
+mD	Delete 'm' characters from the text.
+
+\E\
+E	First letter of extended two letter commands.
+
+\
+\F\
+nFstring<ESC>	Search for the 'n'th  occurrence of 'string' in the current
+		text buffer and position the edit pointer after it.
+'string' 	may be up to 32 characters long.
+
+\G\
+Gr	Insert the text register 'r' at the edit pointer.
+
+\H\
+H	Display menu in the VHELP.HLP file and index to following command
+	description.
+
+\I\
+Itext<ESC>	Insert the 'text' into the text buffer at the edit pointer.
+		The edit pointer is moved past 'text'.
+
+\K\
+mK	Kill 'm' lines.
+
+\L\
+mL	Move the edit pointer by 'm' lines and leave at the beginning of
+	that line.
+
+\
+\M\
+Mr	Execute text register 'r' as a command macro.
+
+\N\
+nNstring<ESC>	Search for the 'n'th occurrence of 'string' and perform
+		auto-disk buffering to read more of the file from disk if
+		necessary. The edit pointer is positioned after last
+		'string' if found.
+
+\P\
+mPr	Put 'm' lines of text into text register 'r'. 'r' may be preceded by
+	"+" to append to the register.
+0Pr	empties text register 'r'.
+
+\S\
+Ss1<ESC>s2<ESC>	Search for the next occurrence of 's1', and if found,
+		change to 's2'.
+
+\T\
+mT	Type 'm' lines of text on the console.
+
+\
+\U\
+U	Print # of free bytes remaining / # bytes in text buffer /
+	# bytes in combined text registers.
+
+\V\
+V	Go into visual mode.  Set cursor position from current edit pointer.
+
+\W\
+nW	Write 'n' lines to the disk from the beginning of the text buffer
+	and delete from the text buffer.
+0W	Writes out the text buffer up to the current line.
+-0W	Write all lines from the edit pointer to end of text buffer to the
+	"$R$" file.  This makes more memory space free.
+
+\Z\
+Z	Move the edit pointer past the last character in the text buffer.
+_Z	Moves to the end of the file.
+
+\
+\EA\
+EA	Saves the file being edited on disk and allows further editing
+	to continue.  Maintains edit position.
+
+\EB\
+EBfile	Open the file 'file' for both Read and Write and read the input file.
+	If the file does not exist, "NEW FILE" is displayed.
+
+\EC\
+EC	Allow user to change disks.  Used for write error recovery, or
+	just to edit files on other disks.
+
+\ED\
+ED	Displays disk directory.  Drive specification, "?" and "*" wildcard
+	characters, may be used.
+
+\EF\
+EF	Close the current output file.  (Does not itself write any text!)
+
+\
+\EG\
+EGfile\line range\	Insert the line range of the file 'file' into the
+			text buffer at the edit pointer.  If no line range
+			is specified, the entire file is inserted.
+
+\EI\
+nEI	Insert the character with decimal value 'n' into the text buffer at
+	the edit pointer. The value "26" <CTRL-Z> is not allowed.
+	Values of 128 to 254 are allowed.
+
+\EK\
+EKfile	Erase (kill) the file 'file' from the disk.  This makes more space
+	free on the disk.
+
+\EL\
+ELfile\line range\	Display with line number the line range of the file
+			'file'.  Same syntax as EG command.
+
+\EO\
+mEO	Print (on line printer) the next 'm' lines.  "0EO" prints from the
+	beginning of the text buffer to the current line.
+
+\
+\EP\
+EP n k	Change the value of parameter 'n' to 'k'.  The parameters are:
+	1	Cursor type				(0 - 3)
+	2	Cursor blink rate			(10 - 100)
+	3	Indent Increment			(1 - 20)
+	4	Lower case convert			(0 - 3)
+	5	Conditional convert character		(32 - 126)
+	6	Display line and column number		(0 - 3)
+	7	Word Wrap column (0 = Off)		(0 - 255)
+	8	Bit 7 Allowed (1/input 3/Output)	(0 - 7)
+	9	Cursor positioning option		(0 - 2)
+	10	Horizontal scroll margin		(40 - 255)
+	11	Horizontal scroll increment		(1 - 100)
+
+\EQ\
+EQ	Quit (abort) the the edit session; any text changes are lost.
+	Leaves disk files exactly as before the session started. Returns
+	to operating system.
+
+\
+\ER\
+ERfile	Open the file 'file' for input. Gives error if file does not exist.
+
+\ES\
+ES n k	Change the value of switch 'n' to 'k'. The switches are:
+	1	Expand Tab with spaces			(0=NO 1=YES)
+	2	Auto buffering in visual mode		(0=NO 1=YES 2=BACK)
+	3	Start in visual mode			(0=NO 1=YES)
+	4	Point past text reg. insert		(0=NO 1=YES)
+	5	Ignore UC/LC search distinction		(0=NO 1=YES)
+	6	Clear screen on visual exit		(0=NO 1=YES)
+	7	Reverse Upper and Lower case		(0=NO 1=YES)
+	8	Suppress search errors			(0=NO 1=YES)
+	9	Explicit string terminators		(0=NO 1=YES)
+	10	Global file operations			(0=NO 1=YES)
+	11	Justify paragraphs		(0=NO 1=YES 2=UNJUSTIFY)
+
+\
+\ET\
+ET n1,n2,n3 ...	Set new tab positions.  The ET is followed by up to 30
+		decimal numbers specifying the tab positions.
+ET n		If ET is followed by just one 'n', tabs are set to every
+		'n' positions.
+
+\EV\
+EV	Display the VEDIT version number.
+
+\EW\
+EWfile	Open the file 'file' for output.  Any existing file by that name will
+	be renamed to "file.BAK" following an EF, EX or EY.  Gives error if an
+	output file is already open.
+
+\EX\
+EX	Normal exit from VEDIT saving text in the output file.  Gives
+	error if no output file is open.
+
+\EY\
+EY	Saves current text in output file, making VEDIT ready to edit another
+	file.  Similar to "EX", but leaving you in VEDIT.  Usually followed
+	by an "EB" command to edit the next file.
+
+\
+\EZ\
+EZ	Quit (abort) the edit session;  any text changes are lost.  Leaves
+	disk files exactly as before the session started. Stay in VEDIT.
+
+\RD\
+RDr	Dump contents of register 'r' on console.  Control characters are
+	not expanded.
+
+\RI\
+RIr text<ESC>	Insert the text 'text' into text register 'r'.
+RI+r text<ESC>	Append the text to any existing contents.
+
+\
+\RL\
+RLrfile		Load register 'r' from file 'file'.
+
+\RP\
+RPr	Print contents of register 'r' on line printer.
+
+\RS\
+RSrfile		Save contents of register 'r' in file 'file'.
+
+\RT\
+RTr	Type contents of register 'r' on console.  Control characters
+	are expanded, <ESC> is represented as "$".  An encountered <CTRL-S>
+	"stop character" causes a pause - type any character to continue.
+
+\RU\
+RU	Display number of characters (size) in each text register.
+
+\R*\
+R*	Treat all following characters up to RETURN as a comment.
+
+\
+\XA\
+nXAr	Add 'n' to numeric register 'r'.
+-nXAr	Subtract 'n' from numeric register 'r'.
+
+\XI\
+XIr	Insert the character whose value is found in numeric register 'r'.
+	(Lower 8 bits only).  NOT DOCUMENTED IN MANUAL.
+
+\XS\
+nXSr	Set numeric register 'r' to 'n'.
+
+\XT\
+XTr	Type numeric register 'r' in decimal.
+:XTr	This will suppress the <CR><LF> after the number.
+
+\
+\YI\
+YI	Re-route console output until next command prompt to text buffer
+	at edit pointer and update edit pointer. (May work very slowly)
+-YI	Disable "YI", allowing output to go back to the console.
+
+\YP\
+YP	Re-route console output to printer until next command prompt.
+-YP	Disable "YP", allowing output to go back to the console.
+	Note: YP is disabled by "EO" command.
+
+\YR\
+YR	Type the input (read) file name on the console.
+:YR	This will suppress the <CR><LF> following the file name.
+
+\YS\
+mYS	Strip the 8th bit from all characters in the specified line range.
+
+\YT\
+YTtext<ESC>	Type the 'text' on the console.
+
+\YW\
+YW	Type the output (write) file name on the console.
+:YW	This will suppress the <CR><LF> following the file name.
+
+\
+\|\
+PATTERN MATCHING CODES
+
+|X	Matches any character (equivalent to use of "|" alone in previous
+	versions of VEDIT)
+|A	Matches any alphabetic letter, upper or lower case
+|B	Matches a blank - a space or a tab
+|C	Matches any control character - a character with a value of
+	0 - 31 (decimal)
+|D	Matches any numeric digit - "0" through "9"
+|L	Matches any line terminator - Line Feed, Form Feed or the End
+	Of File
+|M	Matches multiple characters - zero, one or more characters so that
+	the string following the "|M" is satisfied
+|N	Matches any character which is NOT the following single character
+	or pattern matching code
+|R	Matches any alphanumeric character - a letter or a digit
+|S	Matches any separator - a character which is NOT a letter or digit
+|U	Matches any upper case letter
+|V	Matches any lower case letter
+|W	Matches "white space" - one or multiple spaces and/or tabs
+||	Matches a "|" - this is the literal "|"
+
+\
+\<C\
+<CTRL-Q>	Literal character.  Next character, usually a control
+		character, is taken literally and not interpreted.
+		Allows searching and inserting of control characters including
+		line editing characters, <CR> and <ESC>.
+<CTRL-C>	BREAK character.  Will stop an iteration macro or command
+		macro before next command is executed.
+
+\
+\_\
+_	Immediately precedes "F" or "S" to cause a global search/replace to
+	the end of the file, instead of just the end of the text buffer.
+	"_F" is equivalent to "N".
+	Precedes "B", "L" or "Z" to cause a global operation.
+
+\@\
+@	Immediately precedes "F", "N", "S", "I", "RI" or "YT" to indicate
+	that explicit terminating characters are being used.
+
+\:\
+:	Immediately precedes "F", "N" or "S" to indicate that search error
+	messages are to be suppressed. Immediately precedes "XT" and "YR"
+	and "YW" to suppress <CR><LF> being sent to the console.
+
+\#\
+#	Represents the maximum positive number 32767.  It is used to
+	signify "forever" or "all occurrences of".
+
+

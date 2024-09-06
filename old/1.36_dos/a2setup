@@ -1,0 +1,34 @@
+P`:x~Q\		.    IS [CURSOR LEFT]
+P`0x~T\		0    IS [CURSOR RIGHT]
+P`<x~G\  		ENTER  IS [ZIP]
+P`1x~Y\		1    IS [CURSOR UP]
+P`2x~C\		2    IS [CURSOR DOWN]
+P`3x~R\		3    IS [NEXT TAB]
+P`4x~S\		4    IS [PAGE DOWN]
+P`5x~D\		5    IS [UNDO]
+P`6x~F\		6    IS [NEXT LINE]
+P`7x~W\		7    IS [PAGE UP]
+P`8x~O\		8    IS [BACK TAB]
+P`9x~U\		9    IS [EOL]
+P`H~[A\		PF1  IS UNUSED
+P`I~[B\		PF2  IS UNUSED
+P`J~[C\		PF3  IS UNUSED
+P`K~[D\		PF4  IS UNUSED
+P`L~[E\		PF5  IS [UNDENT]
+P`M~[F\		PF6  IS [INDENT]
+P`N~[G\		PF7  IS UNUSED
+P`O~[I\		PF8  IS [COPY TEXT REGISTER]
+P`P~[J\		PF9  IS [MOVE TEXT]
+P`Q~[K\		PF10 IS [INSERT TEXT REGISTER]
+P`R~[L\		PF11 IS UNUSED
+P`S~[M\		PF12 IS UNUSED
+P`_~[N\		SHIFT PF12  IS  [HOME]
+P`?~[O\		SHIFT ERASE IS  [ZEND]
+P`A~[Q\		DELETE    IS  [RES]
+P`C~[R\		INSERT    IS  [INSERT MODE]
+
+P`@~[S\		EDIT IS [RESTART EDITOR]
+P`E~[T\		PRINT IS [PRINT PARAGRAPH]
+P`&~[V\		RESET IS [FORMAT PARGRAPH]
+
+

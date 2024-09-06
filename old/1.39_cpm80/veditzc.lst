@@ -1,0 +1,491 @@
+
+			;****************************************
+			;*					*
+			;*		V E D I T		*
+			;*					*
+			;****************************************
+			;
+			; Copyright (C) 1984 by CompuView Products, Inc.
+			;			1955 Pauline Blvd.
+			;			Ann Arbor, MI 48103
+			;
+			;	Written By: Theodore Green
+			;
+			;	Last Change: Ted - Nov. 18, 1984
+			;
+			;
+			;********************************************************
+			;*							*
+			;*	CRT Terminal Dependent Routines and Tables	*
+			;*							*
+			;********************************************************
+			;
+			; Copyright (C) 1984 by CompuView Products, Inc.
+			;			1955 Pauline Blvd.
+			;			Ann Arbor, MI 48103
+			;
+			;	Written by: Theodore J. Green
+			;
+			;	Last Change: Ted - Aug. 28, 1984
+			;
+			; OUTCHR - Output character in Reg. C.
+			;	   Return: B, DE restored, HL destroyed.
+			;
+019B			VISCHR:
+019B	79		OUTCHR:	MOV	A,C		;Get char. in A.
+019C	4F		OUTCHA:	MOV	C,A		;Save char in C
+019D	FE80			CPI	080H		;Is Bit 7 set?
+019F	3807			JRC	OUTCHS		;No, process normally
+01A1	3AC23F			LDA	BIT7AL		;Get EP parameter value
+01A4	E602			ANI	2		;Is Bit 7 allowed on output?
+01A6	201A			JRNZ	OUTCH3		;Yes, send unmodified character
+			;
+			;	If Bit 7 is set, use reverse video control sequences
+			;
+01A8	79		OUTCHS:	MOV	A,C		;Get the character.
+01A9	E680			ANI	80H		;Look at top bit of char.
+01AB	216D3E			LXI	H,REVVFL	;HL-> reverse video flag (80H if on)
+01AE	BE			CMP	M		;Is high bit same as reverse video flag?
+01AF	280D			JRZ	OUTCH2		;Yes, it will be displayed correctly.
+			;
+01B1	77			MOV	M,A		;No, set new value of REVVFL
+01B2	B7			ORA	A		;Is character in normal video?
+01B3	F2BB01			JP	OUTCH1		;Yes, change to normal video.
+			;
+01B6	CD0303			CALL	CRTVDR		;Enable reverse video on CRT.
+01B9	1803			JMPR	OUTCH2		;Now send the character out.
+			;
+01BB	CD0903		OUTCH1:	CALL	CRTVDN		;Enable normal video on CRT.
+			;
+01BE	79		OUTCH2:	MOV	A,C		;Get the character back.
+01BF	E67F			ANI	7FH		;Strip any high bit.
+01C1	4F			MOV	C,A		;Put character in C.
+			;
+01C2	CDD401		OUTCH3:	CALL	CRTCKK		;Poll for keyboard char. every 30th.
+01C5	216F3E			LXI	H,VRTHOR	;HL-> virtual CRT pos.
+01C8	34			INR	M		;Account for CRT moving cursor to the right.
+01C9	C5		OUTSAV:	PUSH	B		;Save count in B
+01CA	D5			PUSH	D		;Save DE
+01CB	CD5205			CALL	CONOUT		;Send char. in reg. C to CRT
+01CE	CD1904			CALL	CHKKYB		;Poll for keyboard char.
+01D1	D1			POP	D		;Restore
+01D2	C1			POP	B		;Restore count in B
+01D3	C9			RET
+			;
+			; CRTCKK - Polls and buffers any keyboard character after
+			;	   every 30 bytes are sent to CRT.
+			;
+01D4	21C13E		CRTCKK:	LXI	H,CCOUNT	;HL-> slow poll counter
+01D7	34			INR	M		;Increment counter.
+01D8	7E			MOV	A,M		;Get the count.
+01D9	FE1E			CPI	30		;Reached critical point?
+01DB	D8			RC			;No, return.
+01DC	3600			MVI	M,00		;Yes, reset count.
+01DE	C31A04			JMP	CHKKEY		;Poll and buffer any keyboard char.
+			;
+			; CRTSET - Address the cursor.
+			;	   Enter with L = vertical row #.  Top row = 1.
+			;	   H = horizontal column #.  Left column = 0.
+			;
+01E1	C5		CRTSET:	PUSH	B		;Save char. in C.
+01E2	D5			PUSH	D
+01E3	22703E			SHLD	CRTVER		;Save as simulated cursor pos.
+01E6	7D			MOV	A,L		;Get row #
+01E7	326E3E			STA	VRTVER		;Save as virtual row #
+01EA	EB			XCHG			;Save pos. in DE.
+01EB	1D			DCR	E		;Adjust so that top left is 0,0.
+01EC	212703			LXI	H,ADDLED	;HL-> cursor lead in table.
+01EF	CD4A02			CALL	CRTCRL		;Send cursor address lead in.
+01F2	213C03			LXI	H,ADDOFF	;HL-> cursor address info.
+01F5	7E			MOV	A,M		;Get column or line first switch.
+01F6	E601			ANI	1		;Is the line # sent first?
+01F8	2803			JRZ	CRTSE1		;Yes, D & E are set.
+01FA	7A			MOV	A,D		;No, switch D & E.
+01FB	53			MOV	D,E
+01FC	5F			MOV	E,A
+01FD	23		CRTSE1:	INX	H		;HL-> first byte offset.
+01FE	7B			MOV	A,E		;Get first addr. coordinate.
+01FF	86			ADD	M		;Add the offset.
+0200	E5			PUSH	H		;Save HL-> ADDOFF.
+0201	CD1A02			CALL	WRTADD		;Send address to CRT, convert if necessary.
+0204	212E03			LXI	H,ADDMID	;HL-> middle char. table.
+0207	CD4A02			CALL	CRTCRL		;Send any chars between first and second byte.
+020A	E1			POP	H		;Restore HL.
+020B	23			INX	H		;HL-> second byte offset.
+020C	7A			MOV	A,D		;Get second addr. coordinate.
+020D	86			ADD	M		;Add the offset.
+020E	CD1A02			CALL	WRTADD		;Send address to CRT, convert if necessary.
+			;
+0211	213503			LXI	H,ADDEND	;HL-> cursor address end table.
+0214	CD4A02			CALL	CRTCRL		;Send any chars to end sequence.
+0217	D1			POP	D
+0218	C1			POP	B		;Restore char in C.
+0219	C9			RET
+			;
+			; WRTADD - Send the cursor address in Reg. A to CRT and convert
+			;	   to Ascii if necessary.  HL and BC clobbered.
+			;
+							;{CRTSET}
+021A	4F		WRTADD:	MOV	C,A		;Save char. in C.
+021B	213C03			LXI	H,ADDOFF	;HL-> cursor address info.
+021E	7E			MOV	A,M		;Get Binary or Ascii address switch.
+021F	E680			ANI	80H		;Is address to be converted to Ascii?
+0221	28A6			JRZ	OUTSAV		;No, send address in C to CRT.
+			;
+0223	79			MOV	A,C		;Yes, get address in A.
+0224	013130			LXI	B,03031H	;Get B = '0' is blanking flag, C = '1'.
+							;If your CRT needs leading zeroes, let B = 2F hex.
+0227	FE64			CPI	100		;Is pos. > 99?
+0229	3808			JRC	WRTAD1		;No, branch around
+022B	D664			SUI	100		;Yes, subtract the 100
+022D	05			DCR	B		;Clear the blanking flag
+022E	F5			PUSHA			;Save count
+022F	CDC901			CALL	OUTSAV		;Send the '1'
+0232	F1			POPA			;Restore count
+			;
+0233	0E30		WRTAD1:	MVI	C,'0'		;Init tens counter to '0'
+0235	0C		WRTAD2:	INR	C		;Tens = tens + 1
+0236	D60A			SUI	10		;Subtract ten
+0238	30FB			JRNC	WRTAD2		;Branch until underflow
+			;
+023A	C63A			ADI	'0'+10		;Restore from underflow and make Ascii
+023C	0D			DCR	C		;Restore from underflow
+023D	F5			PUSHA			;Save Ones digit
+023E	79			MOV	A,C		;Get the tens digit
+023F	B8			CMP	B		;Is tens count zero, and to be blanked?
+0240	2803			JRZ	WRTAD4		;Yes, don't send zero to CRT
+0242	CDC901			CALL	OUTSAV		;Send the tens count to CRT
+			;
+0245	F1		WRTAD4:	POPA			;Restore Ones digit
+0246	4F			MOV	C,A		;Put digit in C
+0247	C3C901			JMP	OUTSAV		;Send the digit to the CRT. (Zero not blanked)
+			;
+			; CRTCRL - Send escape sequence to CRT and perform any necessary delay.
+			;	   Enter: HL-> escape sequence table, consisting of escape
+			;	   sequence count byte, followed by the bytes making up the
+			;	   sequence, followed by any delay in milliseconds.
+			;
+024A	7E		CRTCRL:	MOV	A,M		;Get the char. count.
+024B	B7			ORA	A		;Test for initial zero.
+024C	C8			RZ			;Yes, return now.
+024D	C5			PUSH	B		;Save BC
+024E	47			MOV	B,A		;Put the count in B.
+024F	23		CRTCR1:	INX	H		;HL-> escape char.
+0250	4E			MOV	C,M		;Get the next char
+0251	E5			PUSH	H		;Save PTR
+0252	CD1904			CALL	CHKKYB		;Poll keyboard
+0255	CDC901			CALL	OUTSAV		;Send to CRT
+0258	E1			POP	H		;HL-> next char
+0259	10F4			DJNZ	CRTCR1		;Continue sending bytes.
+025B	C1			POP	B		;Restore BC
+025C	23			INX	H		;HL-> delay byte
+025D	7E			MOV	A,M		;Get the delay in milliseconds
+025E	B7			ORA	A		;Is there a delay?
+025F	C8			RZ			;No, return now
+0260	C39334			JMP	DELAY		;Yes, do a delay
+			;
+			;
+			;	Clear Screen Routines.
+			;
+			; CLRSCR - Clear entire screen.  First try to use Clear Screen sequence.
+			;	   A count of 080H means the machine is emulating a terminal.  In
+			;	   this case it is more efficient to not perform a clear. Instead,
+			;	   an EOL will be sent as each new screen line is written.
+			;
+0263	3A3F03		CLRSCR:	LDA	ESCCLR		;Get count for Clear sequence
+0266	B7			ORA	A		;Is this function available?
+0267	F8			RM			;80H means emulation is taking place
+0268	2814			JRZ	CLRSC2		;Use EOS if Clear screen is not available
+							;Note that A = 00
+026A	CDBA32			CALL	STBRFL		;Set flag to write new status line
+026D	213F03			LXI	H,ESCCLR	;HL-> escape char. table
+0270	CD4A02			CALL	CRTCRL		;Perform the clear
+0273	AF			XRA	A		;Get a zero
+0274	32603E			STA	USEDLN		;No lines are in use
+0277	210000		CLRCUR:	LXI	H,0000		;Get two zeros
+027A	226E3E			SHLD	VRTVER		;Force CRT cursor set
+027D	C9			RET
+			;
+			;
+			; CLRSC2 - Clear rest of screen from begin of next line # in Reg. A.
+			;
+							;{UPDSCR}
+027E	21603E		CLRSC2:	LXI	H,USEDLN	;HL-> # screen lines not clear.
+0281	BE			CMP	M		;Is screen below last used line clear?
+0282	30F3			JRNC	CLRCUR		;Yes, return.
+0284	3C			INR	A		;No, get line # of first line to clear.
+0285	6F			MOV	L,A		;Get line # for begin of EOS.
+0286	2600			MVI	H,00		;Start at left margin.
+0288	CDE101			CALL	CRTSET		;Address the cursor.
+							;Erase rest of the screen.
+			;
+			; CRTEOS - Clear to end of Screen from cursor position.
+			;
+028B	CDBA32		CRTEOS:	CALL	STBRFL		;Set flag to write new status line
+028E	3A703E			LDA	CRTVER		;Get line # from which to clear.
+0291	47			MOV	B,A		;Save number.
+0292	214603			LXI	H,ESCEOS	;HL-> escape char. table.
+0295	7E			MOV	A,M		;Get count for EOS sequence.
+0296	B7			ORA	A		;Does CRT have EOS sequence?
+0297	78			MOV	A,B		;Get back line # for performing EOS.
+0298	2805			JRZ	CTEOS1		;No, simulate EOS with multiple EOLs.
+029A	32603E			STA	USEDLN		;Yes, update # used lines.
+029D	18AB			JMPR	CRTCRL		;Perform the screen clear.
+			;
+			;	Simulate an EOS using multiple EOLs.
+			;
+029F	3D		CTEOS1:	DCR	A		;Adjust for CMP below.
+02A0	21603E			LXI	H,USEDLN	;HL-> # screen lines not clear.
+02A3	BE			CMP	M		;Is screen below LINCNT clear?
+02A4	30D1			JRNC	CLRCUR		;Yes, return, force cursor set.
+			;
+02A6	3C			INR	A		;A = original line # for EOS.
+02A7	F5			PUSH	PSW		;Save line # for EOS.
+02A8	7E			MOV	A,M		;No, get last used line #.
+02A9	6F			MOV	L,A		;Set to line to be erased.
+02AA	2600			MVI	H,00		;Set to column zero.
+02AC	CDE101			CALL	CRTSET		;Position the cursor.
+02AF	CDB902			CALL	CRTEOL		;Erase the line.
+02B2	21603E			LXI	H,USEDLN	;HL-> # screen lines not clear.
+02B5	35			DCR	M		;Account for line just erased.
+02B6	F1			POP	PSW		;Restore last used line #.
+02B7	18E6			JMPR	CTEOS1		;Continue.
+			;
+			; CRTEOL - Clear to end of Line from cursor position.
+			;
+02B9	21703E		CRTEOL:	LXI	H,CRTVER	;Get current cursor line #.
+02BC	3A603E			LDA	USEDLN		;Get # screen lines used.
+02BF	BE			CMP	M		;Is rest of current line clear?
+02C0	D8			RC			;Yes, return.
+							;{WTSLFW}
+02C1	214D03		CREOL0:	LXI	H,ESCEOL	;HL-> escape char. table.
+02C4	7E			MOV	A,M		;Get count for EOL sequence.
+02C5	B7			ORA	A		;Does CRT have EOL sequence?
+02C6	C24A02			JNZ	CRTCRL		;Yes, perform the line clear.
+			;
+			;	Simulate EOL by sending out spaces to end of line.
+			;
+02C9	3AD63F			LDA	LINELN		;No, get display line length.
+02CC	21713E			LXI	H,CRTHOR	;HL-> horiz. cursor pos.
+02CF	96			SUB	M		;Compute # pos. to clear.
+02D0	47			MOV	B,A		;Put count in B.
+02D1	0E20			MVI	C,20H		;Clear with spaces.
+02D3	2806		CREOL1:	JRZ	CREOL2		;Branch when count is zero.
+02D5	CDC901			CALL	OUTSAV		;Send a space to the CRT.
+02D8	05			DCR	B		;Decrement count.
+02D9	18F8			JMPR	CREOL1		;Continue.
+			;
+02DB	2A703E		CREOL2:	LHLD	CRTVER		;Get desired cursor pos.
+02DE	C3E101			JMP	CRTSET		;Reset the cursor.
+			;
+			; REVOFF - Make sure reverse video CRT mode is off.
+			;
+							;{WRTLIN}
+02E1	216D3E		REVOFF:	LXI	H,REVVFL	;HL-> reverse video flag
+02E4	7E			MOV	A,M		;Get flag
+02E5	B7			ORA	A		;Is the reverse video flag set?
+02E6	C8			RZ			;No, return.
+02E7	3600			MVI	M,00		;Yes, clear flag.
+02E9	181E			JMPR	CRTVDN		;;Turn reverse video off.
+			;
+			;
+			; CRTINS, CRTDEL - Insert and delete a line on the CRT.
+			;	Note: Some CRTs need to be a special mode for Insert and Delete.
+			;
+02EB	215403		CRTINS:	LXI	H,ESCINS	;HL-> escape char. table.
+02EE	C34A02			JMP	CRTCRL		;Insert a line.
+			;
+02F1	215B03		CRTDEL:	LXI	H,ESCDEL	;HL-> escape char. table.
+02F4	C34A02			JMP	CRTCRL		;Delete a line.
+			;
+			; CRTFSL, CRTBSL - Perform forward and backward scroll on CRT.
+			;
+02F7	216203		CRTFSL:	LXI	H,ESCFSL	;HL-> escape char. table.
+02FA	C34A02			JMP	CRTCRL		;Scroll forward.
+			;
+02FD	216903		CRTBSL:	LXI	H,ESCBSL	;HL-> escape char. table.
+0300	C34A02			JMP	CRTCRL		;Scroll backward.
+			;
+			; CRTVDR, CRTVDN - Enable and disable reverse video characters.
+			;
+0303	217003		CRTVDR:	LXI	H,ESCVDR	;HL-> escape char. table.
+0306	C34A02			JMP	CRTCRL		;Enable reverse video mode.
+			;
+0309	217703		CRTVDN:	LXI	H,ESCVDN	;HL-> escape char. table.
+030C	C34A02			JMP	CRTCRL		;Disable reverse video mode.
+			;
+			; CRTSTE, CRTSTD - Enable and disable the 25th status line.
+			;
+030F	217E03		CRTSTE:	LXI	H,ESCSTE	;HL-> escape char. table.
+0312	C34A02			JMP	CRTCRL		;Enable status line.
+			;
+0315	218503		CRTSTD:	LXI	H,ESCSTD	;HL-> escape char. table.
+0318	C34A02			JMP	CRTCRL		;Disable status line.
+			;
+			; CRTENT, CRTEXT - Setup and Reset the CRT for Visual mode editing.
+			;
+031B	218C03		CRTENT:	LXI	H,ESCENT	;HL-> escape char. table.
+031E	C34A02			JMP	CRTCRL		;Setup CRT on Visual mode entry.
+			;
+0321	219303		CRTEXT:	LXI	H,ESCEXT	;HL-> escape char. table.
+0324	C34A02			JMP	CRTCRL		;Reset CRT on visual mode exit.
+			;
+			;
+			;	These are the terminal dependent Escape sequence tables.
+			;	They are set during customization by selecting a CRT in the menu.
+			;
+			; ADDLED, ADDMID and ADDEND are for Cursor Addressing.
+			;
+0327	02		ADDLED:	DB	2		;Count for Cursor Lead In.
+0328	1B			DB	01BH		;First byte of sequence.
+0329	59			DB	059H		;Second byte.
+032A	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+032E	00		ADDMID:	DB	0		;Count for chars between X & Y.
+032F	00			DB	00		;Note: some require a "," between the X & Y.
+0330	00			DB	00
+0331	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0335	00		ADDEND:	DB	0		;Count for terminate chars.
+0336	00			DB	00
+0337	00			DB	00
+0338	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+			; ADDOFF - Table for Cursor addressing information.  Specifies whether
+			;	   the address is sent in binary or Ascii and whether the row
+			;	   or column byte is sent first, and the offset to add to the
+			;	   row and column addresses.
+			;
+033C	00		ADDOFF:	DB	0		;Bit 0 : 0 = ROW first then COLUMN
+							;	 1 = COLUMN first then ROW
+							;Bit 7 : 0 = Address in Binary
+							;	 1 = Address in Ascii
+033D	20			DB	020H		;First offset
+033E	20			DB	020H		;Second offset.
+			;
+			;	Escape sequence table for other functions.
+			;
+033F	00		ESCCLR:	DB	00		;Count for CLEAR sequence.
+0340	00			DB	00H		;First byte.
+0341	00			DB	00H		;Second byte.
+0342	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0346	02		ESCEOS:	DB	2		;Count for EOS sequence.
+0347	1B			DB	01BH
+0348	4A			DB	04AH
+0349	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+034D	02		ESCEOL:	DB	2		;Count for EOL sequence.
+034E	1B			DB	01BH
+034F	4B			DB	04BH
+0350	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0354	02		ESCINS:	DB	2		;Count for INSERT LINE sequence.
+0355	1B			DB	01BH
+0356	4C			DB	04CH
+0357	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+035B	02		ESCDEL:	DB	2		;Count for DELETE line sequence.
+035C	1B			DB	01BH
+035D	4D			DB	04DH
+035E	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0362	01		ESCFSL:	DB	01		;Count for FORWARD SCROLL sequence.
+0363	0A			DB	0AH
+0364	00			DB	00H
+0365	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0369	02		ESCBSL:	DB	2		;Count for BACKWARD SCROLL sequence.
+036A	1B			DB	01BH		;The "Insert Line" should work too.
+036B	4C			DB	04CH
+036C	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0370	01		ESCVDR:	DB	01		;Count for BEGIN REVERSE VIDEO sequence.
+0371	F2			DB	0F2H
+0372	00			DB	00H
+0373	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0377	01		ESCVDN:	DB	01		;Count for END REVERSE VIDEO sequence.
+0378	F2			DB	0F2H
+0379	00			DB	00H
+037A	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+037E	00		ESCSTE:	DB	00		;Count for ENABLE STATUS LINE sequence.
+037F	00			DB	00H
+0380	00			DB	00H
+0381	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0385	00		ESCSTD:	DB	00		;Count for DISABLE STATUS LINE sequence.
+0386	00			DB	00H
+0387	00			DB	00H
+0388	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+038C	00		ESCENT:	DB	00		;Count for ENTER VISUAL MODE sequence.
+038D	00			DB	00H
+038E	00			DB	00H
+038F	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+0393	00		ESCEXT:	DB	00		;Count for EXIT VISUAL MODE sequence.
+0394	00			DB	00H
+0395	00			DB	00H
+0396	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+			;
+039A				DS	40H		;User Patch space.
+			;
+			;
+			;	These are the alternate Console I/O entry points when direct
+			;	I/O calls in MP/M are used.  Note that although BDOS CALL 6
+			;	is used, these routines only work for MP/M since CP/M 2.2 and
+			;	MP/M are quite different in this regard.  Enough patch space
+			;	is provided for conversion to CP/M 2.2, or for special user
+			;	interfacing.
+			;
+			; SETIO - Set up internal copy of Console I/O vectors.
+			;	  Normally use BIOS, unless MPM - then use BDOS #6
+			;
+04F8	CDB80A		SETIO:	CALL	MPMCHK		;;Is MP/M running?
+04FB	210C05			LXI	H,MPMTBL	;For MPM use MPM I/O routines
+04FE	2006			JRNZ	SETCP1		;Yes, merge in below
+			;
+0500	2A0100			LHLD	BASE + 0001	;HL-> BIOS
+0503	23			INX$	H
+0504	23			INX$	H
+0505	23			INX$	H		;HL-> BIOS Console Status
+0506	114C05		SETCP1:	LXI	D,CONST		;DE-> Internal I/O jump vectors
+0509	C3E436			JMP	MOVE12		;Set I/O vectors (12 bytes) and return
+			;
+			;
+050C	C31805		MPMTBL:	JMP	MPMST		;This table is copied to the BIOS jump
+050F	C32505			JMP	MPMIN		;vectors below for the MPM version.
+0512	C33805			JMP	MPMOUT
+0515	C34205			JMP	MPMLST
+			;
+0518	0E06		MPMST:	MVI	C,CONSIO	;Perform direct console I/O.
+051A	1EFE			MVI	E,0FEH		;FE denotes console status.
+051C	C30500			JMP	BDOS		;Get input status.
+051F				DS	6		;Patch space for STA TEMPCH, RET
+			;
+0525	0E06		MPMIN:	MVI	C,CONSIO	;No, perform direct console input.
+0527	1EFF			MVI	E,0FFH		;FF denotes console input.
+0529	C30500			JMP	BDOS		;Get console char. when available.
+052C				DS	12		;Patch space.
+			;
+0538	59		MPMOUT:	MOV	E,C		;Put the character in E.
+0539	0E06			MVI	C,CONSIO	;Perform direct console I/O.
+053B	C30500			JMP	BDOS		;Send char. to console through CPM.
+053E				DS	4		;Patch space.
+			;
+0542	59		MPMLST:	MOV	E,C		;Put the character in E.
+0543	0E05			MVI	C,5		;Perform BDOS listing.
+0545	C30500			JMP	BDOS		;Send char. to listing through CPM.
+0548				DS	4		;Patch space.
+			;
+			;
+			; Internal copy of BIOS I/O jump vectors.
+			;
+054C	C30000		CONST:	JMP	00		;Console status.
+054F	C30000		CONINA:	JMP	00		;Get console character.
+0552	C30000		CONOUT:	JMP	00		;Send console character.
+0555	C30000		LSTOUT:	JMP	00		;Send listing character.
+

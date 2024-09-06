@@ -1,0 +1,334 @@
+		;********************************************************
+		;*							*
+		;*	CRT Terminal Dependent Routines and Tables	*
+		;*							*
+		;********************************************************
+		;
+		; CLRSCR - Clear entire screen.
+		;
+1880	3AC519	CLRSCR: LDA	ESCEOS		;Get count for EOS sequence.
+1883	B7		ORA	A		;Does CRT have EOS sequence?
+1884	3E00		MVI	A,0		;Assume Yes, start at top line.
+1886	C29718		JNZ	CLRSC2		;Yes, merge in below to send EOS.
+		;
+		;	 If EOS not available, send Clear screen sequence.
+		;
+1889	CD0619		CALL	CRTCLR		;No, clear the screen.
+188C	AF		XRA	A		;Get a zero.
+188D	321B1E		STA	USEDLN		;No lines are used.
+1890	210000	CLRCUR: LXI	H,0000		;Get two zeros.
+1893	222E1E		SHLD	CRTVER		;Force CRT cursor set.
+1896	C9		RET
+ 		;
+ 		; CLRSC2 - Clear rest of screen from begin of next line # in Reg. A.
+ 		;
+1897	211B1E	CLRSC2: LXI	H,USEDLN	;HL-> # screen lines not clear.
+189A	BE		CMP	M		;Is screen below last used line clear?
+189B	D29018		JNC	CLRCUR		;Yes, return.
+189E	3C		INR	A		;No, get line # of first line to clear.
+189F	6F		MOV	L,A		;Get line # for begin of EOS.
+18A0	2600		MVI	H,00		;Start at left margin.
+18A2	CDA818		CALL	CRTSET		;Address the cursor.
+18A5	C30C19		JMP	CRTEOS		;Erase rest of the screen.
+ 		;
+ 		;
+ 		; CRTSET - Address the cursor.
+ 		;	   Enter with L = vertical row #.  Top row = 1.
+ 		;	   H = horizontal column #.  Left column = 0.
+ 		;
+18A8	C5	CRTSET: PUSH	B		;Save char. in C.
+18A9	222E1E		SHLD	CRTVER		;Save as simulated cursor pos.
+18AC	EB		XCHG			;Save pos. in DE.
+18AD	1D		DCR	E		;Adjust so that top left is 0,0.
+18AE	21AA19		LXI	H,ADDLED	;HL-> cursor lead in table.
+18B1	CDE618		CALL	CRTCRL		;Send cursor address lead in.
+18B4	21BC19		LXI	H,ADDOFF	;HL-> cursor address info.
+18B7	7E		MOV	A,M		;Get column or line first switch.
+18B8	B7		ORA	A		;Is the line # sent first?
+18B9	CABF18		JZ	CRTSE1		;Yes, D & E are set.
+18BC	7A		MOV	A,D		;No, switch D & E.
+18BD	53		MOV	D,E
+18BE	5F		MOV	E,A
+18BF	23	CRTSE1: INX	H		;HL-> first byte offset.
+18C0	7B		MOV	A,E		;Get first addr. coordinate.
+18C1	86		ADD	M		;Add the offset.
+18C2	4F		MOV	C,A		;Put char in C.
+ 			.IFE	SIMINT, [
+18C3	CDA81B		CALL	CHKKEY		;Check for keyboard char.
+	 		]
+18C6	CD100B		CALL	WRTCON		;Send to the CRT.
+18C9	E5		PUSH	H		;Save HL.
+18CA	21B019		LXI	H,ADDMID	;HL-> middle char. table.
+18CD	CDE618		CALL	CRTCRL		;Send any chars between first and second byte.
+18D0	E1		POP	H		;Restore HL.
+18D1	23		INX	H		;HL-> second byte offset.
+18D2	7A		MOV	A,D		;Get second addr. coordinate.
+18D3	86		ADD	M		;Add the offset.
+18D4	4F		MOV	C,A		;Put char in C.
+ 			.IFE	SIMINT, [
+18D5	CDA81B		CALL	CHKKEY		;Check for keyboard char.
+ 			]
+18D8	CD100B		CALL	WRTCON		;Send to the CRT.
+ 			.IFE	SIMINT, [
+18DB	CDA81B		CALL	CHKKEY		;Check for keyboard char.
+ 			]
+18DE	21B619		LXI	H,ADDEND	;HL-> cursor address end table.
+18E1	CDE618		CALL	CRTCRL		;Send any chars to end sequence.
+18E4	C1		POP	B		;Restore char in C.
+18E5	C9		RET
+ 		;
+ 		; CRTCRL - Send escape sequence to CRT and perform any necessary delay.
+ 		;	   Enter: HL-> escape sequence table, consisting of escape
+ 		;	   sequence count byte, four bytes and delay in milliseconds.
+ 		;
+18E6	7E	CRTCRL: MOV	A,M		;Get the char. count.
+18E7	B7		ORA	A		;Test for initial zero.
+18E8	C8		RZ			;Yes, return now.
+18E9	FE05		CPI	5		;Is the count 5?
+18EB	F5		PUSH	PSW		;Save answer for later.
+18EC	23	CRTCR1: INX	H		;HL-> escape char.
+18ED	4E		MOV	C,M		;Get the next char.
+18EE	F5		PUSH	PSW		;Save the count.
+ 			.IFE	SIMINT, [
+18EF	CDA81B		CALL	CHKKEY		;Check for keyboard char.
+ 			]
+18F2	CD100B		CALL	WRTCON		;Send to CRT.
+ 			.IFE	SIMINT, [
+18F5	CDA81B		CALL	CHKKEY		;Check for keyboard char.
+ 			]
+18F8	F1		POP	PSW		;Restore the count.
+18F9	3D		DCR	A		;Decrement count, test if done.
+18FA	C2EC18		JNZ	CRTCR1		;No, continue sending bytes.
+ 		;
+18FD	F1		POP	PSW		;Was the count 5?
+18FE	C8		RZ			;Yes, no delay byte.
+ 		;
+18FF	23		INX	H		;HL-> delay byte.
+1900	7E		MOV	A,M		;Get the delay in milliseconds.
+1901	B7		ORA	A		;Is there a delay?
+1902	C8		RZ			;No, return now.
+1903	C3981B		JMP	DELAY 		;Yes, do a delay.
+ 		;
+ 		; CRTCLR - Clear entire screen for CRTs which do not have EOS.
+ 		;
+1906	21BF19	CRTCLR: LXI	H,ESCCLR	;HL-> escape char. table.
+1909	C3E618		JMP	CRTCRL		;Perform the clear.
+ 		;
+ 		; CRTEOS - Clear to end of Screen from cursor position.
+ 		;
+190C	3A2E1E	CRTEOS: LDA	CRTVER		;Get line # from which to clear.
+190F	47		MOV	B,A		;Save number.
+1910	21C519		LXI	H,ESCEOS	;HL-> escape char. table.
+1913	7E		MOV	A,M		;Get count for EOS sequence.
+1914	B7		ORA	A		;Does CRT have EOS sequence?
+1915	78		MOV	A,B		;Get back line # for performing EOS.
+1916	CA1F19		JZ	CTEOS1		;No, simulate EOS with multiple EOLs.
+1919	321B1E		STA	USEDLN		;Yes, update # used lines.
+191C	C3E618		JMP	CRTCRL		;Perform the screen clear.
+ 		;
+ 		;	 Simulate an EOS using multiple EOLs.
+ 		;
+191F	3D	CTEOS1: DCR	A		;Adjust for CMP below.
+1920	211B1E		LXI	H,USEDLN	;HL-> # screen lines not clear.
+1923	BE		CMP	M		;Is screen below LINCNT clear?
+1924	D29018		JNC	CLRCUR		;Yes, return, force cursor set.
+ 		;
+1927	3C		INR	A		;A = original line # for EOS.
+1928	F5		PUSH	PSW		;Save line # for EOS.
+1929	7E		MOV	A,M		;No, get last used line #.
+192A	6F		MOV	L,A		;Set to line to be erased.
+192B	2600		MVI	H,00		;Set to column zero.
+192D	CDA818		CALL	CRTSET		;Position the cursor.
+1930	CD3B19		CALL	CRTEOL		;Erase the line.
+1933	211B1E		LXI	H,USEDLN	;HL-> # screen lines not clear.
+1936	35		DCR	M		;Account for line just erased.
+1937	F1		POP	PSW		;Restore last used line #.
+1938	C31F19		JMP	CTEOS1		;Continue.
+ 		;
+ 		; CRTEOL - Clear to end of Line from cursor position.
+ 		;
+193B	212E1E	CRTEOL: LXI	H,CRTVER	;Get current cursor line #.
+193E	3A1B1E		LDA	USEDLN		;Get # screen lines used.
+1941	BE		CMP	M		;Is rest of current line clear?
+1942	D8		RC			;Yes, return.
+1943	21CB19		LXI	H,ESCEOL	;HL-> escape char. table.
+1946	7E		MOV	A,M		;Get count for EOL sequence.
+1947	B7		ORA	A		;Does CRT have EOL sequence?
+1948	C2E618		JNZ	CRTCRL		;Yes, perform the line clear.
+ 		;
+ 		;	 Simulate EOL by sending out spaces to end of line.
+ 		;
+194B	3A2B21		LDA	LINELN		;No, get display line length.
+194E	212F1E		LXI	H,CRTHOR	;HL-> horiz. cursor pos.
+1951	96		SUB	M		;Compute # pos. to clear.
+1952	47		MOV	B,A		;Put count in B.
+1953	0E20		MVI	C,20H 		;Clear with spaces.
+1955	CA5F19	CREOL1: JZ	CREOL2		;Branch when count is zero.
+1958	CD100B		CALL	WRTCON		;Send a space to the CRT.
+195B	05		DCR	B		;Decrement count.
+195C	C35519		JMP	CREOL1		;Continue.
+ 		;
+195F	2A2E1E	CREOL2: LHLD	CRTVER		;Get desired cursor pos.
+1962	C3A818		JMP	CRTSET		;Reset the cursor.
+ 		;
+ 		; CRTINS, CRTDEL - Insert and delete a line on the CRT.
+ 		;	 Note: Some CRTs need to be a special mode for Insert and Delete.
+ 		;
+1965	CD7A19	CRTINS: CALL	CRTINE		;Enable Insert/Delete mode.
+1968	21D119		LXI	H,ESCINS	;HL-> escape char. table.
+196B	C37419		JMP	CRTDE1		;Insert a line.
+ 		;
+196E	CD7A19	CRTDEL: CALL	CRTINE		;Enable Insert/Delete mode.
+1971	21D719		LXI	H,ESCDEL	;HL-> escape char. table.
+ 		;
+1974	CDE618	CRTDE1: CALL	CRTCRL		;Delete a line.
+1977	C38019		JMP	CRTIND		;Disable Insert/Delete mode.
+ 		;
+ 		; CRTINE, CRTIND - Enable and disable Insert/Delete mode.
+ 		;
+197A	21DD19	CRTINE: LXI	H,ESCINE	;HL-> escape char. table.
+197D	C3E618		JMP	CRTCRL		;Enable reverse video mode.
+ 		;
+1980	21E319	CRTIND: LXI	H,ESCIND	;HL-> escape char. table.
+1983	C3E618		JMP	CRTCRL		;Disable reverse video mode.
+ 		;
+ 		; CRTFSL, CRTBSL - Perform forward and backward scroll on CRT.
+ 		;
+1986	21E919	CRTFSL: LXI	H,ESCFSL	;HL-> escape char. table.
+1989	C3E618		JMP	CRTCRL		;Scroll forward.
+ 		;
+198C	21EF19	CRTBSL: LXI	H,ESCBSL	;HL-> escape char. table.
+198F	C3E618		JMP	CRTCRL		;Scroll backward.
+ 		;
+ 		; CRTVDR, CRTVDN - Enable and disable reverse video characters.
+ 		;
+1992	21F519	CRTVDR: LXI	H,ESCVDR	;HL-> escape char. table.
+1995	C3E618		JMP	CRTCRL		;Enable reverse video mode.
+ 		;
+1998	21FB19	CRTVDN: LXI	H,ESCVDN	;HL-> escape char. table.
+199B	C3E618		JMP	CRTCRL		;Disable reverse video mode.
+ 		;
+ 		; CRTSTE, CRTSTD - Enable and disable the 25th status line.
+ 		;
+199E	21011A	CRTSTE: LXI	H,ESCSTE	;HL-> escape char. table.
+19A1	C3E618		JMP	CRTCRL		;Enable status line.
+ 		;
+19A4	21071A	CRTSTD: LXI	H,ESCSTD	;HL-> escape char. table.
+19A7	C3E618		JMP	CRTCRL		;Disable status line.
+ 		;
+ 		;
+		;	These are the terminal dependent Escape sequence tables.
+ 		;	They are set during customization by selecting a CRT in the menu.
+ 		;
+ 		;	They are setup below for the CompuView CRT emulation software.
+ 		;
+ 		; ADDLED, ADDMID and ADDEND are for Cursor Addressing.
+ 		;
+19AA	01	ADDLED: DB	1		;Count for Cursor Lead In.
+19AB	02		DB	002H		;First byte of sequence.
+19AC	00		DB	000H		;Second byte.
+19AD	 		DS	2		;Spare for two more bytes.
+19AF	00		DB	00
+ 		;
+19B0	00	ADDMID: DB	0		;Count for chars between X & Y.
+19B1	00		DB	00		;Note: some require a "," between the X & Y.
+19B2	00		DB	00
+19B3	 		DS	2		;Spare
+19B5	00		DB	00
+ 		;
+19B6	00	ADDEND: DB	0		;Count for terminate chars.
+19B7	00		DB	00
+19B8	00		DB	00
+19B9	 		DS	2		;Spare
+19BB	00		DB	00		;Change this and the count if delay needed.
+ 		;
+ 		; ADDOFF - Table for Cursor addressing information.  Specifies whether
+ 		;	   the row or column byte is sent first, and offset to add to
+ 		;	   the row and column bytes.
+ 		;
+19BC	01	ADDOFF: DB	1		;1= Column, Row; 0= Row, Column.
+19BD	00		DB	000H		;First offset
+19BE	00		DB	000H		;Second offset.
+ 		;
+ 		;	 Escape sequence table for other functions.
+ 		;
+19BF	00	ESCCLR: DB	00		;Count for CLEAR sequence.
+19C0	00		DB	00H		;First byte.
+19C1	00		DB	00H		;Second byte.
+19C2	 		DS	2		;Spare for byted 3 and 4.
+19C4	00		DB	00		;# milliseconds delay for function.
+ 		;
+19C5	01	ESCEOS: DB	1		;Count for EOS sequence.
+19C6	07		DB	007H
+19C7	00		DB	000H
+19C8	 		DS	2
+19CA	00		DB	00
+ 		;
+19CB	01	ESCEOL: DB	1		;Count for EOL sequence.
+19CC	F8		DB	0F8H
+19CD	00		DB	000H
+19CE	 		DS	2
+19D0	00		DB	00
+ 		;
+19D1	01	ESCINS: DB	1		;Count for INSERT LINE sequence.
+19D2	14		DB	014H
+19D3	00		DB	000H
+19D4	 		DS	2
+19D6	00		DB	00
+ 		;
+19D7	01	ESCDEL: DB	1		;Count for DELETE line sequence.
+19D8	15		DB	015H
+19D9	00		DB	00H
+19DA	 		DS	2
+19DC	00		DB	00
+ 		;
+19DD	00	ESCINE: DB	00		;Count for BEGIN INSERT/DELETE MODE sequence.
+19DE	00		DB	00H
+19DF	00		DB	00H
+19E0	 		DS	2
+19E2	00		DB	00
+ 		;
+19E3	00	ESCIND: DB	00		;Count for END INSERT/DELETE MODE sequence.
+19E4	00		DB	00H
+19E5	00		DB	00H
+19E6	 		DS	2
+19E8	00		DB	00
+ 		;
+19E9	01	ESCFSL: DB	01		;Count for FORWARD SCROLL sequence.
+19EA	0A		DB	0AH
+19EB	00		DB	00H
+19EC	 		DS	2
+19EE	00		DB	00
+ 		;
+19EF	01	ESCBSL: DB	01		;Count for BACKWARD SCROLL sequence.
+19F0	17		DB	017H		;The "Insert Line" should work too.
+19F1	00		DB	00H
+19F2	 		DS	2
+19F4	00		DB	00
+ 		;
+19F5	01	ESCVDR: DB	01		;Count for BEGIN REVERSE VIDEO sequence.
+19F6	F2		DB	0F2H
+19F7	00		DB	00H
+19F8	 		DS	2
+19FA	00		DB	00
+ 		;
+19FB	01	ESCVDN: DB	01		;Count for END REVERSE VIDEO sequence.
+19FC	F2		DB	0F2H
+19FD	00		DB	00H
+19FE	 		DS	2
+1A00	00		DB	00
+ 		;
+1A01	00	ESCSTE: DB	00		;Count for ENABLE STATUS LINE sequence.
+1A02	00		DB	00H
+1A03	00		DB	00H
+1A04	 		DS	2		;Extra byte.
+1A06	00		DB	00
+ 		;
+1A07	00	ESCSTD: DB	00		;Count for DISABLE STATUS LINE sequence.
+1A08	00		DB	00H
+1A09	00		DB	00H
+1A0A			DS	2		;Extra byte.
+1A0C	00		DB	00
+ 		;
+1A0D	 		DS	40H		;User Patch space.
+

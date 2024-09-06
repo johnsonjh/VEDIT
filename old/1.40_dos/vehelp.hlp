@@ -1,0 +1,218 @@
+
+{EXIT}		Save text and exit VEDIT
+{SAVE}		Save text and continue editing
+{QUIT}		Quit - DO NOT save any edit changes
+
+{DIR}		Display disk directory
+{NEW}		Begin editing a new file
+{LOOK}		Look at another file with line numbers
+{GET}		Get (insert) a line range of another file
+{MEMORY}	Make more memory space free
+{RECOVER}	Recover from disk full errors
+
+More help on common editing tasks in available in Visual Mode using the
+[HELP] function.  After [HELP] press RETURN several times until you see the
+menu of help topics.
+
+
+
+
+Type the word between "{" and "}" for help on above topics: 
+
+\EXIT\
+When you are done editing your file and want to exit VEDIT, give the command:
+
+EX		Save the file on disk and exit VEDIT.  You will then be back
+		to the operating system.
+
+\QUIT\
+Sometimes you will want to quit the editing and NOT SAVE any edit changes.
+This may be because you were only examining the file and want to return to
+the operating system as quickly as possible.  Or perhaps you made a big
+editing mistake (like erasing the entire text) and want to "forget" these
+unwanted changes and start over.  The command is:
+
+EQ		Quit VEDIT and DO NOT SAVE any edit changes.  You are
+		prompted for confirmation.
+
+The "EQ" command quits the "edit session" and does not save any edit changes
+just made to the file from the time you began editing it or since the last "EA"
+command.  Any changes made before the "EA" command are saved however.
+
+If you want to quit the edit session, but remain in VEDIT use the "EZ"
+command.  This has the same effect as "EQ", but you will remain in VEDIT.
+
+\SAVE\
+You should make it a habit to regularly save your text on disk during a long
+edit session.  This way you won't lose all of your work in case of a power or
+hardware failure or a major editing mistake on your part.  You can save your
+text on disk and continue editing from either Visual or Command Mode.
+
+In Visual Mode, press the [RESTART] function key.  The message "PLEASE WAIT
+FOR DISK" will appear.  When it is erased you can continue editing.
+
+In Command Mode give the command "EA" (followed by RETURN).  When the
+"COMMAND:" prompt appears you can continue editing.
+
+\DIR\
+The Command Mode "ED" command is similar to the MS-DOS or CP/M "DIR" commands
+which display a directory of all the files on disk.
+
+Examples:
+
+ED			Display the directory of the logged-in drive.
+
+ED B:			Display the directory of all files on drive B.
+
+ED A:*.ASM		Display the directory of all files with extension
+			".ASM" on drive A.
+
+\NEW\
+It is not necessary to exit VEDIT and invoke it again in order to edit
+another file after you finish editing the current file.  First enter Command
+Mode.  Then give the following series of commands:
+
+EY		This saves the current file on disk in the same way that
+		the EX command does.  The difference is that you remain
+		in VEDIT.
+
+EB newfile.txt	The "EB" command is followed by the name of the file you now
+		want to edit.  This can be a file which already exists, or a
+		file you want to create.
+
+V		Assuming you want to edit the file in Visual Mode, give the
+		"V" command.
+
+\LOOK\
+It is often desirable to look at all or a portion of another file.
+The command to look at another file is "EL" and is similar to the MS-DOS or
+CP/M "TYPE" command.  However, "EL" also displays line numbers so that you
+can subsequently insert a line range of another file into the file you are
+editing.  You can look at all or a portion of another file:
+
+EL myfile.txt		Type out the file "myfile.txt" starting with line
+			number one.
+
+EL myfile.txt[n,m]	Type out the file "myfile.txt" starting with line
+			number 'n' and ending with line number 'm'.  This
+			lets you zero in on the desired lines without typing
+			out the entire file.
+
+Example:
+
+EL VHELP.HLP[35,60]	Type out lines 35 through 60 of one of the help files.
+
+\GET\
+It is often desirable to insert a portion of another file into the file you
+are editing.  This inserted portion might be a paragraph you previously wrote
+or a programmers subroutine.  The command is "EG myfile[n,m]" where 'myfile'
+is the file containing the text to be inserted, 'n' is the number of the
+first line to insert and 'm' is the number of the last line.
+
+Use the "EL" command to type a file with line numbers if you don't yet know
+which lines you want to insert.
+
+Example:
+
+EG VHELP.HLP[35,60]	Insert lines 35 through 60 of the file VHELP.HLP into
+			the file being edited at the edit pointer (cursor)
+			position.
+
+EG VHELP.HLP		Insert the entire file VHELP.HLP into the file being
+			edited.
+
+\MERGE\
+It is quite easy to merge two files together, i.e. append one file to the end
+of the file being edited.  First position the cursor to the end of the file
+being edited.  Then give the commands to append another file:
+
+_Z		Position edit pointer (cursor) to end of file being edited.
+
+ER part2	Append the file "part2" to the current file.
+
+V		Enter Visual Mode so that you can edit the file you just
+		appended.
+
+This is only one way of merging files.  You can also merge two files together
+into a third and new file, or insert ane file into the middle of another
+file. The text registers can also be used for more complex merging tasks. See
+"Merging files" in the Manual index for more information.
+
+\SPLIT\
+A large file can be split into two or more smaller files.  For example, you
+want to split "BIGFILE" into "PART1" and "PART2", without changing "BIGFILE".
+Since you must invoke VEDIT properly to do this, you may have to exit VEDIT
+first (use EX command).
+
+First invoke VEDIT without any file names and give the following commands:
+
+VEDIT			Invoke VEDIT without any file names.
+
+ER BIGFILE		Setup to read "BIGFILE" into memory.
+
+EW PART1		"PART1" is the first part to be written.
+
+V			Go into Visual Mode and position the cursor on the
+			first character for the file "PART2" (i.e. position
+			the cursor just past the end of "PART1").
+
+0W EF			Save the first part of the text on disk in the file
+			"PART1".  In detail "0W" writes the text to disk and
+			"EF" closes the output file.
+
+EW PART2		"PART2" is the second part to be written.
+
+EX			Exit VEDIT, saving the rest of the text in the file
+			"PART2".
+
+\MEMORY\
+When using the text registers extensively, you may run out of memory space
+for performing the desired operations.  This is indicated by a "FULL" message
+in Visual Mode or a "*BREAK*" in Command Mode.  First try and empty any text
+registers which are no longer needed.  If this does not give you enough
+space, you can write some of the text in memory back to disk.
+
+It is easiest to write the beginning part of the text out to disk if it has
+already been edited.  First position the cursor past the text which has
+already been edited and can be written to disk.  Then enter Command Mode and
+give the commands:
+
+0W		Write the text up to the cursor position out to disk.  More
+		memory space is now available.
+
+V		Enter Visual Mode to continue editing.
+
+Type <RETURN> to continue:
+
+If this does not free up enough memory (particularly if you are editing near
+the beginning of the file) you can also save the end of the text on
+disk.  Position the cursor at the text which does not need to be edited right
+now and can be saved on disk.  Then enter Command Mode and give the
+commands:
+
+-0W		Save the text past the cursor position on disk.
+
+V		Enter Visual Mode to continue editing.
+
+\RECOVER\
+At times, especially if you are using floppy disks, you will run out of disk
+space while editing.  This is indicated by the errors "NO DISK SPACE" or "NO
+DIR SPACE".  Most often you can simply delete some unused files.  First use
+the "ED" command to display a directory of all files.  Then use the "EK"
+(kill) command to erase one or more files.  Often, ".BAK" backup files can
+be erased.  Last re-issue the command, typically "EX" or "EY" which resulted
+in the error.
+
+Example:
+
+ED			Display directory of all files on current drive.
+
+EK *.BAK		Erase (kill) all ".BAK" files.  This makes more disk
+			space available.
+
+EX			Issue the "EX" command again to save the file being
+			edited on disk and exit VEDIT.
+
+If the "EK" command cannot make enough disk space free, refer to the manual's
+index under "Disk full error recovery" for more information.
+

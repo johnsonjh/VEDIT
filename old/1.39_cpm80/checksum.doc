@@ -1,0 +1,38 @@
+
+
+         VEDIT CHECKSUM ERROR REMOVAL - CP/M-80 ONLY!
+
+     Whenever a patch  is made to  any of the  VEDIT .SET files
+with  DDT  or  another  debugger,  a  checksum  error  will  be
+introduced which will give the  error message: "WARNING - VEDIT
+CHECKSUM ERROR" during customization.
+
+     The following procedure allows you  to remove the checksum
+error from the  .SET file. If  this message occurs  with a .SET
+file which was not patched, the file may be defective.
+
+     This  assumes   that   the   particular   .SET   file   is
+"VEDITZC.SET" and that this file  and VDSETCRT.COM are on drive
+"B:".
+
+1.)  Issue the command:
+
+     B>VDSETCRT VEDITZC NEWZC     (followed by a RETURN)
+
+     After  the  message  "WARNING   -  VEDIT  CHECKSUM  ERROR"
+     appears, type the RETURN key to ignore the error.
+
+     Choose Task 8 (return to  operating system) to immediately
+     exit the customization  program.  This  will  have created
+     the file "NEWZC.COM"  which  does  not  contain a checksum
+     error, and can now be renamed to the .SET file.
+
+2.)  Issue the commands:
+
+     B>ERA VEDITZC.SET<ret>        (This erases the old .SET file)
+
+     B>REN VEDITZC.SET=NEWZC.CMD   (This creates a new VEDIT86.SET)
+
+     You now have a VEDITZC.SET without the checksum error!
+
+

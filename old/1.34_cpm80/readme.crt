@@ -1,0 +1,133 @@
+
+
+
+               Additional notes for CRT terminals.
+
+     The menu of CRT terminals displayed in the customization
+program contains two undefined entries: "Customer 2" and
+"Customer 1".  These are actually preconfigured as alternates
+for some Hazeltine and SOROC terminals.  They are described
+below:
+
+
+CUSTOMER 2     This is preconfigured to support Hazeltine and
+               Craig Volker terminals which use the "ESC" (code
+               1B hex) character as the lead in, instead of the
+               "~" (code 7E hex).
+
+CUSTOMER 1     This is preconfigured to support the "Insert
+               Line" and "Delete Line" functions on the SOROC
+               140 terminal, which are not available on the
+               SOROC 120.
+
+
+     Following your selection of a terminal from the menu, the
+customization program asks for up to two "Escape Mode
+Characters", in case you are using escape sequences from the
+keyboard.  Your terminal may also send escape sequences when you
+type a function key.  For example, the Heath/Zenith H19 sends
+escape sequences beginning with the ESC character.  The
+Televideo 920C sends escape sequences beginning with "CTRL-A".
+The next question is  "Enter Common 2nd Character in Escape
+Sequence".  Simply answer with a <RETURN> if you are not using
+escape sequences or are typing them in by hand.  However, some
+terminal's special function keys send 3 letter escape sequences
+where the second letter is always the same and should be
+ignored.  In this case, answer with this second character.  For
+example, on the H19, the PF1 key sends an "ESC ? p", the PF2 key
+sends an "ESC ? r" and so on.  In this case, the "?" is the
+common second character.  Some terminals, like the IBM 3101,
+also send a Carriage Return at the end of escape sequences.  The
+keyboard customization detects this automatically and you need
+not be concerned with it.
+
+     While most terminals have 24 lines, some have a 25th
+"Status Line".  On some of these, it is possible for VEDIT to
+place its status line on the 25th line.  These terminals are
+marked with a "*" following the terminal's name in the menu.  To
+use the 25th line answer the question "Enter Number of Screen
+Lines" with a "25".  Note that the Intertube must be specified
+as having 25 lines.
+
+     In the  VEDIT CRT version 1.33, the right-most column of
+the screen is not used.  This is necessary because many CRT
+terminals perform a scroll when the last column in the bottom
+row is written.  If loosing this last column is a problem to
+you, we can supply a simple patch which will permit VEDIT to use
+the last column, but at the expense of having scrolling not
+appear as "clean".  (The status line will appear to jump up and
+down as the screen scrolls.)  If you are sure that your CRT does
+not scroll when writing the last screen position, you may
+customize VEDIT with the two screen length values one larger
+than the true length.  Specifically, the H19 may be customized
+with a "81" for the two screen length values.
+
+
+
+                                                        Page 2
+
+     For your information the file  "VEDITCRT.LST" includes
+several pages of source code listing of the CRT dependent
+routines and tables in VEDIT.  The file "VDSETTBL.LST" includes
+a listing of the tables for each CRT terminal in the menu.
+These tables determine the escape sequences sent to the terminal
+to perform the cursor addressing and other CRT functions.  99%
+of users will never need to refer to these listings, since the
+customization requires no "patches".  If you have a terminal
+which is not mentioned in the menu, we will gladly modify the
+tables for you.  However, we also know that some users run
+custom hardware or CRT emulation software, and they may wish to
+make changes to these tables themselves (we will gladly be of
+assistance here too).
+
+     While we have made every effort to support each CRT
+terminal correctly, it is not feasible for anyone to test all
+models of every manufacturer.  Should you notice any
+aberrations, such as scrambled lines or lost characters, it is
+almost certainly due to an incorrect setting on your terminal or
+an error in the support for your terminal.  Please be sure that
+any switches pertaining to cursor addressing, editing functions
+and correct "Escape Sequence Lead In" are enabled.  Should you
+have any suggestions or difficulties, no matter how minor,
+please contact us.  Should you write, please include you office
+and home phone numbers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,206 @@
+BASIC COMMANDS
+
+nA		Append 'n' lines from the input file	(0A)
+-nA		Read 'n' lines back from output file	(-0A)
+B		Move the edit pointer to text beginning	(_B)
+mC		Move the edit pointer by 'm' positions
+mD		Delete 'm' characters from the text
+nFstring<ESC>	Search for 'n'th  occurrence of 'string'
+Gr		Insert the contents of text register 'r'
+H		Display Help file VHELP.TXT.	(-H)
+Itext<ESC>	Insert the 'text' into the text buffer
+mK		Kill 'm' lines
+mL		Move the edit pointer by 'm' lines
+Mr		Execute text register 'r' as a command macro
+nNstring<ESC>	Search for 'n'th occurrence of 'string' in file
+mPr		Put 'm' lines of text into text register 'r'
+Ss1<ESC>s2<ESC>	Search for and change 's1' to 's2'
+mT		Type 'm' lines
+U		Print # of unused, used and text register bytes
+V		Go into visual mode
+nW		Write 'n' lines to the output file.	(0W)
+-nW		Write lines from end of file to ".$R$ file. (-0W)
+Z		Move edit pointer to end of text.	(_Z)
+
+SPECIAL CHARACTERS
+
+<CTRL-Q> Literal Character.  Next char. is taken literally.
+
+@	Precedes F, I, N, S commands to indicate explicit delimiter
+
+:	Precedes F, N, S commands to suppress search error message.
+	Precedes XT, YR and YW commands to suppress CRLF
+
+_	Precedes F, S commands to perform search to end of file
+	Precedes B, L, Z to perform global file operation
+
+#	Represents maximum positive number 32767.  Signifies "forever" or
+	"all occurrences of".
+
+SEARCH PATTERN MATCHING CODES
+
+|A	Alphabetic letter, i.e. 'A' - 'Z' and 'a' - 'z'
+|B	Single blank or tab
+|C	Control character
+|D	Decimal digit
+|L	Line terminator - Line Feed, Form Feed or EOF
+|M	Multi - match any sequence zero, one or more characters
+|N	Match any except following character (or another | expression)
+|R	Alphanumeric - a letter or a digit
+|S	Separator - not a letter or digit
+|U	Upper case letter
+|V	Lower case letter
+|W	White space - single or multiple sequence of spaces or tabs
+|X	Any character
+||	Use "||" when you need to search for a "|"
+
+
+EXTENDED COMMANDS
+
+EA		Restart the editor. (EX and EB)
+EBfile		Open 'file' for Read & Write, perform an auto-read
+EC		Change disks for reading or write error recovery
+ED		Display disk directory.  Opt. drive spec. and "?"
+EF		Close the current output file
+EGfile[line range]	Insert the specified line number range of
+		'file' into the text buffer at the edit position
+nEI		Insert the character whose decimal value is 'n'
+EKfile		Erase (kill) the file 'file' from the disk
+ELfile[line range]	Display the specified line number range of
+		'file' with line numbers
+mEO		Send 'm' lines to the line printer. (0EO)
+EQ		Quit the current edit session, return to Op. Sys
+ERfile		Open the file 'file' for input
+ET		Set new tab positions
+EV		Display VEDIT version number
+EWfile		Open the file 'file' for output.  Create Backup
+EX		Normal exit back to CP/M after writing output file
+EY		Save file and disk, prepare to edit another file
+EZ		Quit the current edit session, remain in VEDIT
+
+EP n m		Change the value of parameter 'n' to 'm'
+1	Cursor type				(0, 1 or 2)
+2	Cursor blink rate			(10 - 100)
+3	Indent Increment			(1 - 20)
+4	Lower case convert			(0, 1 or 2)
+5	Conditional convert character		(32 - 126)
+6	Display line and column number		(0, 1, 2 or 3)
+7	Word Wrap column (0 = Off)		(0 - 255)
+8	Bit 7 Allowed (1/input 3/Output)	(0 - 7)
+9	Cursor positioning option		(0 - 1)
+10	Horizontal scroll margin		(40 - 255)
+11	Horizontal scroll increment	    	(1 - 100)
+
+ES n m		Change the value of switch 'n' to 'm'
+1	Expand Tab with spaces			(0=NO 1=YES)
+2	Auto buffering in visual mode		(0=NO 1=YES 2=BACK)
+3	Start in visual mode			(0=NO 1=YES)
+4	Point past text reg. insert		(0=NO 1=YES)
+5	Ignore UC/LC search distinction		(0=NO 1=YES)
+6	Clear screen on visual exit		(0=NO 1=YES)
+7	Reverse Upper and Lower case		(0=NO 1=YES)
+8	Suppress search errors			(0=NO 1=YES)
+9	Explicit string terminators		(0=NO 1=YES)
+
+EXTENDED "X" and "Y" COMMANDS
+
+YI		Route following console output to text buffer
+
+YL		Route following console output to printer
+
+YR		Type the "read" input file name
+
+mYS		Strip 'm' lines of Bit 7
+
+YTtext<ESC>	Type 'text' on console
+
+YW		Type the "write" output file name
+
+
+VALUE REGISTER COMMANDS
+
+nXAr		Add 'n' to value in register 'r'
+
+nXSr		Set value of register 'r' to 'n'
+
+XTr		Type (decimal) value of 'r'
+
+TEXT REGISTER COMMANDS
+
+R*		Treat following line as a comment
+
+RDr		Dump contents of register 'r' on console.
+
+RIrtext<ESC>	Insert text into register 'r'.
+
+RLrfile		Load register 'r' from file 'file'.
+
+RPr		Send contents of register 'r' to line printer
+
+RSrfile		Save contents of register 'r' in file 'file'.
+
+RTr		Type contents of register 'r' on console.
+
+RU		Display size of each text register.
+
+DEFAULT KEYBOARD LAYOUT
+
+[HOME]			ESC - H
+[ZEND]			ESC - Z
+[CURSOR UP]		[CTRL-E]
+[CURSOR DOWN]		[CTRL-C]
+[CURSOR RIGHT]		[CTRL-D]
+[CURSOR LEFT]		[CTRL-S]
+[BACK TAB]		[CTRL-A]
+[TAB CURSOR]		[CTRL-F]
+[ZIP]			[CTRL-G]
+[NEXT LINE]		[CTRL-J]
+[LINE TOGGLE]		NOT USED
+[SCROLL UP]		[CTRL-Q]
+[SCROLL DOWN]		[CTRL-Z]
+[SCROLL RIGHT]		[CTRL-Y]
+[SCROLL LEFT]		[CTRL-T]
+[PREVIOUS WORD]		[CTRL-V]
+[NEXT WORD]		[CTRL-B]
+[PREVIOUS PARAGRAPH]	ESC - W
+[NEXT PARAGRAPH]	ESC - X
+[PAGE UP]		[CTRL-W]
+[PAGE DOWN]		[CTRL-X]
+
+[SCREEN TOGGLE]		[CTRL-N]
+[BACKSPACE]		[CTRL-H]
+[DELETE]		[DEL]
+[ERASE TO END OF LINE]	[CTRL-L]
+[ERASE LINE]		ESC - L
+[DEL PREVIOUS WORD]	ESC - V
+[DEL NEXT WORD]		ESC - B
+[UNDO]			[CTRL-U]
+[TAB CHARACTER]		[CTRL-I]
+[NEXT CHAR LITERAL]	ESC - Q
+[SET INSERT MODE]	NOT USED
+[RESET INSERT MODE]	NOT USED
+[SWITCH INSERT MODE]	[CTRL-K]
+[REPEAT]		[CTRL-R]
+[INDENT]		[CTRL-P]
+[UNDENT]		[CTRL-O]
+
+[FIND]			ESC - F
+[REPLACE]		ESC - R
+[CANCEL]		ESC - O
+[COPY TO TEXT REGISTER]	ESC - C
+[MOVE TO TEXT REGISTER]	ESC - M
+[INSERT TEXT REGISTER]	ESC - I
+[PRINT TEXT]		ESC - P
+[SET TEXT MARKER]	ESC - S
+[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	ESC - J
+[VISUAL ESCAPE]		ESC - ESC
+[VISUAL EXIT]		ESC - E
+[RESTART EDITOR]	ESC - [CTRL-R]
+
+
+
+
+
+
+

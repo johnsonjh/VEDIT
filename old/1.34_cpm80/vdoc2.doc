@@ -1,0 +1,397 @@
+
+
+
+VEDIT - Visual Editor					      Page 14
+Visual Mode
+
+
+Properties
+----------
+
+     In visual mode the screen continuously displays the region of the
+file being edited and a cursor.  The left most column does not contain
+text, but rather  is  reserved  for  the  line continuation indicator.
+(The character used for the line  continuation indicator is set by the
+user during customization. A "-" is suggested.) The bottom screen line
+is used for  status  information  consisting  of  messages.  (Some CRT
+displays allow the  messages to  appear in  reverse video.) Characters
+typed while in visual mode  take effect immediately when typed.  There
+are two basic  kinds of  keyboard characters  - Displayable characters
+and Control characters.  Displayable  characters simply  appear on the
+screen and are either inserted or overtype the existing text.  Control
+characters consist of either ASCII control characters, characters with
+the  high   order  bit   (Bit  8)   set,  or   escape  sequences.  The
+customization process  determines which  control function  the control
+characters perform.  Unused control  characters are  ignored in visual
+mode, but special  control characters  may be  inserted into  the text
+buffer in command mode.  The control  functions either move the cursor
+or perform a visual operation.
+
+     The visual mode performs auto-buffering when the user reaches the
+end of the text  buffer, and  the entire  input file  has not yet been
+read.  Specifically, if the current screen  display reaches the end of
+the text buffer,  the  auto-buffering  is  performed.  VEDIT will also
+perform an auto-write if  the  text  buffer  reaches  its maximum size
+while the user is  typing in  more text.  At  this point  the first 1K
+text bytes will attempt  to  be  written  to  the  output file.  If no
+output file is open, or the cursor is  within the first 1K of the text
+buffer, no writing occurs  and the  "FULL" message  appears instead on
+the status line.  Both the  auto-buffering and  the auto-write  may be
+disabled by the "Auto Buffering in Visual Mode" switch.
+
+     Each text line is  assumed  to  end  in  a  [CR] [LF]  pair as is
+required for other CP/M  programs, and the [LF]  is the true delimiter
+of the  text  lines.  Typing  the  [RETURN]  or  [CR]  key  inserts  a
+[CR] [LF] pair at  the cursor  position. Deleting  the end  of a line,
+will delete both the [CR] and  the [LF].  While VEDIT, in visual mode,
+will never create a line ending in just a [CR] or [LF], such lines are
+handled in visual  mode,  although  displayed  differently.  (They may
+result from unexacting use of the  "D" command in command mode).  If a
+line ends  in only  a [LF],  the next  line will  be displayed  with a
+starting position directly below the  end of the  previous line.  If a
+line contains a [CR]  not followed by a  [LF], the character following
+the [CR] will be displayed  in the reserved column  of the same screen
+line  and  the  rest   of  the  characters   will  overwrite  previous
+characters.  (This is  not  very  eloquent,  but  is  just  what  most
+terminals  would  do).  Such  lines  may  be  fixed  by  deleting  the
+offending lone [CR] or [LF] with the  [DEL] key and then inserting the
+[CR] [LF] pair with the [RETURN] key.
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 15
+Visual Mode
+
+
+Displayable Characters
+----------------------
+
+When a displayable character is typed, it appears on the screen at the
+current cursor position and the cursor then moves to its right.  VEDIT
+has two modes for  inserting new  characters, NORMAL  and INSERT mode.
+When a displayable character is typed in NORMAL mode it appears at the
+cursor  position  and  any   character  which  was   there  is  simply
+overwritten.  The only exception to this  is the [CR] [LF] pair, which
+is not overwritten, but  is squeezed  to the  right.  Also, typing the
+[RETURN] does  not  overwrite  any  character,  but  rather  moves any
+character at the cursor position to the next line.  In INSERT mode, no
+character is ever  overwritten, but  rather is  squeezed to  the right
+when a new character is typed at  its position.  In either mode, a new
+screen line, called  a  continuation  line,  is  begun  on  the CRT if
+necessary.  Visual functions exist  to  enter  Insert  Mode, revert to
+Normal mode, or to switch between the modes.  The editor always starts
+in Normal mode.
+
+     The  keyboard  characters   [RETURN]  or   [CR]  and   [TAB]  are
+displayable characters,  but  have  special  properties.  The Carriage
+Return character [RETURN] causes a [CR] and  line feed [LF] pair to be
+inserted into the text and  a new line to  be begun on the screen.  If
+it is typed while the cursor is pointing within a text line, that line
+is effectively split into two lines.  The  Tab key causes insertion of
+a tab character, or optionally, spaces  to the next tab position.  The
+tab character itself  is displayed  with spaces  on the  screen to the
+next tab position, even  though the  spaces do  not exist  in the text
+buffer.
+
+     Any control  characters, other  than [CR],  [LF] and  [TAB] which
+exist in the  text,  are  displayed  in  the  regular  CP/M  format by
+preceding the letter  with  an  "Up  Arrow".  Although special control
+characters cannot be entered into the  text from visual mode, they can
+be entered from command  mode and will then  be displayed correctly in
+visual mode.
+
+Control Functions
+------------------
+
+     The control functions  fall into two  categories: Cursor Movement
+and Visual Function. The cursor movement  keys only move the cursor to
+some other position in the  text and do not  actually change the text.
+The visual  functions  [SET  INSERT  MODE],  [RESET  INSERT  MODE] and
+[SWITCH INSERT MODE] are used for  switching between NORMAL and INSERT
+mode.  The visual functions for removing  text are [DEL] which deletes
+a character, [EREOL]  for deleting (erasing)  all remaining characters
+on the line from the cursor position, [ERLINE] for deleting the entire
+text line,  and [BACKSPACE]  which moves  the cursor  to the  left and
+deletes the character there.  The visual function [RESTART] starts the
+edit session over, saving  the current  file on  disk, just  as the EA
+command  does.  Additionally  the  visual   functions  [COPY  TO  TEXT
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 16
+Visual Mode
+
+
+REGISTER], [MOVE TO TEXT REGISTER] and [INSERT TEXT REGISTER] are used
+to move or copy text  from one area in  the file to another.  The text
+register used is the  same  as  used  in  command  mode, thus the text
+register may be set  in command  mode and  inserted in  visual mode or
+vice versa.
+
+Indent and Undent Functions
+---------------------------
+
+     As an aid  in writing  programs in  structured languages  such as
+Pascal, PL/I  and C,  the visual  mode has  the [INDENT]  and [UNDENT]
+functions.  These functions allow  the editor to  automatically pad up
+to the "Indent  position" with  tabs and  spaces, when  a new  line is
+created with the  [RETURN]  key.  The  [INDENT]  key  moves the Indent
+position to the right by the  "Indent increment", and the [UNDENT] key
+moves the Indent position back to the left.  If the cursor is on a new
+line, or before any text on the line, when the [INDENT] or [UNDENT] is
+pressed, the cursor and any  following text will also  move to the new
+Indent position.
+
+     Normally the "Indent  position" is  zero and  when a  [RETURN] is
+typed, a [CR]  [LF] pair  is inserted  into the  text, and  the cursor
+moves to column 1 of the next line.  After the [INDENT] key is pressed
+once and a [RETURN] typed, the cursor will be positioned not in column
+1, but rather  at the  first indent  position, i.e.,  column 5  if the
+"Indent increment" is  set to  four.  Pressing the  [INDENT] key again
+will position  the  cursor  still  farther  to  the  right  after each
+[RETURN], i.e., to  column  9.  Each  time  the  the  [UNDENT]  key is
+pressed, the indent  position moves back  toward the left  until it is
+back at zero.
+
+     The exact number  of  tabs  and  spaces  inserted  into  the text
+buffer, to  pad  up  to  the  "Indent  position",  is  related  to the
+currently set tab  positions and the  "Indent Increment".  The padding
+will consist of the  most  tabs  and  fewest  spaces  in order to save
+memory  and  disk   space.  For  example,  assume   that  the  "Indent
+increment" is set  to  the  common  value  of  four  (4)  and  the tab
+positions at every  eight (8).  When  the "Indent  position" is eight,
+the padding will  consist of  one tab;  when the  "Indent position" is
+twenty, the padding will consist of  two tabs and four spaces.  On the
+other hand, if the  tab positions  were set  to every  four, only tabs
+would be used in  the  padding.  Note  that  if  the  "Expand Tab with
+spaces" switch is  set, only  spaces will  be used  for padding.  This
+would use up lots memory and disk space.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 17
+Visual Mode - Control Functions  (Cursor Movement)
+
+
+
+[HOME]		Move the cursor  to the  very first  character in the
+		text buffer.
+
+[ZEND]		Move the  cursor to  the very  last character  in the
+		text buffer.
+
+[CURSOR UP]	Move the cursor  up one line,  to the same horizontal
+		position if possible.  The same  rules as for [CURSOR
+		DOWN] apply.
+
+[CURSOR DOWN]	Move the cursor down one line, to the same horizontal
+		position if possible.  If the  position is beyond the
+		end of the line, move to the  end of the line, if the
+		position is in the  middle of a tab,  move to the end
+		of the tab.  If there is no line, don't move.
+
+[CURSOR RIGHT]	Move the cursor  to the  next character  in the text.
+		If currently  at end  of line,  move to  beginning of
+		next line.  If there is no line, don't move.
+
+[CURSOR LEFT]	Move the  cursor  to  the  previous  character in the
+		text.  If currently at beginning of line, move to end
+		of previous line.  If there is no line, don't move.
+
+[PAGE UP]	This scrolls the  screen to give  a similar effect to
+		typing [CURSOR UP] for 3/4 screen lines.
+
+[PAGE DOWN]	This scrolls the  screen to give  a similar effect to
+		typing [CURSOR DOWN] for 3/4 screen lines.
+
+[BACK TAB]	This moves the  cursor to  the first  position in the
+		current physical line.  If  the cursor  is already at
+		the first  position, the  cursor is  moved up  to the
+		first position of the previous screen line.
+
+[TAB CURSOR]	This moves the cursor to the next tab stop.  If there
+		are no more characters on the line, don't move.  Note
+		that this only moves the cursor, use the [TAB] key to
+		insert a Tab character.
+
+[ZIP]		This moves the cursor to the end of the text line the
+		cursor is on.  If  it already  is at  the end  of the
+		line, it moves to the end of the next text line.
+
+[NEXTLINE]	This moves the  cursor to  the beginning  of the next
+		text line.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 18
+Visual Mode - Control Functions  (Visual Function)
+
+
+[SET INSERT MODE] Change the mode to INSERT if not already there.
+
+[RESET INS MODE]  Change the mode to NORMAL if not already there.
+
+[SWITCH INS MODE] Switch the mode to the opposite.  Note that normally
+		  either [SET  INS  MODE]  and  [RESET  INS  MODE]  or
+		  [SWITCH INS  MODE] would  be implemented  during the
+		  VEDIT Customization process.
+
+[DELETE]	  Delete the character  at  the  cursor position.  The
+		  cursor doesn't move.  A lone [CR]  or [LF] will also
+		  be deleted,  but  a  [CR] [LF]  pair  will  both  be
+		  deleted as one.
+
+[BACKSPACE]	  Move the cursor  left  and  delete  the character at
+		  that position.  Does not delete a [CR] [LF].
+
+[EREOL]		  This deletes all characters from the cursor position
+		  to the end  of  the  text  line  but  not  the final
+		  [CR][LF] pair unless the text  line only consists of
+		  the [CR][LF], in which case the [CR][LF] is deleted.
+		  For example,  to  completely  delete  a  line  would
+		  require the following sequence:
+
+		  [BACK TAB] [EREOL] [EREOL].
+
+[ERLINE]	  This deletes the entire text line. Use of [BACK TAB]
+		  [EREOL] is  actually  preferable,  since  the latter
+		  does not close  up  the  screen  line and frequently
+		  allows the [UNDO] to restore the original line.
+
+[UNDO]		  This rewrites the  screen  and  ignores  the changes
+		  made to the text line the cursor is on.
+
+[INDENT]	  This increases the  "Indent Position"  by the amount
+		  of the  "Indent  Increment".  The  editor  will then
+		  automatically pad with tabs and spaces to the Indent
+		  position following each  [RETURN].  The padding will
+		  also take  place on  the current line  if the cursor
+		  is before any text on the line.
+
+[UNDENT]	  This decreases the  "Indent Position"  by the amount
+		  of the  "Indent Increment",  until it  is zero.  One
+		  [UNDENT] therefore effectively cancels one [INDENT].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VEDIT - Visual Editor					      Page 19
+Visual Mode - Control Functions  (Visual Function)
+
+
+[COPY TO TEXT REG] The first time this key is hit, the position of the
+		   cursor is remembered, and an the message "1 END" is
+		   displayed on the status line.  When  the key is hit
+		   while the "1  END" is  set, the  text block between
+		   the first  cursor position  and the  current cursor
+		   position is copied to  the text register.  Assuming
+		   there is enough  memory space for  this "copy", the
+		   message "TEXT" is then displayed on the status line
+		   in place  of the  "1 END".  If  insufficient memory
+		   space exists, no  copy  is  made,  the  "1  END" is
+		   erased and the "FULL" message appears on the status
+		   line.  Hitting this  key twice  at the  same cursor
+		   position will empty  the text  register.  Note that
+		   either the beginning or  the end of  the text block
+		   may be set first.
+
+[MOVE TO TEXT REG] This is similar  to [COPY TO TEXT REG], except that
+		   the text block  is  deleted  from  the  text buffer
+		   after it is moved to the text register.
+
+[INSERT TEXT REG]  A copy of the  current text register is inserted at
+		   the   current   cursor   position.  If   there   is
+		   insufficient memory space  for  the  entire "copy",
+		   nothing is inserted  and  the  "FULL"  message will
+		   appear on  the status  line.  Moving the  cursor to
+		   another line will clear the "FULL" message.
+
+[VISUAL EXIT]	   Visual Mode is exited to command mode.  The current
+		   cursor position in the text  buffer will become the
+		   command  mode  edit   pointer  position.  Any  text
+		   register is preserved.  Depending upon the value of
+		   the "Clear  screen  on  visual  exit"  switch,  the
+		   command prompt will appear either on a clear screen
+		   or just below the status line.
+
+[VISUAL ESCAPE]	   This is identical to the [VISUAL EXIT], except that
+		   any current iteration macro is aborted.
+
+[RESTART]	   The text buffer  and any unappended  portion of the
+		   input file  is  written  to  the  output file.  The
+		   output file is  closed  and  then  reopened  as the
+		   Input and Output file.  The file  is then read into
+		   the text buffer again.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

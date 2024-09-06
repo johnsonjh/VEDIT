@@ -1,0 +1,39 @@
+                    IBM 3101  VEDIT CONTROL KEYS
+        ---------------------------------------------------------------------
+
+        Escape mode character           "ESC"
+        [HOME]                          HOME            (ESC-H)
+        [ZEND]                          ESC-Z
+        [CURSOR UP]                     UP ARROW        (ESC-A)
+        [CURSOR DOWN]                   DOWN ARROW      (ESC-B)
+        [CURSOR RIGHT]                  RIGHT ARROW     (ESC-C)
+        [CURSOR LEFT]                   LEFT ARROW      (ESC-D)
+        [TOGGLE INSERT MODE]            CANCEL          (ESC-S)
+        [COPY TO TEXT REGISTER]         PRINT LINE      (ESC-U)
+        [MOVE TO TEXT REGISTER]         PRINT MSG       (ESC-V)
+        [INSERT TEXT REGISTER]          PRINT PAGE      (ESC-W)
+        [DELETE]                        DELETE
+        [ERASE EOL]                     ERASE EOL       (ESC-I)
+        [ERASE LINE]                    CNT-X
+        [UNDO]                          CLEAR SCREEN    (ESC-L)
+        [ZIP]                           CNT-E
+        [NEXT LINE]                     CNT-N
+        [TAB CURSOR]                    CNT-T
+        [BACK TAB CURSOR]               CNT-B
+        [PAGE UP]                       CNT-U
+        [PAGE DOWN]                     CNT-D
+        [BACKSPACE]                     BACKSPACE       (CNT-H)
+        [TAB CHARACTER]                 TAB
+        [VISUAL ESCAPE]                 ESC-E
+        [VISUAL EXIT]                   ESC-ESC
+        [RESTART EDITOR]                ESC-R
+
+        Line continuation character = \
+        Command iteration brackets =  []
+        Spare memory after auto buffering = 7168 bytes
+        Size of auto buffer transfers = 10K bytes
+        Page up/down scroll = 18 lines
+        Top cursor line = 2
+        Bottom cursor line = 23
+        Status line on line 25
+

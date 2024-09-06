@@ -1,0 +1,39 @@
+                    ADM-3    VEDIT CONTROL KEYS
+        ---------------------------------------------------------------------
+
+        Escape mode character           "ESC"
+        [HOME]                          ESC-H
+        [ZEND]                          ESC-Z
+        [CURSOR UP]                     CNT-K
+        [CURSOR DOWN]                   CNT-J
+        [CURSOR RIGHT]                  CNT-L
+        [CURSOR LEFT]                   CNT-H
+        [TOGGLE INSERT MODE]            ESC-I
+        [COPY TO TEXT REGISTER]         ESC-C
+        [MOVE TO TEXT REGISTER]         ESC-M
+        [INSERT TEXT REGISTER]          ESC-@
+        [DELETE]                        CNT-RUBOUT
+        [ERASE EOL]                     CNT-\
+        [ERASE LINE]                    CNT-X
+        [UNDO]                          ESC-U
+        [ZIP]                           CNT-E
+        [NEXT LINE]                     CNT-N
+        [TAB CURSOR]                    CNT-T
+        [BACK TAB CURSOR]               CNT-B
+        [PAGE UP]                       CNT-U
+        [PAGE DOWN]                     CNT-D
+        [BACKSPACE]                     RUBOUT
+        [TAB CHARACTER]                 TAB
+        [VISUAL ESCAPE]                 ESC-E
+        [VISUAL EXIT]                   ESC-ESC
+        [RESTART EDITOR]                ESC-R
+
+        Line continuation character = \
+        Command iteration brackets =  []
+        Spare memory after auto buffering = 6144 bytes
+        Size of auto buffer transfers = 9K bytes
+        Page up/down scroll = 18 lines
+        Top cursor line = 2
+        Bottom cursor line = 22
+        Status line on line 24
+

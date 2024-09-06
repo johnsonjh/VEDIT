@@ -1,0 +1,536 @@
+
+
+[HOME]			ESC - H		[ZEND]			ESC - Z
+[CURSOR UP]		[CTRL-E]	[CURSOR DOWN]		[CTRL-C]
+[CURSOR RIGHT]		[CTRL-D]	[CURSOR LEFT]		[CTRL-S]
+[BACK TAB]		[CTRL-A]	[TAB CURSOR]		[CTRL-F]
+[ZIP]			[CTRL-G]	[NEXT LINE]		[CTRL-J]
+[LINE TOGGLE]		NOT USED	[SCROLL UP]		[CTRL-Q]
+[SCROLL DOWN]		[CTRL-Z]	[SCROLL RIGHT]		[CTRL-Y]
+[SCROLL LEFT]		[CTRL-T]	[PREVIOUS WORD]		[CTRL-V]
+[NEXT WORD]		[CTRL-B]	[PREVIOUS PARAGRAPH]	ESC - W
+[NEXT PARAGRAPH]	ESC - X		[PAGE UP]		[CTRL-W]
+[PAGE DOWN]		[CTRL-X]	[SCREEN TOGGLE]		[CTRL-N]
+[BACKSPACE]		[CTRL-H]	[DELETE]		[DEL]
+[ERASE TO END OF LINE]	[CTRL-L]	[ERASE LINE]		ESC - L
+[DEL PREVIOUS WORD]	ESC - V		[DEL NEXT WORD]		ESC - B
+[UNDO]			[CTRL-U]	[TAB CHARACTER]		[CTRL-I]
+[NEXT CHAR LITERAL]	ESC - Q		[SET INSERT MODE]	NOT USED
+[RESET INSERT MODE]	NOT USED	[SWITCH INSERT MODE]	[CTRL-K]
+[REPEAT]		[CTRL-R]	[INDENT]		[CTRL-P]
+[UNDENT]		[CTRL-O]	[FIND]			ESC - F
+[REPLACE]		ESC - R		[CANCEL]		ESC - O
+
+Type control sequence for desired function or RETURN for next screen: 
+
+\RT\
+
+[COPY TO TEXT REGISTER]	ESC - C		[MOVE TO TEXT REGISTER]	ESC - M
+[INSERT TEXT REGISTER]	ESC - I		[PRINT TEXT]		ESC - P
+[SET TEXT MARKER]	ESC - S		[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	ESC - J		[VISUAL ESCAPE]		ESC - ESC
+[VISUAL EXIT]		ESC - E		[MACRO]			ESC - /
+[RESTART EDITOR]	ESC - [CTRL-R]	[HELP]			ESC - ?
+
+Type control sequence for desired function or RETURN for next screen: 
+
+\RT\
+
+{1END}		1 END	Status line message
+{TEXT}		TEXT	Status line message
+{FULL}		FULL	Status line message
+{INS}		INSERT	Status line message
+{FIND}		FIND	Status line prompt
+{REPL}		REPLACE	Status line prompt
+
+{WRAP}			Setting word wrap column (right margin)
+{MARG}			Setting left margin
+{FORM}			Formatting paragraphs
+{PR}			Printing text
+{HZ}			Horizontal scrolling
+{IC}			Inserting control characters
+{CONV}			Lower / upper case conversion
+{EMPTY}			Emptying a text register (free more memory space)
+{EXIT}			Exit from Visual Mode to Command Mode
+
+
+Type the word between "{" and "}" for help on above topics: 
+
+\CH\
+
+[HOME]			Move the cursor to the very first character in the
+			edit buffer.
+
+\CZ\
+
+[ZEND]			Move the cursor past the very last character in the
+			edit buffer.
+
+\CU\
+
+[CURSOR UP]		Move the cursor up one line, to the same horizontal
+			position if possible. If the position is in the middle
+			of a tab, move to the end of the tab. If there is no
+			line, don't move.
+
+\CD\
+
+[CURSOR DOWN]		Move the cursor down one line, to the same horizontal
+			position if possible. If there is no line don't move.
+
+\CR\
+
+[CURSOR RIGHT]		Move the cursor to the next character in the text. If
+			currently at end of line, move to beginning of next
+			line. If there is no line, don't move.
+
+\CL\
+
+[CURSOR LEFT]		Move the cursor to the previous character in the text.
+			If currently at beginning of line, move to end of
+			previous line. If there is no line, don't move.
+
+\BT\
+
+[BACK TAB]		Move the cursor to the first position in the current
+			screen line.  If cursor is already at the first
+			position, move to beginning of previous screen line.
+
+\TC\
+
+[TAB CURSOR]		Move the cursor to the character at the next tab
+			position.  If cursor is at the end of a line, don't
+			move.  Note that this only moves the cursor, use the
+			[TAB] function to insert a Tab character.
+
+\ZP\
+
+[ZIP]			Move the cursor to the end of the current text line.
+			If it already is at the end of a line, move to
+			the end of the next text line.
+
+\NL\
+
+[NEXT LINE]		Move the cursor to the beginning of next text line.
+
+\LT\
+
+[LINE TOGGLE]		Is a combination of [ZIP] and [BACK TAB].  First moves
+			the cursor to the end of the text line.  If it already
+			is at the end of a line, it moves to the beginning of
+			the screen line.
+
+\SU\
+
+[SCROLL UP]		Similar to [CURSOR UP], except that the cursor remains
+			on the same screen line and the screen moves down
+			instead.
+
+\SD\
+
+[SCROLL DOWN]		Similar to [CURSOR DOWN], except that the cursor
+			remains on the same screen line and the screen moves
+			up instead.
+
+\SR\
+
+[SCROLL RIGHT]		Move the screen window right in order to view long
+			lines going off the right side of the screen.
+
+\SL\
+
+[SCROLL LEFT]		Move the screen window left in order to view the
+			beginning part of long lines.
+
+\PW\
+
+[PREVIOUS WORD]		Move the cursor to the first character of the current
+			word, or if already there, to the beginning of the
+			previous word.
+
+\NW\
+
+[NEXT WORD]		Move the cursor to the first character of next word.
+
+\PP\
+
+[PREVIOUS PARA]		Move the cursor to be beginning of the current
+			paragraph, or if already there, to the beginning of
+			the previous paragraph.
+
+\NP\
+
+[NEXT PARA]		Move the cursor to the beginning of next paragraph.
+
+\PU\
+
+[PAGE UP]		This scrolls the screen to give a similar effect to
+			typing [CURSOR UP] for 3/4 screen lines.
+
+\PD\
+
+[PAGE DOWN]		This scrolls the screen to give a similar effect to
+			typing [CURSOR DOWN] for 3/4 screen lines.
+
+\ST\
+
+[SCREEN TOGGLE]		Move the cursor first to the last allowed screen line,
+			or if already there, to the first allowed screen line.
+
+\BS\
+
+[BACKSPACE]		Move the cursor left and delete the character at that
+			position.
+\DC\
+
+[DELETE]		Delete the character at the cursor position. The
+			cursor doesn't move.  A lone <CR> or <LF> will also be
+			deleted, but a <CR> <LF> pair will both be deleted as
+			one.
+
+\EE\
+
+[ERASE TO END OF LINE]	Delete all characters from the cursor position to the
+			end of the text line but not the final <CR><LF> pair
+			unless the text line only consists of the <CR><LF>, in
+			which case the <CR><LF> is deleted.
+
+\EL\
+
+[ERASE LINE]		Delete the entire text line. Use of [BACK TAB] [EREOL]
+			is actually preferable, since the latter does not
+			close up the screen line and frequently allows the
+			[UNDO] to restore the original line.
+
+\DP\
+
+[DEL PREVIOUS WORD]	Delete the previous word and any following spaces if
+			the cursor is at the beginning of a word.  Otherwise
+			delete only that portion to the left of the cursor.
+
+\DN\
+
+[DEL NEXT WORD]		Delete the entire word and any following spaces if the
+			cursor is at the beginning of a word.  Otherwise
+			delete that portion of the word at and to the right of
+			the cursor.
+
+\UD\
+
+[UNDO]			Rewrite the screen and ignore the changes made to the
+			text line the cursor is on.
+
+\TB\
+
+[TAB CHARACTER]		Enter <TAB> character into text which also positions
+			cursor at next tab position.  Alternately, if "ES 1 1"
+			switch is set, enter spaces to the next tab position.
+
+\LC\
+
+[NEXT CHAR LITERAL]	The next character, whether a displayable character, a
+			control character, or a character with its high order
+			bit set, will be placed into the edit buffer.
+
+\IN\
+
+[SET INSERT MODE]	Change the mode to INSERT if not already there.
+
+\RI\
+
+[RESET INS MODE]	Change the mode to NORMAL if not already there.
+
+\SI\
+
+[SWITCH INS MODE]	Switch the Insert / Normal mode to the opposite.
+
+\RE\
+
+[REPEAT]		The next text character or edit function is repeated.
+			This is either a multiple of 4 or a number typed in.
+			Press [CANCEL] to abort.
+
+\ID\
+
+[INDENT]		Increase the "Indent Position" by the amount of the
+			"Indent Increment".  VEDIT will then automatically pad
+			with tabs and spaces to the Indent position following
+			each RETURN. The padding will also take place on the
+			current line if the cursor is before any text on the
+			line.
+
+\UD\
+
+[UNDENT]		Decrease the "Indent Position" by the amount of the
+			"Indent Increment", until it is zero.  One [UNDENT]
+			therefore effectively cancels one [INDENT].
+
+\FI\
+
+[FIND]			Performs a search operation.  Prompts for the search
+			string, which may be up to 30 characters long and ends
+			in RETURN.  Use <CTRL-N> to search for RETURN.  Press
+			[FIND] again to search for the next occurrence.
+			Pressing RETURN immediately following the "FIND"
+			prompt gives the search options prompt:
+
+			OPTIONS (Begin / Global / Reuse)
+
+			Select one or more options by typing the corresponding
+			letters "B", "G" and/or "R" followed by a RETURN.
+
+		Begin	Starts search from beginning of edit buffer
+
+		Global	Causes search/replace to operate to the end of the
+			file, performing disk buffering if necessary.  Also
+			causes "Begin" option to start search from beginning
+			of the file.
+
+		Reuse	Causes the previous search and replace strings to be
+			reused.
+
+\RE\
+
+[REPLACE]		Performs a selective replace.  Prompts for string to
+			be replaced, then prompts for replacement string.
+			Searches for the next occurrence of the string, and if
+			found gives the prompt:
+
+			REPLACE (Y / N / REST / CANCEL)?
+
+			Select one option by typing the corresponding letter
+			"Y", "N", "R" or "C".
+
+		Y	Make the replacement.
+		N	Do not make the replacement.
+		R	Make the replacement and replace all other occurrences
+			without prompting.
+		C	Do not make the replacement and cancel function.
+
+			Press [REPLACE] again to replace the next occurrence.
+			Use [REPEAT] nn [REPLACE] to replace up to "nn"
+			occurrences with prompting.
+
+\CA\
+
+[CANCEL]		[FIND] and [REPLACE] reuse the previous strings until
+			they are canceled with [CANCEL] or the search string
+			is not found.  [CANCEL] will also abort any function
+			taking place because of a [REPEAT] and will cancel any
+			function prompting on the status line for a text
+			register/marker number.
+
+\CT\
+
+[COPY TO TEXT REG]	The first time this key is hit, the position of the
+			cursor is (invisibly) marked, and the message "1 END"
+			is displayed on the status line. When the key is hit
+			while "1 END" is set, the status line prompts for a
+			digit "0 - 9" indicating the text register to be used.
+			The text block between the marked position and the
+			current cursor position is copied to the text
+			register.  Optionally, preceding the digit with a "+"
+			to indicates that the text is to be appended to any
+			text already in the register. Assuming there is enough
+			memory space for this "copy", the message "TEXT" is
+			displayed on the status line in place of the "1 END".
+			Hitting this key twice at the same cursor position
+			will empty the specified text register. Note that
+			either the beginning or the end of the text block may
+			be set first.
+
+\MT\
+
+[MOVE TO TEXT REG]	This is similar to [COPY TO TEXT REG], except that the
+			text block is deleted from the edit buffer after it is
+			moved to the text register.
+
+\IT\
+
+[INSERT TEXT REG]	Prompts for a digit "0 - 9" indicating which text
+			register is to be inserted at the current cursor
+			position.  The register itself is not changed. The
+			cursor will be moved past the inserted text if this
+			option is selected with the command switch "ES 4".
+
+\PR\
+
+[PRINT TEXT]		This is activated similar to the [COPY TO TEXT REG],
+			only no digit needs to be typed.  The block of text is
+			then printed.  A <CTRL-C> will abort the printing.
+
+\SM\
+
+[SET TEXT MARKER]	Prompts for a digit "0 - 9". Sets an invisible text
+			marker which will automatically adjust as text is
+			inserted and deleted.
+
+\GM\
+
+[GOTO TEXT MARKER]	Prompts for a digit "0 - 9".  Moves the cursor to the
+			position of the specified text marker.  If the marker
+			has not been set or has been reset, moves the cursor
+			home.
+
+\FP\
+
+[FORMAT PARAGRAPH]	Formats the paragraph that the cursor is in so that
+			all of the text appears between a left and right
+			margin. The left margin is the current Indent
+			Position, and the right margin is the current Word
+			Wrap column. Following the format, the cursor will be
+			positioned at the beginning of the next paragraph.
+			Print formatter commands will not be formatted.  The
+			paragraph will also be justified if this option is
+			selected with the command switch "ES 11 1".
+
+\ES\
+
+[VISUAL ESCAPE]		This is identical to the [VISUAL EXIT], except that
+			any current command execution is aborted.
+
+\EX\
+
+[VISUAL EXIT]		Visual Mode is exited to Command Mode.  The current
+			cursor position in the edit buffer will become the
+			Command Mode edit pointer position. Depending upon the
+			value of the "Clear screen on visual exit" switch, the
+			command prompt will appear either on a clear screen or
+			just below the status line.
+
+\VM\
+[MACRO]			Executes a command macro.  Prompts for a digit "0 - 9"
+			indicating which text register contains the macro to be
+			executed.
+
+\RS\
+
+[RESTART]		The entire file being edited is saved on disk
+			(including any unappended portion of the input file).
+			A new edit session is then started on the same file.
+			The edit position and text markers are all restored.
+
+\HE\
+
+[HELP]			You are successfully using the HELP function.  In
+			addition to help with the edit functions, the last
+			help menu screen includes a menu of common Visual Mode
+			topics.  Help is available in the Command Mode with
+			the "H" and "EH" commands.
+
+\1END\
+1 END		Appears when you have marked one end of the text with the
+		[PRINT], [MOVE] or [COPY] functions.  If you forget where the
+		text is marked, type [GOTO] + RETURN to move the cursor to the
+		marked position.  Type it again to restore cursor position.
+
+\TEXT\
+TEXT		Indicates there there is text in at least one text register.
+
+\FULL\
+FULL		Appears when memory is full, or following a [COPY], [MOVE] or
+		[INSERT] function if there was insufficient memory to perform
+		it.
+
+\INS\
+INSERT		Indicates that you are in Insert Mode.  Any typed
+		text will be inserted and not overwrite the existing text.
+
+\FIND\
+FIND		This message is the prompt to enter the text string to be
+		searched for the [FIND] or [REPLACE] functions. The text
+		string may be up to 30 characters long and is followed with a
+		RETURN.  Use <CTRL-N> to search for a RETURN.  If you
+		immediately type a RETURN you will be prompted for the search
+		options.  See help for [FIND] for more information.
+
+\REPL\
+REPLACE		This message is the prompt to enter the replacement string for
+		the [REPLACE] function.  The replacement string may be up to
+		30 characters long and is followed with a RETURN.  Use
+		<CTRL-N> to enter a RETURN.  Abort by pressing [CANCEL].
+
+
+\WRAP\
+
+To enable word wrap, the word wrap column (the right margin for paragraphs)
+must be set in Command Mode with the command "EP 7 nn" where 'nn' is the
+desired column.
+
+\MARG\
+Set the indentation (the left margin for paragraphs) with the [INDENT] and
+[UNDENT] keys.  This changes the margin by an "increment", typically 4.
+Change the "increment" in Command Mode with the command "EP 3 nn" where 'nn'
+is the new increment.
+
+\FORM\
+[FORMAT PARAGRAPH] will format (or re-format) a paragraph between the current
+left margin (set with [INDENT] and [UNDENT]) and the current word wrap column
+(set with the command parameter "EP 7 nn").  Optionally the paragraph will be
+right justified if this is selected with the command switch "ES 11 1".
+
+\PR\
+Print text in Visual Mode by first positioning the cursor to the beginning of
+the text to be printed and pressing [PRINT].  Then position the cursor PAST
+the end of the text to be printed (generally the beginning of the next line)
+and press [PRINT] again.  Text should now print.  Type <CTRL-C> to abort the
+printing.  It is usually easier to print the entire document in Command Mode
+with the command "B #EO".
+
+\HZ\
+The screen may be scrolled horizontally by pressing [SCROLL RIGHT] and
+[SCROLL LEFT].  The status line indicates which column the left edge of the
+screen is set to.  The maximum line length with horizontal scrolling is set
+with the command parameter "EP 10 nnn".  Lines longer than this margin are
+wrapped to the next screen line.  The horizontal scrolling works in
+"increments", typically 20 columns.  Change the scrolling increment with the
+command parameter "EP 11 nn".
+
+\IC\
+Control characters may be inserted into the text by first pressing [NEXT CHAR
+LITERAL] and then typing the desired control character such as <ESC>,
+<CTRL-C>, etc.  Control characters in the text are often needed to control
+printer functions such as font changes, underlining and overstrike. The
+Command Mode "EI" command can also be used to insert control characters.  If
+you use a sequence of control characters over and over again, you may want to
+store it in a text register and then insert the text register when needed.
+
+\CONV\
+Several options are available for converting lower case letters to upper
+case.  They are control with the command parameter "EP 4 n".
+
+	EP 4 0	No conversion is made
+
+	EP 4 1	All lower case letters are converted to upper case
+
+	EP 4 2	Only lower case letters to the left of the "conditional
+		conversion character", typically ";" are converted to upper
+		case.  Useful for assembly language programming.
+
+	EP 4 3	To the left of the "conditional conversion character", lower
+		case letters are converted to upper case and upper case
+		letters are converted to lower case.
+
+		The "conditional conversion character" may be changed with the
+		command parameter "EP 5 nn".
+
+\EXIT\
+You can exit from Visual Mode to Command Mode with the functions [VISUAL
+EXIT] or [VISUAL ESCAPE].  In most cases there will is no difference and you
+can press either function. However, if a command macro or an iteration loop
+is executing, [VISUAL EXIT] will exit and leave the macro or loop executing,
+while [VISUAL ESCAPE] will abort any macro or iteration loop.
+
+\EMPTY\
+It is best to empty a text register when its contents are no longer needed.
+This frees up more memory space too.
+
+In Visual Mode press [MOVE TO TEXT REGISTER] twice in succession.  It does
+not matter where the cursor is.  When prompted, type a digit "0 - 9" to
+specify which register to empty.
+
+Registers can also be emptied in Command Mode.  The command to empty register
+9 is "0P9", to empty register 5 is "0P5", etc.
+
+\\
+

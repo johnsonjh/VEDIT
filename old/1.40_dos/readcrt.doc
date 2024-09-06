@@ -1,0 +1,85 @@
+
+              ADDITIONAL NOTES FOR CRT TERMINALS
+
+     This file contains additional notes regarding the terminals
+supported by the INSTALL program.
+
+     Hazeltine terminal users should note  that  there  are  two
+Hazeltine  entries in the menu of terminals.  One terminal entry
+is for Hazeltine and Volker Craig terminals which  use  the  '~'
+character  (code  7E  hex) as an escape leadin, and the other is
+for terminals which use the "ESC" character as a leadin.
+
+     On Hazeltine terminals you must set the  "Auto  LF"  option
+switch to the OFF position.  This will not affect the terminal's
+operation, but is necessary for VEDIT to work properly.
+
+     Following your selection of a terminal from the  menu,  the
+customization   program   asks   for  up  to  two  "Escape  Mode
+Characters", in case you are using  escape  sequences  from  the
+keyboard.  Your terminal may also send escape sequences when you
+type a function key.  For example, the  Heath/Zenith  H19  sends
+escape sequences beginning with the ESC character. The Televideo
+920C sends escape sequences beginning with "CTRL-A".
+
+     The next two questions are "Enter Common 2nd  Character  #1
+in Escape Sequence" and "Enter Common 2nd Character #2 in Escape
+Sequence".  Simply answer with a <RETURN> if you are  not  using
+escape  sequences  or are typing them in by hand.  However, some
+terminal's special function keys send 3 letter escape  sequences
+where  the  second  letter  is  always  the  same  and should be
+ignored.  In this case, answer with this second character.
+
+     For example, on the H19 using Heath Mode, the PF1 key sends
+an "ESC ? p", the PF2 key sends an "ESC ? r" and so on.  In this
+case, the "?"  is  the  "Common  2nd  Character  #1...".  Answer
+RETURN to "Common 2nd Character #2...".
+
+     On  the  VT-100,  VT-180 and other ANSI standard terminals,
+the function keys send sequences such as "ESC O A", "ESC  O  B",
+"ESC [ H", "ESC [ I", etc, where both the "O" and "[" are common
+2nd characters which are to be ignored.  Therefore  "Common  2nd
+Character  #1..."  should be answered with a "O" (capital letter
+O), and "Common 2nd Character #2..." should be answered  with  a
+"[".
+
+     Some  terminals,  like  the  IBM 3101, also send a Carriage
+Return  at  the  end  of   escape   sequences.    The   keyboard
+customization  detects  this  automatically  and you need not be
+concerned with it.
+
+     While most terminals  have  24  lines,  some  have  a  25th
+"Status  Line".   On  some of these, it is possible for VEDIT to
+place its status line on the 25th line.  To use  the  25th  line
+answer the question "Enter Number of Screen Lines"  with a "25".
+Note that  the Intertube must be specified as having  25  lines.
+VEDIT  cannot  use the status lines on the TELEVIDEO or IBM 3101
+terminals.
+
+     In the CRT version of VEDIT, the right-most column  of  the
+screen  is  not  used.   This  is  necessary  because  many  CRT
+terminals perform a scroll when the last column  in  the  bottom
+row  is  written.   If  loosing this last column is a problem to
+you, and you are sure that your CRT does not scroll when writing
+the  last  screen  position,  you  may  customize VEDIT with the
+screen  length  value  one  larger   than   the   true   length.
+Specifically,  the  H19  may  be  customized with a "81" for the
+screen length parameter (customization Task 10.2).
+
+     If  you have a terminal which is not mentioned in the menu,
+you can add or modify a table entry  with  the  INTMOD  program.
+See the file NEWCRT.DOC for further details on operation of this
+program.
+
+     While we  have  made  every  effort  to  support  each  CRT
+terminal  correctly,  it  is not feasible for anyone to test all
+models  of  every   manufacturer.    Should   you   notice   any
+aberrations,  such  as scrambled lines or lost characters, it is
+almost certainly due to an incorrect setting on your terminal or
+an  error in the support for your terminal.  Please be sure that
+any switches pertaining to cursor addressing, editing  functions
+and  correct  "Escape Sequence Lead In" are enabled.  Should you
+have any suggestions  or  difficulties,  no  matter  how  minor,
+please contact us.  Should you write, please include your office
+and home phone numbers.
+

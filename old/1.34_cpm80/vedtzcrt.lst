@@ -1,0 +1,463 @@
+
+TDL Macro assembler								Page 1
+
+VEDIT  -
+
+
+				]
+				IF	MEMVRS, [
+				.INSERT VEDIT-M3
+				.PRNTX	/VEDIT-M3/
+				]
+			;
+			;	CRT version -
+			;
+				]
+				IF	CRTVRS, [
+				.INSERT	VEDIT-T3
+
+TDL Macro assembler								Page 2
+
+VEDIT  -
+
+
+1EC0				ORG	. & 0FFE0H + 20H
+			;********************************************************
+			;*							*
+			;*	CRT Terminal Dependent Routines and Tables	*
+			;*							*
+			;********************************************************
+			;
+			;
+			; CRTSET - Address the cursor.
+			;	   Enter with L = vertical row #.  Top row = 1.
+			;	   H = horizontal column #.  Left column = 0.
+			;
+1EC0	C5		CRTSET:	PUSH	B		;Save char. in C.
+1EC1	D5			PUSH	D
+1EC2	225125			SHLD	CRTVER		;Save as simulated cursor pos.
+1EC5	EB			XCHG			;Save pos. in DE.
+1EC6	1D			DCR	E		;Adjust so that top left is 0,0.
+1EC7	210320			LXI	H,ADDLED	;HL-> cursor lead in table.
+1ECA	CD2D1F			CALL	CRTCRL		;Send cursor address lead in.
+1ECD	211820			LXI	H,ADDOFF	;HL-> cursor address info.
+1ED0	7E			MOV	A,M		;Get column or line first switch.
+1ED1	E601			ANI	1		;Is the line # sent first?
+1ED3	2803			JRZ	CRTSE1		;Yes, D & E are set.
+1ED5	7A			MOV	A,D		;No, switch D & E.
+1ED6	53			MOV	D,E
+1ED7	5F			MOV	E,A
+1ED8	23		CRTSE1:	INX	H		;HL-> first byte offset.
+1ED9	7B			MOV	A,E		;Get first addr. coordinate.
+1EDA	86			ADD	M		;Add the offset.
+1EDB	E5			PUSH	H		;Save HL-> ADDOFF.
+1EDC	CDF51E			CALL	WRTADD		;Send address to CRT, convert if necessary.
+1EDF	210A20			LXI	H,ADDMID	;HL-> middle char. table.
+1EE2	CD2D1F			CALL	CRTCRL		;Send any chars between first and second byte.
+1EE5	E1			POP	H		;Restore HL.
+1EE6	23			INX	H		;HL-> second byte offset.
+1EE7	7A			MOV	A,D		;Get second addr. coordinate.
+1EE8	86			ADD	M		;Add the offset.
+1EE9	CDF51E			CALL	WRTADD		;Send address to CRT, convert if necessary.
+			;
+1EEC	211120			LXI	H,ADDEND	;HL-> cursor address end table.
+1EEF	CD2D1F			CALL	CRTCRL		;Send any chars to end sequence.
+1EF2	D1			POP	D
+1EF3	C1			POP	B		;Restore char in C.
+1EF4	C9			RET
+			;
+			; WRTADD - Send the cursor address in Reg. A to CRT and convert
+			;	   to Ascii if necessary.
+			;
+1EF5	4F		WRTADD:	MOV	C,A		;Save char. in C.
+1EF6	211820			LXI	H,ADDOFF	;HL-> cursor address info.
+1EF9	7E			MOV	A,M		;Get Binary or Ascii address switch.
+1EFA	E680			ANI	80H		;Is address to be converted to Ascii?
+1EFC	2829			JRZ	WRTAD5		;No, send address in C to CRT.
+			;
+1EFE	79			MOV	A,C		;Yes, get address in A.
+1EFF	013130			LXI	B,03031H	;Get B = '0' is blanking flag, C = '1'.
+
+TDL Macro assembler								Page 3
+
+VEDIT  -
+
+
+							;If your CRT needs leading zeroes, let B = 2F hex.
+1F02	FE64			CPI	100		;Is pos. > 99?
+1F04	3809			JRC	WRTAD1		;No, branch around.
+1F06	D664			SUI	100		;Yes, subtract the 100.
+1F08	05			DCR	B		;Clear the blanking flag.
+1F09	CD440D			CALL	WRTCON		;Send the '1' to CRT.
+1F0C	CD0422			CALL	CHKKYB		;Check for keyboard char.
+			;
+1F0F	0E30		WRTAD1:	MVI	C,'0'		;Init tens counter to '0'.
+1F11	D60A		WRTAD2:	SUI	10		;Subtract ten.
+1F13	3803			JRC	WRTAD3		;Branch on overflow.
+1F15	0C			INR	C		;Tens = tens + 1.
+1F16	18F9			JMPR	WRTAD2		;Continue.
+			;
+1F18	C63A		WRTAD3:	ADI	'0'+10		;Restore from underflow and make Ascii.
+1F1A	F5			PUSH	PSW		;Save Ones digit.
+1F1B	79			MOV	A,C		;Get the tens count.
+1F1C	B8			CMP	B		;Is tens count zero, and to be blanked?
+1F1D	2806			JRZ	WRTAD4		;Yes, don't send zero to CRT.
+1F1F	CD440D			CALL	WRTCON		;Send the tens count to CRT.
+1F22	CD0422			CALL	CHKKYB		;Check for keyboard char.
+			;
+1F25	F1		WRTAD4:	POP	PSW		;Restore Ones digit.
+1F26	4F			MOV	C,A		;Get the Ones digit.
+1F27	CD440D		WRTAD5:	CALL	WRTCON		;Send the digit to the CRT.  (Zero not blanked)
+1F2A	C30422			JMP	CHKKYB		;Check for keyboard char.
+			;
+			; CRTCRL - Send escape sequence to CRT and perform any necessary delay.
+			;	   Enter: HL-> escape sequence table, consisting of escape
+			;	   sequence count byte, followed by the bytes making up the
+			;	   sequence, followed by any delay in milliseconds.
+			;
+1F2D	7E		CRTCRL:	MOV	A,M		;Get the char. count.
+1F2E	B7			ORA	A		;Test for initial zero.
+1F2F	C8			RZ			;Yes, return now.
+1F30	47			MOV	B,A		;Put the count in B.
+1F31	23		CRTCR1:	INX	H		;HL-> escape char.
+1F32	4E			MOV	C,M		;Get the next char.
+1F33	CD0422			CALL	CHKKYB		;Keyboard check.
+1F36	CD440D			CALL	WRTCON		;Send to CRT.
+1F39	10F6			DJNZ	CRTCR1		;Continue sending bytes.
+			;
+1F3B	CD0422			CALL	CHKKYB		;Keyboard check.
+			;
+1F3E	23			INX	H		;HL-> delay byte.
+1F3F	7E			MOV	A,M		;Get the delay in milliseconds.
+1F40	B7			ORA	A		;Is there a delay?
+1F41	C8			RZ			;No, return now.
+1F42	C3F321			JMP	DELAY		;Yes, do a delay.
+			;
+			;
+			;	Clear Screen Routines.
+			;
+			; CLRSCR - Clear entire screen.
+			;
+1F45	3A2220		CLRSCR:	LDA	ESCEOS		;Get count for EOS sequence.
+
+TDL Macro assembler								Page 4
+
+VEDIT  -
+
+
+1F48	B7			ORA	A		;Does CRT have EOS sequence?
+1F49	3E00			MVI	A,0		;Assume Yes, start at top line.
+1F4B	2014			JRNZ	CLRSC2		;Yes, merge in below to send EOS.
+			;
+			;	If EOS not available, send Clear screen sequence.
+			;
+1F4D	CD791D			CALL	STBRFL		;Set flag to write new border.
+1F50	211B20			LXI	H,ESCCLR	;HL-> escape char. table.
+1F53	CD2D1F			CALL	CRTCRL		;Perform the clear.
+1F56	AF			XRA	A		;Get a zero.
+1F57	323E25			STA	USEDLN		;No lines are used.
+1F5A	210000		CLRCUR:	LXI	H,0000		;Get two zeros.
+1F5D	225125			SHLD	CRTVER		;Force CRT cursor set.
+1F60	C9			RET
+			;
+			; CLRSC2 - Clear rest of screen from begin of next line # in Reg. A.
+			;
+1F61	213E25		CLRSC2:	LXI	H,USEDLN	;HL-> # screen lines not clear.
+1F64	BE			CMP	M		;Is screen below last used line clear?
+1F65	30F3			JRNC	CLRCUR		;Yes, return.
+1F67	3C			INR	A		;No, get line # of first line to clear.
+1F68	6F			MOV	L,A		;Get line # for begin of EOS.
+1F69	2600			MVI	H,00		;Start at left margin.
+1F6B	CDC01E			CALL	CRTSET		;Address the cursor.
+							;Erase rest of the screen.
+			;
+			; CRTEOS - Clear to end of Screen from cursor position.
+			;
+1F6E	CD791D		CRTEOS:	CALL	STBRFL		;Set flag to write new border.
+1F71	3A5125			LDA	CRTVER		;Get line # from which to clear.
+1F74	47			MOV	B,A		;Save number.
+1F75	212220			LXI	H,ESCEOS	;HL-> escape char. table.
+1F78	7E			MOV	A,M		;Get count for EOS sequence.
+1F79	B7			ORA	A		;Does CRT have EOS sequence?
+1F7A	78			MOV	A,B		;Get back line # for performing EOS.
+1F7B	2805			JRZ	CTEOS1		;No, simulate EOS with multiple EOLs.
+1F7D	323E25			STA	USEDLN		;Yes, update # used lines.
+1F80	18AB			JMPR	CRTCRL		;Perform the screen clear.
+			;
+			;	Simulate an EOS using multiple EOLs.
+			;
+1F82	3D		CTEOS1:	DCR	A		;Adjust for CMP below.
+1F83	213E25			LXI	H,USEDLN	;HL-> # screen lines not clear.
+1F86	BE			CMP	M		;Is screen below LINCNT clear?
+1F87	30D1			JRNC	CLRCUR		;Yes, return, force cursor set.
+			;
+1F89	3C			INR	A		;A = original line # for EOS.
+1F8A	F5			PUSH	PSW		;Save line # for EOS.
+1F8B	7E			MOV	A,M		;No, get last used line #.
+1F8C	6F			MOV	L,A		;Set to line to be erased.
+1F8D	2600			MVI	H,00		;Set to column zero.
+1F8F	CDC01E			CALL	CRTSET		;Position the cursor.
+1F92	CD9C1F			CALL	CRTEOL		;Erase the line.
+1F95	213E25			LXI	H,USEDLN	;HL-> # screen lines not clear.
+1F98	35			DCR	M		;Account for line just erased.
+1F99	F1			POP	PSW		;Restore last used line #.
+
+TDL Macro assembler								Page 5
+
+VEDIT  -
+
+
+1F9A	18E6			JMPR	CTEOS1		;Continue.
+			;
+			; CRTEOL - Clear to end of Line from cursor position.
+			;
+1F9C	215125		CRTEOL:	LXI	H,CRTVER	;Get current cursor line #.
+1F9F	3A3E25			LDA	USEDLN		;Get # screen lines used.
+1FA2	BE			CMP	M		;Is rest of current line clear?
+1FA3	D8			RC			;Yes, return.
+							;{WTSLFW}
+1FA4	212920		CREOL0:	LXI	H,ESCEOL	;HL-> escape char. table.
+1FA7	7E			MOV	A,M		;Get count for EOL sequence.
+1FA8	B7			ORA	A		;Does CRT have EOL sequence?
+1FA9	C22D1F			JNZ	CRTCRL		;Yes, perform the line clear.
+			;
+			;	Simulate EOL by sending out spaces to end of line.
+			;
+1FAC	3A1728			LDA	LINELN		;No, get display line length.
+1FAF	215225			LXI	H,CRTHOR	;HL-> horiz. cursor pos.
+1FB2	96			SUB	M		;Compute # pos. to clear.
+1FB3	47			MOV	B,A		;Put count in B.
+1FB4	0E20			MVI	C,20H		;Clear with spaces.
+1FB6	2806		CREOL1:	JRZ	CREOL2		;Branch when count is zero.
+1FB8	CD440D			CALL	WRTCON		;Send a space to the CRT.
+1FBB	05			DCR	B		;Decrement count.
+1FBC	18F8			JMPR	CREOL1		;Continue.
+			;
+1FBE	CD0522		CREOL2:	CALL	CHKKYA		;Keyboard check.
+1FC1	2A5125			LHLD	CRTVER		;Get desired cursor pos.
+1FC4	C3C01E			JMP	CRTSET		;Reset the cursor.
+			;
+			;
+			; CRTINS, CRTDEL - Insert and delete a line on the CRT.
+			;	Note: Some CRTs need to be a special mode for Insert and Delete.
+			;
+1FC7	213020		CRTINS:	LXI	H,ESCINS	;HL-> escape char. table.
+1FCA	C32D1F			JMP	CRTCRL		;Insert a line.
+			;
+1FCD	213720		CRTDEL:	LXI	H,ESCDEL	;HL-> escape char. table.
+1FD0	C32D1F			JMP	CRTCRL		;Delete a line.
+			;
+			; CRTFSL, CRTBSL - Perform forward and backward scroll on CRT.
+			;
+1FD3	213E20		CRTFSL:	LXI	H,ESCFSL	;HL-> escape char. table.
+1FD6	C32D1F			JMP	CRTCRL		;Scroll forward.
+			;
+1FD9	214520		CRTBSL:	LXI	H,ESCBSL	;HL-> escape char. table.
+1FDC	C32D1F			JMP	CRTCRL		;Scroll backward.
+			;
+			; CRTVDR, CRTVDN - Enable and disable reverse video characters.
+			;
+1FDF	214C20		CRTVDR:	LXI	H,ESCVDR	;HL-> escape char. table.
+1FE2	C32D1F			JMP	CRTCRL		;Enable reverse video mode.
+			;
+1FE5	215320		CRTVDN:	LXI	H,ESCVDN	;HL-> escape char. table.
+1FE8	C32D1F			JMP	CRTCRL		;Disable reverse video mode.
+			;
+
+TDL Macro assembler								Page 6
+
+VEDIT  -
+
+
+			; CRTSTE, CRTSTD - Enable and disable the 25th status line.
+			;
+1FEB	215A20		CRTSTE:	LXI	H,ESCSTE	;HL-> escape char. table.
+1FEE	C32D1F			JMP	CRTCRL		;Enable status line.
+			;
+1FF1	216120		CRTSTD:	LXI	H,ESCSTD	;HL-> escape char. table.
+1FF4	C32D1F			JMP	CRTCRL		;Disable status line.
+			;
+			; CRTENT, CRTEXT - Setup and Reset the CRT for Visual mode editing.
+			;
+1FF7	216820		CRTENT:	LXI	H,ESCENT	;HL-> escape char. table.
+1FFA	C32D1F			JMP	CRTCRL		;Setup CRT on Visual mode entry.
+			;
+1FFD	216F20		CRTEXT:	LXI	H,ESCEXT	;HL-> escape char. table.
+2000	C32D1F			JMP	CRTCRL		;Reset CRT on visual mode exit.
+			;
+			;
+			;	These are the terminal dependent Escape sequence tables.
+			;	They are set during customization by selecting a CRT in the menu.
+			;
+			; ADDLED, ADDMID and ADDEND are for Cursor Addressing.
+			;
+2003	01		ADDLED:	DB	1		;Count for Cursor Lead In.
+2004	02			DB	002H		;First byte of sequence.
+2005	00			DB	000H		;Second byte.
+2006	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+200A	00		ADDMID:	DB	0		;Count for chars between X & Y.
+200B	00			DB	00		;Note: some require a "," between the X & Y.
+200C	00			DB	00
+200D	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+2011	00		ADDEND:	DB	0		;Count for terminate chars.
+2012	00			DB	00
+2013	00			DB	00
+2014	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+			; ADDOFF - Table for Cursor addressing information.  Specifies whether
+			;	   the address is sent in binary or Ascii and whether the row
+			;	   or column byte is sent first, and the offset to add to the
+			;	   row and column addresses.
+			;
+2018	01		ADDOFF:	DB	1		;Bit 0 : 0 = ROW first then COLUMN
+							;	 1 = COLUMN first then ROW
+							;Bit 7 : 0 = Address in Binary
+							;	 1 = Address in Ascii
+2019	00			DB	000H		;First offset
+201A	00			DB	000H		;Second offset.
+			;
+			;	Escape sequence table for other functions.
+			;
+201B	00		ESCCLR:	DB	00		;Count for CLEAR sequence.
+201C	00			DB	00H		;First byte.
+201D	00			DB	00H		;Second byte.
+201E	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+
+TDL Macro assembler								Page 7
+
+VEDIT  -
+
+
+2022	01		ESCEOS:	DB	1		;Count for EOS sequence.
+2023	07			DB	007H
+2024	00			DB	000H
+2025	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+2029	01		ESCEOL:	DB	1		;Count for EOL sequence.
+202A	F8			DB	0F8H
+202B	00			DB	000H
+202C	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+2030	01		ESCINS:	DB	1		;Count for INSERT LINE sequence.
+2031	14			DB	014H
+2032	00			DB	000H
+2033	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+2037	01		ESCDEL:	DB	1		;Count for DELETE line sequence.
+2038	15			DB	015H
+2039	00			DB	00H
+203A	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+203E	01		ESCFSL:	DB	01		;Count for FORWARD SCROLL sequence.
+203F	0A			DB	0AH
+2040	00			DB	00H
+2041	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+2045	01		ESCBSL:	DB	01		;Count for BACKWARD SCROLL sequence.
+2046	17			DB	017H		;The "Insert Line" should work too.
+2047	00			DB	00H
+2048	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+204C	01		ESCVDR:	DB	01		;Count for BEGIN REVERSE VIDEO sequence.
+204D	F2			DB	0F2H
+204E	00			DB	00H
+204F	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+2053	01		ESCVDN:	DB	01		;Count for END REVERSE VIDEO sequence.
+2054	F2			DB	0F2H
+2055	00			DB	00H
+2056	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+205A	00		ESCSTE:	DB	00		;Count for ENABLE STATUS LINE sequence.
+205B	00			DB	00H
+205C	00			DB	00H
+205D	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+2061	00		ESCSTD:	DB	00		;Count for DISABLE STATUS LINE sequence.
+2062	00			DB	00H
+2063	00			DB	00H
+2064	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+2068	00		ESCENT:	DB	00		;Count for ENTER VISUAL MODE sequence.
+2069	00			DB	00H
+206A	00			DB	00H
+206B	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+206F	00		ESCEXT:	DB	00		;Count for EXIT VISUAL MODE sequence.
+
+TDL Macro assembler								Page 8
+
+VEDIT  -
+
+
+2070	00			DB	00H
+2071	00			DB	00H
+2072	00000000		DB	00,00,00,00	;Spare bytes.
+			;
+			;
+2076				DS	40H		;User Patch space.
+				.PRNTX	/VEDIT-T3/
+				]
+			;
+			;	PIICEON and TDL -
+			;
+				]
+				IF	PICVRS ! TDLVRS, [
+				.INSERT	VEDIT-P3
+				.PRNTX	/VEDIT-P3/
+				]
+			;
+			;	Back to all versions -
+			;
+				]
+
+TDL Macro assembler								Page 9
+
+VEDIT  -
+
+
+			;
+			;	These are the alternate Console I/O entry points when direct
+			;	I/O calls in MP/M are used.  Note that although BDOS CALL 6
+			;	is used, these routines only work for MP/M since CP/M 2.2 and
+			;	MP/M are quite different in this regard.  Enough patch space
+			;	is provided for conversion to CP/M 2.2, or for special user
+			;	interfacing.
+			;
+22B3	C3BF22		MPMTBL:	JMP	MPMST		;This table is copied to the BIOS jump
+22B6	C3CC22			JMP	MPMIN		;vectors below for the MPM version.
+22B9	C3DF22			JMP	MPMOUT
+22BC	C3E922			JMP	MPMLST
+			;
+22BF	0E06		MPMST:	MVI	C,CONSIO	;Perform direct console I/O.
+22C1	1EFE			MVI	E,0FEH		;FE denotes console status.
+22C3	C30500			JMP	BDOS		;Get input status.
+22C6				DS	6		;Patch space for STA TEMPCH, RET
+			;
+22CC	0E06		MPMIN:	MVI	C,CONSIO	;No, perform direct console input.
+22CE	1EFF			MVI	E,0FFH		;FF denotes console input.
+22D0	C30500			JMP	BDOS		;Get console char. when available.
+22D3				DS	12		;Patch space.
+			;
+22DF	59		MPMOUT:	MOV	E,C		;Put the character in E.
+22E0	0E06			MVI	C,CONSIO	;Perform direct console I/O.
+22E2	C30500			JMP	BDOS		;Send char. to console through CPM.
+22E5				DS	4		;Patch space.
+			;
+22E9	59		MPMLST:	MOV	E,C		;Put the character in E.
+22EA	0E05			MVI	C,5		;Perform BDOS listing.
+22EC	C30500			JMP	BDOS		;Send char. to listing through CPM.
+22EF				DS	4		;Patch space.
+			;
+			;
+			; Internal copy of BIOS I/O jump vectors.
+			;
+22F3	C30000		CONST:	JMP	00		;Console status.
+22F6	C30000		CONINA:	JMP	00		;Get console character.
+22F9	C30000		CONOUT:	JMP	00		;Send console character.
+22FC	C30000		LSTOUT:	JMP	00		;Send listing character.	.PRNTX	/VEDIT-S2/
+			;
+

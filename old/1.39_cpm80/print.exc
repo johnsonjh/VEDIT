@@ -1,0 +1,46 @@
+r* The "b" alows printing to start from the beginning
+b
+r* The "yl" reroutes output to the printer
+r* The "1xs1" sets value register 1 used as a page counter to 1
+r* First 1 blank line is printed
+r*
+yl 1xs1
+[@yt/
+/
+r* Then the file name and page number are printed
+r*
+@yt/FILE: /
+:yw
+@yt/                                        PAGE/
+xt1
+r* Next print 2 more blank lines
+r*
+@yt/
+
+/
+r* Now print 58 lines of text
+r* Note: A "EO" command would not work, since it would disable the "yl"
+r*
+58t
+r* The command "58L" will break out of the iteration if the end of the
+r* file is reached
+r*
+58l
+r* Otherwise print four more blank lines to start a new page
+r* Increment the page counter
+r*
+@yt/
+
+
+
+/
+xa1
+r* End the iteration loop
+r*
+]
+r* Send out a form-feed to the printer
+r*
+@yt//
+r*
+r* Thats the end
+

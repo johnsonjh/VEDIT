@@ -378,6 +378,13 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 []()
 * The [`zilint`](zilint) directory contains CompuView's Z80‑8086
   Translator macros.
+[]()
+
+[]()
+* The [`old`](old) directory contains several ancient versions of
+  VEDIT (1.31-1.40) released between 1981 and 1985.  These
+  distributions may be useful for extraordinarily obscure of extremely
+  memory constrained platforms.
 
 ## Future
 
@@ -396,6 +403,11 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 []()
 
 []()
+* Find VEDIT-PLUS 2.33b for DOS (or earlier releases) configured for
+  IBM PC memory mapped video hardware.
+[]()
+
+[]()
 * Find the source code for the `INSTALL` and `INTCOM` utilities.
 []()
 
@@ -405,7 +417,17 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 []()
 
 []()
-* Add V-PRINT, V-SPELL, V-COM, etc.
+* Add other CompuView products V-PRINT, V-SPELL, V-COM, etc. (sources
+  or binaries) to the repository.
+[]()
+
+[]()
+* Find 
+[]()
+
+[]()
+Can you help with any of the above?  If you can, please open an
+[issue](https://github.com/johnsonjh/VEDIT/issues) and let us know.
 
 ## License
 

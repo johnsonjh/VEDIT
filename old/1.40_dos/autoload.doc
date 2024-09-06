@@ -1,0 +1,73 @@
+
+       USING THE AUTO-STARTUP FEATURE IN VEDIT 1.40/1.18
+
+    VEDIT 1.40/1.18 supports a useful and powerful auto startup
+feature which will automatically execute a startup file on disk
+as a command macro.  When VEDIT is invoked,  it will search the
+default  drive,  followed  by  drive  'A',  for  a  file  named
+'VEDIT.INI'. If this file exists, VEDIT  will read it into text
+register #0, treat  the contents  of VEDIT.INI  as command mode
+instructions and execute  them before the  edit session begins.
+After execution  of  the  contents  of  VEDIT.INI,  VEDIT  will
+proceed with the edit session.
+
+     It is important to remember  that the auto-startup feature
+is optional. VEDIT will  not give an error  message if there is
+no VEDIT.INI file  on the  disk. If  there is  a VEDIT.INI file
+present on the disk, VEDIT will execute its contents EVERY TIME
+an edit session begins.
+
+     The auto-startup  file, VEDIT.INI,  may contain  any legal
+command mode commands,  as  described  in  the  VEDIT 1.40/1.18
+manual. Terminals such as the Ann Arbor Ambassador, VISUAL 200,
+the TeleVideo 950, etc., can be extensively initialized through
+the use of  VEDIT's  auto-startup  file.  This  can  be done by
+creating a  VEDIT.INI file  similar to  the example  below, and
+having it read into  TEXT REGISTER #1  an ASCII file containing
+programming information for the CRT terminal.
+
+     Another common  use for  the auto-startup  is to  load the
+text registers with text  or command macros  which you commonly
+use.   VEDIT's   operating    parameters   (word-wrap   column,
+conditional convert character, etc.)  can also be  setup in the
+VEDIT.INI file.
+
+
+     For example, a simple  VEDIT.INI file might  be created to
+program the function keys  on  a  CRT  terminal.  The Ann Arbor
+AMBASSADOR terminal may be programmed from the host computer to
+send custom ASCII codes for each  of its special function keys.
+To program these  output codes, an  ASCII file must  be sent to
+the terminal which  contains the relevant  escape sequences and
+control  characters.  In the example  below, the  file  A2SETUP
+contains the neccessary codes for reprogramming the terminal.
+
+     In order for VEDIT  to  send  this  file  to  the CRT, the
+following VEDIT.INI file must be created which will be executed
+by VEDIT at the start of the edit session:
+
+RL1 A2SETUP
+RD1
+0P1
+
+
+     When VEDIT finds the supplied VEDIT.INI file, the contents
+of the file are copied into TEXT REGISTER #0. VEDIT then begins
+to execute the following commands:
+
+
+RL1 A2SETUP           First, VEDIT is  instructed to search the
+                      diskette for a file called "A2SETUP" and,
+                      if found,  copy  its  contents  into TEXT
+                      REGISTER #1.
+
+RD1                   Second, VEDIT is  instructed to  type the
+                      contents  of  TEXT  REGISTER  #1  to  the
+                      screen. The 'RD'  command tells  VEDIT to
+                      NOT expand control characters as it types
+                      them to the CRT, but to send their actual
+                      values.
+
+0P1                   Third, VEDIT is  instructed to  clear the
+                      contents of TEXT REGISTER #1.
+

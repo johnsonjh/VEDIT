@@ -1,0 +1,39 @@
+                    HEATH H-19  VEDIT CONTROL KEYS
+        ---------------------------------------------------------------------
+        
+        Escape mode character           "ESC"
+        [HOME]                          ESC-H
+        [ZEND]                          ESC-Z
+        [CURSOR UP]                     UP ARROW
+        [CURSOR DOWN]                   DOWN ARROW
+        [CURSOR RIGHT]                  RIGHT ARROW
+        [CURSOR LEFT]                   LEFT ARROW
+        [TOGGLE INSERT MODE]            F1
+        [COPY TO TEXT REGISTER]         F3
+        [MOVE TO TEXT REGISTER]         F4
+        [INSERT TEXT REGISTER]          F5
+        [DELETE]                        DELETE
+        [ERASE EOL]                     "DC"
+        [ERASE LINE]                    "DL"
+        [UNDO]                          "HOME"
+        [ZIP]                           WHITE
+        [NEXT LINE]                     "LINE FEED"
+        [TAB CURSOR]                    RED
+        [BACK TAB CURSOR]               BLUE
+        [PAGE UP]                       "IC"
+        [PAGE DOWN]                     "IL"
+        [BACKSPACE]                     BACKSPACE
+        [TAB CHARACTER]                 TAB
+        [VISUAL ESCAPE]                 F2
+        [VISUAL EXIT]                   ESC-ESC
+        [RESTART EDITOR]                ESC-R
+        
+        Line continuation character = \   (5C)
+        Command iteration brackets =  []  (5B & 5D)
+        Spare memory after auto buffering = 7168 bytes
+        Size of auto buffer transfers = 10K bytes
+        Page up/down scroll = 18 lines
+        Top cursor line = 2
+        Bottom cursor line = 23
+        Status line on line 25
+
