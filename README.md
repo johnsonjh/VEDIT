@@ -400,32 +400,20 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
     translation package (or cross-assembler software).
   * Further investigation is required.  Once solved, the procedures
     need to be worked out and properly documented.
-[]()
 
-[]()
 * Find VEDIT-PLUS 2.33b for DOS (or earlier releases) configured for
   IBM PC memory mapped video hardware.
-[]()
 
-[]()
 * Find the source code for the `INSTALL` and `INTCOM` utilities.
-[]()
 
-[]()
 * Document `xterm`-compatible terminal settings for enabling arrow
   directional keys, etc.
-[]()
 
-[]()
 * Add other CompuView products V-PRINT, V-SPELL, V-COM, etc. (sources
   or binaries) to the repository.
-[]()
 
-[]()
-* Find 
-[]()
+* Find and archive other ancient VEDIT distributions.
 
-[]()
 Can you help with any of the above?  If you can, please open an
 [issue](https://github.com/johnsonjh/VEDIT/issues) and let us know.
 
