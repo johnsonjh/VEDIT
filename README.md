@@ -381,16 +381,6 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 
 ## Future
 
-* A few files still need to be located, for completeness.  (Of
-  course, the first two files can be easily created from the included
-  sources, but having them *exactly* as originally distributed would
-  be useful for comparison and archival purposes):
-  * `VPLUSZM.SET`: Pre-built CP/M‑80 Z80 Memory mapped version.
-  * `VPLUS8M.SET`: Pre-built CP/M‑80 8080 Memory mapped version.
-  * `VPLUS86M.SET`: Pre-built DOS 8086 Memory mapped version.
-[]()
-
-[]()
 * Building these sources for CP/M‑86 or DOS should be possible:
   * It seems that when building for 8086, the sources would be
     further translated by means of a currently unknown program; many
