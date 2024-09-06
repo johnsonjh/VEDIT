@@ -34,7 +34,7 @@ Theodore Green and Greenview Data Inc. (formerly CompuView Products,
 Inc.) of Ann Arbor, Michigan.
 
 This incarnation of VEDIT was created in 1979 and was commercially
-supported until 1988 (when it was superseded by VEDIT 3) and is the
+supported until 1988 (when it was superseded by VEDIT 3.x) and is the
 direct predecessor of the current [VEDIT](https://www.vedit.com/)
 product available from VEDIT, Inc.
 
