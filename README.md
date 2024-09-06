@@ -425,20 +425,20 @@ Can you help with any of the above?  If you can, please open an
 ## Documentation
 
 * VEDIT Manual (*1987*):
-  * [Introduction](doc/introduction.pdf)
-  * [Tutorial](doc/tutorial.pdf)
-  * [User Guide](doc/user_guide.pdf)
-  * [Programming Guide](doc/programming_guide.pdf)
-  * [Installation](doc/installation.pdf)
-  * [Quick Reference](doc/quick_reference.pdf)
-  * [Index](doc/index.pdf)
+  * [Introduction](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/introduction.pdf)
+  * [Tutorial](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/tutorial.pdf)
+  * [User Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/masterdoc/user_guide.pdf)
+  * [Programming Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/programming_guide.pdf)
+  * [Installation](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/installation.pdf)
+  * [Quick Reference](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/quick_reference.pdf)
+  * [Index](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/index.pdf)
 []()
 
 []()
 * [VEDIT Manual (*1980*)](doc/vdoc1980.txt)
-* [VEDIT Manual (*1981*)](doc/Compuview_VEDIT_1981.pdf)
-* [VEDIT Manual (*1983*)](doc/PT_VEDIT_Users_Manual_1983.pdf)
-* [VEDIT Manual (*1984*)](doc/VEDIT_Users_Manual_Nov84.pdf)
+* [VEDIT Manual (*1981*)](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/Compuview_VEDIT_1981.pdf)
+* [VEDIT Manual (*1983*)](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/PT_VEDIT_Users_Manual_1983.pdf)
+* [VEDIT Manual (*1984*)](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/VEDIT_Users_Manual_Nov84.pdf)
 
 ## Links
 
