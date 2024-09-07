@@ -42,13 +42,14 @@ This VEDIT ⧸ VEDIT‑PLUS source code can be assembled to produce
 binaries compatible with various processors (8080, Z80, etc.) and
 operating systems (CP/M, MP/M, CDOS, etc.).
 
-Historically, compatible VEDIT ⧸ VEDIT‑PLUS versions were adapted
-for CP/M‑80, MP/M‑80, CDOS, CP/M‑86, MP/M‑86, Concurrent CP/M‑86,
-REAL/32, SCP 86‑DOS, MS‑DOS, MSX‑DOS, Cromix, and Turbo DOS.
+Historically, compatible VEDIT ⧸ VEDIT‑PLUS versions were adapted to
+run on nearly any CP/M‑80, MP/M‑80, CDOS, CP/M‑86, MP/M‑86, Concurrent
+CP/M‑86, REAL/32, SCP 86‑DOS, MS‑DOS, MSX‑DOS, Cromix, Turbo DOS, and
+PC‑MOS/386 system.
 
-Later versions were available for PC‑MOS/386, CP/M‑68K, IBM
-4960/FlexOS, IBM OS/2, UNIX/Xenix, QNX, and Microsoft Windows (both
-16-bit Windows 3.1 and 32-bit Windows 95/NT).
+Later versions were available for CP/M‑68K, IBM 4960/FlexOS, IBM OS/2,
+UNIX/Xenix, QNX, and Microsoft Windows (both 16-bit Windows 3.1 and
+32-bit Windows 95/NT).
 
 Companion programs (*i.e.* V‑PRINT, V‑SPELL, V‑COM, Z80‑8086
 Translator, etc.) were also produced.
