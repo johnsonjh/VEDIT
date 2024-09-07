@@ -421,14 +421,15 @@ Can you help with any of the above?  If you can, please open an
 
 ## Documentation
 
-* VEDIT Manual (*1987*):
-  * [Introduction](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/introduction.pdf)
-  * [Tutorial](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/tutorial.pdf)
-  * [User Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/user_guide.pdf)
-  * [Programming Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/programming_guide.pdf)
-  * [Installation](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/installation.pdf)
-  * [Quick Reference](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/quick_reference.pdf)
-  * [Index](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/index.pdf)
+VEDIT Manual (*1987*):
+
+* [Introduction](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/introduction.pdf)
+* [Tutorial](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/tutorial.pdf)
+* [User Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/user_guide.pdf)
+* [Programming Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/programming_guide.pdf)
+* [Installation](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/installation.pdf)
+* [Quick Reference](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/quick_reference.pdf)
+* [Index](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/index.pdf)
 
 ### Older Manuals
 
@@ -445,6 +446,8 @@ Can you help with any of the above?  If you can, please open an
 
 ## See Also
 
-Other TECO-derived editing software was available CP/M systems, including:
+Other TECO-derived editing software was available for CP/M systems,
+including:
+
 * [TED](https://geezer.org/sw/cpm/ted/)
 * [PMATE](https://texteditors.org/cgi-bin/wiki.pl?PMATE)
