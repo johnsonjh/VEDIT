@@ -153,9 +153,9 @@ compressor.
 The following cross-development tools are highly recommended:
 
 * **ccom** is a cross-platform CP/M‑80 2.2 emulator *that supports
-  redirecting the list device output to a file*, suitable for running
-  the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX-like host.  It
-  is available as part of the
+  easily redirecting the list device output to a file*, suitable for
+  running the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX-like
+  host.  It is available as part of the
   [Portable MINCE](https://github.com/johnsonjh/pmince) repository.
 
 * [**cpm**](https://github.com/jhallen/cpm) is *Joe Allen*'s portable
