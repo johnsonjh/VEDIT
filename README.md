@@ -22,6 +22,7 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 - [License](#license)
 - [Documentation](#documentation)
 - [Links](#links)
+- [See Also](#see-also)
 
 <!-- tocstop -->
 
@@ -446,3 +447,9 @@ Can you help with any of the above?  If you can, please open an
 * [VEDIT, Inc.](https://www.vedit.com/)
 * [VEDIT History](https://web.archive.org/web/20130805180830/http://vedit.com/20Years.htm)
 * [Wikipedia: VEDIT](https://en.wikipedia.org/wiki/VEDIT)
+
+## See Also
+
+Other TECO-derived editing software was available CP/M systems, including:
+* [TED](https://geezer.org/sw/cpm/ted/)
+* [PMATE](https://texteditors.org/cgi-bin/wiki.pl?PMATE)
