@@ -21,6 +21,7 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 - [Future](#future)
 - [License](#license)
 - [Documentation](#documentation)
+  - [Older Manuals](#older-manuals)
 - [Links](#links)
 - [See Also](#see-also)
 
@@ -368,21 +369,15 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
   respectively.
   * This includes the `INSTALL` (and `INTCOM`) utilities used to
     tailor the executable to your specific system.
-[]()
 
-[]()
 * Help files are included in the [`hlp`](hlp) directory.  These help
   files should be verified and possibly modified to ensure the key
   bindings (or other source customizations) match what you are
   "shipping to the customer".
-[]()
 
-[]()
 * The [`zilint`](zilint) directory contains the final release of
   CompuView's Z80‑8086 Translator macros.
-[]()
 
-[]()
 * The [`old`](old) directory contains several ancient versions of
   VEDIT (1.31-1.40) released between 1981 and 1985.  These
   distributions may be useful for extraordinarily obscure of extremely
@@ -429,14 +424,14 @@ Can you help with any of the above?  If you can, please open an
 * VEDIT Manual (*1987*):
   * [Introduction](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/introduction.pdf)
   * [Tutorial](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/tutorial.pdf)
-  * [User Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/masterdoc/user_guide.pdf)
+  * [User Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/user_guide.pdf)
   * [Programming Guide](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/programming_guide.pdf)
   * [Installation](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/installation.pdf)
   * [Quick Reference](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/quick_reference.pdf)
   * [Index](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/index.pdf)
-[]()
 
-[]()
+### Older Manuals
+
 * [VEDIT Manual (*1980*)](doc/vdoc1980.txt)
 * [VEDIT Manual (*1981*)](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/Compuview_VEDIT_1981.pdf)
 * [VEDIT Manual (*1983*)](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/PT_VEDIT_Users_Manual_1983.pdf)
