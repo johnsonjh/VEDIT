@@ -18,7 +18,7 @@ VEDIT PLUS Ver. 2.33b 04/27/87
   - [Build Example](#build-example)
   - [Configuration Example](#configuration-example)
 - [Extras](#extras)
-  - [Old Binaries](#old-binaries)
+  - [Older Binaries](#older-binaries)
 - [Future](#future)
 - [License](#license)
 - [Documentation](#documentation)
@@ -379,7 +379,7 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * The [`zilint`](zilint) directory contains the final release of
   CompuView's Z80‑8086 Translator macros.
 
-### Old Binaries
+### Older Binaries
 
 * The [`old`](old) directory contains several "ancient" versions of
   VEDIT released between 1981 and 1985.  These distributions may be
