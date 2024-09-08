@@ -378,10 +378,10 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * The [`zilint`](zilint) directory contains the final release of
   CompuView's Z80‑8086 Translator macros.
 
-* The [`old`](old) directory contains several ancient versions of
-  VEDIT (1.31-1.40) released between 1981 and 1985.  These
-  distributions may be useful for extraordinarily obscure of extremely
-  memory constrained platforms.
+* The [`old`](old) directory contains several "ancient" versions of
+  VEDIT released between 1981 and 1985.  These distributions may be
+  incomplete, but useful for "archaeological" purposes, or testing on
+  extraordinarily obscure or extremely memory constrained platforms.
 
 ## Future
 
