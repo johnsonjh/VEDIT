@@ -449,5 +449,6 @@ VEDIT Manual (*1987*):
 Other TECO-derived editing software was available for CP/M systems,
 including:
 
-* [TED](https://geezer.org/sw/cpm/ted/)
 * [PMATE](https://texteditors.org/cgi-bin/wiki.pl?PMATE)
+* [TED](https://geezer.org/sw/cpm/ted/)
+* [Z-TEL](https://usenet.trashworldnews.com/?thread=101928)
