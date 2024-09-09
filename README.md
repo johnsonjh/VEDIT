@@ -427,6 +427,9 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 
 * Find and archive other ancient VEDIT ⧸ VEDIT‑PLUS distributions.
 
+* Collect and archive any significant commercial or community add-ons
+  or macros compatible with VEDIT ⧸ VEDIT‑PLUS up to 2.33b.
+
 Can you help with any of the above?  If you can, please open an
 [issue](https://github.com/johnsonjh/VEDIT/issues) and let us know.
 
