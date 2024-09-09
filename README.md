@@ -138,11 +138,6 @@ Some (non-fatal) errors currently occur and are not of major concern.
 Determining the actual error severity requires carefully examining
 the output sent to the list device.*
 
-The source code was very lightly modified to support building with
-these particular assembler versions.  These changes include removing
-the `DATE` definition, and a small patch to `VEDITT3` to expose the
-`HCRSOF` symbol when targeting the 8080/Z80.
-
 The HEX output produced by these assemblers can be directly converted
 to an executable COM file using the `HEXCOM` utility.
 
