@@ -128,9 +128,10 @@ The VEDIT ⧸ VEDIT‑PLUS sources are closely integrated with the TDL
 ZASM ⧸ PSA PASM conditional build system, and rely heavily on the
 features and quirks of these particular assemblers.
 
-TDL ZASM ⧸ PSA PASM only outputs diagnostics to the CP/M `LIST`
-device, usually a line printer.  Be sure to have a list device
-configured and online if you need to examine the assembler output.
+TDL ZASM ⧸ PSA PASM, by default, outputs diagnostics to the CP/M
+`LIST` device, usually a line printer.  Be sure to have a list device
+configured and online if you need to examine the assembler output,
+or specify the appropriate options to generate a `PRN` file on disk.
 
 *Be aware that TDL ZASM ⧸ PSA PASM make minimal distinctions
 between non-fatal warnings and fatal errors in the build summary.
