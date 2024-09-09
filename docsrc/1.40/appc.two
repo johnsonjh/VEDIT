@@ -1,0 +1,1285 @@
+.cm Last Change: Ted - Oct. 28, 1985
+.pw 70
+.rm 70
+.pi 15
+.il `
+.tm 2
+.hm 2
+.bm 1
+.fm 1
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.fo ////
+.sp 8
+.ce
+`OSA P P E N D I X   C`OS `TC~~~~~Appendix C - 8086 Computers`TC
+.sp
+.ce
+`OSE X A M P L E   K E Y B O A R D   L A Y O U T S`OS
+.sp
+.ce
+`OS8 0 8 6   C O M P U T E R S`OS
+.bp
+.sh /Appendix C/8086 Computers//
+~~
+.bp
+.sp 2
+.ce
+DESCRIPTION OF FILES ON DISK
+.sp
+.ce
+IBM PC (PCDOS) and TANDY 2000 (MS-DOS) `TC~~~~~~~~~~IBM PC and TANDY 2000 Files`TC
+.sp 2
+.nf
+.ju
+     The VEDIT files for the IBM Personal Computer and for the Tandy
+2000 are distributed on the same diskettes.  The following is a
+description of these files.  YOU DO NOT have to perform the
+customization process, described in the manual, to produce a runnable
+version of VEDIT.  You may use the pre-configured VEDIT supplied,
+which follows the "Example Keyboard Layout for the IBM Personal
+Computer" or the "Example Keyboard Layout for the Tandy 2000.
+.sp
+     To configure a NEW version of VEDIT, follow the instructions in
+Appendix A of the manual (Customizing VEDIT). It is usually a good
+idea to use the pre-configured version and get the "feel" of VEDIT,
+before configuring your own version. Note that these versions of VEDIT
+are Memory Mapped versions which accesses the screen directly.
+.sp 2
+.ta 16 20
+.of 15
+INSTALL.EXE	The program used to perform the customization for the CRT
+versions.    The manual describes the use of this program and the "SET"
+files below.
+.sp
+.of 15
+INSTALL.INI	Data file needed to perform customization.  Must be on
+same drive as INSTALL.COM.
+.sp 2
+VEDITPC.SET	File for producing the VEDIT version for the IBM PC.
+.SP
+VEDIT.COM	'Runnable' version of VEDIT for the IBM PC.
+.sp
+TANDY.SET	File for producing the VEDIT version for the Tandy 2000
+.sp
+TANDY.COM	'Runnable' version of VEDIT for the Tandy 2000.
+.sp 2
+.of 15
+VHELP.HLP	Help file accessed by "H" command.  It should be
+copied to your System disk.  You may edit this file for your needs.
+.sp
+VEHELP.HLP	Help file accessed by "EH" command.
+.sp
+VVHELP.HLP	Help file accessed by [HELP] function.
+.sp
+.of 15
+PRINT.EXC	Simple print formatting command macro.
+It should be copied to your System disk if you intend to use it.
+.bp
+.sp 2
+.ce
+DESCRIPTION OF FILES (CP/M-86) `TCDESCRIPTION OF FILES (CP/M-86)`TC
+.SP 2
+.ju
+     The following is a brief description of the files supplied on
+diskette for the IBM Personal Computer. YOU DO NOT have to perform the
+customization process, described in the manual, to produce a runnable
+version of VEDIT. You may use the pre-configured VEDIT.CMD file, which
+follows the "Example Keyboard Layout for the IBM Personal Computer".
+To customize a NEW version of VEDIT, follow the instructions in
+Appendix A of the manual (Customizing VEDIT).
+.sp
+     Note that the diskette contains one version of VEDIT for IBM's or
+Digital Research's implementation of CP/M-86 and a second version of
+VEDIT for CompuView's implementation of CP/M-86.  The latter have a
+"CPI" in the file name.  Users of CompuView's CP/M-86 will need to use
+their "IBM-IN-B" program to read this VEDIT distribution disk.
+.SP 2
+.of 15
+INSTALL.CMD	The program used to perform the customization for the CRT
+versions.    The manual describes the use of this program and the "SET"
+files below.
+.sp
+.of 15
+INSTALL.INI	Data file needed to perform customization.  Must be on
+same drive as INSTALL.COM.
+.sp 2
+VEDITPC.SET	File for producing the VEDIT version for the IBM PC.
+.sp
+VEDIT.CMD	'Runnable' version of VEDIT.
+.sp
+.of 15
+VEDITCPI.SET	File for producing the "CompuView" CP/M-86 version of
+VEDIT for the IBM PC.
+.SP
+VEDITCPI.CMD	'Runnable' version of VEDIT as above.
+.sp 2
+.of 15
+VHELP.HLP	Help file accessed by "H" command.  It should be
+copied to your System disk.  You may edit this file for your needs.
+.sp
+VEHELP.HLP	Help file accessed by "EH" command.
+.sp
+VVHELP.HLP	Help file accessed by [HELP] function.
+.sp
+.of 15
+PRINT.EXC	Simple print formatting command macro.
+It should be copied to your System disk if you intend to use it.
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE IBM PERSONAL COMPUTER (*)
+`TCIBM PC Keyboard Layout (PCDOS - CP/M-86)`TC
+.sp
+.ta 27 43
+.nj
+"ESCAPE LEAD-IN #1"	NOT USED	Type <RETURN>
+.ta 27 43
+.sp
+[HOME]	<CTRL-HOME>
+[ZEND]	<CTRL-END>
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<F3>
+[TAB CURSOR]	<F4>	Useful for fast cursor movement.
+[ZIP]	<F6>
+[NEXT LINE]	<F5>
+[LINE TOGGLE]	<CTRL-J>
+[SCROLL UP]	<HOME>
+[SCROLL DOWN]	<END>
+[SCROLL RIGHT]	<F2>
+[SCROLL LEFT]	<F1>
+[PREVIOUS WORD]	<CTRL-V>
+[NEXT WORD]	<CTRL-B>
+[PREVIOUS PARAGRAPH]	<CTRL-Pg Up>
+[NEXT PARAGRAPH]	<CTRL-Pg Dn>
+[PAGE UP]	<Pg Up>
+[PAGE DOWN]	<Pg Dn>
+[SCREEN TOGGLE]	<CTRL-K>
+[BACKSPACE]	<---
+[DELETE]	<Del>
+[ERASE TO END OF LINE]	<CTRL-Z>	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>	Also called [ERLINE] in manual.
+[DEL PREVIOUS WORD]	<CTRL-C>
+[DEL NEXT WORD]	<CTRL-N>
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	--->|
+[NEXT CHAR LITERAL]	<CTRL-L>
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<Ins>
+[REPEAT]	<CTRL-R>
+[INDENT]	<F8>
+[UNDENT]	<F7>
+[FIND]	<ALT-F1>
+[REPLACE]	<ALT-F2>
+[CANCEL]	<ALT-F3>
+[COPY TO TEXT REGISTER]	<F9>
+[MOVE TO TEXT REGISTER]	<ALT-F9>
+[INSERT TEXT REGISTER]	<F10>
+[PRINT TEXT]	<CTRL-P>
+[SET TEXT MARKER]	<CTRL-S>
+[GOTO TEXT MARKER]	<CTRL-G>
+[FORMAT PARAGRAPH]	<CTRL-F>
+[VISUAL ESCAPE]	<ESC>
+[VISUAL EXIT]	<CTRL-E>	Used to exit to command mode.
+[MACRO]	<ALT-M>
+[RESTART EDITOR]	<ALT-R>
+[HELP]	<ALT-H>
+.sp
+(*)    Except Concurrent CP/M-86 - see following page
+.br
+.in 0
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE IBM PC WITH CONCURRENT CP/M-86
+`TCIBM PC Keyboard Layout Concurrent CP/M`TC
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	?	"COMMON 2ND CHAR. #2"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - H
+[ZEND]	ESC - Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<F3>
+[TAB CURSOR]	<F4>	Useful for fast cursor movement.
+[ZIP]	<F6>
+[NEXT LINE]	<F5>
+[LINE TOGGLE]	<CTRL-T>
+[SCROLL UP]	<CTRL-Q>
+[SCROLL DOWN]	<CTRL-A>
+[SCROLL RIGHT]	<F2>
+[SCROLL LEFT]	<F1>
+[PREVIOUS WORD]	<CTRL-V>
+[NEXT WORD]	<CTRL-B>
+[PREVIOUS PARAGRAPH]	ESC - W
+[NEXT PARAGRAPH]	ESC - X
+[PAGE UP]	<Pg Up>
+[PAGE DOWN]	<Pg Dn>
+[SCREEN TOGGLE]	<CTRL-Y>
+[BACKSPACE]	<---
+[DELETE]	<Del>
+[ERASE TO END OF LINE]	<CTRL-Z>	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>
+[DEL PREVIOUS WORD]	<CTRL-C>
+[DEL NEXT WORD]	<CTRL-N>
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	--->|
+[NEXT CHAR LITERAL]	ESC - Q
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<Ins>
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	<CTRL-J>
+[REPLACE]	<CTRL-K>
+[CANCEL]	<CTRL-L>
+[COPY TO TEXT REGISTER]	<F9>
+[MOVE TO TEXT REGISTER]	<F10>
+[INSERT TEXT REGISTER]	<F8>
+[PRINT TEXT]	<F7>
+[SET TEXT MARKER]	ESC - S
+[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	<CTRL-F>
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<CTRL-E>	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	ESC - <CTRL-R>
+[HELP]	ESC - ?
+.bp
+.ce
+EXAMPLE CUSTOMIZATION FOR IBM PC
+.sp
+.nj
+     The customization for the pre-configured version is listed below.
+.sp
+.ta 53
+.nj
+5.)~~CURSOR TYPE	1
+.in 5
+.ta 48
+CURSOR BLINK RATE	35
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	3
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	AD hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	[
+COMMAND ITERATION RIGHT BRACKET	]
+COMMAND ESCAPE CHARACTER	ESC
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	6
+SIZE OF FILE BUFFERING PAGE (K BYTES)	12
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	25
+~~~~~~~~~~~~~~~~~~~~(Use 24 for CP/M-86)
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	80
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp
+.ta 53
+.in 0
+11.)~CURSOR CHARACTER	5F hex
+.in 5
+.ta 48
+STATUS LINE CHARACTER	2D hex  (or C4 hex)
+TAB EXPAND CHARACTER	20 hex
+CLEAR SCREEN CHARACTER	20 hex
+SCREEN ATTRIBUTE CODE FOR NORMAL VIDEO	07 hex
+SCREEN ATTRIBUTE CODE FOR REVERSE VIDEO	70 hex
+SCREEN ATTRIBUTE CODE FOR CURSOR	F0 hex
+SCREEN LINE LENGTH	80
+.br
+.in 0
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE TANDY 2000 `TCTandy 2000`TC
+.sp 2
+.ta 27 43
+.nj
+"ESCAPE LEAD-IN #1"	NOT USED	Type <RETURN>
+.sp
+[HOME]	<CTRL- HOME>
+[ZEND]	<CTRL- END>
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<F9>
+[TAB CURSOR]	<F10>	Useful for fast cursor movement.
+[ZIP]	<0>	On Keypad
+[NEXT LINE]	<END>
+[LINE TOGGLE]	<CTRL-0>	"0" on keypad
+[SCROLL UP]	<CTRL- Up Arrow>
+[SCROLL DOWN]	<CTRL- Down Arrow>
+[SCROLL RIGHT]	<CTRL- Right Arrow>
+[SCROLL LEFT]	<CTRL- Left Arrow>
+[PREVIOUS WORD]	<CTRL-V>
+[NEXT WORD]	<CTRL-B>
+[PREVIOUS PARAGRAPH]	<CTRL-Pg Up>
+[NEXT PARAGRAPH]	<CTRL-Pg Dn>
+[PAGE UP]	<Pg Up>
+[PAGE DOWN]	<Pg Dn>
+[SCREEN TOGGLE]	<HOME>
+[BACKSPACE]	<---
+[DELETE]	<DELETE>
+[ERASE TO END OF LINE]	<CTRL-Z>	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>
+[DEL PREVIOUS WORD]	<CTRL-C>
+[DEL NEXT WORD]	<CTRL-N>
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	<CTRL-L>
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<Ins>
+[REPEAT]	<CTRL-R>
+[INDENT]	<F12>
+[UNDENT]	<F11>
+[FIND]	<F1>
+[REPLACE]	<F2>
+[CANCEL]	<F3>
+[COPY TO TEXT REGISTER]	<F4>
+[MOVE TO TEXT REGISTER]	<F5>
+[INSERT TEXT REGISTER]	<F6>
+[PRINT TEXT]	<PRINT>	Same as CTRL-P
+[SET TEXT MARKER]	<F7>
+[GOTO TEXT MARKER]	<F8>
+[FORMAT PARAGRAPH]	<CTRL-F>
+[VISUAL ESCAPE]	<BREAK>
+[VISUAL EXIT]	<ESC>	Used to exit to command mode.
+[MACRO]	<ALT-M>
+[RESTART EDITOR]	<ALT-R>
+[HELP]	<ALT-H>
+.sp
+.in 0
+.bp
+.sp
+.ce
+EXAMPLE CUSTOMIZATION FOR TANDY 2000
+.sp
+.ju
+     The customization for the pre-configured version is listed below.
+.sp
+.ta 53
+.nj
+5.)~~CURSOR TYPE	1
+.in 5
+.ta 48
+CURSOR BLINK RATE	80
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	3
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	AD hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	[
+COMMAND ITERATION RIGHT BRACKET	]
+COMMAND ESCAPE CHARACTER	ESC
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	6
+SIZE OF FILE BUFFERING PAGE (K BYTES)	12
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	25
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	80
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp
+.ta 53
+.in 0
+11.)~CURSOR CHARACTER	5F hex
+.in 5
+.ta 48
+STATUS LINE CHARACTER	2D hex
+TAB EXPAND CHARACTER	20 hex
+CLEAR SCREEN CHARACTER	20 hex
+SCREEN ATTRIBUTE CODE FOR NORMAL VIDEO	08 hex
+SCREEN ATTRIBUTE CODE FOR REVERSE VIDEO	88 hex
+SCREEN ATTRIBUTE CODE FOR CURSOR	88 hex
+SCREEN LINE LENGTH	80
+.br
+.in 0
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE DEC RAINBOW `TCDEC Rainbow`TC
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	[	"COMMON 2ND CHAR. #2"	O
+"UPPER/LOWER CASE"	No	  (Note: upper case letter "O")
+.ta 27 43
+.sp
+[HOME]	ESC - h
+[ZEND]	ESC - z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<PF1>
+[TAB CURSOR]	<PF3>	Useful for fast cursor movement.
+[ZIP]	<PF4>
+[NEXT LINE]	<PF2>	Or use <LF>
+[LINE TOGGLE]	<CTRL-L>
+[SCROLL UP]	<5>	on keypad
+[SCROLL DOWN]	<2>	on keypad
+[SCROLL RIGHT]	<3>	on keypad
+[SCROLL LEFT]	<1>	on keypad
+[PREVIOUS WORD]	<CTRL-V>
+[NEXT WORD]	<CTRL-B>
+[PREVIOUS PARAGRAPH]	<7>	on keypad
+[NEXT PARAGRAPH]	<4>	on keypad
+[PAGE UP]	<Prev Screen>
+[PAGE DOWN]	<Next Screen>
+[SCREEN TOGGLE]	<Main Screen>
+[BACKSPACE]	<---	Or use <BS>
+[DELETE]	<Remove>
+[ERASE TO END OF LINE]	<CTRL-Z>	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>
+[DEL PREVIOUS WORD]	<CTRL-C>
+[DEL NEXT WORD]	<CTRL-N>
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	<Interrupt>
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<Insert Here>
+[REPEAT]	<F4>
+[INDENT]	<.>	on keypad
+[UNDENT]	<0>	on keypad
+[FIND]	<Find>
+[REPLACE]	<Select>
+[CANCEL]	<Cancel>
+[COPY TO TEXT REGISTER]	<F17>
+[MOVE TO TEXT REGISTER]	<F18>
+[INSERT TEXT REGISTER]	<F19>
+[PRINT TEXT]	<Print Screen>
+[SET TEXT MARKER]	<CTRL-S>
+[GOTO TEXT MARKER]	<CTRL-G>
+[FORMAT PARAGRAPH]	<F20>
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<Exit>
+[MACRO]	<Do>
+[RESTART EDITOR]	ESC - <CTRL-R>
+[HELP]	<Help>
+.br
+.in 0
+.bp
+.ju
+.sp
+.ce
+EXAMPLE CRT CUSTOMIZATION FOR THE DEC RAINBOW
+.sp
+     The customization values used to create the pre-configured VEDIT
+are listed below.
+.sp 2
+.ta 53
+.nj
+5.)~~CURSOR TYPE	Not Applicable
+.in 5
+.ta 48
+CURSOR BLINK RATE	Not Applicable
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	1
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	AD hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	[
+COMMAND ITERATION RIGHT BRACKET	]
+COMMAND ESCAPE CHARACTER	ESC
+SPEED OF YOUR COMPUTER IN MHZ	4
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	6
+SIZE OF FILE BUFFERING PAGE (K BYTES)	12
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	24
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	80
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp 2
+.in 0
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE Z100 `TCZenith Z-100`TC
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	?	"COMMON 2ND CHAR. #2"	0
+"UPPER/LOWER CASE"	No
+.ta 27 43
+.sp
+[HOME]	ESC - h
+[ZEND]	ESC - z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<7>	on keypad
+[TAB CURSOR]	<8>	Useful for fast cursor movement.
+[ZIP]	<9>	on keypad
+[NEXT LINE]	<LINE FEED>
+[LINE TOGGLE]	<->	on keypad
+[SCROLL UP]	<6>	on keypad
+[SCROLL DOWN]	<3>	on keypad
+[SCROLL RIGHT]	<.>	on keypad
+[SCROLL LEFT]	<0>	on keypad
+[PREVIOUS WORD]	<CTRL-V>
+[NEXT WORD]	<CTRL-B>
+[PREVIOUS PARAGRAPH]	<5>	on keypad
+[NEXT PARAGRAPH]	<2>	on keypad
+[PAGE UP]	<4>	on keypad
+[PAGE DOWN]	<1>	on keypad
+[SCREEN TOGGLE]	<CTRL-S>
+[BACKSPACE]	<BACK SPACE>
+[DELETE]	<DELETE>
+[ERASE TO END OF LINE]	<CTRL-Z>	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>
+[DEL PREVIOUS WORD]	<CTRL-C>
+[DEL NEXT WORD]	<CTRL-N>
+[UNDO]	<F12>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	<CTRL-L>
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<ENTER>	on keypad
+[REPEAT]	<CTRL-R>
+[INDENT]	<F11>
+[UNDENT]	<F10>
+[FIND]	<F1>
+[REPLACE]	<F2>
+[CANCEL]	<F3>
+[COPY TO TEXT REGISTER]	<F4>
+[MOVE TO TEXT REGISTER]	<F5>
+[INSERT TEXT REGISTER]	<F6>
+[PRINT TEXT]	<F7>
+[SET TEXT MARKER]	<F8>
+[GOTO TEXT MARKER]	<F9>
+[FORMAT PARAGRAPH]	<INS LINE>
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<F0>	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	ESC - <CTRL-R>
+[HELP]	<HELP>
+.br
+.in 0
+.bp
+.ju
+.sp
+.ce
+EXAMPLE CRT CUSTOMIZATION FOR THE Z100
+.sp
+     The customization for the pre-configured version is listed below.
+.sp 2
+.ta 53
+.nj
+5.)~~CURSOR TYPE	Not Applicable
+.in 5
+.ta 48
+CURSOR BLINK RATE	Not Applicable
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	1
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	AD hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	[
+COMMAND ITERATION RIGHT BRACKET	]
+COMMAND ESCAPE CHARACTER	ESC
+SPEED OF YOUR COMPUTER IN MHZ	4
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	6
+SIZE OF FILE BUFFERING PAGE (K BYTES)	12
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	24
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	80
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp 2
+.in 0
+.bp
+.ju
+.sp 3
+.ce
+VEDIT Notes for IBM Displaywriter `TC~~~~~~~~~~IBM Displaywriter`TC
+.sp 2
+     In order for you to bring up VEDIT as easily as possible on your
+IBM Displaywriter, we have included a pre-configured "ready to run"
+version for this machine in the disk file "VEDIT.CMD". You therefore
+DO NOT need to perform the customization in order to first begin
+using VEDIT.  You will probably wish to perform the customization
+later, in order to change the keyboard layout or change some of the
+default parameters.  Attached to these notes should be "Example
+Keyboard Layout for IBM Displaywriter" and "Example Customization for
+IBM Displaywriter".
+.sp
+     The keyboard layout describes the keyboard strokes needed to
+perform the VEDIT editing functions.  Note two differences between the
+Displaywriter keyboard and most other keyboards as described in the
+VEDIT manual.  One is that the Displaywriter uses the "CODE" key
+instead of the more common "CTRL" key.  Second, the Displaywriter does
+not have an "ESC" key and therefore we have adopted the "INDEX" key to
+perform the same function with VEDIT. Functions using the INDEX key
+require first typing the INDEX key and then the second key.    (Only
+the customization needs the true ESC character, which is produced by
+typing the upper-most right hand key in the left keypad, or
+alternately by typing the "1/4" key while holding the CODE and SHIFT
+keys down).
+.sp
+     You don't need to refer to the "Example Customization for IBM
+Displaywriter" until you customize a new version of VEDIT.  When
+customizing the VEDIT parameters you should generally only change
+those parameters in Tasks (5), (6) and (7).  You may change the keyboard
+layout any way you wish.  When selecting the CRT terminal in TASK (12)
+of the customization, note that there is an entry for the
+Displaywriter; DON'T select the IBM 3101.
+.sp
+     Before you begin using VEDIT, you should copy our distribution
+disk onto your own disk.  This is easy if your disk in drive "A" has
+at least 230K of space free.  Simply insert our disk in drive "B",
+type "CODE~-~C" and then use the "PIP" program to copy all files to
+the "A" drive.  Remove our disk and place an empty formatted disk into
+drive "B".  Type "CODE~-~C" twice and use PIP again to copy our files
+to your own disk.  You can then erase all but "VEDIT.CMD" and the
+three ".HLP" help files from your disk in drive "A".  The disk you
+have just made in drive "B" should be used when you customize a new
+VEDIT.  The file "VEDIT.CMD" is all you need to run VEDIT.
+.bp
+.nj
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR IBM DISPLAYWRITER
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<INDEX>	"ESCAPE LEAD-IN #2"	<ESC>
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	INDEX - Y
+[ZEND]	INDEX - Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<FIND>
+[TAB CURSOR]	<CODE-G>	Useful for fast cursor movement.
+[ZIP]	<GOTO>
+[NEXT LINE]	<CODE-N>
+[LINE TOGGLE]	<CODE-L>
+[SCROLL UP]	<CODE-W>
+[SCROLL DOWN]	<CODE-S>
+[SCROLL RIGHT]	<CODE-Y>
+[SCROLL LEFT]	<CODE-T>
+[PREVIOUS WORD]	<CODE-D>
+[NEXT WORD]	<CODE-F>
+[PREVIOUS PARAGRAPH]	<CODE-Q>
+[NEXT PARAGRAPH]	<CODE-A>
+[PAGE UP]	Unmarked key right of <FIND>
+[PAGE DOWN]	Unmarked key right of <GOTO>
+[SCREEN TOGGLE]	<CODE-K>
+[BACKSPACE]	<BKSP>
+[DELETE]	<DEL>
+[ERASE TO END OF LINE]	<CODE-Z>	Also called [EREOL] in manual.
+[ERASE LINE]	<CODE-X>
+[DEL PREVIOUS WORD]	<CODE-C>
+[DEL NEXT WORD]	<CODE-V>
+[UNDO]	<CODE-U>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	INDEX - L
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<CODE-B>
+[REPEAT]	<CODE-R>
+[INDENT]	<CODE-P>
+[UNDENT]	<CODE-O>
+[FIND]	INDEX - 1
+[REPLACE]	INDEX - 2
+[CANCEL]	INDEX - 3
+[COPY TO TEXT REGISTER]	INDEX - 4
+[MOVE TO TEXT REGISTER]	INDEX - 5
+[INSERT TEXT REGISTER]	INDEX - 6
+[PRINT TEXT]	INDEX - 7
+[SET TEXT MARKER]	INDEX - S
+[GOTO TEXT MARKER]	INDEX - G
+[FORMAT PARAGRAPH]	INDEX - F
+[VISUAL ESCAPE]	INDEX - INDEX
+[VISUAL EXIT]	<CODE-E>	Used to exit to command mode.
+[MACRO]	INDEX - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	INDEX - ?
+.bp
+.ju
+.sp
+.ce
+EXAMPLE CUSTOMIZATION FOR IBM DISPLAYWRITER
+.sp
+     The customization for the pre-configured version is listed below.
+.sp 2
+.ta 53
+.nj
+5.)~~CURSOR TYPE	Not Applicable
+.in 5
+.ta 48
+CURSOR BLINK RATE	Not Applicable
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	1
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	AD hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	[
+COMMAND ITERATION RIGHT BRACKET	]
+COMMAND ESCAPE CHARACTER	0A hex  (INDEX key)
+SPEED OF YOUR COMPUTER IN MHZ	4
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	6
+SIZE OF FILE BUFFERING PAGE (K BYTES)	12
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	24
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	80
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp 2
+.in 0
+.ju
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE NEC APC `TC~~~~~~~~~~NEC APC`TC
+.sp
+.nj
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"~~Letter O	"COMMON 2ND CHAR. #2"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - H
+[ZEND]	ESC - Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<PF 9>
+[TAB CURSOR]	<PF 10>
+[ZIP]	<PF 11>
+[NEXT LINE]	<CTRL-R>
+[LINE TOGGLE]	<CTRL-G>	Note: VEDIT `ULmust`UL be
+[SCROLL UP]	<CTRL-E>	customized for 25 lines.
+[SCROLL DOWN]	<CTRL-D>
+[SCROLL RIGHT]	<PF 8>
+[SCROLL LEFT]	<PF 7>
+[PREVIOUS WORD]	<CTRL-V>
+[NEXT WORD]	<CTRL-B>
+[PREVIOUS PARAGRAPH]	<CTRL-Q>
+[NEXT PARAGRAPH]	<CTRL-A>
+[PAGE UP]	<PF 5>
+[PAGE DOWN]	<PF 6>
+[SCREEN TOGGLE]	<CLEAR HOME>
+[BACKSPACE]	<BACK SPACE>
+[DELETE]	<DEL>
+[ERASE TO END OF LINE]	<PF 14>	Also called [EREOL] in manual.
+[ERASE LINE]	<PF 15>
+[DEL PREVIOUS WORD]	<CTRL-C>
+[DEL NEXT WORD]	<CTRL-N>
+[UNDO]	<PF 16>	Last Black key
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	ESC - L
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<INS>
+[REPEAT]	<PF 1>	First Black key
+[INDENT]	<PF 13>
+[UNDENT]	<PF 12>
+[FIND]	<PF 2>
+[REPLACE]	<PF 3>
+[CANCEL]	<PF 4>
+[COPY TO TEXT REGISTER]	<PF 18>	Second Grey Key
+[MOVE TO TEXT REGISTER]	<PF 19>	Note: The first grey key "PF17"
+[INSERT TEXT REGISTER]	<PF 20>	      cannot be used with VEDIT
+[PRINT TEXT]	<PRINT>
+[SET TEXT MARKER]	<PF 21>
+[GOTO TEXT MARKER]	<PF 22>
+[FORMAT PARAGRAPH]	<CTRL-F>
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<BREAK>	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	ESC - ?
+.bp
+.sp 3
+.ce
+VEDIT Notes for VICTOR 9000 `TC~~~~~~~~~~Victor 9000`TC
+.sp 2
+.ju
+     In order for you to start using VEDIT as quickly as possible on
+your Victor 9000, we have included a pre-configured "ready to run"
+version for this machine in the disk file "VEDIT.CMD". You therefore
+DO~NOT need to perform the customization in order to begin using VEDIT.
+You will probably wish to perform the customization later, in order to
+change the keyboard layout or change some of the default parameters.
+The following page "Example Keyboard Layout for
+Victor 9000" gives the keyboard layout used in the pre-configured
+version.
+.sp
+     The only unusual aspect of the Victor 9000 keyboard is that the
+ESC key requires use of the ALT key.  This is of no significance in
+the Visual Mode, since few edit functions use the ESC key.  However,
+it is somewhat inconvenient in the command mode,
+since some commands require an ESC to terminate text strings. You may,
+therefore, find it more convenient to use "Explicit Text
+Delimiters", so that the ESC key is rarely used.
+.sp
+     When customizing VEDIT, you must select the VICTOR 9000
+from the menu of supported terminals.  The following page "Example
+Customization for Victor 9000" shows the customization values used for
+the pre-configured version.
+.sp
+     Before you begin using VEDIT, you should copy our distribution
+disk onto your own disk.  This is best done with the copy program
+"DCOPY.CMD".  To use VEDIT, you only need the file "VEDIT.CMD" (either
+the one we supplied, or one you customized), which you can simply copy
+to your system disk on drive "A".  You probably will also want the
+three ".HLP" files on drive "A".
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR VICTOR 9000
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	[CLR HOME]
+[ZEND]	[Shift- CLR HOME]
+[CURSOR UP]	[Up Arrow]
+[CURSOR DOWN]	[Down Arrow]
+[CURSOR RIGHT]	[Right Arrow]
+[CURSOR LEFT]	[Left Arrow]
+[BACK TAB]	[ALT-TAB]
+[TAB CURSOR]	[ALT-F]	Useful for fast cursor movement.
+[ZIP]	[REQ CAN]
+[NEXT LINE]	[ON UNDL] (unshifted)
+[LINE TOGGLE]	[ALT-A]
+[SCROLL UP]	[Shift- SCRL]
+[SCROLL DOWN]	[SCRL]
+[SCROLL RIGHT]	[ALT-Y]
+[SCROLL LEFT]	[ALT-T]
+[PREVIOUS WORD]	[WORD <--]
+[NEXT WORD]	[WORD -->]
+[PREVIOUS PARAGRAPH]	[ALT-Q]
+[NEXT PARAGRAPH]	[ALT-Z]
+[PAGE UP]	[ALT-W]
+[PAGE DOWN]	[ALT-X]
+[SCREEN TOGGLE]	[ALT-SCRL]
+[BACKSPACE]	[BACKSPACE]
+[DELETE]	[DEL]
+[ERASE TO END OF LINE]	[ERASE EOL]
+[ERASE LINE]	[Shift-ERASE EOL]
+[DEL PREVIOUS WORD]	[Shift- WORD <--]
+[DEL NEXT WORD]	[Shift- WORD -->]
+[UNDO]	[ALT-U]
+[TAB CHARACTER]	[TAB]
+[NEXT CHAR LITERAL]	[ALT-L]
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	[INS]
+[REPEAT]	[ALT-R]
+[INDENT]	[ALT-P]
+[UNDENT]	[ALT-O]
+[FIND]	FUNCTION KEY [1]
+[REPLACE]	FUNCTION KEY [2]
+[CANCEL]	[PAUSE CONT]	Same as [CTRL-S]
+[COPY TO TEXT REGISTER]	FUNCTION KEY [3]
+[MOVE TO TEXT REGISTER]	FUNCTION KEY [4]
+[INSERT TEXT REGISTER]	FUNCTION KEY [5]
+[PRINT TEXT]	FUNCTION KEY [8]
+[SET TEXT MARKER]	FUNCTION KEY [6]
+[GOTO TEXT MARKER]	FUNCTION KEY [7]
+[FORMAT PARAGRAPH]	FUNCTION KEY [9]
+[VISUAL ESCAPE]	[ALT-E]
+[VISUAL EXIT]	FUNCTION KEY [10]
+[MACRO]	ESC - M
+[RESTART EDITOR]	ESC - R
+[HELP]	ESC - H
+.in 0
+.bp
+.sp
+.ce
+EXAMPLE CUSTOMIZATION FOR VICTOR 9000
+.sp
+     The customization values used to create the pre-configured VEDIT
+are listed below.
+.sp
+.ta 53
+.nj
+5.)~~CURSOR TYPE	Not Applicable
+.in 5
+.ta 48
+CURSOR BLINK RATE	Not Applicable
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	1
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	AD hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	[
+COMMAND ITERATION RIGHT BRACKET	]
+COMMAND ESCAPE CHARACTER	ESC
+SPEED OF YOUR COMPUTER IN MHZ	4
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	6
+SIZE OF FILE BUFFERING PAGE (K BYTES)	12
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	24
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	80
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp 2
+.in 0
+.ju
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE TI PROFESSIONAL COMPUTER `TC~~~~~~~~~~TI Professional`TC
+.sp
+.ta 27 43
+.nj
+"ESCAPE LEAD-IN #1"	NOT USED	Type <RETURN>
+.sp 1
+[HOME]	<CTRL- F11>
+[ZEND]	<CTRL- F12>
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<SHIFT-TAB>
+[TAB CURSOR]	<CTRL-T>	Useful for fast cursor movement.
+[ZIP]	<HOME>
+[NEXT LINE]	<LINE FEED>
+[LINE TOGGLE]	<CTRL-L>
+[SCROLL UP]	<CTRL- Up Arrow>
+[SCROLL DOWN]	<CTRL- Down Arrow>
+[SCROLL RIGHT]	<CTRL- Right Arrow>
+[SCROLL LEFT]	<CTRL- Left Arrow>
+[PREVIOUS WORD]	<CTRL-V>
+[NEXT WORD]	<CTRL-B>
+[PREVIOUS PARAGRAPH]	<CTRL- F5>
+[NEXT PARAGRAPH]	<CTRL- F6>
+[PAGE UP]	<F5>
+[PAGE DOWN]	<F6>
+[SCREEN TOGGLE]	<CTRL-K>
+[BACKSPACE]	<---
+[DELETE]	<Del>
+[ERASE TO END OF LINE]	<CTRL-Z>	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>
+[DEL PREVIOUS WORD]	<CTRL-C>
+[DEL NEXT WORD]	<CTRL-N>
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	<CTRL-Q>
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<Ins>
+[REPEAT]	<F4>
+[INDENT]	<F8>
+[UNDENT]	<F7>
+[FIND]	<F1>
+[REPLACE]	<F2>
+[CANCEL]	<F3>
+[COPY TO TEXT REGISTER]	<F9>
+[MOVE TO TEXT REGISTER]	<CTRL- F9>
+[INSERT TEXT REGISTER]	<F10>
+[PRINT TEXT]	<PRNT>
+[SET TEXT MARKER]	<F11>
+[GOTO TEXT MARKER]	<F12>
+[FORMAT PARAGRAPH]	<CTRL-F>
+[VISUAL ESCAPE]	ESC
+[VISUAL EXIT]	<CTRL-E>	Used to exit to command mode.
+[MACRO]	ALT - M
+[RESTART EDITOR]	ALT - R
+[HELP]	ALT - H
+.sp
+Note:  For MS-DOS choose "TI-PC" in CRT menu and "# screen lines" = 25
+.br
+       For CP/M-86 choose "TI-PC" in CRT menu and "# screen lines" = 24
+.ju
+.bp
+.sp 2
+.ce
+This Page Reserved For Your Notes
+.br
+

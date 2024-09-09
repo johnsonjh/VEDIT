@@ -18,10 +18,12 @@ VEDIT PLUS Ver. 2.33b 04/27/87
   - [Build Example](#build-example)
   - [Configuration Example](#configuration-example)
 - [Extras](#extras)
+  - [Older Source Code](#older-source-code)
   - [Older Binaries](#older-binaries)
 - [Future](#future)
 - [License](#license)
 - [Documentation](#documentation)
+  - [Manual Source Code](#manual-source-code)
   - [Older Manuals](#older-manuals)
 - [Links](#links)
 - [See Also](#see-also)
@@ -364,14 +366,21 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * You will now have a working — and configured — `VEDIT.COM`
   executable.
 
+## Utility Source
+
+* The [`utl`](utl) directory contains the source code for the tools
+  used to configure the editor, such as the installation and setup
+  programs. *Please note that we have not yet recovered the sources
+  for the 2.33 versions of these tools.*
+
 ## Extras
 
 * The files that were shipped on the original CP/M‑80, CP/M‑86,
   and DOS distribution media are included in the [`disk`](disk),
   [`disk/86`](disk/86), and [`disk/dos`](disk/dos) directories,
   respectively.
-  * This includes the `INSTALL` (and `INTCOM`) utilities used to
-    tailor the executable to your specific system.
+  * This includes binaries for the `INSTALL` (and `INTCOM`) utilities
+    used to tailor the executable to your specific system.
 
 * Help files are included in the [`hlp`](hlp) directory.  These help
   files should be verified and possibly modified to ensure the key
@@ -381,12 +390,18 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * The [`zilint`](zilint) directory contains the final release of
   CompuView's Z80‑8086 Translator macros.
 
+### Older Source Code
+
+* The [`oldsrc`](oldsrc) directory contains source code for older
+  versions of VEDIT.
+
 ### Older Binaries
 
-* The [`old`](old) directory contains several "ancient" versions of
-  VEDIT released between 1981 and 1985.  These distributions may be
-  incomplete, but useful for "archaeological" purposes, or testing on
-  extraordinarily obscure or extremely memory constrained platforms.
+* The [`oldbin`](oldbin) directory contains several older binaries of
+  versions of VEDIT released between 1981 and 1985.  These
+  distributions may be incomplete, but useful for "archaeological"
+  purposes, or testing on extraordinarily obscure or extremely memory
+  constrained platforms.
 
 ## Future
 
@@ -406,7 +421,8 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * Find VEDIT-PLUS 2.33b for DOS (or earlier releases) configured for
   IBM PC memory mapped video hardware.
 
-* Find the source code for the `INSTALL` and `INTCOM` utilities.
+* Find the source code for the latest versions of the `INSTALL`,
+  `INTCOM`, and other utilities.
 
 * Document `xterm`-compatible terminal settings for enabling arrow
   directional keys, etc.
@@ -435,6 +451,10 @@ VEDIT Manual (*1987*):
 * [Installation](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/installation.pdf)
 * [Quick Reference](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/quick_reference.pdf)
 * [Index](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/index.pdf)
+
+### Manual Source Code
+
+* [VEDIT Manual (1.40, *1985*) Source Code](docsrc/1.40)
 
 ### Older Manuals
 

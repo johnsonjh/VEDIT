@@ -1,0 +1,1359 @@
+.cm Last Change: Ted - Aug. 14, 1985
+.pw 70
+.rm 70
+.pi 16
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.il `
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.sp 8
+.ce
+`OSV I S U A L   M O D E`OS
+`TCIV.~~~~~~~Visual Mode`TC
+.bp
+.sh /Visual Mode///
+~~
+.bp
+.ju
+.ce
+.ul
+`IXVisual Mode`IX
+.sp 2
+.ul
+Screen Display `TC~~~~~Screen Display`TC
+.sp
+     In Visual Mode the screen continuously displays a region of the
+file being edited and a `IXcursor`IX.  The cursor indicates the exact
+location at which any edit changes, such as typing in new text, will be
+made.  The bottom screen line, called the "Status line" displays
+information to help you in your editing.  The rest of the screen
+displays the text of the file being edited.
+.sp
+`ICLong lines`IC
+.br
+     Text lines longer than the screen are handled in two ways.
+`ICHorizontal scrolling`IC
+If horizontal scrolling is selected, long lines extend past the right
+edge of the screen and may be accessed by scrolling sideways.  If
+horizontal scrolling is turned off, or if the line extends past the
+scrolling limit, it will be displayed on additional screen lines.
+These additional screen lines are called "continuation lines" and are
+indicated with a special "continuation character", typically a
+reverse video "-", in the leftmost column
+of the screen. `ICContinuation line`IC `ICContinuation character`IC The
+continuation character is selected during customization.
+The leftmost column of the screen is reserved for
+continuation characters.  Due to technical reasons, the rightmost
+column of many screens is not used at all.
+`ICMultiple screen lines (See Continuation line)`IC
+.sp
+     On CRT terminals the cursor is produced by the terminal and VEDIT
+can not change its appearance.  However, on some systems (memory
+mapped), such as the IBM PC, VEDIT produces its own cursor and its
+appearance is user selectable.  You can choose an underline character,
+a solid block or a blinking block.  Even the blink rate is selectable.
+This is strictly a matter of personal preference.  The options are more
+fully described under Customization in Appendix A.
+.sp
+     VEDIT's interruptable `IXscreen updating`IX allows the screen to be
+updated in the fastest way possible when you are performing rapid
+screen changes.  You do not have to wait for the screen to finish
+updating before you continue editing.  Operations such as [PAGE DOWN]
+require the entire screen to be updated.  If you press another [PAGE
+DOWN] while the screen is being updated, VEDIT will interrupt the
+unwanted update and restart to display the most current screen.  VEDIT,
+therefore, does not necessarily update the screen in the order in which
+you perform edit changes.  It will skip the intermediate screen
+displays and go directly to the current screen display.
+.sp 2
+.ul
+Status Line `TC~~~~~Status Line`TC `ICStatus line`IC
+.sp
+     The Visual Mode status line indicates what line number in the
+file the cursor is on, the cursor's column position,
+and what file is currently being edited.  It also can contain words indicating
+conditions you should be aware of. The status line is also used to
+prompt you for a parameter, such as a search string or a text register
+number.  On most machines, the prompts on the status line appear in
+`IXreverse video`IX.
+.sp
+`ULLINE AND COLUMN NUMBERS`UL~: `ICLine and column display`IC `ICColumn number - display (See Line and column display)`IC
+The cursor's column position is the
+horizontal position on the current text line.  The line number in the
+file is a count of the current number of preceding lines in the file,
+including any which have already been written out to disk. The line
+number for a particular line will therefore decrease if some of the
+preceding lines are deleted, and will increase if lines are inserted
+into the preceding text.  These numbers are not updated immediately
+following every `IXcursor movement,`IX but only after you pause typing
+for about 1/2 of a second.
+.sp
+     If desired, the display of either or both of these numbers may be
+turned off.  This may be specified during customization or from
+Command Mode with the "`IXEP`IX" command.
+.sp
+`ICDisplay file name`IC
+.br
+`ULFILE NAME`UL~:  The name of the output file you are currently
+editing will be displayed in the middle of the status line.  This is
+the name that the file will have when you save it on disk.
+.sp
+`ULINSERT MESSAGE`UL~:  When you are in `IXINSERT mode`IX a message appears on
+the status line to remind you of this condition. `IC"INSERT" message`IC
+.sp
+`UL1~END MESSAGE`UL~:  Certain VEDIT functions require that you mark off the
+start and finish of a text block. When the first end is marked the
+message "1 END" will appear. Actually, it does not matter which
+function is used to set the first end, the function used to mark the
+second end will determine what is done with the block. `IC"1 END" message`IC
+.sp
+`ULTEXT MESSAGE`UL~: When any text register contains text the message "TEXT"
+will appear (it will be overwritten by the "1 END" message).
+`IC"TEXT" message`IC
+.sp
+`ULFULL MESSAGE`UL~: If VEDIT runs out of memory space in Visual Mode, the
+message "FULL"  will appear on the status line. `IC"FULL" message`IC
+.sp
+`ULDISK MESSAGE`UL~: When VEDIT performs any automatic disk buffering in
+Visual Mode, it puts the message "PLEASE WAIT FOR DISK" on the status
+line.  This is also a reminder that your computer may not accept
+keyboard input during disk operations.
+.sp
+`ULHORIZONTAL SCROLL OFFSET`UL~: When `IXhorizontal scrolling`IX is being used and
+the left side of the screen does not display column 1 of the lines,
+the column number corresponding to the left side of the screen is
+displayed on the status line.
+.sp
+`ULREPEAT COUNT`UL~: The currently selected repeat count when using the
+[REPEAT] function is displayed on the status line.
+.sp
+`ULFUNCTION PROMPTS`UL~: Some Visual Mode functions
+prompt you for a parameter, such as a register or text marker
+number, or the search or replace string to be used.  When prompted for
+a text register number, you may simply type the last function key again or RETURN to specify
+register "0".  This is convenient if you only need one register for
+your text movement operations - you won't have to remember which
+register you saved the text in.
+.sp 2
+.cp 5
+.ul
+`IXKeyboard Characters`IX `TC~~~~~Keyboard Characters`TC
+.sp
+     You can perform two basic kinds of operations while in
+Visual Mode:
+`IXentering new text`IX, or performing `IXedit functions`IX by typing
+control sequences.  Newly entered text simply appears on the screen at
+the cursor position and is either inserted before the
+existing text or overwrites it.
+.sp
+     `IXControl sequences`IX consist of either ASCII control
+characters, function keys (possibly with the high order bit (Bit 8) set, or
+`IXescape sequences`IX.  `ICBit 8 characters`IC `ICControl characters - typing`IC
+The customization process determines which edit
+function the control sequences perform.  Unused control sequences
+can either be ignored in Visual Mode or inserted into the text. It is
+also possible to insert any control character into the text.  The edit
+functions either move the cursor or perform `IXvisual functions`IX.
+`ICIgnored characters`IC
+.sp 2
+.cp 7
+.ul
+Entering New Text `TC~~~~~Entering New Text`TC `ICEntering New Text`IC
+`ICDisplayable characters`IC
+.sp
+     When a normal text character is typed, it appears on the screen
+at the current `IXcursor position`IX and the cursor then moves right.
+VEDIT has two modes for inserting new text, NORMAL and INSERT mode.
+`ICNormal mode`IC
+`ICInsert mode`IC
+When a text character is typed in NORMAL mode it
+appears at the cursor position and any character which was there is
+simply overwritten. `ICOver-writing text`IC  In INSERT mode, no character is ever
+overwritten, but rather is squeezed to the right when a new character
+is typed at its position. `ICInserting text`IC
+Visual functions exist to enter Insert Mode,
+revert to Normal Mode, or to switch between the modes. The mode which
+the editor starts in is set during `IXcustomization`IX and is a matter
+of personal preference.
+.sp
+     Two convenient exceptions to the operation of Normal and Insert
+Mode pertain to the ends of lines and the `IXRETURN key`IX.  Text
+typed at the end of a line is always inserted before the `ICEnd of line`IC
+(invisible) <CR>~<LF> pair, `IC<CR> and <LF>`IC which ends each text line. Also,
+typing the RETURN key does not overwrite any character, but rather
+moves the rest of the line, beginning with the character at the cursor
+position, to a new text line. `ICSplitting lines`IC
+.sp
+     The keyboard characters RETURN and TAB are normal `ICTab character (key)`IC
+text characters, but have special properties. The RETURN key causes a
+carriage return <CR> and line feed <LF> pair to be inserted into the text and a new
+line to be displayed on the screen. If it is typed while the cursor is
+pointing within a text line, that line is effectively split into two
+lines.
+.sp
+     The [TAB CHARACTER] key causes insertion of a tab character, or
+optionally, spaces to the next tab position. `ICTab positions`IC
+`IC[TAB CHARACTER] (See Tab character)`IC
+The tab character itself
+is displayed with spaces on the screen to the next tab position, even
+though the spaces do not exist in the edit buffer.
+.sp 2
+.cp 5
+.ul
+Performing Edit Functions `TC~~~~~Performing Edit Functions`TC `ICEdit functions`IC
+.sp
+     The edit functions fall into two categories: `IXCursor Movement`IXs
+and `IXVisual Functions`IX. The cursor `ICcursor position`IC
+movement keys only move the cursor to some other position
+in the text and do not actually change the text.  The cursor may be
+moved forward and backward by a character, a word, a line, a paragraph
+or a screen at a time.  The screen may be scrolled up, down, right and
+left.  Up to ten positions in the `ICtext markers`IC text may be "remembered" with invisible markers which allow
+the cursor to be directly moved back to these positions. These and
+other movements are individually described later in this section.
+.sp
+     Some of the visual functions perform delete operations, while
+others change the Insert mode, change the left margin, manipulate the
+text registers, and print text. Provided that the cursor has not been
+moved from the current line, the line can usually be restored to its
+original form (before any deletions or insertions were made) by using
+the `IX[UNDO]`IX function.
+.sp
+     The particular control or function keys which perform the edit
+operations are assigned during customization.  All versions of VEDIT
+have a default keyboard layout as described in the appendices.  You can
+also create your own keyboard layout.
+When you are instructed, for example, to "press the [PAGE UP] key",
+you will need to refer to the appropriate keyboard layout sheet to see
+which control or function key on your computer is assigned to [PAGE UP].
+.sp 2
+.cp 4
+.ul
+Control Characters  `ICControl characters - in text`IC `TC~~~~~Control Characters`TC
+.sp
+     Any control characters in the text, other than <CR>, <LF> and
+<TAB> are displayed in the common MSDOS and CP/M format by preceding
+the letter with a "Caret" (^). The edit function "`IX[NEXT CHAR
+LITERAL]`IX" allows any control character except `IX<CTRL-Z>`IX (which
+is not allowed by MSDOS or CP/M) to be inserted into the text.
+Alternatively, the Command Mode "`IXEI`IX" command can be used to
+insert control and special characters which cannot be produced by the
+keyboard. `ICKeyboard characters`IC A common use for control characters
+within the text is to turn on and off special printing features such as
+underlining or overstriking.
+.sp 2
+.cp 5
+.ul
+The Repeat Function `TC~~~~~The Repeat Function`TC `ICRepeat function`IC
+.sp
+     Often it is desirable to repeat a typed character such as "*" or
+"-" when preparing tables, or to repeat an edit function such as
+[PAGE~DOWN] in order to move quickly through the file.  These can be
+performed with the `IX[REPEAT]`IX function.
+.sp
+     When the [REPEAT] key is pressed, a "4" will appear in the
+left side of the status line.  This is the `IXrepeat value`IX.
+Pressing [REPEAT] again will increase the value to 16, and pressing it
+again a value of 64, and pressing it once more will give the maximum
+value of 256.  If you want any other repeat value, you can simply type
+it in, i.e. "70".  Allowable values are between 00 and 256. Once the
+repeat value is correct, simply type the displayable character or
+the edit function which is to be repeated.  For example, to
+create the top of a box consisting of 50 "*", type [REPEAT], "50" and
+"*".  Or to delete 16 lines type [REPEAT], [REPEAT], [ERASE LINE].
+.sp
+     With VEDIT's interruptable `IXscreen updating`IX, only the final
+screen will be shown when using the [REPEAT] key.  Since some
+operations such as deleting a line may take a second to perform
+on a very large file, you may notice some delay when using the "Repeat"
+function. `ICDeleting lines`IC
+(If you are deleting many lines, it may be quicker to use
+the "`IXK`IX" command in Command Mode.)  While the repeated function is
+being executed, the cursor will remain on the status line.  If for some
+reason you want to `ICAbort function`IC abort the repeated function,
+press `IX[CANCEL]`IX.
+.sp 2
+.cp 5
+.ul
+Horizontal Scrolling `TC~~~~~Horizontal Scrolling`TC `ICHorizontal scrolling`IC
+.sp
+     VEDIT has the ability to scroll the screen sideways for editing
+documents with `IXlong lines`IX, such as `IXspreadsheets`IX or
+structured programs. Two edit functions are provided for scrolling the
+screen right and left: [SCROLL RIGHT] and [SCROLL LEFT].  The screen
+may be scrolled right up to a right margin called the "`IXhorizontal
+scroll margin`IX" (which is independent of the word wrap margin). This
+scroll margin is user determined with a maximum value of 255. Lines
+longer than the scroll margin are continued on the following screen
+line.
+.sp
+     The screen will also scroll automatically as you enter text or move
+the cursor.  To reduce the amount of unwanted side to side scrolling,
+several functions such as [ZIP] do not force the screen to scroll.
+.sp
+     By setting a scroll margin of 78 when the screen width is 80 (the
+right and left most columns are reserved) the horizontal scrolling is
+effectively turned off and you can view an entire long line, since it
+will be displayed on `IXmultiple screen lines`IX.
+.sp
+     The default scroll margin is set during customization and may be
+changed in command mode with the command
+"EP 10 nnn".
+.sp 2
+.cp 5
+.ul
+Cursor Movement `TC~~~~~Cursor Movement`TC `ICCursor movement`IC
+.sp
+     A wide range of cursor movement functions is provided, including
+the four basic ones of [CURSOR UP], [CURSOR DOWN], [CURSOR LEFT]
+and [CURSOR RIGHT].  In general the cursor will only move to where
+there is text.  That is, if the `IXcursor`IX is moved right past the
+end of a line it will move to the first position of the next line.
+This is always the case with left/right cursor movement; however, for
+convenience, VEDIT offers three different modes of up and down cursor
+movement.
+.sp
+.cp 4
+`ULMODE~0`UL~: the cursor can never be moved to a position
+that is past the end of a line.  If you move the cursor down from
+the end of a long line to a shorter line, the cursor will also move
+left to the end of the shorter line.
+.sp
+`ULMODE~1`UL~: the cursor can be positioned past the end of a line as the
+cursor is moved up and down.  This mode enables you to move the cursor
+from a long line past short lines to another long line, staying in the
+same column.  If you attempt any edit change, i.e. typing in new text
+or deleting text, with the cursor past the end of a line, the cursor is
+first moved left to its "correct" position at the end of the line.
+Since this mode is especially important for horizontal scrolling, to
+prevent the screen from scrolling back as the cursor is moved past
+short lines, VEDIT automatically goes into MODE 1 when the screen is
+scrolled to the right.
+.sp
+`ULMODE~2`UL~: the cursor moves identically to Mode 1.  However, if the cursor
+is past the end of a line and you type text, spaces are automatically
+inserted from the end of the line up to the just entered text.
+This mode is
+handy for filling out tables and other formatted text.  Note, however,
+that the many spaces will consume additional memory and disk space.
+.sp
+     A little experimentation is best for understanding these modes and
+deciding which you like best.  Mode 1 is the recommended setting.
+Other word processors generally operate in one of these three modes and you may
+want to pick one that you are already familiar with.
+.sp
+     The default mode is set during customization and may be changed
+with the EP command (example: "EP 9 0" sets cursor mode to MODE 0).
+.sp 2
+.cp 5
+.ul
+Setting and Jumping to Text Markers `TC~~~~~Setting and Jumping to Text Markers`TC `ICText markers`IC
+.sp
+     You can place invisible markers in the text and later jump back to
+them.  The positions are marked by typing the [SET TEXT MARKER] key.
+The status line will then prompt for a digit "0~-~9".  Type a digit, or
+type RETURN or [SET TEXT MARKER] again to use marker "0".  To move the
+cursor to a marked position type the [GOTO TEXT MARKER] key and the
+appropriate digit following the status line prompt.  The cursor
+will then move to the marked position. `ICCursor movement`IC  You can abort
+either function by typing the [CANCEL] function in
+response to the prompt for a digit. `ICAbort function`IC `ICAbort function (See also [CANCEL])`IC
+.sp
+     The marked positions are relative to the text. This means that the
+markers will adjust themselves as text is inserted and deleted.  All
+markers are initially set to the Home position.  If text containing a
+marker is written to disk, that marker will be reset to the Home
+position.  However, the `IX[RESTART]`IX function or an "`IXEA`IX"
+command will maintain the markers.
+.sp 2
+.cp 5
+.ul
+The Tab Character `TC~~~~~The Tab Character`TC `ICDisplayable characters`IC
+.sp
+     One displayable character which acts a little differently is
+the [TAB CHARACTER], `ICTab character (key)`IC which is normally assigned to the Tab
+Key or `IX<CTRL-I>`IX. When the Tab key is pressed, it inserts the
+tab character into the text, which is displayed with spaces to
+the next tab position.  The `IXtab positions`IX are variable, but are
+normally set to every 8 positions. You can tell the difference between
+the tab character and spaces by the way the cursor moves over them.
+The cursor moves  `ICCursor movement`IC over each space individually, but moves over
+a Tab as a unit, i.e. a single [CURSOR RIGHT] might move you from
+column 1 to column 9.  This reflects the fact that the Tab is a single
+character and should be treated as such. When the cursor is at the Tab
+character, it is displayed at the left side of the displayed spaces.
+The Tab character is commonly used when writing programs and
+aligning tabular data. `IXParagraphs`IX are best indented by not
+using a Tab, but rather by typing four or five spaces.
+.sp
+     The [TAB CHARACTER] and the `IX[TAB CURSOR]`IX functions must not
+be confused. The latter is strictly a `IXcursor movement`IX function
+and has nothing to do with Tab characters.  It only moves the cursor
+right to the next tab position. `ICTab positions`IC
+It is very similar to typing [CURSOR RIGHT] repeatedly to reach
+the next tab position on the line. If you notice that you have
+customized the Tab key to be the [TAB CURSOR] function, you are
+advised to change the Tab key to be [TAB CHARACTER] as it should be.
+.sp
+`ICTab expansion`IC
+.br
+     Optionally, the [TAB CHARACTER] function can insert spaces to the
+next tab position.  `ICInserting spaces`IC This is equivalent to you typing in the spaces.
+While this uses up more `IXdisk space`IX and is not normally recommended, it
+is useful in some applications.  This option may be changed with the
+"`IXES`IX" command (the command is "ES~1~1").  Although the screen display
+for these two options is identical, they are actually very different,
+especially to programs other than VEDIT.  This option is handy with
+FORTRAN and COBOL programs.
+.sp
+     If you set the tab positions in VEDIT to anything other than the
+default, you may find that other programs will not display your text
+as you wanted.   This is due to your VEDIT tab positions
+being incompatible with the `IXtab positions`IX of the other programs, which
+usually have fixed tabstops at every 8 positions.  If you send text files
+with Tab characters to large `IXmainframe computers`IX, you may find that
+the tabs are lost in the transfer. (Many mainframes do not have Tab
+characters internally.)  These two cases are good candidates for
+allowing the Tab key to insert spaces to the next tab position.
+.sp 2
+.cp 9
+.ul
+Search and Replace `TC~~~~~Search and Replace`TC `ICSearch and Replace`IC
+.sp
+     It is very easy to search for character strings and/or replace
+them with new strings in Visual Mode.  A selective replace with
+prompting is also provided.  Several search options may be selected.
+.sp
+`ICSearch (ing)`IC
+.br
+`ULFIND`UL~: To search for a string press the `IX[FIND]`IX function. The status
+line will prompt for the string.  Enter the string you wish to find
+followed by RETURN.  VEDIT will move the cursor just past the first
+occurrence of that string.  Each time you press [FIND] afterwards,
+VEDIT will move to the next occurrence of the same string. To search
+for a different string first press [CANCEL], which cancels the current
+search string.  Pressing [FIND] after all the occurrences have been
+found will result in a "CANNOT FIND string" message - type any
+character to continue.  This also cancels the string, i.e. you don't
+have to press [CANCEL] to search for another string.  If you need to
+search for a RETURN type `IX<CTRL-N>`IX in its place.  The maximum string
+length is 31 characters.  The [FIND] function is similar to the "F"
+command in Command Mode. `ICCancel search operation`IC
+.sp
+`ICReplace text (See Search and Replace)`IC
+.br
+`ULREPLACE`UL~: To replace one string with another press `IX[REPLACE]`IX.
+The prompt "FIND?" will appear in place of the status line.  Enter the string to
+be replaced and press RETURN.  The prompt then changes to
+"REPLACE~WITH?".  Enter the new string in the same fashion as the
+first. VEDIT will locate the first occurrence of the string to be
+replaced and prompt with:
+.sp
+~~~~~~~~~~~~~~~REPLACE (Y / N / REST / CANCEL)?
+.sp
+Type "Y" to replace the string with the new string, or "N" or <SPACE
+BAR> to leave it unchanged.  Type "R" to make the replacement and
+replace all subsequent occurrences without prompting for each one.  As
+with [FIND], each time you press [REPLACE] VEDIT will locate the next
+occurrence of the string and prompt you with the replace options.  To
+cancel this process choose "C" from the options.  Alternately, to
+search for and replace a different string, you can press [CANCEL] at
+any time.
+.sp
+     Often you will want to search for all occurrences of a string and
+selectively replace some of them.  This is done in conjunction with the
+`IX[REPEAT]`IX function.  Press [REPEAT] four times for a maximum count of
+256. Then press [REPLACE] and answer all prompts as above.  Now the
+"REPLACE (Y / N / Rest / Cancel) ?" prompt will repeat up to 256 times
+allowing you to make the `IXselective replace`IX.  As before, "R" will
+replace the remaining occurrences without prompting.  Typing "C" will
+cancel the replace operation.  To replace a new string with another,
+press [CANCEL] to cancel the previous replace operation.
+.sp
+     To select any of the search options respond to the [FIND] or
+[REPLACE] "FIND?" prompt with an immediate RETURN.  The status line
+prompt will change to: `ICSearch options`IC
+.sp
+~~~~~~~~~~~~~~~OPTIONS (Begin / Global / Reuse)?
+.sp
+Select one or more options by typing the corresponding letters "B", "G"
+and "R", followed by a RETURN.  For example, entering "BR~<RETURN>"
+will select the "Begin" and "Reuse" options.
+.sp
+.of 8
+Begin~~~This option will start the search or replace from the beginning
+of the edit buffer. If
+the "Global" option is also selected, the search or replace
+will start at the very beginning of the file.
+.sp
+.of 8
+Global~~This option will cause the search or replace to operate to the
+end of the file, if necessary, not just the end of the edit buffer.  If
+the entire file is in the edit buffer, this option has no effect.
+.sp
+.of 8
+Reuse~~~This option causes the previous search string or
+replace strings to be reused.  This is convenient after you receive a
+"CANNOT FIND" message and want to reuse the strings on a new file or
+from the the beginning of the file (with the "Begin" option).
+.sp
+     Following the options and the RETURN, you will get the "FIND?"
+prompt again, unless you selected the "Reuse" option.  With the "Reuse"
+option the [FIND] or [REPLACE] will immediately be performed with the
+previously used strings.
+.sp 2
+.cp 7
+.ul
+Cancel Function `TC~~~~~Cancel Function`TC
+.sp
+     The `IX[CANCEL]`IX function cancels the current [FIND] and [REPLACE]
+settings and any function which is being performed because of a
+[REPEAT].  It also cancels functions which prompt
+you on the status line: [REPEAT], [COPY~TO~TEXT~REGISTER],
+[MOVE~TO~TEXT~REGISTER], [INSERT~TEXT~REGISTER], [SET~TEXT~MARKER] and
+[GOTO~TEXT~MARKER]).
+.sp 2
+.cp 7
+.ul
+The Text Registers `TC~~~~~The Text Registers`TC `ICText registers`IC
+.sp
+     The most straight forward use of the text registers is for
+`IXcut and paste`IX operations.  They can hold up to ten sections,
+which have been "cut" and need to be "pasted" elsewhere.
+.sp
+`ICInserting text register`IC
+.br
+     The visual functions `IX[COPY TO TEXT REGISTER]`IX and
+`IX[MOVE TO TEXT REGISTER]`IX are used to copy or move text from the main text
+buffer to one of the text registers. `ICCopying text`IC `ICMoving text`IC
+The function `IX[INSERT TEXT REGISTER]`IX is then used to insert the
+contents of a text register at the cursor position.  These functions
+are usually used to move or copy text from one area in the file to
+another.  Text can also be moved to a text register whose contents are
+then written to a disk file in Command Mode. `ICWriting files`IC
+The text registers used are the same as used in Command Mode;
+thus the text registers may be set in Command Mode and inserted in
+Visual Mode or vice versa.
+.sp
+.cp 3
+     To specify which text to move or copy, first position the cursor
+to the beginning of the text and mark it by pressing the appropriate
+function key.  The message "1~END" will appear on the `IXstatus line`IX.
+Then move the cursor just `ulpast`ul the last character of
+the text and press the function key again.  The status line will then
+prompt for a digit "0~-~9" to specify which register to use. The digit
+may optionally be preceded with a "+" to indicate that the text is to
+be appended `ICAppend to text register`IC to any text which may already
+be in the register.  After typing the digit,
+the status line message will change to "TEXT".  In the case of [COPY TO
+TEXT REGISTER], the `IXedit buffer`IX will be unchanged, while in
+the case of [MOVE TO TEXT REGISTER], the text will be deleted from the
+edit buffer.  Press [INSERT TEXT REGISTER] and a digit "0~-~9" to
+insert the specified register at the cursor position.  Depending upon
+the "Point Past Register Insert" switch (see ES command), the cursor
+will be positioned either at the beginning or the end of the inserted
+text. `ICCursor position`IC
+.sp
+     You can first mark either the beginning or the end of the text.
+It is also arbitrary whether you press [COPY
+TO TEXT REGISTER], [MOVE TO TEXT REGISTER] or even [PRINT TEXT] when
+you mark the first end.  Only when you mark the second end must the
+correct function be pressed. `ICAbort function`IC  You can abort the
+operation by pressing the [CANCEL] function in response to the status
+line prompt for a digit. `ICMemory space - full`IC  If there is
+insufficient memory space for the text register, or to insert the
+register, the `IX"FULL" message`IX will appear on the status line and
+no text will have been moved or copied. `ULAs a convenience, you may
+type RETURN or the function key again in response to any text register
+number prompt to use register "0"`UL.  This is the recommended way of
+doing simple "cut and paste" with a single text register - it is
+faster and you will not forget which register you saved the text in.
+.sp
+     The first marked end is invisible and you may forget where it is.
+To see where it is press [GOTO TEXT MARKER] followed by a special "+"
+and any digit.  This operation will swap the positions of the marker
+and the cursor, placing the cursor where the marker was.  Repeat the
+operation to restore the marker and the cursor to their original
+positions.
+.sp 2
+.cp 5
+.ul
+Indent and Undent Functions `TC~~~~~Indent and Undent Functions`TC `ICIndenting text`IC
+`ICIndenting text (See [INDENT])`IC
+.sp
+     As an aid in `IXword processing`IX and writing programs in
+`IXstructured languages`IX such as C, Pascal and PL/I, the Visual Mode
+has the `IX[INDENT]`IX and `IX[UNDENT]`IX functions. These functions
+allow the editor to automatically pad up to the "`IXIndent position`IX"
+with tabs and spaces, when a new line is started with the
+`IXRETURN key`IX. [INDENT] moves the Indent position to the
+right by the "`IXIndent increment`IX", and [UNDENT] moves the
+Indent position back to the left.  If the cursor is on a new line, or
+before any text on the line, when the [INDENT] or [UNDENT] is pressed,
+the cursor and any following text will also move to the new Indent
+position. `ICCursor movement`IC
+.sp
+.cp 3
+     Normally the "`IXIndent position`IX" is zero and when a
+RETURN is typed, a <CR>~<LF> pair is inserted into the text, and
+the cursor moves to column 1 of the next line.  After the [INDENT] key
+is pressed once and a RETURN typed, the cursor will be positioned not
+in column 1, but rather at the first indent position, i.e., column 5 if
+the "Indent increment" is set to four. Pressing [INDENT] again
+will position the cursor still farther to the right after each RETURN,
+i.e., to column 9.  Each time [UNDENT] is pressed, the
+indent position moves back toward the left until it is back at zero.
+.sp
+`ICInserting spaces`IC
+.br
+     The exact number of tabs and spaces inserted into the edit buffer,
+to pad up to the "Indent position", is related to the currently set
+`IXtab positions`IX and the "Indent Increment".  The padding will consist of
+the most tabs and fewest spaces in order to save memory and disk
+space. For example, assume that the "Indent increment" is set to the
+common value of four (4) and the tab positions at every eight (8).
+When the "Indent position" is eight, the padding will consist of one
+tab; when the "Indent position" is twenty, the padding will consist of
+two tabs and four spaces. On the other hand, if the tab positions were
+set to every four, only tabs would be used in the padding. Note that
+if the "`IXExpand Tab with spaces`IX" switch is set, only spaces will be
+used for padding.  This will use up additional memory and disk space.
+`ICTab expansion`IC
+.sp 2
+.cp 6
+.ul
+Printing Text `TC~~~~~Printing Text`TC `ICPrinting text`IC
+.sp
+     VEDIT can print out any portion of the text which is currently in
+the edit buffer.  This can be done from both the Visual and the
+Command Modes of the editor.  It is easiest to do in Visual Mode and
+is similar to the method of moving text to a text register.  First
+position the cursor at one end of the text to be printed and press
+`IX[PRINT TEXT]`IX. Next, position the cursor at the other end of the
+text to be printed and press [PRINT~TEXT] again, which causes the text
+to be printed.
+.sp
+     To print the entire text move the cursor to the beginning and end
+of the text with the [HOME] and [ZEND] functions, and press
+[PRINT~TEXT] at each end. The printing can be aborted by typing
+<CTRL-C>.  Note: the "RP" command is used to print the contents of a
+text register.
+.sp
+`ICPrinter control characters`IC
+.br
+     Many printers use control characters `ICControl characters - in text`IC
+or `IXescape sequences`IX to control such things as character size, font style and
+overstrike.  Printer control sequences can be inserted directly
+into the text using the [NEXT CHAR LITERAL] function or the
+"EI" command.  If several printer control sequences are used
+repeatedly, you may find it easier to store each one in a text register
+and then just insert the appropriate text register when needed.
+.sp 2
+.cp 5
+.ul
+Word Processing Functions `TC~~~~~Word Processing Functions`TC `ICWord processing`IC
+.sp
+     VEDIT has functions for moving the cursor `ICCursor movement`IC to the beginning
+of the next word or the preceding word, and functions to delete the
+next or the previous word.  The `IX[NEXT WORD]`IX function moves the
+cursor to the first letter of the next word.  The `IX[PREVIOUS WORD]`IX
+function moves the cursor to the first letter of the current word, or
+if already there, to the beginning of the previous word.  The
+`IX[DEL NEXT WORD]`IX function deletes the word, or portion of the word
+to the right of the cursor. `ICCursor position`IC
+`IX[DEL PREVIOUS WORD]`IX deletes the  `ICDeleting text`IC
+previous word and any following spaces if the cursor is at the
+beginning of a word.  If the cursor is in the middle of a word, it
+deletes only that portion of the word to the left of the cursor.  The
+delete-word functions never delete carriage returns, but rather just
+move over them when they are encountered.
+.sp
+     Words are allowed to have imbedded periods in them, such as in
+"i.e.".  A comma "," always ends a word, even if the comma is not
+followed by a space.  As a special case, numbers with imbedded commas,
+such as "10,000" are treated as one word.  The special characters ")",
+"]" and "}" also separate words from each other, as do spaces, tabs and
+carriage returns.  All other characters are allowed in words.
+.sp
+     The cursor can also be moved to the beginning of the previous or
+the next paragraph with the `IX[PREVIOUS PARAGRAPH]`IX and`IX [NEXT PARAGRAPH]`IX
+functions.  VEDIT considers a paragraph to end when an empty line, a
+blank line or a `IXprint formatter`IX command line is encountered.
+Print formatter command lines are considered to be any lines
+which begin with a ".", "!" or a "@" in the first column.
+.sp 2
+.ul
+Word Wrap and `IXMargins`IX `TC~~~~~~~~~~Word Wrap and Margins`TC `ICWord Wrap`IC
+.sp
+     To simplify word processing, the WORD WRAP facility may be used.
+This facility allows the user to specify a `IXright margin`IX beyond
+which no text should appear.  If you attempt to enter new text beyond
+this margin, VEDIT will move the word which didn't fit within the
+margin to a new line, leaving the cursor in the same position in the
+word, and add a carriage return to end the previous line.  Word wrap
+will only occur when the cursor is past the right margin.
+.sp
+     Word wrap is enabled by setting the right margin parameter.  A
+value of zero turns word wrap off.  This parameter is initially set
+during customization and can be changed with the "`IXEP`IX~7~nn"
+command.  For example, the commands to enable word wrap with a right
+margin at column 70 and to turn word wrap off are:
+.sp
+.cp 4
+~~~~~~~~~~EP~7~70~~~~~~~~~Enable word wrap with a right margin of 70
+.sp
+~~~~~~~~~~EP~7~0~~~~~~~~~~Turn word wrap off
+.sp
+     If you do not wish the text to begin in the left most column, you
+may set a left margin with the `IX[INDENT]`IX and `IX[UNDENT]`IX
+functions. A left hand margin may be set independent of whether
+word wrap is enabled.  The right margin can be greater than the
+`IXscreen line length`IX, in which case VEDIT will either scroll the
+screen horizontally or display a `IXcontinuation line`IX before the
+word wrap takes place.
+.sp 2
+.cp 5
+.ul
+Formatting Paragraphs `TC~~~~~~~~~~Formatting Paragraphs`TC `ICFormatting paragraphs`IC
+`ICParagraphs (See also Formatting paragraphs)`IC
+.sp
+     In `IXword processing`IX it is frequently desirable to format a
+paragraph so that all of the text appears between selected left and
+right margins. The `IX[FORMAT PARAGRAPH]`IX function performs this.
+The `IXleft margin`IX is set by the `IX[INDENT]`IX and `IX[UNDENT]`IX
+functions, while the right margin is the same as used for `IXword wrap`IX.
+.sp
+     To format a paragraph, the cursor may be placed anywhere in the
+paragraph.  After formatting, the cursor will be positioned at the
+beginning of the next paragraph. `ICCursor position`IC A series of
+paragraphs may therefore be formatted by just repeatedly pressing the
+[FORMAT~PARAGRAPH] key. A paragraph will only be formatted if
+the right margin is greater than the left indent margin.  Setting word
+wrap off also disables the formatting function.
+.sp
+     When a paragraph is formatted, the typcial indentation of the
+first line will be preserved.  If the second line of the original
+paragraph is indented with respect to the first line, VEDIT will
+consider it to be an `IXOffset paragraph`IX and will also preserve
+this offset.  Numbered paragraphs are often offset paragraphs as in
+the following example:
+.sp
+.of 5
+1.)~~This is an example of an offset paragraph.  Notice how the first
+line begins in column 1, while all following lines begin in column 5.
+This paragraph can be entered by typing [INDENT] anywhere along the
+first line.  Word wrap must of course be on.
+.sp
+     However, any indentation which all lines of a paragraph have is
+ignored by [FORMAT~PARAGRAPH].  The left most line(s) will be
+positioned at the current left margin.
+.sp
+     If you are using `IXprint formatter`IX command lines, you should
+note that these lines separate paragraphs from each other and will not
+be formatted or changed in any way by the [FORMAT~PARAGRAPH] function.
+.sp
+.of 7
+`ULNote:`UL~~When using word wrap and [FORMAT~PARAGRAPH], you may
+notice that each text line ends in a space.  This actually is the
+space you typed between the words.  Lines ending in a period "." are
+typically followed by two spaces.  These spaces at the end of a line
+are allowed to exceed the right margin.
+.sp 2
+.cp 6
+.ul
+`IXJustification`IX `TC~~~~~~~~~~Justification`TC
+.sp
+     Notice how the paragraphs in this manual have a completely
+straight or "justified" right margin.  "Justification" produces a
+straight right margin by adding spaces between the words on the line.
+You can select to have the right margin justified when using the
+[FORMAT~PARAGRAPH] function.  Justification is controlled with the
+command switch "ES~11":
+.sp
+.ti 9
+ES 11 1~~~~~~~~~~~~~~~Command to turn justification ON
+.sp
+.ti 9
+ES 11 0~~~~~~~~~~~~~~~Command to turn justification OFF
+.sp
+     A justified paragraph may be re-formatted and justified between
+new margins by first changing the margins and then using the
+[FORMAT~PARAGRAPH] function again.
+.sp
+     If you need to edit text after it has been been justified, you
+will find it easier if you first "unjustify" the text.  This removes
+the additional spaces between words, leaving the right margin ragged.
+However, it will leave two spaces following ".", "?" ":" and "!".
+You can select to have paragraphs "unjustified" when using the
+[FORMAT~PARAGRAPH] function with the command switch "ES~11":
+.sp
+.ti 9
+ES 11 2~~~~~~~~~~~~~~~Command to unjustify paragraphs
+.sp
+     Note that turning justification off with the command "ES~11~0"
+will not unjustify a paragraph, because [FORMAT~PARAGRAPH] will then
+re-format the paragraph leaving the additional spaces in place.
+.sp
+     This unjustify feature can also be used when converting files
+created with other word processors for use by VEDIT.  For example, a
+document justified by WordStar (TM) can be unjustified to make
+further editing easier.  (Note: the High bit of WordStar files must
+first be stripped with the "YS" command - see Command Mode section.)
+.sp 2
+.cp 6
+.ul
+Command Macros in Visual Mode `TC~~~~~Command Macros in Visual Mode`TC
+`ICCommand macro`IC
+.sp
+     Command macros are fully described in the next section.
+Basically, command macros are sequences of commands which are stored
+in one of the text registers.  The command "Mr" is then given to
+execute the sequence of commands in register 'r'.  Alternatively, the
+Visual Mode function [MACRO] can be used to execute the sequence of
+commands.
+.sp
+     After pressing the `IX[MACRO]`IX key you are prompted for a digit
+"0~-~9" to specify which register is to be executed.  After the macro
+executes, you are returned to Visual Mode.  If during the execution of
+the macro anything is displayed on the screen, you will be prompted to
+hit any key before returning to Visual Mode.  This lets you see the
+displayed information before you are returned to Visual Mode.
+.sp
+     This Visual Mode macro capability allows you to create virtually
+any edit function you want.  The example in the Command Mode section
+shows how to create an edit function which duplicates a line of text.
+This saves time when entering lines of text which are very similar
+to the previous line. If you use such custom edit functions often, you
+can generate a VEDIT.INI auto-startup file which automatically loads
+the macros into the text registers each time you use VEDIT.
+.sp 2
+.cp 6
+.ul
+Lower and Upper Case Conversion `TC~~~~~Lower and Upper Case Conversion`TC `ICLower to upper case conversion`IC
+.sp
+     This is a relatively technical topic and is mostly applicable to
+users with non-standard keyboards and assembly language programmers.
+.sp
+     Several modes are available for converting between lower and
+upper case letters as they are being typed on the keyboard.  There are
+four options for converting from lower to upper case:
+`ICUpper and lower case`IC
+.sp
+.cp 5
+0.)~~No conversion is made.
+.br
+1.)~~All lower case letters are converted to upper case.
+.br
+.of 5
+2.)~~Conditional conversion of lower case to upper case for assembly
+language programming and other special applications.
+.br
+3.)~~Similar to 2.) - upper and lower case letters are reversed
+.sp
+     Mode "1" is similar to the "Caps Lock" on a keyboard, the 26
+lower case letters are converted to upper case.  Modes "2" and "3" are
+specifically designed for `IXassembly language`IX programming.  In mode "2"
+lower case letters are converted to upper case if they occur to the
+left of a special character, called the "`IXConditional Convert Character`IX",
+typically "`IX;`IX".  To the right of the ";" they are not
+converted.  In this manner an assembly language program can be entered
+or edited with all lower case letters and VEDIT will automatically
+convert the labels, opcodes and operands to upper case, while leaving
+the comment fields alone.  This can also be used for FORTRAN programs
+and other special applications.  Mode "3" is almost identical to mode
+"2"; instead of converting lower case to upper case, it reverses the
+case of letters appearing before the ";".  This mode makes it easier
+to enter lower case literals into a program. These options and the
+special character are set with the "EP" command.
+.sp
+     Upper and lower case letters can also be unconditionally
+reversed, i.e., lower case converted to upper case and upper case
+converted to lower case.  This is specifically designed for the Radio
+Shack `IXTRS-80 Model I`IX, whose keyboard `ICkeyboard characters`IC normally produces upper case
+letters and lower case with the Shift key.  This reversal is done
+immediately when a keyboard character is received and before any
+resulting lower case letter is converted to upper case as described
+above.  The letters are also reversed for the Command Mode.  This mode
+may also be handy in the case where most text is to be entered in
+upper case, but where an occasional lower case character is also
+needed. This mode is selected with the command switch "ES~7".
+.sp 2
+.cp 6
+.ul
+End of Lines `TC~~~~~End of Lines`TC `ICEnd of line`IC
+.sp
+`IC<CR> and <LF>`IC
+.br
+     Each text line is assumed to end in a <CR>~<LF> pair as is
+required for other MSDOS and CP/M programs, and the <LF> is the true
+terminator of text lines. Typing the RETURN (or <CR>) key inserts
+a <CR>~<LF> pair at the cursor position. `ICRETURN key`IC `ICDeleting text`IC
+Deleting the end of a line, will delete both the <CR> and the <LF>.
+Although VEDIT, in Visual Mode, will never create a line ending in
+just a <CR> or <LF>, such lines are handled in Visual Mode, although
+displayed differently. (Such lines can be created in Command Mode). If
+a line ends in only a <LF>, the next line will be displayed with a
+starting position directly below the end of the  previous line. If a
+line contains a <CR> not followed by a <LF>, the <CR> will be
+displayed in the normal control character convention as "^M". Such
+lines may be corrected by deleting the offending lone <CR> or <LF>
+with the [DELETE] function and then inserting the <CR>~<LF> pair with
+the RETURN key.
+.sp 2
+.cp 7
+.ul
+Inserting Control Characters `TC~~~~~Inserting Control Characters`TC `ICInserting control characters`IC
+.sp
+`ICPrinter control characters`IC
+.br
+     Virtually any control character and non-ASCII character can be
+inserted into the text. These may be special printer control
+characters, the <ESC> character, or control characters for other
+purposes.  Only `IX<CTRL-Z>`IX cannot be inserted because it is used by
+MSDOS and CP/M to mark the end of a file.  The `IX[NEXT CHAR LITERAL]`IX
+function places the next character typed on the keyboard into the
+text.  Any control character which can be generated from the
+keyboard `ICkeyboard characters`IC can thereby be placed into the text.
+In case a character must be inserted which cannot be generated from the
+keyboard, the Command Mode "`IXEI`IX" command can be used.  This
+command can insert any character with a decimal value between 00 and
+255 (except 26 which is a <CTRL-Z>) into the text.
+.sp 2
+.cp 6
+.ul
+High Bit (Bit 8) Character Support `TC~~~~~High Bit Character Support`TC
+`ICHigh bit characters (See Bit 8 characters)`IC
+.sp
+     This is a very technical topic and can be ignored my most users
+with CRT terminals.  `ICBit 8 characters`IC
+.sp
+`ICIBM Personal Computer`IC
+.br
+     Some systems such as the IBM PC and `IXNEC APC`IX allow
+accessing of special character fonts by using text characters which
+have their "High" or 8th bit set.  These
+characters have a numeric value between 128 and 255, and VEDIT can be
+configured to properly display them.
+.sp
+     Since many machines, particularly CRT terminals, do not support
+special character sets, VEDIT can alternately be configured to display
+High bit characters by stripping their High bit and displaying the
+resulting character in reverse video.
+.sp
+     Most keyboards send only ASCII characters without using the High
+bit.  Others, such as the IBM PC and NEC APC have function keys
+which send special characters consisting of all 8 bits.  VEDIT is normally
+configured to decode all 8 bits, allowing the use of function keys for
+its editing operations.  However, with some CRT terminals, the High bit
+is used as a "parity" bit which should be ignored.  In this case, VEDIT
+can alternately be configured to ignore the High bit on keyboard input.
+.sp
+     VEDIT's edit functions are accessed by typing control characters
+or function keys.  The latter either send a special High bit character
+or an Escape sequence.  Those control codes which are not
+assigned to an edit function are normally ignored by VEDIT.  However,
+for applications where special characters are to be entered directly
+into the text, VEDIT can be configured to enter unused control
+sequences into the text.  `IXEscape sequences`IX are inserted as the
+corresponding character with its High bit set.  Only those control
+sequences which are not used in the keyboard layout can be entered.
+Other characters can be entered with the "EI" command.
+.sp
+     All of these options pertaining to special characters are
+controlled by the "`IXEP`IX~8~n" command.  The default value is set during
+customization.  The "EP~8~n" parameter is actually three parameters.
+The first bit enables High bit keyboard characters, the second bit
+enables display of special characters, and the third bit enables
+insertion of unused control codes.  There are eight possible values,
+0~-~7, each representing a combination of three bit values.   The eight
+values and their meaning are:
+.sp
+.cp 13
+.nj
+.nf
+.ta 12 32 52
+ 		SPECIAL	INSERT
+	ALLOW HIGH BIT   	CHARACTERS OR	UNUSED
+	ON KEYBOARD 	REVERSE	CONTROL
+VALUE	INPUT	VIDEO	SEQUENCES
+
+  0  	NO	REVERSE	NO
+  1	YES	REVERSE	NO
+  2	NO	SPECIAL	NO
+  3	YES	SPECIAL	NO
+  4	NO	REVERSE	YES
+  5	YES	REVERSE	YES
+  6	NO	SPECIAL	YES
+  7	YES	SPECIAL	YES
+.sp 2
+.ju
+.fi
+     The normal value for CRT terminals is "1" - allow 8 bits on
+keyboard input, display High bit characters in reverse video (if
+possible) and ignore unused control sequences.   The normal value for
+the IBM PC, NEC APC and other systems with special character fonts is a
+"3".
+.sp
+     Whether High bit characters are allowed on keyboard input has NO
+BEARING on High bit characters already in the text file.  Such
+characters are left unmodified when they are read from disk or written
+to disk.  If you wish to strip High bit characters in the text file
+(for example WordStar files), you can do so with the "YS" command.
+.sp 2
+.cp 7
+.ul
+Disk Buffering in Visual Mode `TC~~~~~Disk Buffering in Visual Mode`TC `ICAuto-buffering`IC
+`ICDisk buffering (See Auto-buffering)`IC
+.sp
+     In `IXVisual Mode`IX, the disk buffering can perform automatic
+Read and Write to handle files `ICFiles - large (long)`IC which are larger than
+the size of available main memory.  Specifically, if the current screen
+display reaches the end of the edit buffer, and the entire input file
+has not yet been read, `IXForward Disk Buffering`IX is performed.
+.sp
+     Auto-buffering in the backward direction `ICBackward disk buffering`IC
+is performed when the cursor is at the beginning of the
+text and you press `IX[HOME]`IX.  Therefore, pressing [HOME]~[HOME]
+from anywhere in the text will perform backward disk buffering,
+reading back text which has already been written to the `IXOutput file`IX.
+Nothing will happen if there is no text to read back in, or
+if backward disk buffering was not enabled during customization or
+with the "ES" command.  The amount of text that VEDIT will buffer each
+time is the "`IXFile Page`IX" size (typically 8 Kbytes), set during
+customization. To move back further in the file, just repeat the
+[HOME] function.
+.sp
+     VEDIT will also begin to write out the edit buffer (`IXauto-write`IX)
+if the memory becomes full `ICMemory space - full`IC
+while you are typing in more text. It will
+attempt to write the first 1K text bytes to
+the output file. If no output file is open, or if the cursor is within
+the first 1K of the `IXedit buffer`IX no writing occurs and the
+`IX"FULL" message`IX appears on the status line.
+.sp
+     Both the auto-buffering and the auto-write may be disabled by the
+"Auto Buffering in Visual Mode" switch.  Switch (2) of the "`IXES`IX"
+commands controls whether auto buffering is enabled in visual mode.  A
+value of "0" turns all auto buffering off.  A value of "1" enables only
+auto buffering in the forward direction, and a value of "2" enables
+auto buffering both forwards and backwards.
+.br
+.bp
+.ul
+.ce
+Visual Mode Edit Functions `TC~~~~~Edit Function Summary`TC
+.sp 2
+.ta 19 23
+.of 18
+`IX[HOME]`IX~~~~~~~~~~~~Move the cursor to the very first character in the
+edit buffer.
+.sp
+.of 18
+`IX[ZEND]`IX~~~~~~~~~~~~Move the cursor past the very last character in the edit buffer.
+.sp
+.of 18
+[CURSOR~UP]~~~~~~~Move the cursor up one line, to the same horizontal position
+if possible. If the position is beyond the end of the line, move to the end
+of the line; if the position is in the middle of a tab, move to the end of
+the tab. If there is no line, it won't move. `IC[CURSOR UP]`IC
+.sp
+.of 18
+[CURSOR~DOWN]~~~~~Move the cursor down one line, to the same horizontal
+position if possible. The same rules as for [CURSOR UP] apply. `IC[CURSOR DOWN]`IC
+.sp
+.of 18
+[CURSOR~RIGHT]~~~~Move the cursor to the next character in the text. If
+currently at end of line, move to beginning of next line. If there is no
+line, don't move. `IC[CURSOR RIGHT]`IC
+.sp
+.of 18
+[CURSOR~LEFT]~~~~~Move the cursor to the previous character in the text. If
+currently at beginning of line, move to end of previous line. If there is no
+line, don't move. `IC[CURSOR LEFT]`IC
+.sp
+.of 18
+[BACK~TAB]~~~~~~~~Move the cursor to the first position in the current
+screen line.  If cursor is already at the first position, move to beginning
+of previous screen line.  `IC[BACK TAB]`IC
+.sp
+.of 18
+[TAB~CURSOR]~~~~~~Move the cursor to the character at the next tab
+position.  If cursor is at the end of a line, don't move.
+Note that this only moves the cursor; use the [TAB] key to insert a
+Tab character. `IC[TAB CURSOR]`IC
+.sp
+.of 18
+`IX[ZIP]`IX~~~~~~~~~~~~~Move the cursor to the end of the text line the
+cursor is on. If it already is at the end of a line, move to the
+end of the next text line. `ICEnd of line`IC
+.sp
+.of 18
+[LINE~TOGGLE]~~~~~Is a combination of [ZIP] and [BACK TAB].  First move
+the cursor to the end of the text line.  If it already is at the end
+of a line, move to the beginning of the screen line. `IC[LINE TOGGLE]`IC
+.sp
+.of 18
+[NEXT~LINE]~~~~~~~Move the cursor to the beginning of next text line.
+`IC[NEXT LINE]`IC
+.sp
+.bp
+.of 20
+[SCROLL~UP]~~~~~~~~~Similar to [CURSOR UP], except that the cursor remains
+on the same screen line and the screen moves down instead. `IC[SCROLL UP]`IC
+.sp
+.cp 3
+.of 20
+[SCROLL~DOWN]~~~~~~~Similar to [CURSOR DOWN], except that the cursor
+remains on the same screen line and the screen moves up instead. `IC[SCROLL DOWN]`IC
+.ta 21 24
+.sp
+.of 20
+[SCROLL~RIGHT]~~~~~~Move the screen window right in order to view long
+lines going off the right side of the screen. `IC[SCROLL RIGHT]`IC
+.sp
+.of 20
+[SCROLL~LEFT]~~~~~~~Move the screen window left in order to view the
+beginning part of long lines. `IC[SCROLL LEFT]`IC
+.sp
+.of 20
+[PREVIOUS~WORD]~~~~~Move the cursor to the first character of the current
+word, or if already there, to the beginning of the previous word. `IC[PREVIOUS WORD]`IC
+.sp
+.of 20
+[NEXT~WORD]~~~~~~~~~Move the cursor to the first character of next word.
+`IC[NEXT WORD]`IC
+.sp
+.cp 3
+.of 20
+[PREVIOUS~PARA]~~~~~Move the cursor to be beginning of the current
+paragraph, or if already there, to the beginning of the previous paragraph.
+`IC[PREVIOUS PARAGRAPH]`IC
+.sp
+.of 20
+[NEXT~PARA]~~~~~~~~~Move the cursor to the beginning of next paragraph.
+`IC[NEXT PARAGRAPH]`IC
+.sp
+.of 20
+[PAGE~UP]~~~~~~~~~~~This scrolls the screen to give a similar
+effect to typing [CURSOR UP] for 3/4 screen lines. `IC[PAGE UP]`IC
+.sp
+.cp 2
+.of 20
+[PAGE~DOWN]~~~~~~~~~This scrolls the screen to give a similar
+effect to typing [CURSOR DOWN] for 3/4 screen lines. `IC[PAGE DOWN]`IC
+.sp
+.of 20
+[SCREEN~TOGGLE]~~~~~Move the cursor first to the last allowed screen line,
+or if already there, to the first allowed screen line. `IC[SCREEN TOGGLE]`IC
+.sp
+.cp 3
+.of 20
+[SET~TEXT~MARKER]~~~Followed by a digit "0~-~9". Sets an invisible text
+marker which will automatically adjust as text is inserted and deleted.
+`IC[SET TEXT MARKER]`IC
+.sp
+.cp 4
+.of 20
+[GOTO~TEXT~MARKER]~~Followed by a digit "0~-~9".  Moves the cursor to
+the beginning of the line containing the specified text marker.
+If the marker has not been set or has been reset, moves the cursor
+home. `IC[GOTO TEXT MARKER]`IC
+.bp
+.ta 21 25
+.of 20
+[SET~INSERT~MODE]~~~Change the mode to INSERT if not already there.
+`IC[SET INSERT MODE]`IC
+.sp
+.of 20
+[RESET~INS~MODE]~~~~Change the mode to NORMAL if not already there.
+`IC[RESET INSERT MODE]`IC
+.sp
+.of 20
+[SWITCH~INS~MODE]~~~Switch the mode to its opposite. Note that
+normally either [SET INS MODE] and [RESET INS MODE] or [SWITCH INS
+MODE] would be implemented during the VEDIT Customization process.
+`IC[SWITCH INSERT MODE]`IC
+.sp
+.of 20
+`IX[DELETE]`IX~~~~~~~~~~~~Delete the character at the cursor position.
+The cursor doesn't move.  A lone <CR> or <LF> will also
+be deleted, but a <CR>~<LF> pair will both be deleted as one.
+.sp
+.of 20
+`IX[BACKSPACE]`IX~~~~~~~~~Move the cursor left and delete the
+character at that position.
+.sp
+.of 20
+[DEL~PREVIOUS~WORD]~Delete the previous word and any following spaces if
+the cursor is at the beginning of a word.  Otherwise delete only that
+portion of the word to the left of the cursor. `IC[DEL PREVIOUS WORD]`IC
+.sp
+.of 20
+[DEL~NEXT~WORD]~~~~~Delete the entire word and any following spaces if the
+cursor is at the beginning of a word.  Otherwise delete that portion of the
+word at and to the right of the cursor. `IC[DEL NEXT WORD]`IC
+.sp
+.of 20
+.cp 7
+`IX[EREOL]`IX~~~~~~~~~~~~~This deletes all characters from the cursor position
+to the end of the text line but not the final <CR><LF> pair unless the
+text line only consists of the <CR><LF>, in which case the <CR><LF> is
+deleted. For example, the following sequence will delete an entire line:
+.sp
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~`IX[BACK TAB]`IX [EREOL] [EREOL].
+.sp
+.cp 5
+.of 20
+`IX[ERLINE]`IX~~~~~~~~~~~~This deletes the entire text line. Use of
+[BACK~TAB]~[EREOL] is actually preferable, since the latter
+does not close up the screen line and frequently allows the
+[UNDO] to restore the original line.
+.sp
+.cp 2
+.of 20
+`IX[UNDO]`IX~~~~~~~~~~~~~~This rewrites the screen and ignores the changes
+made to the text line the cursor is on.
+.sp
+.of 20
+[NEXT~CHAR~LITERAL]~The next character, whether a displayable
+character, a control character, or a character with its high order bit
+set, will be placed into the edit buffer. `IC[NEXT CHAR LITERAL]`IC
+.sp
+.cp 4
+.of 20
+`IX[REPEAT]`IX~~~~~~~~~~~~The next text character or edit function is repeated.
+This is either a multiple of 4 or a number typed in.  Type "000" and
+any character to abort; or press [CANCEL] to abort.
+.sp
+.cp 7
+.of 20
+`IX[INDENT]`IX~~~~~~~~~~~~This increases the "Indent Position" by the amount of
+the "Indent Increment".  The editor will then automatically pad with tabs
+and spaces to the Indent position following each RETURN.
+The padding will also take  place on the current line if the cursor is
+before any text on the line.
+.sp
+.cp 4
+.of 20
+`IX[UNDENT]`IX~~~~~~~~~~~~This decreases the "Indent Position" by the amount of the
+"Indent Increment", until it is zero.  One [UNDENT] therefore effectively
+cancels one [INDENT].
+.sp
+.cp 16
+.of 20
+[COPY~TO~TEXT~REG]~~The first time this key is hit, the position
+of the cursor is (invisibly) marked, and the message "1~END" is displayed
+on the status line. When the key is hit while the "1~END" is set, the
+status line prompts for a digit "0~-~9" indicating the text register
+to be used. The text block between the marked position and the
+current cursor position is then copied to the text register.
+Optionally the digit may be preceded with a "+" to indicate that the
+text is to be appended to any text already in the register. Assuming
+there is enough memory space for this "copy", the message "TEXT" is
+then displayed on the status line in place of the "1~END". If
+insufficient memory space exists, no copy is made, the "1~END" is
+erased and the "FULL" message appears on the status line.  Hitting
+this key twice at the same cursor position will empty the specified
+text register. Note that either the beginning or the end of the text
+block may be set first.  `IC"1 END" message`IC `IC"TEXT" message`IC
+`IC[COPY TO TEXT REGISTER]`IC
+.sp
+.cp 3
+.of 20
+[MOVE~TO~TEXT~REG]~~This is similar to [COPY TO TEXT REG], except that
+the text block is deleted from the edit buffer after it is moved to the text
+register. `IC[MOVE TO TEXT REGISTER]`IC
+.sp
+.cp 7
+.of 20
+[INSERT~TEXT~REG]~~~Followed by a digit "0~-~9" indicating which
+text register's contents are to be inserted at the current cursor
+position.  The register itself is not changed. If there is insufficient
+memory space for the entire "copy", nothing is inserted and the "FULL"
+message will appear on the status line.  Moving the cursor to another
+line will clear the "FULL" message. `IC[INSERT TEXT REGISTER]`IC
+.sp
+.cp 4
+.of 20
+[PRINT~TEXT]~~~~~~~~This is activated similar to the [COPY TO TEXT REG],
+only no digit needs to be typed.  The block of text is then printed.
+A <CTRL-C> will abort the printing. `IC[PRINT TEXT]`IC
+.sp
+.of 20
+`IX[FIND]`IX~~~~~~~~~~~~~~Performs a search operation.  Prompts for the search
+string on status line.  String may be up to 30 characters long and ends
+in RETURN.  Use <CTRL-N> to search for RETURN.  Press [FIND] again to
+search for the next occurrence.
+.sp
+.of 20
+`IX[REPLACE]`IX~~~~~~~~~~~Performs a selective replace.  Prompts for string to
+be replaced, then prompts for replacement string.  Next, each time [REPLACE]
+is used, the  next occurrence of the string is found and the user has the
+option of replacing it or not, and of replacing all further occurrences of the
+string or canceling the assignment.
+.sp
+.of 20
+`IX[CANCEL]`IX~~~~~~~~~~~~[FIND] and [REPLACE] reuse the previous strings
+until they are canceled with [CANCEL] or the search string is not
+found.  [CANCEL] will also abort any function taking place because of a
+`IX[REPEAT]`IX and will cancel any function prompting on the status line for
+a text register/marker number.
+.sp
+.cp 8
+.of 20
+[FORMAT~PARAGRAPH]~~This will format the paragraph that the cursor is in
+so that all of the text appears between a left and right margin.  The left
+margin is the current Indent Position, and the right margin is the current
+Word Wrap column.  Following the format, the cursor will be positioned at
+the beginning of the next paragraph.  Print Formatter commands will
+not be formatted.  The paragraph will also be justified if the justify
+option is set with the command switch "ES~11~1".
+`IC[FORMAT PARAGRAPH]`IC
+.sp
+.cp 7
+.of 20
+[VISUAL~EXIT]~~~~~~~Visual Mode is exited to Command Mode.
+The current cursor position in the edit buffer will become
+the Command Mode edit pointer position.  Any text register
+is preserved.  Depending upon the value of the "Clear screen on
+visual exit" switch, the command prompt will appear either on a clear
+screen or just below the status line.  `IC[VISUAL EXIT]`IC `ICExiting visual mode`IC
+.sp
+.cp 2
+.of 20
+[VISUAL~ESCAPE]~~~~~This is identical to the [VISUAL EXIT],
+except that any current command execution is aborted.  `IC[VISUAL ESCAPE]`IC
+.sp
+.cp 3
+.of 20
+`IX[MACRO]`IX~~~~~~~~~~~~~Executes a command macro.  Prompts for a
+digit "0~-~9" indicating which text register contains the macro to be
+executed.
+.sp
+.cp 5
+.of 20
+`IX[RESTART]`IX~~~~~~~~~~~The entire file being edited is saved on disk
+(including any unappended portion of the input file).  A new edit session is
+then started on the same file.  The edit position and text markers are all
+restored.
+`ICRestart edit session`IC
+`ICSave text on disk`IC
+.sp
+.cp 13
+.of 20
+`IX[HELP]`IX~~~~~~~~~~~~~~The help function makes the keyboard layout,
+this edit function summary and a description of several Visual Mode
+topics available On-line. The keyboard layout is first displayed in
+two menu screens. Type RETURN at the first menu prompt to see the
+second screen.  To find out more about a particular edit function
+press the control sequence for that function.  Alternatively, to see
+the menu of Visual Mode topics, press RETURN again at the second menu
+prompt. Then type the name of the topic for which you want help. After
+reading the help information, press RETURN to continue with your
+editing.  The help function uses the file "VVHELP.HLP".
+.br
+

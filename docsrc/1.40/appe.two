@@ -1,0 +1,312 @@
+.cm Last Change: Ted - Aug. 10, 1985
+.pw 70
+.rm 70
+.pi 16
+.il `
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.fo ////
+.sp 8
+.ce
+`OSA P P E N D I X   E`OS
+.sp
+.ce
+`OSE R R O R   A N D   O T H E R   M E S S A G E S`OS `TC~~~~~E - Error and Other Messages`TC
+.bp
+.sh /Appendix E//Messages/
+~~
+.bp
+.ce
+`UL`OSERROR AND OTHER MESSAGES`OS`UL `ICError messages`IC
+.sp 2
+     VEDIT types a message on the console when you should be notified
+of an unusual or special condition.  All messages are descriptive, and
+you should not normally have to refer to this appendix in order to
+understand the message or error. The messages fall into three
+categories: disk errors, command errors and other messages.  Disk
+errors result in an abort of the disk operation being performed and a
+return to Command Mode. These are caused by certain disk errors
+described below. The command errors usually just signify that a typo
+was made or that some small detail was overlooked. These only result in
+a message and you can try again.
+.sp 2
+.ta 20 24 28 32 36
+`UL`OSERROR MESSAGES`OS`UL
+.sp
+.cp 4
+BAD~FILE~NAME
+.sp
+.in 8
+The file name you gave does not follow the MSDOS or CP/M conventions.
+.sp
+.cp 4
+.in 0
+BAD~PARAMETER
+.sp
+.in 8
+Something was specified wrong with your "EI", "EP", "ES" or "ET" command.
+.sp
+.cp 5
+.in 0
+CANNOT~FIND...
+.sp
+.in 8
+The specified search string could not be found.  This
+is the normal return for iteration loops which search for all
+occurrences of a string.
+.sp
+.cp 6
+.in 0
+CANNOT~OPEN~TWO
+.sp
+.in 8
+You cannot have two output files open and there is already
+one open due to invoking VEDIT or a previous "EW" or "EB" command.
+This message is also given if an output file is open at the time of an "EC"
+command.  Perhaps you want to save the current file with the "EY" command.
+.sp
+.in 0
+CLOSE~ERROR~~~~~~~~~~(Disk Error)
+.sp
+.in 8
+The output file could not be closed.  This is a very unusual
+condition, but may occur if the disk becomes write protected, or if you changed
+disks without first issuing an "EC" command.
+.sp
+.in 0
+.cp 5
+.in 0
+DISK~IN~USE
+.sp
+.in 8
+You cannot perform an "EC" command because the disk is
+being used by another program or user.  See section on Multi-Tasking
+Operating Systems.
+.sp
+.cp 6
+.in 0
+DISK~IS~R/O
+.sp
+.in 8
+The file you are trying to edit or write already
+exists and and has a "Read Only" attribute.  Your command is canceled.
+You will have to return to the operating system and change its
+attribute before you can edit it.
+.sp
+.in 0
+END OF EDIT BUFFER REACHED
+.sp
+.in 8
+An "L" command tried to move past either end of the edit buffer.  Use
+"n:L" to suppress such errors.
+.sp
+.cp 4
+.in 0
+FILE~NOT~FOUND
+.sp
+.in 8
+The file you wanted to open for input does
+not exist.  Maybe you specified the wrong drive.
+.sp
+.in 0
+FILE~NOT~OPENED
+.sp
+.in 8
+This message follows another message and reminds you
+that your attempted disk operation was canceled.  It follows the
+"DISK~IS~R/O" message.  Also follows an operating system error message
+if you attempted to open a file which is in use by another program or
+user.  See section on Multi-Tasking Operating Systems.
+.sp
+.cp 3
+.in 0
+INVALID~COMMAND
+.sp
+.in 8
+The specified letter is not a command.
+.sp
+.cp 4
+.in 0
+MACRO~ERROR
+.sp
+.in 8
+Your macro attempted to change the contents of a text register
+which is currently executing as a command macro.
+.sp
+.cp 3
+.in 0
+NESTING~ERROR
+.sp
+.in 8
+You cannot nest macros deeper than 8 levels.
+.sp
+.in 0
+NO~DIR~SPACE~~~~~~~~~~(Disk Error)
+.sp
+.in 8
+There was no directory space left for the output file.
+Refer to the section on disk write error recovery.
+.sp
+.in 0
+.cp 5
+NO~DISK~SPACE~~~~~~~~~~(Disk Error)
+.sp
+.in 8
+The disk became full before the entire output file was
+written.  As much of the output file as possible was written.  Refer
+to the section on disk write error recovery.
+.sp
+.in 0
+.cp 4
+.in 0
+NO~INPUT~FILE
+.sp
+.in 8
+There is no input file open for doing a read
+or append operation.
+.sp
+.in 0
+NO~MEMORY~TO~AUTO~BUFFER
+.sp
+.in 8
+There is insufficient memory available for the edit
+buffer to perform auto-buffering.  Use the "U"
+command to see how much memory is available.  Most likely, almost the
+entire memory is being used by the text registers, leaving less than 3
+Kbytes for the edit buffer.  You must empty a text register or issue
+your own read/write commands.
+.sp
+.in 0
+.cp 7
+NO~OUTPUT~FILE
+.sp
+.in 8
+There is no output file open for doing a write, a close or an
+exit with the "EX" command.  If you have already written out the text buffer
+and closed the output file, exit with the "EQ" command.  You must have
+an output file open when performing global file operations.
+.sp
+.cp 5
+.in 0
+NOT~FOUND~IN~HELP~FILE
+.sp
+.in 8
+The help topic you~ selected could~ not be found in
+the help file.  Either you entered the topic name
+incorrectly, or the help file is not complete.
+.sp
+.cp 5
+.in 0
+READ~ERROR~~~~~~~~~~(Disk Error)
+.sp
+.in 8
+An error occurred reading a file.  This error should
+never occur, since the operating system itself normally gives an error
+if there was a problem reading the disk.
+.sp
+.in 0
+REV~FILE~OPEN
+.sp
+.in 8
+You cannot change disks because the ".$R$"
+file is open while performing backward disk buffering.
+.sp 3
+.in 0
+.cp 4
+.ta 22
+.cp 11
+`UL`OSOTHER MESSAGES`OS`UL
+.sp
+.cp 9
+`IX*BREAK*`IX
+.sp
+.in 8
+The command execution was stopped because insufficient
+memory space remained to complete the command (I, S, G, P and EG). For
+the "I", "S" and "EG" commands, as much text as possible was inserted.
+For the "G" and "P" commands, no text at all was copied or inserted.
+The message is also printed when command execution is stopped because
+you typed <CTRL-C> on the keyboard in Command Mode or while printing.
+.sp
+.cp 4
+.in 0
+INSERT NEW DISK AND TYPE [RETURN]
+.sp
+.in 8
+This is the normal prompt for inserting a new disk with
+the "EC" command.
+.sp
+.cp 6
+.in 0
+NEW~FILE
+.sp
+.in 8
+The file specified with the EB command or
+with the invocation of VEDIT did not exist on disk and a new
+file has been created.  If you typed the wrong file name, you may want to
+start over by issuing the "EZ" command. `IC"NEW FILE"`IC
+.sp
+.cp 6
+.in 0
+OK TO ERASE THESE FILES (Y/N)?
+.sp
+.in 8
+This is the normal prompt with the "EK" command after displaying the file
+names which are about to be erased.  Type "Y" or "y" if you really
+want ALL of the listed files erased; type any other character to
+cancel the "EK" command.
+.sp
+.cp 7
+.in 0
+OK TO OVERWRITE EXISTING FILE (Y/N)?
+.sp
+.in 8
+This prompt appears with the "RS" command if the designated file to be
+written already exists on disk.  Type "Y" or "y" to overwrite the
+existing disk; type any other character to cancel the "RS" command.
+Note that the "RS" command does NOT create a "backup" of any existing
+file.
+.sp
+.cp 6
+.in 0
+QUIT~(Y/N)?
+.sp
+.in 8
+This is the normal prompt following the "EQ" or "EZ"
+command.  Type "Y" or "y" if you really want to quit, without saving
+any changes, otherwise type anything else.  To avoid this prompt when
+quitting, enter "EQY" or "EZY" instead of "EQ" or "EZ".
+.sp
+.cp 5
+.in 0
+PLEASE~WAIT~FOR~DISK
+.sp
+.in 8
+Temporary message on status line to indicate that a disk operation is
+being performed during Visual Mode. Some systems will loose
+key-strokes if you type during disk operations.
+.sp
+.cp 4
+.in 0
+PRINTING <CTRL-C> TO ABORT
+.sp
+.in 8
+Normal message anytime text is being printed.  Reminds you that you
+can press <CTRL-C> to stop the printing.
+.sp
+.in 0
+WAITING~FOR~PRINTER <CTRL-C>~TO~ABORT
+.sp
+.in 8
+VEDIT is waiting for another program or user to release the printer
+before it can begin printing.  Message changes to normal printing
+message once printing begins.  See section on Multi-Tasking Operating
+Systems.
+.br
+.in 0
+

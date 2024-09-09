@@ -1,0 +1,973 @@
+.cm Last Change: Ted - Oct. 28, 1985
+.pw 70
+.rm 70
+.pi 16
+.il `
+.tm 4
+.hm 3
+.bm 3
+.fm 2
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.fo ////
+.sp 8
+.ce
+`OSI N D E X`OS
+.bp
+.sh /Index///
+~~
+.bm 4
+.bp
+.nj
+.fi
+	A
+.sp
+A,~55, 63, 101, 123, 149
+.br
+Abort~function~(See~also~[CANCEL]),~73, 74, 78
+.br
+Adding~new~text~(See~Entering~new~text),~34
+.br
+Addition~(numeric),~159
+.br
+Alternate~character~set,~176
+.br
+Alternate~control~codes,~171
+.br
+ANSI~standard~terminals,~172
+.br
+Append~to~edit~buffer~(See~Concatenating~files),~54, 115
+.br
+Append~to~text~register,~44, 61, 78, 110, 133
+.br
+Assembly~language,~83, 108, 146
+.br
+Auto-buffering,~18, 62, 63, 64, 66, 86, 100, 132, 150, 178
+.br
+Auto-read,~62, 100, 123, 188
+.br
+Auto-startup,~65, 181
+.br
+Auto-write,~62, 86
+.sp 2
+.cp 5
+	B
+.sp
+B,~66, 101, 124
+.br
+[BACK~TAB],~31, 87, 89
+.br
+[BACKSPACE],~13, 37, 89
+.br
+BACKSPACE~key,~12, 13, 96
+.br
+Backup~of~file,~18, 140
+.br
+Backward~disk~buffering,~62, 64, 86, 101, 150
+.br
+".BAK"~file,~18, 65, 102, 103, 142, 148, 153
+.br
+.cp 3
+Bank~select,~167
+.br
+Bit~8~characters,~71, 84, 109, 147, 176
+.br
+*BREAK*,~52, 95, 143, 156
+.sp 2
+.cp 5
+	C
+.sp
+C,~124
+.br
+[CANCEL],~48, 49, 73, 77, 91
+.br
+Cancel~search~operation,~48, 76
+.br
+"CANNOT~FIND",~48, 112
+.br
+Change~disks (See also "EC" command),~141
+.br
+Clear~screen,~151, 178, 184
+.br
+Close~files,~142, 154
+.br
+Column~number~-~display~(See~Line~and~column~display),~69
+.br
+Command~escape~character~(See~<ESC>~key),~95, 181
+.br
+Command~line,~21, 95
+.br
+Command~line~editing,~95, 96
+.br
+Command~macros,~21, 57, 62, 65, 82, 114, 119, 131, 156
+.br
+Command~mode,~14, 17, 21, 23, 50, 95
+.br
+Command~mode~prompt,~14, 50, 95, 105
+.br
+Command~repeating~(See Iteration loop), 111
+.br
+Command~syntax,~21
+.br
+Comments~(Assembly~language),~108
+.br
+Comments~in~macros,~116, 158
+.br
+Common~second~character,~172, 173
+.br
+Concatenating~files,~54
+.br
+Concatenating~lines,~36
+.br
+Conditional~Convert~Character,~83, 146, 176
+.br
+Continuation~character,~69, 180
+.br
+Continuation~line,~20, 69, 81
+.br
+Control~characters~-~in~text,~47, 72, 79, 110, 129, 144, 155
+.br
+Control~characters~-~typing,~19, 27, 71, 95, 96, 172
+.br
+CONTROL~key,~27, 172
+.br
+Control~sequences,~19, 30, 71, 172
+.br
+Convert~LC~to~UC~(See~Lower~to~upper~case~conversion),~20
+.br
+[COPY~TO~TEXT~REGISTER],~77, 90
+.br
+Copying~text,~19, 51, 61, 77
+.br
+Correcting~mistakes~(See~[UNDO]),~38
+.br
+CP/M~User~Number,~65, 99
+.br
+Creating~new~file,~28, 140
+.br
+CRT~terminal~versions,~167
+.br
+Cursor,~19, 22, 23, 28, 69, 73, 146
+.br
+[CURSOR~DOWN],~31, 87
+.br
+[CURSOR~LEFT],~31, 87
+.br
+[CURSOR~RIGHT],~31, 87
+.br
+[CURSOR~UP],~31, 87
+.br
+Cursor~blink~rate,~146, 175
+.br
+Cursor~character,~184
+.br
+Cursor~movement,~19, 30, 31, 40, 70, 72, 73, 74, 75, 78, 80
+.br
+Cursor~position,~15, 30, 46, 50, 71, 72, 78, 80, 81, 136, 177
+.br
+.cp 3
+Cursor~type,~146, 175
+.br
+Customization,~71, 150, 165
+.br
+Cut~and~paste~(See~also~Text~registers),~61, 77
+.sp 2
+.cp 5
+	D
+.sp
+D,~125
+.br
+DEC~VT-100~terminal,~173
+.br
+[DEL~NEXT~WORD],~37, 80, 89
+.br
+[DEL~PREVIOUS~WORD],~37, 80, 89
+.br
+[DELETE],~13, 37, 89
+.br
+DELETE~key,~96
+.br
+Deleting~files,~99, 101, 144
+.br
+Deleting~lines,~36, 73
+.br
+Deleting~text,~13, 36, 37, 80, 84, 125, 130
+.br
+Deleting~text~blocks,~19, 36, 37, 44
+.br
+Delimiters~(text),~96, 105, 134, 151
+.br
+Directory~display,~52, 99, 142
+.br
+Disk~buffering~(See~Auto-buffering),~86
+.br
+Disk~full~error~(recovery),~56, 64, 99, 101, 141, 144, 149
+.br
+Disk~space,~64, 75, 101, 144
+.br
+.cp 3
+Display~file~name,~70, 162
+.br
+Displayable~characters,~19, 71, 75
+.br
+Displaying~files~(See~also~EL~command),~53, 100, 145
+.sp 2
+.cp 5
+	E
+.sp
+EA,~51, 74, 98, 139
+.br
+EB,~29, 51, 99, 100, 115, 123, 137, 140
+.br
+EC,~54, 66, 101, 102, 141, 149
+.br
+ED,~52, 56, 99, 102, 142
+.br
+EF,~55, 56, 102, 142, 153
+.br
+EG,~53, 143
+.br
+EH,~15, 97, 143
+.br
+EI,~72, 84, 129, 144
+.br
+EK,~56, 99, 101, 102, 144
+.br
+EL,~53, 145
+.br
+EO,~109, 117, 120, 145
+.br
+EP,~41, 42, 70, 80, 85, 146
+.br
+EQ,~58, 98, 148
+.br
+ER,~29, 54, 55, 100, 123, 149
+.br
+ES,~63, 64, 75, 86, 105, 150
+.br
+ET,~152
+.br
+EV,~152
+.br
+EW,~29, 54, 55, 56, 100, 137, 153
+.br
+EX,~16, 58, 98, 139
+.br
+EY,~51, 98, 99, 100, 115
+.br
+EZ,~58, 98
+.br
+Edit~buffer,~18, 62, 63, 64, 78, 86, 100, 123, 136
+.br
+Edit~functions,~19, 30, 71, 72
+.br
+Edit~pointer,~22, 23, 50, 112, 124, 129, 131, 134, 136, 138, 150
+.br
+Edit~session,~18, 28, 50, 51, 102, 139, 150
+.br
+Editing~second~file,~51, 99, 154
+.br
+Emptying~a~text~register,~44, 46, 133
+.br
+End~of~file,~138
+.br
+End~of~line,~71, 84, 87, 124
+.br
+Ending~edit~session,~58, 154
+.br
+Entering~command~mode~(See~Exiting~visual~mode),~14
+.br
+Entering~new~text,~13, 30, 34, 35, 71
+.br
+Entering~visual~mode,~14, 23, 50
+.br
+[EREOL],~37, 89
+.br
+[ERLINE],~37, 89
+.br
+<ESC>~key,~14, 21, 27, 95, 105, 111, 114
+.br
+Escape~sequences,~19, 27, 71, 79, 85, 172, 173, 186
+.br
+Examining~files~(See~Displaying~files),~145
+.br
+Exiting~VEDIT,~58, 154
+.br
+Exiting~visual~mode,~14, 23, 50, 91
+.br
+Expand~Tab~with~spaces,~79, 177
+.br
+.cp 3
+Expanding~control~characters,~155, 156, 157
+.br
+Explicit~Delimiter~(See~Delimiters),~105
+.br
+Extended~commands,~125
+.sp 2
+.cp 5
+	F
+.sp
+F,~66, 105, 124, 125, 126, 130, 132, 151
+.br
+File~editing,~99
+.br
+File~extension,~18
+.br
+File~locking,~66
+.br
+File~name,~18, 116
+.br
+File~Page,~63, 86, 183, 188
+.br
+File~searching,~65, 181
+.br
+File~type,~18
+.br
+Files~-~large~(long),~18, 29, 55, 63, 65, 66, 86, 132
+.br
+[FIND],~48, 76, 91
+.br
+"Forever"~(or~"all"),~112
+.br
+Form~feed,~117
+.br
+[FORMAT~PARAGRAPH],~42, 81, 91, 116
+.br
+Formatting~paragraphs,~19, 24, 40, 42, 81, 116, 147, 160
+.br
+Forward~disk~buffering,~62, 63, 64, 86, 100, 101, 132, 138, 150
+.br
+Free~memory,~63, 64, 136, 182
+.br
+Full~disk~(See~Disk~full~error),~101
+.br
+.cp 3
+"FULL"~message,~46, 52, 62, 70, 78, 86, 136
+.br
+Full~screen~editing,~17
+.br
+Function~keys,~19, 30, 172, 186
+.sp 2
+.cp 5
+	G
+.sp
+G,~110, 127, 133
+.br
+Global~operations,~63, 66, 100, 104, 134, 151
+.br
+[GOTO~TEXT~MARKER],~33, 88
+.sp 2
+.cp 5
+	H
+.sp
+H,~15, 97, 128
+.br
+[HELP],~92
+.br
+Help~(command),~14, 15, 97, 128, 143
+.br
+High~bit~characters~(See~Bit~8~characters),~84
+.br
+[HOME],~33, 86, 87
+.br
+.cp 3
+Horizontal~scroll~increment,~147, 177
+.br
+Horizontal~scroll~margin,~20, 73, 147, 177
+.br
+Horizontal~scrolling,~20, 69, 70, 73
+.sp 2
+.cp 5
+	I
+.sp
+I,~105, 112, 129
+.br
+IBM~3101~terminal,~186
+.br
+IBM~Personal~Computer,~84, 183, 184
+.br
+Ignore~search~errors~(See~Suppress~error~handling),~105
+.br
+Ignored~characters,~71
+.br
+[INDENT],~41, 42, 78, 80, 81, 90
+.br
+Indent~increment,~20, 78, 146, 176
+.br
+Indent~position,~20, 40, 78, 78, 116, 146
+.br
+Indenting~text~(See~[INDENT]),~20, 40, 41, 78
+.br
+Initializing~terminals,~110, 155
+.br
+Input~file,~18, 63, 64, 103, 116, 123, 141, 162
+.br
+"INSERT"~message,~34, 70
+.br
+Insert~mode,~13, 19, 34, 70, 71, 180
+.br
+[INSERT~TEXT~REGISTER],~77, 90
+.br
+Inserting~control~characters,~47, 84, 106, 144, 177
+.br
+Inserting~files~(See~also~EG~command),~53, 100, 143
+.br
+Inserting~lines,~34
+.br
+Inserting~new~text~(See~Entering~new~text),~34
+.br
+Inserting~spaces,~75, 79
+.br
+Inserting~text,~13, 71, 106, 112, 116, 129, 144, 155
+.br
+Inserting~text~register,~44, 45, 77, 127, 150, 178
+.br
+INSTALL.EXE~file,~166
+.br
+INSTALL.INI~file,~166
+.br
+Installing~VEDIT~(See~Customization),~165
+.br
+Intertec~terminals,~170
+.br
+INTMOD.EXE~file,~166
+.br
+Invoking~VEDIT,~12, 28, 29, 51, 65, 99
+.br
+.cp 3
+Iteration~brackets,~95, 181
+.br
+Iteration~count,~21, 111, 112, 113
+.br
+Iteration~loop,~21, 95, 111, 113, 114, 135
+.sp 2
+.cp 3
+	J
+.sp
+Justifying~Paragraphs,~43, 83
+.sp 2
+.cp 5
+	K
+.sp
+K,~73, 130, 133
+.br
+Keyboard~characters,~30, 71, 72, 83, 84, 144, 151
+.br
+Keyboard~layout,~16, 19, 27, 30, 171, 186
+.br
+Killing~files~(See~Deleting~files),~144
+.sp 2
+.cp 5
+	L
+.sp
+L,~66, 101, 113, 131
+.br
+Large~files~(See~Files~-~large)
+.br
+Left~margin,~42, 81
+.br
+Line~and~column~display,~69, 147, 176
+.br
+Line~numbering,~118
+.br
+[LINE~TOGGLE],~31, 87
+.br
+Literal~character,~106
+.br
+Loading~files~(See~Reading~files),~149
+.br
+Loading~text~registers,~110, 115, 116, 155, 156
+.br
+.cp 3
+Logged-in~drive,~64, 141, 181
+.br
+Long~lines,~20, 69, 73
+.br
+Lower~to~upper~case~conversion,~20, 83, 146, 176
+.sp 2
+.cp 5
+	M
+.sp
+M,~114, 115, 131
+.br
+[MACRO],~82, 91, 119
+.br
+"MACRO~ERROR",~115, 131, 133
+.br
+Macros~(See~Command~macros)
+.br
+Mainframe~computers,~75, 106
+.br
+Margins,~19, 40, 42, 80
+.br
+Maximum~file~size~(See~Files~-~large),~64
+.br
+Memory~mapped~versions,~167, 187
+.br
+Memory~space~(saving),~46, 52, 101, 137
+.br
+Memory~space~-~full,~78, 86, 96
+.br
+Merging~files,~53, 54
+.br
+[MOVE~TO~TEXT~REGISTER],~37, 45, 46, 77, 90
+.br
+Moving~text,~19, 44, 45, 61, 77, 133
+.br
+Multi-Tasking~Operating~Systems,~66
+.br
+Multiple~commands,~21
+.br
+.cp 3
+Multiple~drives,~29, 54, 64, 102
+.br
+Multiple~files,~102
+.br
+Multiple~screen~lines~(See~Continuation~line),~69, 73
+.sp 2
+.cp 5
+	N
+.sp
+N,~101, 132, 138, 151
+.br
+NEC~APC,~84
+.br
+"Nearly"~full,~63, 101
+.br
+"NEW~FILE",~12, 28
+.br
+NEWCRT.DOC~file,~166
+.br
+[NEXT~CHAR~~LITERAL],~72
+.br
+[NEXT~CHAR~LITERAL],~47, 84, 89, 106
+.br
+[NEXT~LINE],~31, 87
+.br
+[NEXT~PARAGRAPH],~32, 80, 88
+.br
+[NEXT~WORD],~32, 80, 88
+.br
+"NO~DIR~SPACE",~56, 99, 101
+.br
+"NO~DISK~SPACE",~56, 99, 101, 154
+.br
+"NO~OUTPUT~FILE",~132, 142, 154
+.br
+.cp 3
+Normal~mode,~19, 34, 71, 180
+.br
+Notation,~95
+.br
+Numeric~keypad,~187
+.sp 2
+.cp 5
+	O
+.sp
+Offset~paragraph,~81
+.br
+On-line~help~(See Help)
+.br
+Opening~a~file,~18, 140, 149, 153
+.br
+.cp 3
+Output~file,~18, 62, 63, 64, 86, 101, 103, 116, 123, 137, 141,
+.br
+~~~~~~~~~~~~~153, 162
+.br
+Over-writing~text,~13, 19, 30, 34, 35, 71
+.sp 2
+.cp 5
+	P
+.sp
+P,~110, 127, 133
+.br
+[PAGE~DOWN],~33, 88, 183
+.br
+[PAGE~UP],~33, 88, 183
+.br
+Page~movement,~33, 39, 183
+.br
+Paragraphs~(See~also~Formatting~paragraphs),~75, 81
+.br
+Parameters~-~setting,~65, 109, 146, 150, 175, 177
+.br
+Pattern~matching,~107, 180
+.br
+[PREVIOUS~PARAGRAPH],~32, 80, 88
+.br
+[PREVIOUS~WORD],~32, 80, 88
+.br
+Print~Formatter,~24, 80, 81, 120, 152
+.br
+Print keyboard layout,~171
+.br
+PRINT.EXC,~120
+.br
+[PRINT~TEXT],~47, 79, 91
+.br
+Printer~control~characters,~79, 84
+.br
+.cp 5
+Printing~text,~15, 47, 79, 109, 110, 117, 120, 145, 161
+.br
+Printing~text~registers,~110, 156
+.br
+Processor~speed,~181
+.br
+Programmable~function~keys,~65, 110, 155
+.sp
+.cp 4
+	Q
+.sp
+Quick~customization,~171
+.br
+Quit~edit~session,~58, 98, 148
+.sp 2
+.cp 5
+	R
+.sp
+R*,~116, 158
+.br
+RD,~110, 155
+.br
+RI,~116, 155
+.br
+RL,~110, 115, 156
+.br
+RP,~110, 156
+.br
+RS,~110, 115, 157
+.br
+RT,~110, 115, 157
+.br
+RU,~110, 158
+.br
+Re-routing~console~output,~117, 161
+.br
+Reading~files,~18, 141, 149, 156
+.br
+Registers~(See~Text~registers),~61
+.br
+[REPEAT],~39, 48, 49, 72, 76, 90, 91
+.br
+Repeat~function,~39, 72
+.br
+Repeat~value,~39, 72
+.br
+Repeated~commands~(See~Iteration~loop),~111
+.br
+[REPLACE],~49, 76, 91
+.br
+Replace~text~(See~Search~and~Replace),~76
+.br
+[RESET~INSERT~MODE],~89
+.br
+[RESTART],~74, 92, 98
+.br
+Restart~edit~session,~51, 92, 139
+.br
+RETURN~key,~19, 21, 34, 40, 71, 78, 84, 95
+.br
+"REV~FILE~OPEN",~103
+.br
+Reverse~upper~/~lower~case,~151, 178
+.br
+.cp 3
+Reverse~video,~69, 180
+.br
+Right~margin,~42, 80, 147, 176
+.br
+RUBOUT~key,~96
+.sp 2
+.cp 5
+	S
+.sp
+S,~66, 105, 111, 134, 151
+.br
+Sample~edit~session,~12
+.br
+Save~text~on~disk,~14, 18, 51, 92, 110, 139, 154
+.br
+Save~text~register,~110, 115, 157
+.br
+Scratch~pad~buffers~(See~Text~registers),~19
+.br
+Screen~address,~185
+.br
+Screen~line~length,~80, 183
+.br
+Screen~size~parameters,~183, 187
+.br
+[SCREEN~TOGGLE],~32, 88
+.br
+Screen~updating,~69, 73
+.br
+[SCROLL~DOWN],~32, 88
+.br
+[SCROLL~LEFT],~32, 88
+.br
+[SCROLL~RIGHT],~32, 88
+.br
+[SCROLL~UP],~32, 88
+.br
+Scrolling~of~screen,~(See Horizontal scrolling),~20, 34
+.br
+Search~(ing),~20, 23, 48, 76, 96, 105, 107, 126, 132
+.br
+Search~and~Replace,~20, 23, 49, 76, 113, 114, 134
+.br
+Search~errors,~105, 112, 113, 134, 151
+.br
+Search~for~<ESC>,~105, 106
+.br
+Search~options,~48, 76, 104
+.br
+Selective~replace,~49, 76
+.br
+Separator~(pattern),~107
+.br
+".SET"~file,~166, 168
+.br
+[SET~INSERT~MODE],~13, 89
+.br
+Set~numeric~value,~159
+.br
+[SET~TEXT~MARKER],~33, 88
+.br
+Sign-on~message,~180
+.br
+Spare~memory~after~auto-read,~188
+.br
+Splitting~files,~55
+.br
+Splitting~lines,~14, 19, 34, 36, 71
+.br
+Spreadsheets,~73
+.br
+Status~line,~12, 28, 69, 77, 147, 183, 184
+.br
+Stop~character,~97, 122
+.br
+Strings~(of~text),~95, 104, 134
+.br
+Strip~comments,~108
+.br
+Strip~high~bit~(See~Bit~8~characters),~109
+.br
+Structured~languages,~78
+.br
+Substitute~(See~Search~and~Replace),~134
+.br
+Suppress~error~handling~(See~also~Search~errors),~105, 151, 179
+.br
+.cp 3
+Suppressing~<CR>,~116, 118, 160
+.br
+[SWITCH~INSERT~MODE],~13, 89
+.br
+Switches~-~setting~(See~also~Parameters~-~setting),~150
+.sp 2
+.cp 5
+	T
+.sp
+T,~66, 112, 135
+.br
+[TAB~CHARACTER]~(See~Tab~character)
+.br
+Tab~character~(key),~20, 40, 71, 75, 95, 129, 150
+.br
+[TAB~CURSOR],~31, 75, 87
+.br
+Tab~display~character,~184
+.br
+Tab~expansion,~75, 79, 150
+.br
+Tab~positions,~20, 65, 71, 75, 79, 152, 179
+.br
+Televideo~terminals,~173, 175, 183
+.br
+Temporary~disk~file~(See~".$R$"~file),~64
+.br
+Text~markers,~19, 33, 72, 74
+.br
+"TEXT"~message,~70, 90, 110, 158
+.br
+Text~registers,~19, 44, 51, 52, 61, 77, 110, 127, 131, 133
+.br
+Text~register~macros~(See~Command~macros)
+.br
+Text~registers~(emptying)~(See~Emptying~a~text~register),~46
+.br
+Text~registers~(inserting)~(See~Inserting~text~register),~44
+.br
+Text~registers~(loading)~(See~Loading~text~registers),~156
+.br
+Text~registers~(saving)~(See~Save~text~register,~157
+.br
+Text~strings~(See~Strings),~95
+.br
+TRS-80~Model~I,~83, 178
+.br
+TRS-80~Models~II~and~16,~183
+.br
+.cp 3
+Type~numeric~value,~160, 161
+.br
+Typing~a~text~register,~155, 157
+.br
+Typing~out~text,~116, 135, 157
+.sp 2
+.cp 5
+	U
+.sp
+U,~110, 136, 158
+.br
+[UNDENT],~41, 42, 78, 80, 81, 90
+.br
+[UNDO],~36, 38, 72, 89
+.br
+Upper~and~lower~case,~20, 83, 151, 173, 186
+.br
+Upper/lower~case~search,~126, 151, 178
+.sp 2
+.cp 5
+	V
+.sp
+V,~15, 50, 136
+.br
+V-PRINT~Print~Formatter,~24
+.br
+V-SPELL~Spelling~Corrector,~24
+.br
+VEDIT.INI~file~(See~Auto-startup),~65
+.br
+Version~number,~152
+.br
+Video~board~initialization,~185
+.br
+[VISUAL~ESCAPE],~14, 50, 58, 91, 113, 136
+.br
+.cp 3
+[VISUAL~EXIT],~50, 50, 91, 113, 136
+.br
+Visual~functions,~19, 36, 71, 72
+.br
+Visual~mode,~12, 17, 19, 23, 28, 63, 69, 86, 112, 113, 136, 150, 179
+.sp 2
+.cp 5
+	W
+.sp
+W,~52, 55, 63, 101, 137
+.br
+Wildcard~characters,~99, 142
+.br
+Window~into~text,~63
+.br
+Word~count,~118
+.br
+Word~processing,~24, 78, 80, 81, 152
+.br
+Word~wrap,~19, 40, 42, 80, 81
+.br
+Word~wrap~column,~147, 176
+.br
+.cp 3
+WordStar~files,~109
+.br
+Write~errors~(See~Disk~full~error),~101
+.br
+Writing~files~(See~also~Saving~text~on~disk),~77, 137, 153
+.sp 2
+.cp 5
+	X
+.sp
+XA,~118, 159
+.br
+XS,~118, 159
+.br
+XT,~118, 160
+.sp 2
+.cp 5
+	Y
+.sp
+YF,~116, 160
+.br
+YI,~117, 161
+.br
+YP,~117, 161
+.br
+YR,~116, 162
+.br
+YT,~116
+.br
+YW,~116, 162
+.sp 2
+.cp 5
+	Z
+.sp
+Z,~66, 101, 138
+.br
+[ZEND],~33, 87
+.br
+Zenith~Z19,~Z100~terminals,~173
+.br
+[ZIP],~31, 87
+.sp 2
+.cp 5
+.br
+".$$$"~file,~99, 142, 148, 153
+.br
+".$R$"~file,~64, 99, 101, 101
+.br
+"1~END"~message,~70, 90
+.sp 2
+.cp 5
+.br
+<~and~>,~21, 95, 181
+.br
+[~and~],~21, 95, 111, 181
+.br
+#,~21, 112
+.br
+$,~95
+.br
+"-"~prompt,~96
+.br
+/,~105
+.br
+:,~106, 151
+.br
+;,~83, 108
+.br
+<<,~96
+.br
+@,~105, 126, 129, 151
+.br
+_,~66, 101
+.br
+|,~107, 180
+.sp 2
+.cp 5
+<CR>~and~<LF>,~71, 84, 95, 106
+.br
+<CTRL-C>,~145
+.br
+<CTRL-H>,~96, 106
+.br
+<CTRL-I>,~75
+.br
+<CTRL-N>,~76
+.br
+<CTRL-Q>,~96, 106, 129
+.br
+<CTRL-R>,~96, 106
+.br
+<CTRL-S>,~53, 157
+.br
+<CTRL-U>,~96, 106
+.br
+<CTRL-X>,~96
+.br
+<CTRL-Z>,~72, 84

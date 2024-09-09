@@ -1,0 +1,443 @@
+.cm Last Change: Ted - Aug. 14, 1985
+.pw 70
+.rm 70
+.pi 16
+.il `
+.tm 4
+.hm 3
+.bm 3
+.fm 2
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.fo ////
+.sp 8
+.ce
+`OSA P P E N D I X   F`OS
+.sp
+.ce
+`OSC O M M A N D   R E F E R E N C E`OS `TC~~~~~F - Quick Command Reference`TC
+.bp
+.sh /Appendix F//Command Reference/
+~~
+.bp
+.ta 9
+'n'	denotes a positive number. (# represents 32767)
+.br
+.of 8
+'m'	denotes a number which may be negative to indicate
+backwards in the file.
+.br
+'r'	denotes a digit "0~-~9" specifying a text or numeric register.
+.br
+.of 8
+'ss'	denotes a search string which may contain pattern matching codes.
+May also contain the RETURN key.  Must end in <ESC> unless explicit
+delimiters are being used.
+.br
+'text'	denotes text being inserted or replacing old text.
+.br
+.of 8
+'file'	denotes a file name in the normal MS-DOS or CP/M format with
+option drive, extension and CP/M user number.
+.sp
+`OSBASIC COMMANDS`OS
+.sp
+.ta 18 50
+.of 17
+nA	Append 'n' lines from the input file to the end of
+the edit buffer.
+.br
+0A	Append lines until edit buffer is nearly full.
+.sp
+.of 17
+-nA	Read back 'n' lines from the Output file.
+.br
+-0A	Read back lines until the edit buffer is nearly full.
+.sp
+.of 17
+B	Move edit pointer to the beginning of edit buffer.
+.br
+_B	Move to the beginning of the file.
+.sp
+.of 17
+mC	Move the edit pointer by 'm' positions.
+.sp
+.of 17
+mD	Delete 'm' characters from the text.
+.sp
+.of 17
+nFss<ESC>	Search for the 'n'th  occurrence of 'ss' in the
+current edit buffer and position the edit pointer after it.  'ss'
+may be up to 32 characters long.
+.sp
+.of 17
+Gr	Insert the text register 'r' at the edit pointer.
+.sp
+.of 17
+H	On-line help for Command Mode commands using the help file
+"VHELP.HLP".
+.sp
+.of 17
+Itext<ESC>	Insert the 'text' into the edit buffer at
+the edit pointer.  The edit pointer is moved past 'text'.
+.sp
+.of 17
+mK	Kill 'm' lines.
+.sp
+.of 17
+mL	Move the edit pointer by 'm' lines and leave at
+the beginning of that line.
+.sp
+.of 17
+Mr	Execute text register 'r' as a command macro.
+.sp
+.cp 4
+.of 17
+nNss<ESC>	Search for the 'n'th occurrence of 'ss' and perform
+auto-disk buffering to read more of the file from disk if necessary.
+The edit pointer is positioned after the 'n'th 'ss' if found.
+.br
+.ta 20 50
+.bp
+.of 19
+mPr	Put 'm' lines of text into text register 'r'. Use "mP+r" to append
+text to any existing contents.
+.br
+0Pr	Empty text register 'r'.
+.sp
+.cp 2
+.of 19
+nSss<ESC>text<ESC>	Search for the next occurrence of 'ss',
+and if found, change to 'text'; perform 'n' times.
+.sp
+.of 19
+mT	Type the next (or previous) 'm' lines on the console.
+.sp
+.cp 2
+.of 19
+U	Display # of free bytes remaining / # bytes in edit buffer / # bytes
+in combined text registers.
+.sp
+.of 19
+V	Go into visual mode.  Set cursor position from current
+edit pointer.
+.sp
+.of 19
+nW	Write 'n' lines to the disk from the beginning of
+the edit buffer and delete from the buffer.
+.br
+0W	Write out the edit buffer up to the current line.
+.sp
+.of 19
+-nW	Write last 'n' lines in the edit buffer to the ".$R$" file.
+This makes more memory space free.
+.br
+.of 19
+-0W	Write the current line and the rest of the edit buffer
+to the ".$R$" file.
+.sp
+.of 19
+Z	Move the edit pointer past the last character in the
+edit buffer.
+.br
+_Z	Move the edit pointer to the end of the file.
+.sp 2
+`OSSPECIAL CHARACTERS`OS
+.sp
+.of 19
+<CTRL-Q>	Literal character.  Next character, usually a control
+character, is taken literally and not interpreted.  Allows
+searching and inserting of control characters including line editing
+characters, <CR> and <ESC>.
+.sp
+.of 19
+_	Immediately precedes "F" or "S" to cause a global
+search/replace to the end of the file, instead of just the end of the
+edit buffer.  Precedes "B", "L", "T" or "Z" to
+cause a global operation.
+.sp
+.of 19
+@	Immediately precedes "F", "N", "S", "I", "RI" or "YT" to indicate that
+explicit terminating characters are being used.
+.sp
+.of 19
+:	Immediately precedes "F", "N" or "S" to indicate that search
+error messages are to be suppressed. Immediately precedes "XT" and "YR"
+and "YW" to suppress <CR><LF> being sent to the console.
+.sp
+.of 19
+#	Represents the maximum positive number 32767.  Used to
+signify "forever" or "all occurrences of".
+.bp
+`OSEXTENDED COMMANDS`OS
+.sp
+.ta 20 50
+.of 19
+EA	Saves the file being edited on disk and allows further editing
+to continue.
+.sp
+.of 19
+EB~file	Begin editing the file 'file'.  Equivalent to invoking VEDIT with
+'file'.  If the file does not exist, "NEW FILE" is displayed.
+.sp
+.of 19
+EC	Allow user to change disks.  Used for write error recovery, or
+just to edit files on other disks.
+.sp
+.of 19
+ED	Display disk directory.  Drive specification, "?" and "*"
+wildcard characters may be used.
+.br
+.nj
+nED	Display the file names in 'n' columns instead of 4.
+.sp
+.ju
+.of 19
+EF	Close the current output file.
+.sp
+.of 19
+EGfile[line~range]~Insert the line range of the file
+'file' into the edit buffer at the edit pointer.  If no line range is
+specified, the entire file is inserted.
+.sp
+.of 19
+EH	On-line help for Command Mode topics using the help file
+"VEHELP.HLP".
+.sp
+.of 19
+nEI	Insert the character with decimal value 'n' into the edit
+buffer at the edit pointer. Values of 128 to 254 are allowed.
+.sp
+.of 19
+EK~file	Erase (kill) the file 'file' from the disk.  This
+makes more space free on the disk.
+.br
+-EKfile	Skip directory display and confirmation prompt.
+.sp
+.of 19
+ELfile[line~range]~Display with line numbers the line range of the file
+'file'.  Same syntax as EG command.
+.sp
+.of 19
+mEO	Print the next 'm' lines.  "0EO" prints from
+the beginning of the edit buffer to the current line.
+.sp
+EP	Display current values of all parameters.
+.br
+.of 19
+EP~n~k	Change the value of parameter 'n' to 'k'.
+.nf
+.nj
+~~~~~~~~~~1	Cursor type  (Mem Mapped Only) ~~~~~~(0, 1 or 2)
+~~~~~~~~~~2	Cursor blink rate (Mem Mapped Only)~~(5 - 100)
+~~~~~~~~~~3	Indent increment ~~~~~~~~~~~~~~~~~~~~(1 - 20)
+~~~~~~~~~~4	Lower case convert~~~~~~~~~~~~~~~~~~~(0, 1, 2 or 3)
+~~~~~~~~~~5	Conditional convert character~~~~~~~~(32 - 126)
+~~~~~~~~~~6	Display line and column position ~~~~(0 - 3)
+	(0=none, 1=line, 2=column, 3=both)
+~~~~~~~~~~7	Word Wrap column (0 = Off) ~~~~~~~~~~(0 - 255)
+~~~~~~~~~~8	Bit 8 Allowed~~~~~~~~~~~~~~~~~~~~~~~~(0 - 7)
+	(1=Input, 2=Output, 3=Input & Output)
+~~~~~~~~~~9	Cursor positioning mode~~~~~~~~~~~~~~(0 - 2)
+~~~~~~~~~10	Horizontal scroll margin~~~~~~~~~~~~~(40 - 255)
+~~~~~~~~~11	Horizontal scroll increment~~~~~~~~~~(1 - 78)
+.fi
+.ju
+.bp
+.sp
+.ta 18
+.of 17
+EQ	Quit (abort) the edit session; any text changes are lost.
+Leaves disk files exactly as before the session started. Return to
+operating system.
+.br
+EQY	Skip the confirmation prompt.
+.sp
+.cp 3
+.of 17
+ER~file	Open the file 'file' for input. Gives error if file
+does not exist.
+.sp
+ES	Display current values of all switches.
+.br
+.cp 12
+.of 17
+ES~n~k	Change the value of switch 'n' to 'k'. The switches are:
+.sp
+.nf
+.nj
+~~~~~~~~~~1	Expand Tab with spaces~~~~~~~~~~~(0=NO 1=YES)
+~~~~~~~~~~2	Auto buffering in visual mode~~~~(0=NO 1=YES)
+                    (2 = Also Enable Backward Buffering)
+~~~~~~~~~~3	Start in visual mode~~~~~~~~~~~~~(0=NO 1=YES)
+~~~~~~~~~~4	Point past text reg. insert~~~~~~(0=NO 1=YES)
+~~~~~~~~~~5	Ignore UC/LC search distinction~~(0=NO 1=YES)
+~~~~~~~~~~6	Clear screen on Visual Exit ~~~~~(0=NO 1=YES)
+~~~~~~~~~~7	Reverse Upper and Lower case ~~~~(0=NO 1=YES)
+~~~~~~~~~~8	Suppress search errors~~~~~~~~~~~(0=NO 1=YES)
+~~~~~~~~~~9	Explicit string delimiters~~~~~~~(0=NO 1=YES)
+~~~~~~~~~10	Global file operations~~~~~~~~~~~(0=NO 1=YES)
+~~~~~~~~~11	Justify paragraphs~~~~~~~~~~~~~~~(0=NO 1=YES)
+                    (2 = Unjustify Paragraphs)
+.fi
+.ju
+.sp
+.cp 5
+.of 17
+ET~n1,n2,n3~...	Set new tab positions.  The ET is followed by up
+to 30 decimal numbers specifying the tab positions.
+.br
+.of 17
+ET~n	Alternately, if ET is followed by just one 'n', tabs are set
+to every 'n' positions.
+.sp
+.cp 2
+.of 17
+EV	Display the VEDIT version number.
+.sp
+.of 17
+EW~file	Open the file 'file' for output.  Any existing file
+by that name will be renamed to "file.BAK" following an EF, EX or EY.
+Gives error if an output file is already open.
+.sp
+.of 17
+EX	Normal exit from VEDIT which saves the entire file being
+edited on disk. Returns to the operating system. Gives
+error if no output file is open.
+.sp
+.of 17
+EY	Saves the entire file being edited on disk and remains in
+VEDIT.  This leaves VEDIT ready to edit another file by using the "EB"
+command.
+.sp
+.cp 3
+.of 17
+EZ	Quit (abort) the edit session; any text changes are lost.
+Leaves disk files exactly as before the session started. Stay in VEDIT.
+.br
+EZY	Skip the confirmation prompt.
+.bp
+`OSTEXT REGISTER COMMANDS`OS
+.sp
+.ta 18
+.of 17
+RDr	Dump contents of register 'r' on console.  Control characters
+are not expanded.
+.sp
+.of 17
+RIr~text<ESC>~~~~Insert the 'text' into text register 'r'.  Use
+"RI+r" to append to any existing contents.
+.sp
+RLr~file	Load register 'r' from file 'file'.
+.sp
+.of 17
+RPr	Print contents of register 'r' on line printer.
+.sp
+.of
+RSr~file	Save contents of register 'r' in file 'file'.
+.sp
+.of 17
+RTr	Type contents of register 'r' on console.  Control characters
+are expanded, <ESC> is represented as "$".  An encountered <CTRL-S>
+"stop character" causes a pause - type any character to continue.
+.sp
+.of 17
+RU	Display number of characters (size) in each text register.
+.sp
+.of 17
+R*	Treat all following characters up to RETURN as a comment.
+.sp 3
+`OSNUMERIC REGISTER COMMANDS`OS
+.sp
+nXAr	Add 'n' to numeric register 'r'.
+.sp
+-nXAr	Subtract 'n' from numeric register 'r'.
+.sp
+nXSr	Set numeric register 'r' to 'n'.
+.sp
+.of 17
+XTr	Type numeric register 'r' in decimal.
+.br
+:XTr	Suppress the <CR><LF> following the number.
+.bp
+`OSMISCELLANEOUS COMMANDS`OS
+.sp 2
+.of 17
+nYF	Format the paragraph the edit pointer is in.  Use 'n' as the
+left margin.  If no 'n' is specified, use Visual Mode indent position
+as the left margin.  Use word wrap column as right margin.  Justify if
+justification switch is set.  After formatting position edit pointer
+to begin of next paragraph.
+.sp
+.of 17
+YI	Re-route console output until next command prompt to edit
+buffer at edit pointer and update edit pointer. (May work very slowly.)
+.br
+-YI	Disable "YI", allow output to go back to the console.
+.sp
+.of 17
+YP	Re-route console output until next command prompt to list
+device (printer).
+.br
+.of 17
+-YP	Disable "YP", allowing output to go back to the console.
+Note: YP is disabled by "EO" command.
+.sp
+.of 17
+YR	Type the input (read) file name on the console.
+.br
+:YR	Suppress the <CR><LF> following the file name.
+.sp
+.of 17
+mYS	Strip the 8th bit from all characters in the specified line
+range.
+.sp
+.of 17
+YTtext<ESC>	Type the 'text' on the console.
+.sp
+.of 17
+YW	Type the output (write) file name on the console.
+.br
+:YW	Suppress the <CR><LF> following the file name.
+.sp 3
+`OSPATTERN MATCHING CODES`OS
+.sp
+.of 4
+|A~~Matches any alphabetic letter, upper or lower case
+.br
+|B~~Matches a blank - a space or a tab
+.br
+.of 4
+|C~~Matches any control character - a character with a value of 0 -
+31 (decimal)
+.br
+|D~~Matches any numeric digit - "0" through "9"
+.br
+|F~~Matches any alphanumeric character - a letter or a digit
+.br
+.of 4
+|L~~Matches any line terminator - Line Feed, Form Feed or the End
+Of File.  Also matches <CR><LF> as a unit.
+.br
+.of 4
+|M~~Matches multiple characters - zero, one or more characters so that
+the string following the "|M" is satisfied
+.br
+.of 4
+|N~~Matches any character which is NOT the following single character
+or pattern matching code
+.br
+|S~~Matches any separator - a character which is NOT a letter or digit
+.br
+|U~~Matches any upper case letter
+.br
+|V~~Matches any lower case letter
+.br
+|W~~Matches "white space" - one or multiple spaces and/or tabs
+.br
+|X~~Matches any single character
+.br
+||~~Matches a "|" - use "||" when you need to search for a "|"
+.br
+

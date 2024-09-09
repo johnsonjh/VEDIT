@@ -1,0 +1,211 @@
+.cm Last Change: Ted - Oct. 28, 1985
+.pw 70
+.rm 70
+.pi 16
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.il `
+.bp 3
+.he /VEDIT//Page #/
+.fo ////
+.ce
+.ul
+Table of Contents
+.sp 2
+.ta 11 51
+.nf
+.nj
+I.        Introduction	 7
+
+     Getting Started	10
+          Installation	10
+          Using This Manual	10
+     Sample "First" Edit Session	12
+     Short Overview	17
+          Basic Editing Concepts	17
+          Visual Mode	19
+          Command Mode	21
+     Which Mode to Use for What	23
+     Word Processing with VEDIT	24
+
+
+II.       Tutorial	25
+
+     Invoking VEDIT	28
+     Keyboard Characters and Edit Functions	30
+     Cursor Movement	31
+     Page Movement	33
+     Entering New Text	35
+     Visual Functions	36
+     Deleting Text	37
+     Correcting Mistakes Made To A Line	38
+     Repeating Operations	39
+     Indenting Text	40
+     Word Wrap and Formatting Paragraphs	42
+     Justifying Paragraphs	43
+     Moving and Copying Blocks of Text	44
+     Emptying a Text Register	46
+     Printing Text	47
+     Entering Control Characters into the Text	47
+     Searching	48
+     Replacing	49
+     Switching Between Visual and Command Mode	50
+     Save Edited Text and Continue	51
+     Begin Editing New File	51
+     Making More Memory Space	52
+     Disk Directory Display	52
+     Inserting a Line Range of Another File	53
+     Concatenating Files	54
+     Splitting a File into Two or More Files	55
+     Recovery From Full Disk Errors	56
+     Command Macros	57
+     Ending the Edit Session	58
+
+
+.cp 6
+III.      Memory and File Management	59
+
+     Text Registers	61
+     Automatic Disk Buffering	62
+          Forward Disk Buffering	63
+          Backward Disk Buffering	64
+     Automatic Startup	65
+     Global File Operations	66
+     Multi-Tasking Operating Systems	66
+
+
+IV.       Visual Mode	67
+
+     Screen Display	69
+     Status Line	69
+     Keyboard Characters	71
+     Entering New Text	71
+     Performing Edit Functions	72
+     Control Characters	72
+     The Repeat Function	72
+     Horizontal Scrolling	73
+     Cursor Movement	73
+     Setting and Jumping to Text Markers	74
+     The Tab Character	75
+     Search and Replace	76
+     Cancel Function	77
+     The Text Registers	77
+     Indent and Undent Functions	78
+     Printing Text	79
+     Word Processing Functions	80
+          Word Wrap and Margins	80
+          Formatting Paragraphs	81
+          Justification	82
+     Command Macros in Visual Mode	82
+     Lower and Upper Case Conversion	83
+     End of Lines	84
+     Inserting Control Characters	84
+     High Bit Character Support	84
+     Disk Buffering in Visual Mode	86
+     Edit Function Summary	87
+
+
+V.        Command Mode	93
+
+     Command Mode Notation	95
+     Command Lines	95
+     Command Line Editing	96
+     Controlling Console Display	97
+     Help Command	97
+     File Operations	98
+          Exiting With Saving	98
+          Quitting Without Saving	98
+          Save File and Continue Editing	98
+          Editing a Second File	99
+          Directory Display	99
+.ta 11 50
+          Extracting Portions of Other Files	100
+          Disk Buffering in Command Mode	100
+          Disk Write Error Recovery	101
+     Command Mode Features	104
+          Command Modifiers	104
+          Global File Operations	104
+          Text Strings and Explicit Delimiters	104
+          Suppress Error Handling	105
+          Literal Character in Text Strings	106
+          Pattern Matching	107
+          Edit Parameters and Switches	109
+          Printing Text	109
+          WordStar (TM) Files	109
+          Text Registers	110
+     Iteration Loops	111
+          Iteration counts	112
+          Commands Within Iteration Loops	112
+	Using Visual Mode in Iterations	113
+     Command Macros	114
+          Additional Command Macro Features	116
+          Display Input / Output File Names	116
+          Re-routing Console Output	117
+          Numerical Capability	118
+          Command Macros in Visual Mode	119
+     Print Formatter Command Macro	120
+     Modifying On-Line Help Files	121
+
+     Detailed Command Descriptions	123
+
+.sp 2
+VI.	APPENDICES	163
+
+    A - Customizing VEDIT	163
+
+    What is Customization	165
+    When is Customization Necessary	165
+    Files on your disk	166
+    CRT Terminal and Memory Mapped	167
+    How to Perform Customization	168
+    Quick Customization	171
+    Step by Step Customization	171
+    Customization Notes	186
+    Keyboard Layout	186
+    Screen Size Parameters	187
+    Memory Size Parameters	188
+
+.cp 10
+    B - General Versions	189
+
+    Description of files on disk	191
+    Personal Keyboard Layout	192
+    Default CRT Customization	193
+    Default Keyboard Layout	194
+    Heath H-19 / Zenith Z19	195
+    IBM 3101	197
+    Televideo 920C	198
+    Televideo 950	199
+
+    C - 8086 Computers	201
+
+    PCDOS and TANDY 2000 Files	203
+    CP/M-86 Files	204
+    IBM PC Keyboard Layout (PCDOS-CP/M-86)	205
+    IBM PC Keyboard Layout Concurrent CP/M	206
+    Tandy 2000	208
+    DEC Rainbow	210
+    Zenith Z-100	212
+    IBM Displaywriter	214
+    NEC APC	217
+    Victor 9000	218
+    TI Professional	220
+
+    D - 8080/Z80 Computers	223
+
+    TRS-80 Mod II	225
+    Apple II	228
+    Xerox 820	231
+    Osborne I	232
+    Information on other computers	233
+
+    E - Error Messages	235
+
+    F - Command Reference	241
+
+VII.	Index	249
+.br
+.in 0
+

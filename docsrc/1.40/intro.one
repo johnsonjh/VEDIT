@@ -1,0 +1,929 @@
+.cm Last Change: Ted - Oct. 28, 1985
+.pw 70
+.rm 70
+.fo ////
+.pi 16
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.il `
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.sp 8
+.ce
+`OSI N T R O D U C T I O N   T O   V E D I T`OS
+`TCI.~~~~~~~~Introduction`TC
+.bp
+.sh /Introduction///
+~~
+.bp
+.ju
+.ce
+.ul
+Introduction to VEDIT
+.sp 2
+     VEDIT is an advanced editor designed to make your program
+development and word processing as efficient and easy as possible.
+VEDIT is simple enough to learn and use for the novice, yet has the
+speed, flexibility and power to satisfy the most demanding computer
+professional.  VEDIT is particularly suited for writing all types of
+programs and lengthy documents such as reports or manuscripts.
+.sp
+     VEDIT's primary or "Visual" editing mode offers true "What you
+see is what you get" editing, with a complete array of editing
+functions.  A status line displays information such as file name and
+line and column information to help you in your editing.
+.sp
+     The easy to use word processing features include wrapping words
+at the end of lines, formatting paragraphs between adjustable margins,
+justifying the right margin of paragraphs and printing any portion of
+the text.  Horizontal scrolling allows editing of very long lines such
+as spreadsheets and wide program listings. Ten scratch-pad buffers may
+be used for extensive "cut and paste" operations.  Powerful search and
+selective replace functions speed editing.  Other features, such as
+automatic indenting for structured programming languages, simplify and
+enhance program development editing.
+.sp
+     VEDIT also provides a very flexible and powerful "Command"
+editing mode, which serves the dual purpose of separating the less
+commonly used functions from the Visual Mode and of making VEDIT a
+text oriented programming language.  The command macro capability
+allows complex or repetitive editing tasks to be automated. Examples of
+such tasks include numerous search/replace operations on multiple
+files, and source code translations.  The command macros can be saved
+on disk for future use. The extensive file handling allows files to be
+split and merged. Blocks of text may be moved or copied within the
+current file and other files in an almost unlimited manner.  Other
+files may be viewed and selected portions of those files can be
+inserted at any place in the text being edited.
+.sp
+     You can edit files of virtually any size with little concern over
+the actual size of the files. You can also recover from common disk
+write errors, such as running out of disk space, by deleting files or
+inserting another disk.
+.sp
+     Interactive On-line help is available in both Command and Visual
+modes.  A unique feature is that the help text is user changeable and
+expandable.  You can add your own help prompts and help
+messages, even create on-line help for other programs you use.
+.sp
+     Since so many different hardware configurations, keyboards,
+editing applications and personal preferences exist, VEDIT is supplied
+with a comprehensive and easy to use customization (installation)
+program which lets you create versions of VEDIT which are most
+suitable to your hardware, keyboard, applications and preferences.
+.sp 2
+.bp
+.ce
+.ul
+Getting Started `TC~~~~~Getting Started`TC
+.sp 2
+.ul
+Installation `TC~~~~~~~~~~Installation`TC
+.sp
+     We supply ready to run versions of VEDIT for some computers such
+as the IBM Personal Computer, TI Professional, Apple II, Zenith Z100
+and all TRS-80 Models.  Otherwise, before you can begin using VEDIT,
+you will have to go through the customization process described in
+Appendix A.  If you received a ready to run VEDIT, look in the Table
+of Contents and find the pre-configured keyboard layout for your
+machine.  Most users with ready to run versions will also want to
+perform the customization after becoming familiar with VEDIT. While
+many parameters can be customized, the menu driven operation allows
+you to limit your attention to a subset of these parameters.  In fact,
+if you are using a CRT terminal and are content to initially use the
+default keyboard layout (see Appendix F), you only need to select your
+CRT terminal in order to create a ready to use version of VEDIT. (See
+"Quick Customization" in Appendix A.)  Since the customization does
+not destroy or alter the "prototype" editor files on disk, but rather
+creates a new file with your customized editor in it, you may go
+through the process as often as you like.  As you gain experience with
+VEDIT you will probably perform the customization several times until
+you have everything exactly the way you like.
+.sp 2
+.ul
+Using This Manual `TC~~~~~~~~~~Using This Manual`TC
+.sp
+    This manual is organized into six main sections. This first
+introductory section helps you get started and introduces the main
+features of VEDIT and the modes of operation. The second section is a
+tutorial on using VEDIT.  The third section covers several moderately
+technical topics, particularly the text registers and automatic disk
+buffering.  The fourth section describes the Visual Mode in detail,
+while the fifth section is a detailed description of the Command Mode.
+The last section contains appendices of the customization process, a
+description of the error messages, a reference guide on the commands,
+and the index.  The manual also contains customization notes and
+keyboard layouts for the many computers VEDIT supports.  We recommend
+that you copy the keyboard layout which applies to you and place the
+copy in a clear plastic protector for easy reference.
+.sp
+     This introductory section includes a "Sample First Edit Session"
+to familiarize you with the most basic aspects of using VEDIT,
+including accessing the On-line help.  After finishing this sample
+edit session you are best off to at least skim the following "Short
+Overview" as an introduction to the capabilities of VEDIT.
+.sp
+     Trying out the editor while reading the tutorial section is the
+best way to gain a working familiarity with most features.  The
+tutorial includes how to invoke and exit VEDIT, and perform the most
+common editing operations. It also covers some of the file handling,
+including splitting and merging files and what to do if you
+accidentally run out of disk space. The tutorial section is task
+oriented and describes which function keys or commands to use to
+perform a given editing operation.  The tutorial should give you
+enough expertise to use VEDIT very productively.
+.sp
+     VEDIT's primary editing mode, "Visual Mode", should always be
+learned first. The Visual (full screen) Mode is exceptionally easy to
+use and can be learned by experimenting with the various edit
+functions.  The new VEDIT user will have no need for the more powerful
+"Command Mode", except to exit the editor.
+.sp
+     Once you have had some practice with the Visual Mode of VEDIT,
+you will then want to try out the Command Mode.  If you are new to
+editors, the Command Mode may at first seem complicated.  However,
+with a little practice, you will discover that some tasks are easier
+to do in Command Mode than in Visual Mode. The Command Mode also lets
+you perform useful tasks which are impossible with other editors and
+word processors.  All basic editing can be done entirely in the Visual
+Mode, and the Command Mode can be learned gradually as the need
+arises.  The tutorial introduces the most used commands of this mode.
+.sp
+     While you will typically spend 99% of your time in the Visual Mode
+and only 1% in the Command Mode, this manual deals extensively with the
+Command Mode.  This is appropriate, because the Visual Mode is
+exceptionally easy to learn and use.  A little experimentation is the
+best teacher.  The Command Mode, because of its powerful capabilities,
+numerous options and similarity to a programming language, is best
+served by a detailed description and numerous examples.  The large
+Command Mode section first describes the commands categorically.  Each
+command is then described in detail with still more examples.
+.sp
+     The most powerful aspects of the Command Mode involve the "macros"
+which can perform repetitive and automated editing operations.  Macros
+are in effect text oriented "programs", which can be developed and
+saved on disk for later re-use. One type of useful macro is the
+auto-startup file which can be used to set up programmable function
+keys on a CRT terminal.  Another useful macro is the print formatter
+supplied in the file PRINT.EXC.  This is used to print text with
+headings and page numbers.  It also serves as an example of VEDIT's
+command macro capability.
+.sp 2
+     Much of the Command Mode is intended as a "text oriented
+programming language".  You should not feel compelled to understand any
+part of this mode, not described in the Tutorial, until you are quite
+familiar with VEDIT.
+.sp
+     We hope that you will enjoy using VEDIT and its many features.
+.sp
+     Good Luck!
+.bp
+.ta 10 15 20
+.ce
+.ul
+Sample "First" Edit Session `TC~~~~~Sample "First" Edit Session`TC
+.sp 2
+`ICSample edit session`IC
+.br
+    This sample edit session assumes that you have customized VEDIT
+for your computer system or received a ready to run version.  It also
+assumes that VEDIT is in the file VEDIT.COM  (or VEDIT.CMD for CP/M-86)
+on Drive A: of your computer.
+.sp
+     In this edit session you will create a short file with the name of
+"SAMPLE.TXT", which you can subsequently type out from the operating
+system.
+.sp
+     To create this sample file invoke VEDIT with the command:
+`ICInvoking VEDIT`IC
+.sp
+.ti 10
+A>VEDIT SAMPLE.TXT
+.sp
+After a short pause in which VEDIT is loaded from disk, it will briefly
+display the message:
+.sp
+.ti 10
+NEW FILE `IC"NEW FILE"`IC
+.sp
+This indicates that a new file is being created and not an existing
+one being edited.  VEDIT will then clear the screen and position the
+"cursor" in the upper left hand corner of the screen.  A row of
+dashes, called the "Status Line" `ICStatus line`IC will appear at the bottom of
+the screen.  The status line will display the line and column number
+for the cursor and the file name, in this case "LINE:  1 - COL:  1"
+and "SAMPLE.TXT".  Having the status line on the bottom screen line
+indicates that you are in the "Visual Mode" of VEDIT, in which
+you can perform full screen editing. `ICVisual mode`IC
+.sp
+     You can now type some text which will appear on the
+screen and will eventually be made into a file.  Type in the
+following text followed by the RETURN key at the end of each line.
+.sp 2
+.nf
+.nj
+	Bach simply awed the professional musicians
+	who met or just observed him.  Their descriptions
+	indicate that Bach, at the head of an orchestra,
+	was a conductor very much like the great
+	conductors of today.
+.ju
+.fi
+.ta 9
+.sp 3
+.ul
+Altering your text
+.sp
+     While typing in the text you can make corrections by using the
+`IXBACKSPACE key`IX which will move the cursor left and delete the
+character there. The most important aspect of VEDIT is, of course,
+that you can easily edit text after it has been typed in.  The first
+step in editing is to position the cursor at the text which needs
+changing.  Although VEDIT has many cursor movement keys, you can get
+by for now using just the four basic movements UP, DOWN, RIGHT and
+LEFT.  Check your keyboard layout sheet to see what control codes or
+keys are~~used for these four cursor movements.  They may already be
+assigned to the cursor keys on your keyboard, or may be CTRL-E,
+CTRL-C, CTRL-F and CTRL-S respectively. As you use these keys you will
+notice that you can generally only position the cursor at real
+characters in the text and at the ends of lines.  You cannot position
+it on the screen where there is no text.
+.sp
+     With the cursor positioned correctly, you are ready to make your
+changes.  The three basic types of changes are over-writing
+existing text, deleting text and inserting text. `ICOver-writing text`IC `ICEntering new text`IC `ICDeleting text`IC `ICInserting text`IC
+To over-write any text, simply position the cursor at the first character
+to be over-written and type in the new text.  This is the easiest way to
+correct mis-typed letters. "^" indicates the cursor in the following example:
+.sp
+	 Bach simply wade the professional musicians
+.br
+~~~~~~~~~~~~~~~~~~~~~^
+.sp
+After typing the word "awed" the new line will appear as:
+.sp
+	 Bach simply awed the professional musicians
+.br
+~~~~~~~~~~~~~~~~~~~~~~~~~^
+.sp
+     Often you need to insert new text into the middle of a line.  For
+this you use the "Insert Mode" of VEDIT. `ICInsert mode`IC Look over
+your keyboard layout and find the key which performs the function
+`IX[SWITCH INSERT MODE]`IX or `IX[SET INSERT MODE]`IX. Press the key
+(or control sequence) and the message "INSERT" should appear on the
+status line. In Insert Mode, text typed in the middle of a line will
+not over-type any existing text but will shift the text right in order
+to make room for the new text.  Consider the following line:
+.sp
+	 Bach simply awed the professional musicians
+.br
+~~~~~~~~~~~~~~~~~~~~~~~~~^
+.sp
+After typing the word " all" in Insert Mode, the line will appear as:
+.sp
+	 Bach simply awed all the professional musicians
+.br
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+.sp
+     Deletions are also an important part of editing.  VEDIT's two
+most used deletion functions are `IX[BACKSPACE]`IX and `IX[DELETE]`IX.
+(Check how your keyboard layout has assigned these functions,
+[BACKSPACE] is not the `IXBACKSPACE key`IX on Televideo terminals.)
+[BACKSPACE] deletes the character to the left of the cursor, i.e. the
+character you may have just typed in.  [DELETE] deletes the character
+at the cursor position.  The line always closes up after any type of
+deletion.  Consider the following line:
+.sp
+	 Bach simply aweded the professional musicians
+.br
+~~~~~~~~~~~~~~~~~~~~~~~~~^
+.sp
+After typing the [DELETE] function twice, the line will be:
+.sp
+	 Bach simply awed the professional musicians
+.br
+~~~~~~~~~~~~~~~~~~~~~~~~~^
+.sp
+     Although VEDIT can automatically reformat paragraphs, it is good
+practice to try it manually.  Position the cursor in the first line as
+follows:
+.sp
+	 Bach simply awed the professional musicians
+.br
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+.sp
+Type the RETURN key and the line will be split into two lines:
+`ICSplitting lines`IC
+.sp
+	 Bach simply awed the
+.br
+  	 professional musicians
+.br
+~~~~~~~~~^
+.sp
+Now position the cursor at the end of the first line and type the
+[DELETE] function.  This will append the second line to the end of the
+first, giving you your original line back.
+.sp
+     Continue making edit changes until the text is modified to
+your satisfaction.
+.sp 2
+.ul
+On-line Help in Visual Mode `ICHelp`IC `ICOn-Line help (See Help)`IC
+.sp
+     The [HELP] function will assist you with the editing functions
+available in Visual Mode. Press the control sequence for [HELP]. (It
+is ALT-H on the IBM PC and usually ESC-? on CRT terminals.  Otherwise
+check your keyboard layout sheet.)  You will see the first of two
+screen menus which list the keyboard layout.  Type RETURN at the first
+menu prompt to see the second screen. At either screen menu prompt
+you can see more about a particular edit function by simply pressing
+the control sequence for that function.  After reading the help
+information, press RETURN to return to your editing.
+.sp
+     Alternatively, you can type another RETURN at the second menu
+prompt and you will see a menu of additional Visual Mode topics for
+which help is available.  This includes descriptions of all the status
+line messages and assistance with word processing.  To see the help
+information just type the indicated code word for the desired task.
+.sp 2
+.ul
+Entering Command Mode `ICExiting visual mode`IC `ICCommand mode`IC
+`ICEntering command mode (See Exiting visual mode)`IC
+.sp
+     At this point you are ready to save your text `ICSave text on disk`IC
+on disk and return to the operating system.  For this you must
+exit Visual Mode and enter the "Command Mode".  This is done by the
+`IX[VISUAL ESCAPE]`IX function which usually corresponds to typing the
+`IX<ESC> key`IX twice.  Try it. The screen should scroll up (or it may
+clear) and the cursor will be on the bottom line following the Command
+Mode "COMMAND:" prompt.  `ICCommand mode prompt`IC
+Type the desired command or commands and remember to end each
+"command line" with the RETURN key.
+.sp
+.ta 10 20
+     One common command is to go back into Visual Mode. The command
+is: (Remember the RETURN key) `ICEntering visual mode`IC
+.sp
+	`IXV`IX
+.sp
+This will put you back into Visual Mode with the status line on the
+bottom line.  The cursor will be positioned at the same place in the
+text, although not necessarily on the screen, as it was when you
+exited Visual Mode before. `ICCursor position`IC Go back to Command
+Mode.  If necessary, repeat switching between Command and Visual Mode
+until you can clearly identify which mode you are in.
+.sp
+     If you have a printer connected to your computer you can print
+the text you have just created.  This can be done from either the
+Visual Mode or the Command Mode.  To print the entire text from
+Command Mode enter the following commands: `ICPrinting text`IC
+.sp
+	B #EO
+.sp
+Before giving the command, make sure that your printer is properly
+connected and "ON LINE".
+.sp 2
+.ul
+On-line Help in Command Mode `ICHelp`IC
+.sp
+     There are two types of On-line help available in Command Mode via
+the commands "`IXH`IX" and "`IXEH`IX".  The "H" command allows you to
+display a short description of any command.  The "EH" command allows
+you to select from a list of common editing tasks and find out what
+commands are used to perform that task.
+.sp
+     Give the command: (Remember the RETURN)
+.sp
+	H
+.sp
+You will see the first screen of a menu listing all the commands.  Type
+RETURN to see the next screen of commands.  When you see the
+desired command in the menu, simply type its letter(s) and a RETURN.  A
+short description of the command will then be displayed.
+.sp
+     Often you will already know what command you need help with.
+You can skip the menu by following the "H" with the
+command you need help with.  For example, to see a summary of the "EO"
+command, used earlier to print text, give the command:
+.sp
+	HEO
+.sp
+     Many times you know what editing task you want to perform, but
+do not know what commands to use.  In this case give the command:
+.sp
+	EH
+.sp
+You will see the first screen of a menu listing common editing tasks.
+Type RETURN to see the next screen of tasks.  When you see the desired
+task, type its task name.  A description of the commands
+needed for that task will be displayed.
+.sp
+     Keep in mind that the menu prompts and descriptions in the
+On-line help systems are all changeable and expandable.  We describe
+how to personalize the On-line help later in the manual.
+.sp 2
+.ul
+Saving Your Text
+.sp
+     Finally, while in Command Mode you can give the command to save
+your text on disk and exit VEDIT.  The command is:
+.sp
+	`IXEX`IX
+.sp
+You should now be back in the operating system with its "A>" prompt.
+You can check that your file is on disk with the directory command
+"DIR", and can type it out with the "TYPE" command, i.e.:
+.sp
+	TYPE SAMPLE.TXT
+.sp
+You should see whatever you last saw on the screen in the Visual Mode
+of VEDIT.
+.sp 2
+     This has introduced you to only a small part of VEDIT's
+capabilities.  However you have experimented with the basics which make
+up 90% of any editing task, and have tried one of the ways of
+invoking VEDIT and saving the text on disk.  The next section gives an
+overview of more of VEDIT's capabilities, and the following tutorial
+gives a hands-on introduction to almost all of the Visual Mode and more
+of the Command Mode.
+.sp 2
+.of 7
+Notes:~A garbled screen display or status line indicates that the CRT
+terminal is not being supported correctly.  Check that you have
+selected the correct entry in the customization CRT menu.  Also be
+sure that you have selected the correct number of screen lines (use 24
+lines for all Televideo terminals).
+.sp
+.in 7
+If after invoking VEDIT you end up in the Command Mode (a "COMMAND:" prompt
+and no status line), this indicates that you either did not specify a
+file name after "A>VEDIT", or customized VEDIT to begin in Command Mode
+(See customization Task 6.3).  All of our ready to run versions will
+start in Visual Mode when a file name is specified.
+.sp
+If you have changed your `IXkeyboard layout`IX, you will find that the
+keyboard layout displayed by the Visual Mode [HELP] is no longer
+correct.   The Command Mode subsection "Modifying On-line Help Files"
+describes how to remedy this situation.
+.br
+.in 0
+.bp
+.ce
+.ul
+Short Overview `TC~~~~~Short Overview`TC
+.sp 2
+     VEDIT is a full screen, or "visual" editor which currently runs
+under the PCDOS, MS-DOS, CP/M-86 and CP/M operating systems and their
+derivatives, including MP/M, MP/M-86, Concurrent DOS, CDOS and CROMIX.`ICFull screen editing`IC  It allows any
+text file to be created or edited in a visual manner on systems with
+most types of CRT displays. It has two operating modes: `IXVisual Mode`IX
+and `IXCommand Mode`IX. The typical user will spend 99% of the time in the
+Visual Mode, the primary editing mode.  Here, the screen continuously
+displays the region of the file being edited, a status line and
+cursor.  Changes are made by first moving the cursor to the text to be
+changed.  You can then overtype, insert any amount of new text and use
+function keys to perform all changes, which are immediately shown on
+the screen and become the changes to the file.  Several word processing
+functions such as word wrap and formatting of paragraphs simplify the
+writing of letters and other documents.
+Ten text registers (scratchpad buffers) allow sections of text to be
+copied and moved for extensive "cut and paste" type operations.  Any
+portion of the text may be printed at any time.
+.sp
+     The main purpose of the `IXCommand Mode`IX is for performing
+repetitive editing tasks, explicit file handling and accessing the
+additional text register operations.  The Command Mode allows the
+execution of common line and character oriented editing commands,
+including searching, altering, inserting new text and moving to other
+positions in the file. Single commands and groups of commands may be
+repeated any desired number of times. The file handling commands allow
+files to be split into smaller ones, or merged into larger ones.
+Several files can be edited successively, without leaving VEDIT.
+Another file may be viewed with line numbers and a specified line
+range of that file can be inserted at any place in the text being
+edited.  Finally, the "EX" command is given to exit VEDIT, saving
+the edited file on disk.
+.sp
+      A powerful aspect of the Command Mode is its command macro
+facility, in which simple or very complex sequences of commands are
+saved in text registers and then selectively executed.  Since command
+macros may be saved and loaded from disk, they can be created and then
+reused at a later time.  These command macros can also be accessed
+from Visual Mode, allowing you to create your own editing functions.
+.sp 2
+.ul
+Basic Editing Concepts `TC~~~~~~~~~~Basic Editing Concepts`TC
+.sp
+     The purpose of editing is to create or modify a file on disk so
+that it may be saved for future use and processed by another program,
+such as a print formatter, a compiler, or simply be printed out. When
+a file is first created, the initial text of the file is entered with
+the editor, corrections are made, and the text is then saved on disk.
+When a file is edited, the existing file is read from the disk into
+the computer's "main memory", the changes are made with the use of the
+editor, and the modified text is then saved as a new file on disk.
+The text can be printed out with VEDIT before it is saved on disk.
+.sp
+     Each file on disk has a name,`ICFile name`IC and when a file is
+created with the editor, the user assigns the file its name. It is
+helpful to choose names which are meaningful and easy to remember.
+The name "LETTER1" is thus better than "JV%8-G5F".  The MS-DOS and CP/M
+operating systems have file names which consist of two parts, the
+"filename" and the "`IXfile type`IX" or "extension". `ICFile extension`IC
+A "." separates the two parts and the filename may be up to 8 characters
+long and the extension up to 3 characters long.  When a file is to be
+edited, its name must be specified in order for it to be read from
+disk. The modified file may be written to disk with a new file name or
+with the original name. The normal way of invoking and exiting VEDIT
+will cause the edited file to be written to disk with its
+original name. One question in this
+case is: "What happens to the original text file?"  VEDIT leaves the
+original file on disk too, but since you cannot have two files on disk
+with the same name, the name of the original file is changed to have
+an extension of ".BAK".  `IC".BAK" file`IC  This is referred to as the
+"backup" of the file. `ICBackup of file`IC  Any previous backup of the file
+on disk will be deleted by this process.
+.sp
+     When a file is read from disk, its contents are stored in the
+"main memory" of the computer.`ICReading files`IC
+The portion of main memory used for storing the file is referred to as
+the "`IXedit buffer`IX". All changes made to the file are made in the
+edit buffer. When the editing is complete, the file is saved again on
+disk. `ICSave text on disk`IC This process of reading a file from
+disk (or creating a new file), making changes to the file and saving
+it on disk, is referred to as an "`IXedit session`IX". Therefore, two
+files are being processed while editing. The file being read is
+called the "input" file `ICInput file`IC and the file being written
+is called the "output" file. `ICOutput file`IC Specifying to the
+editor which file is to be used for input or output is referred to as
+"opening" the file.`ICOpening a file`IC The way VEDIT is normally
+invoked, i.e. "VEDIT FILE.TXT", the specified file is opened for
+input, and another file is opened for output which will have the same
+name as the original input file when the edit session is over.  At
+that time the original input file will still exist, but will have
+been renamed to a backup file, i.e. "FILE.BAK".
+.sp
+`ICFiles - large (long)`IC
+`ICLarge files (See Files - large)`IC
+.br
+     In some cases the file to be edited is too large for all of it to
+be stored in the edit buffer at one time.  VEDIT handles such a file
+by reading the first part of the file into the edit buffer, where
+you can make any desired changes.  After this first part is edited,
+VEDIT will write the first lines of the edit buffer to the output file
+and read in more unedited lines from the input file.  This is repeated
+until the entire file is edited.  If desired, VEDIT can also read
+edited text back from the output file for further editing. VEDIT can
+perform this read/ write process automatically and almost invisibly to
+the user.  In particular, when the user reaches the end of the edit
+buffer in Visual Mode, the beginning of the edit buffer is written out
+to disk (to the output file) and more of the file being edited (the
+input file) is read or "appended" to the end of the edit buffer.  This
+process, when done automatically, is referred to as "`IXauto-buffering`IX".
+.bp
+.ul
+Visual Mode `TC~~~~~~~~~~Visual Mode`TC
+.sp
+     In `IXVisual Mode`IX, the screen continuously displays the
+current contents of the file in the region you are editing and a
+visible "`IXcursor`IX", marking the edit position. The bottom line of
+the screen is used for status information, including the name of the
+file being edited and the cursor's line number and column position.
+Changes made to the screen display, whether by typing in new text or
+using edit functions, become the changes to the file. The characters
+typed while in Visual Mode fall into two
+categories: `IXDisplayable characters`IX and `IXControl sequences`IX.
+The displayable characters are displayed on the screen at the cursor
+position and cause the cursor to move to the right. The user
+customized `IXkeyboard layout`IX determines which edit function
+each control sequence performs.  Control sequences are control
+characters, `IXfunction keys`IX or `IXescape sequences`IX.
+`ICControl characters - typing`IC
+.sp
+     The `IXedit functions`IX fall into two subcategories - `IXcursor movement`IX
+and `IXvisual functions`IX. The cursor movement operations
+cause no change to the file, but rather move the cursor forward and
+backward by a character, a word, a line, a paragraph or a screen at a
+time.  Additional cursor movements allow movement to the next tab
+position, the beginning or end of the edit buffer, and to previously
+set "`IXtext markers`IX". Up to ten positions in the text may be
+marked, so that the cursor can be directly moved back to any of these ten
+positions.
+.sp
+     VEDIT has two modes for inserting new text: "Insert" mode
+and "Normal" mode.  `ICInsert mode`IC `ICNormal mode`IC
+In normal mode, the new text will
+overwrite the existing text. `ICOver-writing text`IC
+In insert mode, the existing text
+is not overwritten, but rather is squeezed to the right as the new
+text is typed.  New lines are started by simply typing the RETURN key.
+Typing the `IXRETURN key`IX in the middle of a line splits it into
+two lines. `ICSplitting lines`IC
+Text can be deleted on a character, word, line or block basis.
+.sp
+     A useful feature is the ability to move or copy a section of text
+to any other position in the file.  ("Copy" implies that the original
+text is not deleted, while "Move" implies that the original text is
+deleted.) `ICCopying text`IC `ICMoving text`IC This is done by first
+copying, moving or appending the text to one of the ten `IXtext registers`IX
+(scratch pad buffers), `ICScratch pad buffers (See Text registers)`IC and then inserting the text
+register at any place or places in the file.  (It may also be inserted
+in another file).  Blocks of text are deleted by moving the block to a
+text register and emptying the text register, or just "forgetting"
+about it. `ICDeleting text blocks`IC Any portion of the text can
+easily be printed on the line printer and special printer control
+characters can be imbedded in the text.
+.sp
+.bm -1
+     For word processing uses, the Visual Mode can perform word wrap
+and formatting of paragraphs between adjustable right and left
+margins.  When `IXword wrap`IX is on, VEDIT will move an entire word which
+did not fit within the right margin to a new line, while you are
+typing.  Formatting a paragraph also wraps words, but operates on
+existing paragraphs and the currently set left and right margins.
+`ICFormatting paragraphs`IC
+You can therefore change the `IXmargins`IX and re-fit the paragraphs within the
+new margins.  When a paragraph is formatted you can optionally select to have the
+right margin justified, as in this paragraph.
+.sp
+.bm +1
+     `IXSearch and Replace`IX operations can be performed in Visual
+Mode.  The next or "nth" occurrence of a "string" can be searched. `ICSearch (ing)`IC
+Extensive pattern matching is provided. Replacement may be done
+selectively, where you are prompted whether each occurrence of the
+original text is to be replaced with the new text.  Replacement can
+also be made without prompting.
+.sp
+     Several options are available for dealing with the Tab character.
+Normally when the "Tab" key `ICTab character (key)`IC on the keyboard is typed, a tab character
+is placed into the text.  A tab character is displayed as spaces to
+the next tab position.  They `ICTab positions`IC may be set as desired, and
+are normally at every 8th position.  Optionally, typing the "Tab" key
+can have VEDIT insert spaces up to the next tab position into the text.
+.sp
+     VEDIT has several unique built in aids for program development.
+One is automatic indentation for use with structured languages such as
+Pascal, PL/I and C.  When "Indenting" is set, the editor will
+automatically insert tabs and spaces to the current indent position
+following each RETURN. `ICIndenting text`IC The `IXindent position`IX
+can be moved right and left by an adjustable `IXindent increment`IX.
+Many assembly language programmers prefer their program code to be in
+upper case letters with comments in `IXupper and lower case`IX.  VEDIT
+can accept text in all lower case and automatically convert the
+labels, opcodes and operands to upper case while leaving the comments
+in lower case.
+`ICConvert LC to UC (See Lower to upper case conversion`IC
+`ICLower to upper case conversion`IC
+This conversion
+operates with respect to a special character, such as ";", on the line
+being entered or edited. To the left of the ";" lower case letters are
+converted, to the right of the ";" they are not converted. This is
+referred to as "Conditional Lower to Upper Case Conversion".
+.sp
+     The Visual Mode can handle lines `ICLong lines`IC which are up to
+1024 characters long (260 on 8080/Z80 versions). The screen can be
+scrolled horizontally (or sideways) for editing files with long lines,
+such as spreadsheets.  The screen can be scrolled sideways up to a
+maximum margin of 255.  `ICHorizontal scrolling`IC This "`IXhorizontal
+scroll margin`IX" is changeable.
+.sp
+     Text lines longer than the horizontal scroll margin are "wrapped" to
+the next screen line and are called "`IXcontinuation line`IXs".  VEDIT
+indicates continuation lines by placing the "-" character, often in
+reverse video, in the reserved first column of the screen.  The screen
+will automatically scroll sideways or create continuation lines as you
+enter text. `ICScrolling of screen`IC
+.sp
+.of 7
+Note:~~If you are just beginning to use VEDIT, you may wish to skip to
+the next section, the "Tutorial", at this time.
+.bp
+.ul
+Command Mode `TC~~~~~~~~~~Command Mode`TC
+.sp 2
+`IXCommand Syntax`IX:
+.sp
+     In `IXCommand Mode`IX, you enter command lines which consist of
+single commands or multiple commands.  You must end each `IXcommand line`IX
+with a RETURN or <ESC>~<ESC>. `ICRETURN key`IC `IC<ESC> key`IC
+No commands on the line are executed until you type the RETURN or
+<ESC>~<ESC>.
+.sp
+     Each command consists of a single letter or two letters if the
+first letter is "E", "R", "X", "Y" (Extended, Register, Numeric and
+Misc commands).  Some commands are preceded by a number which is used
+as a numeric argument to the command.  The meaning of this number,
+which can also be negative, depends upon the particular command. If no
+number is given, a "1" is used as the default.  Wherever a number is
+allowed, you can also use the "`IX#`IX" character to represent the
+maximum number 32767.  Several commands are followed by additional
+arguments such as text strings, files names or text register numbers.
+Commands followed by a "text string" may require an <ESC> immediately
+following the text string.
+.sp
+     `IXMultiple commands`IX may be typed one after another on a
+command line.  They are always executed left to right.  Their effect
+is the same as if each command had been typed on its own command line.
+For clarity sake, you can leave a space between the commands.
+For example, the three command lines, each with a single command:
+.sp
+.in 9
+B~~~~~~~~<RETURN>
+.br
+#EO~~~~~~<RETURN>
+.br
+V~~~~~~~~<RETURN>
+.sp
+.in 0
+are equivalent in operation to the command line with three commands:
+.sp
+.ti 9
+B~#EO~V~~<RETURN>~~~~~~~~(or you can leave the spaces out)
+.sp
+     It is also possible to repeatedly execute a group of commands.
+This is done by enclosing the desired group of commands within
+brackets "[" and "]".  Such a group of commands is called an
+"`IXIteration loop`IX". The initial "[" is preceded by a number, also
+called the "iteration count", which specifies how often the group of
+commands will be repeated.
+.sp
+     (Note:~~The characters for enclosing iteration loops are printed
+as "[" and "]" in this manual.  You may be more familiar with angle
+brackets "<" and ">" and can choose either set during
+customization.  However, "<" and ">" may not be used as the iteration
+brackets with VEDIT PLUS.) `IC[ and ]`IC `IC< and >`IC
+.sp
+     It is often desirable to use a sequence of commands, particularly
+iteration loops, over and over again.  This can be done by storing
+the sequence of commands in one of the ten text registers and then
+executing the commands in the text register.  Any sequence of commands
+executed in a text register is called a "`IXCommand Macro`IX".
+Command macros may be stored on disk and loaded back into a text
+register for later re-use.  Command macros may be thought of as
+"programs".  This command macro capability makes VEDIT a very
+powerful text oriented programming language.
+.sp 2
+.cp 8
+Command Operation:
+.sp
+     Many of the commands operate on the text at the position
+determined by the "`IXedit pointer`IX".  The edit pointer is very much
+like the `IXcursor`IX in Visual Mode, it is just not as readily seen.
+Commands exist to move the edit pointer a character at a time, a line
+at a time or to the beginning or the end of the edit buffer. The
+number of lines or characters the edit pointer moves is determined by
+the numeric argument for the command.  Negative numbers mean backward
+movement, towards the beginning of the edit buffer. The "T" command
+types out a given number of lines before or after the edit pointer to
+display the contents of the file and "show" the user where the edit
+pointer is.
+.sp
+     The commands which alter the text all operate from the position
+of the edit pointer.  The search and replace commands all start their
+search at the edit pointer position.  The "V" command puts the editor
+into Visual Mode and initially sets the cursor at the edit pointer
+position.  When returning to Command Mode, the edit pointer is set
+from the cursor position.
+.sp
+     Three commands are used to change the various switches,
+parameters and tab positions which VEDIT uses in both Command and
+Visual Modes.  The default values of these is set during customization.
+Two groups of commands deal with the reading and writing of files and
+with the opening and closing of input and output files.
+.sp
+     The commands fall into ten overlapping categories:
+.sp
+.nj
+.nf
+.ta 25 29
+Edit pointer movement	-	 B,  L,  C,  Z
+.br
+Display and Print text	-	 T, EO, YP
+.br
+Alter text	-	 D,  I,  K,  S, EI, YI
+.br
+Search / Replace	-	 F, ~N, ~S
+.br
+Text Register	-	 G,  M,  P, RD, RI, RL, RP, RS, RT, RU, R*
+.br
+Disk Buffering	-	 A,  N,  W, EA, EQ, EX, EY, EZ
+.br
+File Handling	-	EB, EC, ED, EF, EG, EK, EL, ER, EW
+.br
+Switch and Tab Set	-	EP, ES, ET
+.br
+Numeric Registers	-	XA, XS, XT
+.br
+Misc	-	 U,  V,  H, EH, YF, YI, YP, YR, YS, YT, YW
+.sp
+.ju
+     The "V" command enters the Visual Mode, and the "U"
+command prints three memory usage numbers.
+.bp
+.ul
+.ce
+Which Mode to Use for What `TC~~~~~Which Mode to Use for What`TC
+.sp 2
+     The `IXVisual Mode`IX is designed to satisfy the majority of all
+editing needs.  The bulk of editing consists of inserting new text,
+correcting typos, and making revisions, which includes moving blocks
+of text about.  These are all readily handled in Visual Mode and are
+best done in that mode.  There is probably a three to one time savings
+in inserting new text and correcting the typos in Visual Mode over
+Command Mode.  There is probably a ten to one time savings in making
+the revisions in Visual Mode, compared to Command Mode, even assuming
+you are very practiced with the commands!
+.sp
+     Common search and replace operations are also best done in Visual
+Mode. `ICSearch (ing)`IC `ICSearch and Replace`IC Searching is used to
+directly access a particular word (technically called a "string") in
+the file.  Replace operations are more flexible in Visual Mode since
+the replacement may be selectively done, where the user is prompted
+whether each occurrence of the "old" string should be replaced with
+the "new" string.
+.sp
+     `IXCommand Mode`IX is most useful for performing repetitive edit
+changes using macros and for explicit file handling.  Command Mode is
+also used to change the various VEDIT switches, parameters and
+tab positions.  Text register operations such as loading and
+saving text on disk can only be performed in the Command Mode.
+The edit pointer in Command Mode and the cursor in Visual
+Mode both serve a similar purpose.  When `IXentering Visual Mode`IX,
+the `IXcursor`IX takes on the position of the
+`IXedit pointer`IX in Command Mode.  When `IXexiting Visual Mode`IX to
+Command Mode, the edit pointer takes on the last position of the
+cursor.
+.sp
+     Command Mode is also used when the editing process involves more
+than just making changes to a single file.  The file handling commands
+allow several files to be merged into one file or a file to be split
+into several smaller ones.  Portions of one file can be copied to a
+text register and the text register subsequently can be inserted into
+another file.  Another file may also be viewed with assigned line
+numbers.  A specified line range of that file may then be directly
+inserted into any place in the file being edited.  Many other
+possibilities exist and examples are given in the "Tutorial" and
+"Detailed Command Description" of this manual.
+.bp
+.ul
+.ce
+Word Processing with VEDIT `TC~~~~~Word Processing with VEDIT`TC
+.sp 2
+     VEDIT can be used for two types of `IXword processing`IX. One is stand
+alone word processing in which the text is composed entirely with
+VEDIT and then printed out exactly as it appears on the screen.
+Alternatively, the supplied print formatter macro PRINT.EXC can be used
+to automatically handle page headings, page splits and page numbers.
+Other than these page breaks, the text has to be formatted exactly the
+way it is to be printed out.  This includes the centering of lines,
+and other details which VEDIT does not perform automatically.  VEDIT
+can, however, format paragraphs between left and right margins.
+`ICFormatting paragraphs`IC
+Therefore, if a paragraph is currently ragged, with very different
+line lengths, VEDIT can format the paragraph between any left and
+right margins.  If after formatting, you decide, for example, that you
+now want the paragraph indented on both sides, VEDIT can also do this
+for you automatically.  The optional mail merge macro VMAIL can be
+used for creating and printing form letters.
+.sp
+     The second type of word processing uses a "`IXPrint Formatter`IX" such
+as CompuView's V-PRINT, which takes care of the details of page layout,
+such as page headings, centering of lines, justification and more.
+`ICV-PRINT Print Formatter`IC
+In this case VEDIT is used to create a file which contains the text and
+short command lines to the Print Formatter, which does the final
+printing.  VEDIT's facility for word wrap still makes it easier to
+enter the text, but the formatting of paragraphs becomes mostly
+cosmetic since the Print Formatter generally formats its own
+paragraphs.  V-PRINT takes commands which
+begin with a period "." in the first column of a line.  When
+formatting paragraphs, VEDIT recognizes such commands lines and leaves
+them unchanged.
+.sp
+     V-PRINT not only handles the details of page layout, but also has
+facilities for automatic index and table of contents generation,
+underlining, multiple font support for popular printers and much more.
+Combining VEDIT with V-PRINT will give you more word processing
+capabilities than found on nearly any stand alone word processor.  As
+text documents become longer, most stand alone word processors become
+increasingly inefficient, because they can only edit a very small
+portion of the text at one time.  Some even have an upper limit to the
+size of text they can handle.  With longer documents, such as
+manuscripts, using VEDIT with V-PRINT will get the job done faster and
+with less effort.  CompuView's V-SPELL spelling checker/corrector lets
+you quickly correct the spelling in any document.  `ICV-SPELL Spelling Corrector`IC
+It displays the error words in context and gives suggested spellings.
+Since it also corrects the document, there is no need to go back to
+VEDIT following the use of V-SPELL.
+.sp
+     This manual was printed with V-PRINT.  The Table of Contents and
+Index were generated automatically.  V-PRINT allows both words which
+appear in the text and "concepts" which are not explicitly mentioned
+in the text to appear in the index.  V-PRINT also allows the Table of
+Contents and the Index to be edited before final printing.
+.br
+

@@ -1,0 +1,588 @@
+.cm Last Change: Ted - Aug. 09, 1985
+.pw 70
+.rm 70
+.pi 15
+.il `
+.tm 2
+.hm 3
+.bm 1
+.fm 1
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.fo ////
+.sp 8
+.ce
+`OSA P P E N D I X   B`OS `TC~~~~~Appendix B - General Versions`TC
+.sp
+.ce
+`OSE X A M P L E   K E Y B O A R D   L A Y O U T S`OS
+.sp
+.ce
+`OSG E N E R A L   V E R S I O N S`OS
+.bp
+.sh /Appendix B/General Versions//
+~~
+.bp
+.sp
+.ce
+DESCRIPTION OF FILES ON DISK `TC~~~~~~~~~~DESCRIPTION OF FILES ON DISK`TC
+.sp
+.ce
+General 8080 / Z80 / 8086 Versions
+.SP
+     The files actually supplied on your diskette depend upon which
+version of VEDIT you purchased.  You will have to perform the
+customization process, described in the manual, to produce a runnable
+version of VEDIT.
+.sp 2
+.ta 16
+.of 15
+INSTALL.COM	The program used to perform the customization for the CRT
+versions.    The manual describes the use of this program and the "SET"
+files below. (Note: file name is INSTALL.CMD for CP/M-86 and INSTALL.EXE for
+MS-DOS.)
+.sp
+.of 15
+INSTALL.INI	Data file needed to perform customization.  Must be on
+same drive as INSTALL.COM.
+.sp
+.of 15
+INTMOD.COM	The program used to add, delete or change entries from
+the CRT terminal menu during customization.  Modifies the file
+INSTALL.INI.  Operation is described in the file NEWCRT.DOC.
+.sp 2
+VEDITZC.SET	File for producing the Z80 CRT version.
+.sp
+VEDIT8C.SET	File for producing the 8080 CRT version.
+.sp
+VEDITZM.SET	File for producing the Z80 Memory mapped version.
+.sp
+VEDIT8M.SET	File for producing the 8080 Memory mapped version.
+.sp
+VEDIT86C.SET	File for producing the 8086 CRT version.
+.sp 2
+.of 15
+VHELP.HLP	Help file accessed by "H" command.  It should be
+copied to your System disk.  You may edit this file for your needs.
+.sp
+VEHELP.HLP	Help file accessed by "EH" command.
+.sp
+VVHELP.HLP	Help file accessed by [HELP] function.
+.sp
+.of 15
+PRINT.EXC	Simple print formatting command macro.
+It should be copied to your System disk if you intend to use it.
+.sp 2
+.of 15
+NEWCRT.DOC	Description of how to use INIMOD program to add new
+CRT terminals to the customization menu or modify existing entries.
+.sp
+.of 15
+READCRT.DOC	Additional information pertaining to CRT terminal
+users.
+.br
+.bp
+.hm 2
+.ce
+PERSONAL KEYBOARD LAYOUT `TC~~~~~~~~~~PERSONAL KEYBOARD LAYOUT`TC
+.sp
+.nf
+.nj
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"		"ESCAPE LEAD-IN #2"
+"COMMON 2ND CHAR. #1"		"COMMON 2ND CHAR. #2"
+"UPPER/LOWER CASE"
+.sp
+[HOME]	-
+[ZEND]	-
+[CURSOR UP]	-
+[CURSOR DOWN]	-
+[CURSOR RIGHT]	-
+[CURSOR LEFT]	-
+[BACK TAB]	-
+[TAB CURSOR]	-
+[ZIP]	-
+[NEXT LINE]	-
+[LINE TOGGLE]	-
+[SCROLL UP]	-
+[SCROLL DOWN]	-
+[SCROLL RIGHT]	-
+[SCROLL LEFT]	-
+[PREVIOUS WORD]	-
+[NEXT WORD]	-
+[PREVIOUS PARAGRAPH]	-
+[NEXT PARAGRAPH]	-
+[PAGE UP]	-
+[PAGE DOWN]	-
+[SCREEN TOGGLE]	-
+[BACKSPACE]	-
+[DELETE]	-
+[ERASE TO END OF LINE]	-
+[ERASE LINE]	-
+[DEL PREVIOUS WORD]	-
+[DEL NEXT WORD]	-
+[UNDO]	-
+[TAB CHARACTER]	-
+[NEXT CHAR LITERAL]	-
+[SET INSERT MODE]	-
+[RESET INSERT MODE]	-
+[SWITCH INSERT MODE]	-
+[REPEAT]	-
+[INDENT]	-
+[UNDENT]	-
+[FIND]	-
+[REPLACE]	-
+[CANCEL]	-
+[COPY TO TEXT REGISTER]	-
+[MOVE TO TEXT REGISTER]	-
+[INSERT TEXT REGISTER]	-
+[PRINT TEXT]	-
+[SET TEXT MARKER]	-
+[GOTO TEXT MARKER]	-
+[FORMAT PARAGRAPH]	-
+[VISUAL ESCAPE]	-
+[VISUAL EXIT]	-
+[MACRO]	-
+[RESTART EDITOR]	-
+[HELP]	-
+.bp
+.sp
+.ce
+DEFAULT CRT CUSTOMIZATION `TC~~~~~~~~~~DEFAULT CRT CUSTOMIZATION`TC
+.ju
+.sp
+     The customization session below indicates the default values
+supplied in the generic versions of VEDIT.  The two values depending
+upon memory size are based on a 40K system, however, they may be used
+for larger size systems too.
+.sp
+.ta 53
+.nj
+5.)~~CURSOR TYPE	Not Applicable
+.in 5
+.ta 48
+CURSOR BLINK RATE	Not Applicable
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	1
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	2D hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	[
+COMMAND ITERATION RIGHT BRACKET	]
+COMMAND ESCAPE CHARACTER	ESC
+SPEED OF YOUR COMPUTER IN MHZ	4
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	6
+SIZE OF FILE BUFFERING PAGE (K BYTES)	8
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	24
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	80
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp 2
+.in 0
+.ju
+.of 7
+Note:~~Most terminals, except Televideos, can use a value
+of "AD" instead of "2D" in task 7.4.  This will cause the
+continuation line character to be displayed in reverse video.
+.in 0
+.bp
+.ce
+DEFAULT KEYBOARD LAYOUT `TC~~~~~~~~~~DEFAULT KEYBOARD LAYOUT`TC
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - H
+[ZEND]	ESC - Z
+[CURSOR UP]	<CTRL-E>
+[CURSOR DOWN]	<CTRL-C>
+[CURSOR RIGHT]	<CTRL-D>
+[CURSOR LEFT]	<CTRL-S>
+[BACK TAB]	<CTRL-A>
+[TAB CURSOR]	<CTRL-F>	Useful for fast cursor movement.
+[ZIP]	<CTRL-G>
+[NEXT LINE]	<CTRL-J>
+[LINE TOGGLE]	NOT USED	Or use instead of [ZIP]
+[SCROLL UP]	<CTRL-Q>
+[SCROLL DOWN]	<CTRL-Z>
+[SCROLL RIGHT]	<CTRL-Y>
+[SCROLL LEFT]	<CTRL-T>
+[PREVIOUS WORD]	<CTRL-V>
+[NEXT WORD]	<CTRL-B>
+[PREVIOUS PARAGRAPH]	ESC - W
+[NEXT PARAGRAPH]	ESC - X
+[PAGE UP]	<CTRL-W>
+[PAGE DOWN]	<CTRL-X>
+[SCREEN TOGGLE]	<CTRL-N>
+[BACKSPACE]	<CTRL-H>	Or use BACK SPACE key.
+[DELETE]	<DEL>	Or called RUBOUT.
+[ERASE TO END OF LINE]	<CTRL-L>	Also called [EREOL] in manual.
+[ERASE LINE]	ESC - L	Also called [ERLINE] in manual.
+[DEL PREVIOUS WORD]	ESC - V
+[DEL NEXT WORD]	ESC - B
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	<CTRL-I>	Or use TAB key.
+[NEXT CHAR LITERAL]	ESC - Q
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<CTRL-K>
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	ESC - F
+[REPLACE]	ESC - R
+[CANCEL]	ESC - O
+[COPY TO TEXT REGISTER]	ESC - C
+[MOVE TO TEXT REGISTER]	ESC - M
+[INSERT TEXT REGISTER]	ESC - I
+[PRINT TEXT]	ESC - P
+[SET TEXT MARKER]	ESC - S
+[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	ESC - J
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	ESC - E	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	ESC - [CTRL-R]
+[HELP]	ESC - ?
+.bp
+.sp 3
+.ju
+.ce
+VEDIT NOTES FOR HEATH H19 / ZENITH Z19 TERMINALS `TC~~~~~~~~~~Heath H19, Zenith Z19`TC
+.sp 2
+     The example keyboard layout assumes that the terminal is in the
+"Heath" mode and not in the ANSI mode. While VEDIT automatically puts
+the keypad into "Alternate Keypad Mode", INSTALL does not, and for the
+customization you must enter the Alternate Keypad Mode by going into
+Local Mode and typing ESC and '='.
+.sp
+     You may experience extra characters appearing when using the
+cursor UP and DOWN keys, especially in conjunction with the REPEAT
+key. This is caused by the function keys sending their multi character
+codes at 9600 Baud, which is too fast for non-interrupt driven
+software.  This is best solved by making your system interrupt driven.
+If this is not possible, implement the cursor movements with control
+characters and use the keypad for other functions.  It may help to
+reduce the entered value in Task 8.6 (relating to processor speed)
+during customization, or to use the "Shifted Keypad Mode".
+.sp
+     If you are using your terminal at the undocumented 19,200 baud,
+you will need to modify the CRT terminal entry (see NEWCRT.DOC) and
+increase the delays for EOS, EOL, INSERT LINE and DELETE LINE.  The
+cursor addressing will also require a delay of about 4 milliseconds.
+.sp 4
+.bp
+.nj
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE ZENITH Z19
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	?	"COMMON 2ND CHAR. #2"	NOT USED
+"UPPER/LOWER CASE"	No
+.ta 27 43
+.sp
+[HOME]	ESC - CTRL-H
+[ZEND]	ESC - CTRL-Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<BLUE>
+[TAB CURSOR]	<RED>	Useful for fast cursor movement.
+[ZIP]	<WHITE>
+[NEXT LINE]	<LINE FEED>
+[LINE TOGGLE]	<CTRL-A>
+[SCROLL UP]	SHIFT <Up Arrow>
+[SCROLL DOWN]	SHIFT <Down Arrow>
+[SCROLL RIGHT]	SHIFT <Right Arrow>
+[SCROLL LEFT]	SHIFT <Left Arrow>
+[PREVIOUS WORD]	<CTRL-D>
+[NEXT WORD]	<CTRL-F>
+[PREVIOUS PARAGRAPH]	SHIFT <IC>
+[NEXT PARAGRAPH]	SHIFT <IL>
+[PAGE UP]	<IC>
+[PAGE DOWN]	<IL>
+[SCREEN TOGGLE]	<CTRL-W>
+[BACKSPACE]	<BACK SPACE>
+[DELETE]	<DC>
+[ERASE TO END OF LINE]	<DL>	Also called [EREOL] in manual.
+[ERASE LINE]	SHIFT <DL>
+[DEL PREVIOUS WORD]	<CTRL-S>
+[DEL NEXT WORD]	<CTRL-G>
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	ESC - Z
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<ENTER>	"ENTER" on Keypad
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	<F1>
+[REPLACE]	<F2>
+[CANCEL]	<F3>
+[COPY TO TEXT REGISTER]	<F5>
+[MOVE TO TEXT REGISTER]	<ERASE>
+[INSERT TEXT REGISTER]	<F4>
+[PRINT TEXT]	ESC - O
+[SET TEXT MARKER]	ESC - J
+[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	ESC - F
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<CTRL-E>	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	ESC - ?
+.in 0
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE IBM 3101 `TC~~~~~~~~~~IBM 3101`TC
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	No
+.ta 27 43
+.sp
+[HOME]	ESC - ALT-H
+[ZEND]	ESC - ALT-Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<ALT-A>
+[TAB CURSOR]	<ALT-F>
+[ZIP]	<ALT-G>
+[NEXT LINE]	<ALT-N>
+[LINE TOGGLE]	NOT USED	Type RETURN
+[SCROLL UP]	<ALT-Q>
+[SCROLL DOWN]	<ALT-Z>
+[SCROLL RIGHT]	<ALT-Y>
+[SCROLL LEFT]	<ALT-T>
+[PREVIOUS WORD]	<ALT-K>
+[NEXT WORD]	<ALT-L>
+[PREVIOUS PARAGRAPH]	ESC - W
+[NEXT PARAGRAPH]	ESC - X
+[PAGE UP]	<ALT-W>
+[PAGE DOWN]	<ALT-X>
+[SCREEN TOGGLE]	<ALT-J>
+[BACKSPACE]	<---
+[DELETE]	<DEL>
+[ERASE TO END OF LINE]	<EOL>	Also called [EREOL] in manual.
+[ERASE LINE]	<EOS>
+[DEL PREVIOUS WORD]	ESC - K
+[DEL NEXT WORD]	ESC - L
+[UNDO]	<ALT-U>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	ESC - Q
+[SET INSERT MODE]	NOT USED	Type RETURN
+[RESET INSERT MODE]	NOT USED	Type RETURN
+[SWITCH INSERT MODE]	<ALT-V>
+[REPEAT]	<ALT-R>
+[INDENT]	<ALT-P>
+[UNDENT]	<ALT-O>
+[FIND]	<PF 7>
+[REPLACE]	<PF 8>
+[CANCEL]	<ALT-C>
+[COPY TO TEXT REGISTER]	<PF 1>
+[MOVE TO TEXT REGISTER]	<PF 2>
+[INSERT TEXT REGISTER]	<PF 3>
+[PRINT TEXT]	<PF 4>
+[SET TEXT MARKER]	<PF 5>
+[GOTO TEXT MARKER]	<PF 6>
+[FORMAT PARAGRAPH]	ESC - 0
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<ALT-E>	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	ESC - ?
+.ju
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE TELEVIDEO 920C `TC~~~~~~~~~~Televideo 920C`TC
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	<CTRL-A>
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - CTRL-H
+[ZEND]	ESC - CTRL-Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<CTRL-S>
+[TAB CURSOR]	<CTRL-T>	Useful for fast cursor movement.
+[ZIP]	<CTRL-G>
+[NEXT LINE]	<CTRL-N>
+[LINE TOGGLE]	NONE	Type RETURN
+[SCROLL UP]	FUNCT - <Up Arrow>
+[SCROLL DOWN]	FUNCT - <Down Arrow>
+[SCROLL RIGHT]	FUNCT - <Right Arrow>
+[SCROLL LEFT]	FUNCT - <Left Arrow>
+[PREVIOUS WORD]	<CTRL-D>
+[NEXT WORD]	<CTRL-F>
+[PREVIOUS PARAGRAPH]	ESC - Q
+[NEXT PARAGRAPH]	ESC - Z
+[PAGE UP]	<CTRL-Q>
+[PAGE DOWN]	<CTRL-Z>
+[SCREEN TOGGLE]	<CTRL-Y>
+[BACKSPACE]	<CTRL-B>
+[DELETE]	<DEL>
+[ERASE TO END OF LINE]	ESC - X	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>
+[DEL PREVIOUS WORD]	<CTRL-C>
+[DEL NEXT WORD]	<CTRL-V>
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	TAB
+[NEXT CHAR LITERAL]	ESC - L
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<F10>
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	<F1>
+[REPLACE]	<F2>
+[CANCEL]	<F3>
+[COPY TO TEXT REGISTER]	<F4>
+[MOVE TO TEXT REGISTER]	<F5>
+[INSERT TEXT REGISTER]	<F6>
+[PRINT TEXT]	<F7>
+[SET TEXT MARKER]	<F8>
+[GOTO TEXT MARKER]	<F9>
+[FORMAT PARAGRAPH]	<CTRL-W>
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<F11>	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	ESC - ?
+.ju
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE TELEVIDEO 950 `TC~~~~~~~~~~Televideo 950`TC
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	<CTRL-A>
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - CTRL-H
+[ZEND]	ESC - CTRL-Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<BACK TAB>
+[TAB CURSOR]	<CTRL-T>	Useful for fast cursor movement.
+[ZIP]	<CLEAR SPACE>
+[NEXT LINE]	<LINE FEED>
+[LINE TOGGLE]	<CTRL-Y>
+[SCROLL UP]	<CTRL-E>
+[SCROLL DOWN]	<CTRL-C>
+[SCROLL RIGHT]	<CTRL-N>
+[SCROLL LEFT]	<CTRL-B>
+[PREVIOUS WORD]	<CTRL-D>
+[NEXT WORD]	<CTRL-F>
+[PREVIOUS PARAGRAPH]	ESC - E
+[NEXT PARAGRAPH]	ESC - C
+[PAGE UP]	<CTRL-W>
+[PAGE DOWN]	<CTRL-X>
+[SCREEN TOGGLE]	<HOME>
+[BACKSPACE]	<DEL>
+[DELETE]	<CHAR DELETE>
+[ERASE TO END OF LINE]	<LINE ERASE>	Also called [EREOL] in manual.
+[ERASE LINE]	<LINE DELETE>
+[DEL PREVIOUS WORD]	<CTRL-S>
+[DEL NEXT WORD]	<CTRL-G>
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	TAB
+[NEXT CHAR LITERAL]	ESC - L
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<CHAR INSERT>
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	<F1>
+[REPLACE]	<F2>
+[CANCEL]	<F3>
+[COPY TO TEXT REGISTER]	<F4>
+[MOVE TO TEXT REGISTER]	<F5>
+[INSERT TEXT REGISTER]	<F6>
+[PRINT TEXT]	<SEND>
+[SET TEXT MARKER]	<F7>
+[GOTO TEXT MARKER]	<F8>
+[FORMAT PARAGRAPH]	<PAGE ERASE>
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<F11>	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	ESC - ?
+.br
+.bp
+.sp 2
+.ce
+This Page Reserved For Your Notes
+.br
+

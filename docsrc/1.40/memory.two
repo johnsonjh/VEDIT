@@ -1,0 +1,363 @@
+.cm Last Change: Ted - Oct. 28, 1985
+.pw 70
+.rm 70
+.pi 16
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.il `
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.sp 8
+.ce
+`OSM E M O R Y   A N D   F I L E   M A N A G E M E N T`OS
+`TCIII.~~~~~~Memory and File Management`TC
+.bp
+.sh /Memory and File Management///
+~~
+.bp
+.ju
+.ce
+.ul
+.ul
+Memory and File Management
+.sp 2
+     This section covers the somewhat more technical topics of memory
+and file management by VEDIT.  This includes a more detailed
+description of the text registers.  It also includes
+an explanation of the automatic
+disk buffering used to handle large files and automatic disk searching
+for special files - the Auto-Startup and Help files. For most
+applications, it is not essential that you have a detailed knowledge
+of how VEDIT manages memory and large files.  You may read this
+section simply to learn more about VEDIT, or in case you do require
+specific information.
+.sp 2
+.ul
+The Text Registers `TC~~~~~Text Registers`TC `ICText registers`IC
+`ICRegisters (See Text registers)`IC
+.sp
+     The ten text registers have two primary purposes.  One is to hold
+sections of text which are to be moved or copied to other positions in
+the file being edited.  The second is to hold sequences of commands
+which may be executed as "macros".  In either case, the registers are
+holding textual material; only the manner in which the text is used is
+different.
+.sp
+     Generally, the text registers are all empty when VEDIT is first
+invoked.  The registers are loaded by copying, moving or appending a
+portion of the main text to the register.  This may be done in either
+Command or Visual Mode. Alternately, a register may be loaded directly
+from a disk file.  The contents of a register may be viewed by typing
+it to the screen; and it may be saved in a disk file. The text
+registers are not changed by any disk read/write operations.  They can
+therefore be used to extract sections of text from one file and to insert
+them anywhere into another file.  Since inserting a text register does
+not destroy or change the register, it may be inserted repeatedly at
+different locations in the file.
+.sp
+     The text registers can act as "scratch pad buffers" which hold a
+section of text which is independent of the main edit buffer.  In this
+capacity they can be used for copying or moving sections or "blocks"
+of text from one area of the file to another, commonly referred to as
+"`IXcut and paste`IX" `ICCut and paste (See also Text registers)`IC
+operations.  Three operations are possible.  One is to simply copy a
+section of the main edit buffer to the register.  `ICCopying text`IC
+The second is to move a section of text to the register, in which the
+section of text is also deleted from the main edit buffer.  `IC Moving text`IC
+For both the move and copy operations, the section of text can
+optionally be appended to any text which is already in the
+register.`ICAppend to text register`IC Third, the register contents
+can be inserted  anywhere within the main text.  The register may be
+inserted at the cursor position in Visual Mode or at the edit pointer
+in Command Mode.
+.sp
+     Placing commands into the registers and executing these
+commands as "macros" is a very powerful facility.
+It is a useful method of saving long command
+sequences which must be executed repeatedly during an edit session.  If
+they are to be reused in the days ahead, they can even be saved on
+disk.  Very sophisticated editing operations are also made possible.
+For example, say that you have a manuscript on disk as 20 different
+files and you find that you have consistently misspelled 40 words.
+Correcting this could be a very time consuming editing operation, but it can be
+automated with two `IXcommand macro`IXs. One macro will contain the
+global search and replace for each of the 40 words.  The second macro
+will contain the commands to edit each of the 20 files, and for each
+file execute the search/replace macro.  Once the two macros are
+created, you execute the second macro and can take a coffee break
+while the 800 (20 times 40) operations are automatically performed.
+(ALWAYS make a backup copy of the files before performing complex
+macros.  It is very easy for a small syntax error, or a power or
+hardware failure to destroy the files being automatically edited).
+.sp 2
+.ul
+Automatic Disk Buffering `TC~~~~~Automatic Disk Buffering`TC `ICAuto-buffering`IC
+.sp
+     Auto-buffering refers to any disk file reading or writing
+which VEDIT performs automatically, without the user giving
+explicit read or write commands. (See also "Basic Editing Concepts".)
+The simplest auto-buffering (called "Auto-Read") `ICAuto-read`IC involves
+reading the input file into the edit buffer when the editor is invoked
+in the normal way, and writing the output file when the editor is
+exited.
+VEDIT can also perform more sophisticated disk buffering when
+editing very large files. This can be done in either the forward
+direction, "Forward Disk Buffering", `ICForward disk buffering`IC
+or in the backward direction, "Backward Disk Buffering". `ICBackward disk buffering`IC
+The following headings describe these
+two types of automatic disk buffering.
+.sp
+     If the `IXedit buffer`IX fills up in Visual Mode during the
+course of editing, VEDIT will attempt to write out 1K byte sections
+from the beginning of the edit buffer to the `IXoutput file`IX.  This is
+referred to as "Auto-Write". `ICAuto-write`IC  If the 1K section of text cannot be
+written out, either because auto-buffering is disabled, or because
+the cursor is positioned within it, VEDIT will display the
+`IX"FULL" message`IX on the status line.  Text cannot be inserted until manual
+or automatic disk buffering is then performed.
+.sp
+     While auto-buffering is always available in Command Mode via the
+"global" command modifier, you have the option of disabling it in
+Visual Mode, or just enabling forward disk buffering.  This option is
+controlled with the command switch "ES~2".  When issuing explicit read
+and write commands you will generally want to disable auto-buffering
+to prevent unwanted disk buffering while in Visual mode.
+.bp
+.ul
+Forward Disk Buffering `TC~~~~~~~~~~Forward Disk Buffering`TC
+`ICForward disk buffering`IC
+.sp
+     When VEDIT edits a file it reads text from the `IXInput file`IX into
+the edit buffer, where it is edited, and writes the edited text to the
+Output file.  For a small text file, the operation is quite simple.
+The entire Input file is initially read into the edit buffer for
+editing.  When editing is complete, the edit buffer is written to the
+Output file.  In order to edit files `ICFiles - large (long)`IC which are too large to fit into
+memory all at one time the procedure becomes more complicated. Only a portion
+of the Input file is initially read into the edit buffer for editing.
+In order to edit the rest of the file, some of the edit buffer must be
+written to the Output file, and then more of the Input file read in
+for editing.  This must be repeated until the entire file has been
+edited.
+.sp
+     Conceptually, it might help to consider the displayed screen a
+"window" into the `IXedit buffer`IX.  `ICWindow into text`IC This
+"window" may be readily moved anywhere within the edit buffer with the
+[PAGE~UP], [PAGE~DOWN] and other cursor movement functions.
+Furthermore, the edit buffer may be considered a "window" into the
+file.  Moving this edit buffer window toward the end of the file is
+referred to as "forward disk buffering", and moving it back toward the
+beginning of the file as "backward disk buffering".
+.sp
+     Automatic forward disk buffering simplifies editing of large
+files.  Forward disk buffering is performed in `IXVisual Mode`IX
+whenever the user reaches the end of the `IXedit buffer`IX (by [PAGE DOWN],
+[ZEND], etc.), which is not yet the end of the file.
+VEDIT will then attempt to read more of the Input file and if necessary write
+text to the `IXOutput file`IX. The minimum amount to be read from the
+Input file, loosely called a "`IXFile Page`IX" (typically 8 Kbytes), is determined during
+customization.
+If this much `IXfree memory`IX is
+available, the Input file is read until the memory is `IX"nearly" full`IX.
+"Nearly" is defined as leaving the number of bytes free that
+you specified during customization.  If this much free memory is not
+available, a "File Page" will be written from the
+beginning of the edit buffer to the Output file, before more of the
+Input file is read.  See also Appendix A, "Memory Size Dependent
+Parameters".
+.sp
+     Forward disk buffering is only done automatically in Visual Mode
+if it was enabled during customization or with the "`IXES`IX"
+command (the command is "ES 2 1").  It should normally be enabled.
+The disk buffering may also be controlled manually in the Command Mode
+with the "`IXA`IX" and "`IXW`IX" commands.  Knowledge of these
+commands is not necessary for most applications, since the automatic
+disk buffering accommodates most needs.
+.sp
+`ICGlobal operations`IC
+.br
+     `IXAuto-buffering`IX is only performed in Command Mode for the
+global commands: _B, _F, _L, _S, _T, _Z, and N, since it might otherwise
+interfere with special editing applications.  `ULNote that the "ES~2"
+switch has no effect on auto-buffering in Command Mode.`UL
+.sp 2
+.cp 6
+.fm 2
+.ul
+`IXBackward Disk Buffering`IX `TC~~~~~~~~~~Backward Disk Buffering`TC
+`ICAuto-buffering`IC
+.sp
+     VEDIT's backward disk buffering augments the forward disk
+buffering to further simplify the editing of large files.  As a
+convenience you can select to have backward disk buffering performed
+automatically in Visual Mode.  However, for best results, it must be
+used with some care, because you are more likely to run out of disk
+space. `ICdisk full error (recovery)`IC Although VEDIT always lets you
+recover from running out of disk space, it is more complicated if you
+are using backward disk buffering.
+.sp
+     Occasionally, you may want to edit some text which has already
+passed through the `IXedit buffer`IX and has been written to the
+`IXOutput file`IX.  Without backward disk buffering, you would have to
+start another edit session.
+The backward disk buffering, however, lets VEDIT read text
+from the Output file back into the beginning of the edit buffer for
+further editing. However, before reading text back from the Output
+file, VEDIT needs to make space free in the edit buffer. `ICFree memory`IC
+VEDIT does this by writing text from the end of the edit
+buffer out to a temporary disk file.  (The file has a name
+extension of ".$R$".)  `IC".$R$" file`IC
+.sp
+     Backward disk buffering uses additional `IXdisk space`IX to hold
+the temporary file. `ICTemporary disk file (See ".$R$" file)`IC
+As the `IXOutput file`IX is written, disk
+space is also used up.  Reading from the `IXInput file`IX does not
+free up any disk space, nor does reading back from the Output
+file.  Without `IXbackward disk buffering`IX, the maximum file
+size which may be edited is therefore 1/2 a disk, unless the Input
+and Output files are on different drives, in which case the maximum
+file size is a full disk. `ICMaximum file size (See Files - large)`IC
+With backward disk buffering, the maximum
+file size is reduced to 1/3 a disk if everything is on the same drive,
+or else 1/2 a disk if the Output file is on another drive.  The
+temporary file is always on the `IXlogged-in drive`IX. `ICMultiple drives`IC
+(With a 3 drive system you could safely edit a file one disk
+in length, by making the logged-in, the Input and Output drives all
+different.)  These file size limitations arise because in the worst
+case, VEDIT will need to create a temporary file which is nearly as
+large as the Output file, which is generally as large as the Input
+file.
+.sp
+`ICDisk full error (recovery)`IC
+.br
+     If you use backward disk buffering and run out of disk space, you
+can still recover without losing any edited text.  The procedure is
+described in the Command Mode section under "Disk Write Error
+Recovery".  To be on the safe side, unless you have a hard disk, we
+recommend that you customize VEDIT with backward disk buffering turned
+OFF and `IXforward disk buffering`IX turned ON.  If while editing you
+decide you would like backward disk buffering in Visual Mode, and are
+confident you have the disk space, give the command:
+.sp
+.ta 10 28
+	`IXES`IX 2 2
+.sp
+     To calculate if you have enough disk space to edit a file, use
+the MS-DOS "DIR" command or the CP/M "STAT" command before invoking
+VEDIT.  It is always best be to sure that there is enough free disk
+space before editing a file.  If the amount of free space is twice the
+size of the file you wish to edit, you are usually safe (unless the
+Output file will be significantly larger than the Input file).  You
+can include any ".BAK" version of the file to be edited in the amount
+of free space available. `IC".BAK" file`IC If the amount of free space
+is not at least equal to the size of the file being edited, you will
+encounter a disk full error even without backward disk buffering.
+.sp
+`ICFiles - large (long)`IC
+.br
+     If you are over two-thirds of the way through a large file and
+wish to begin editing from the beginning again, it will generally be
+faster to start another edit session (with the "EY" and "EB" commands),
+rather than using backward disk buffering.
+.sp
+     If your computer system has a hard disk (such as on an IBM XT)
+with plenty of free disk space, we suggest that you customize VEDIT
+with backward disk buffering turned ON.
+.sp 2
+.ul
+Automatic Startup `TC~~~~~Automatic Startup`TC `ICAuto-startup`IC `ICInvoking VEDIT`IC
+.sp
+     VEDIT will automatically execute a startup file on disk as a
+`IXcommand macro`IX.  This can be used to setup various VEDIT
+parameters `ICParameters - setting`IC and to program the function keys
+on a CRT terminal.  When invoked, VEDIT will attempt to read the file
+"VEDIT.INI" into text register 0, and then execute this register as a
+command macro. `ICVEDIT.INI file (See Auto-startup)`IC
+.sp
+     The file VEDIT.INI may contain EP, ES and ET commands to setup
+the various parameters, switches and `IXtab positions`IX. The startup
+file may also contain commands to load other text registers with
+text or commonly used command macros.  For example, the VEDIT.INI file
+could include the command "RL9~PRINT.EXC" to automatically load the
+Print Formatter macro into register 9 each time VEDIT is invoked.
+.sp
+     Some CRT terminals have `IXprogrammable function keys`IX which
+are initialized by sending (usually obscure) character strings to the
+terminal.  The VEDIT startup file can perform this automatically.  It
+is best done by loading the character strings into a second text
+register, typing out the register, and finally emptying the register.
+The CRT version of VEDIT comes with several example files which
+demonstrate this.
+.sp
+`ICFile searching`IC
+     To accommodate personal preferences and hardware configurations,
+it is possible to select on which drives VEDIT searches for the
+VEDIT.INI and the three help files - VHELP.HLP, VEHELP.HLP and VVHELP.HLP.
+The selections are made during customization.  VEDIT can search on the
+logged-in drive drive and on any specified drive for these files.  On CP/M
+systems, VEDIT will search the logged-in drive on the current user
+number and will search any specified drive on user 0. The auto-startup
+feature can also be turned off.  See Appendix A for details.
+.sp 2
+.cp 6
+.ul
+Global File Operations `TC~~~~~Global File Operations`TC `ICGlobal operations`IC
+`ICAuto-buffering`IC
+.sp
+     When editing very large files, `ICFiles - large (long)`IC
+the entire file will not all fit
+into the edit buffer at one time.  Since most commands and edit
+functions only operate on the text which is actually in the edit
+buffer, editing a very large file becomes a little different from
+editing a smaller file.  If VEDIT automatically allowed all commands
+to operate on the entire file, the entire editing process would slow
+down objectionably.  Therefore, VEDIT allows you to specify an option
+on those commands which you may want to apply to the entire file.
+This option is referred to as the "global" option.  When you specify
+the global option, VEDIT will automatically perform the disk
+buffering so that you can edit a file without regard to its size
+(except for a little extra time). This option is available in Visual
+Mode for the [FIND] and [REPLACE] edit functions. The global option
+is selected in Command Mode by preceding the command with an "`IX_`IX"
+(underscore).  The "_`IXF`IX" and "_`IXS`IX" allow Command Mode search and
+replace operation to be performed on an entire, arbitrarily large
+file.  The command "_`IXB`IX" allows direct access of the beginning of a
+file, and "_`IXZ`IX" direct access of the end of the file.  The command
+"_`IXL`IX" allows you step through a file in Command Mode, with VEDIT
+performing the disk buffering when necessary. The command "_`IXT`IX" allows
+you to type out a specified number of lines, even if the end of the
+edit buffer is reached during the command.  Note that these global
+commands will operate even if you have disabled auto-buffering in the
+Visual Mode with the "ES~2" switch.
+.sp 2
+.ul
+Multi-Tasking Operating Systems`TC~~~~~Multi-Tasking Operating Systems`TC `ICMulti-Tasking Operating Systems`IC
+.sp
+     Some operating systems, such as Digital Research's MP/M and
+Concurrent, and Microsoft's XENIX, allow several programs to be run
+simultaneously on one computer system by one or more users. These
+operating systems must deal with the situation where one program
+attempts to access a file which is already in use by another
+program.  In effect, the second program is denied access to the file,
+or "locked out".  This process is called "file locking".
+For example, two users cannot simultaneously run
+VEDIT on the same file. `ICFile locking`IC
+.sp
+     VEDIT detects when it is running under these multi-tasking
+operating systems and then works in conjunction with their file
+locking.  Typically if you try to access a file with VEDIT which is
+already in use by another program, the operating system will first
+issue you an error message.  Then VEDIT will issue an additional
+error message (see Appendix E) and note that the file was not
+successfully accessed.  You also cannot perform an "`IXEC`IX" (change
+disk) command on a disk which is in use by other programs.  VEDIT will
+ensure that files which it is working on, or will soon need to
+access, are locked from use by other programs.   VEDIT will also
+release files as soon as it is done with them so that they may then
+be used by other programs. (It closes all input files as soon as the
+end of the file is reached.)
+.br
+

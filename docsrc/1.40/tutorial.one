@@ -1,0 +1,1494 @@
+.cm Last Change: Ted - Oct. 28, 1985
+.pw 70
+.rm 70
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.fo ////
+.il `
+.he /VEDIT//Page #/
+.sh ////
+.bp 25
+.sp 8
+.ce
+`OST U T O R I A L`OS
+`TCII.~~~~~~~Tutorial`TC
+.bp
+.sh /Tutorial///
+~~
+.bp
+.ju
+.ce
+.ul
+VEDIT Tutorial
+.sp 2
+     This section is a tutorial on the basic editing capabilities of
+VEDIT.  It is task oriented and gives the commands necessary to perform
+simple editing operations such as inserting text, and more complex
+tasks such as moving text and concatenating files. As a "Hands-On"
+tutorial, it is meant to be followed while actually running VEDIT.
+Later, as a reference, it explains how to combine commands in order to
+perform a desired task.
+.sp
+     Not every possibly conceivable text editing situation or sequence
+of commands is included here.  However, we have tried to include a
+comprehensive list of editing tasks --- some elementary, others with
+many steps.  Tasks are presented so that you should rarely have to
+look forward in this section to learn something necessary for the
+completion of the current task.  For example, moving the cursor is the
+first task discussed; it is used in almost every following task.
+.sp
+     The labeled boxes in this section represent visual edit
+functions, such as [CURSOR UP] and [INDENT].  The actual keys you type
+to perform the functions are chosen in the VEDIT customization
+procedure.  If you are using one of our example `IXkeyboard layout`IXs,
+refer to the layout sheet.  Most layouts use both control
+characters
+and `IXescape sequences`IX.  Control characters such as
+<CTRL-Q> are typed by holding down the `IXCONTROL key`IX while typing
+the "Q".  `ICControl characters - typing`IC
+Escape sequences such as ESC-R are typed by first pressing
+the "ESC" key and then the "R". `IC<ESC> key`IC
+.sp
+     The "ESC" key is also used in some command mode commands to mark
+the end of text "strings". It is represented in all examples in
+this manual as an "$", which is also what VEDIT displays on the screen
+when an ESC is typed in command mode.
+.sp
+     Keep in mind that On-line help is also available in both Command
+Mode and Visual Mode.  Accessing the On-line help is described under
+"Sample First Edit Session" in the previous Introduction section.
+.bp
+.nb
+.ul
+`IXInvoking VEDIT`IX `TC~~~~~Invoking VEDIT`TC
+.sp
+     To use VEDIT it has to be invoked from MS-DOS or CP/M by typing
+"VEDIT" followed by the name of the file to be edited or created.  For
+example: (The "A>" is the prompt given by PCDOS or CP/M).
+.sp
+.ti 9
+A>VEDIT LETTER.TXT
+.sp
+     VEDIT will then read in the file "LETTER.TXT", or if you are
+creating the file, briefly display the message `IX"NEW FILE"`IX.
+`ICCreating new file`IC
+It will then normally go into the "`IXVisual Mode`IX" which displays
+the beginning of the file on the screen.  The bottom line will contain
+the "`IXStatus Line`IX" which consists mostly of dashes "-", and
+the line and column numbers.  Unless you have a short 40
+column screen, the file name "LETTER.TXT" will also appear on the
+status line.  Also visible will be the "`IXCursor`IX" which indicates at
+what position on the screen you are editing.  It will initially be in
+the upper left hand corner. At this point you are ready to begin
+editing.
+.sp
+     For the purposes of this tutorial it will be best if you begin by
+editing a file which already exists, instead of creating a new one.
+If you don't have any such files available, you can copy one of the files
+with a file name extension of ".DOC" from your VEDIT distribution disk to
+your work disk.  Don't be concerned about making accidental changes to the
+file, because you can easily quit the `IXedit session`IX in such a way that no
+files are actually changed.  (We assume, of course, that you have made
+a copy of your distribution disk.)
+.bp
+.nf
+.nj
+.ce
+.ul
+`IXINVOKING VEDIT`IX
+.sp 2
+.ta 5 35
+VEDIT FILENAME.EXT	You will enter Visual Mode
+		(status line will appear at
+		the bottom of the screen).
+.sp 2
+		Note: you will enter Command Mode
+		("COMMAND" prompt) in the unusual
+		case that your VEDIT was customized
+		to start in Command Mode.  See Task
+		6.3 of customization in Appendix A.
+.sp 2
+VEDIT	Begin in Command Mode. Choose
+		a file to edit with an
+		"EB filename" or perform any
+		other Command Mode command.
+`ICEB`IC
+.sp 2
+VEDIT INFILE.EXT OUTFILE.EXT	"INFILE.EXT" will be read in and
+		not altered; the text will be
+		saved in the file "OUTFILE.EXT".
+		If a file by the name "OUTFILE.EXT"
+		already exists, it will be renamed
+		to "OUTFILE.BAK".
+.sp
+		This form is equivalent to invoking
+		VEDIT without any filenames (second
+		form) and then issuing the command:
+.sp
+		`IXER`IX infile.ext$ `IXEW`IX outfile.ext
+.sp
+		Use this form if the edited file is
+		more than half a disk long. In this
+		case, INFILE.EXT is the file to be
+		edited and OUTFILE.EXT is specified
+		to be on another disk drive with
+		a nearly blank disk.
+`ICMultiple drives`IC `ICFiles - large (long)`IC
+.bp
+.fi
+.ju
+.ul
+`IXKeyboard Characters`IX `TC~~~~~Keyboard Characters and Edit Functions`TC
+.sp
+     In Visual Mode, you edit the file by
+`IXentering new text`IX or performing edit functions
+by typing control sequences.  All the letters, numbers
+and other normal characters on your keyboard can be directly entered
+as new text. Go ahead and try typing a few words in right now. Notice
+that as each character is typed, it appears at the `IXcursor position`IX
+and the cursor then moves to the right.  If there already
+were characters on the line, you have just overwritten them.
+`ICOver-writing text`IC You will soon see that it is just as easy to
+insert characters without overwriting.  The `IXcontrol sequences`IX
+are used to perform the various editing functions.  The `IXkeyboard layout`IX
+that you have customized determines which editing function
+each control sequence performs.  Control sequences can be control
+characters, such as <CTRL-S>, escape sequences such as ESC-P, or a
+function key on your keyboard.  (Function keys generally send a control
+character or an escape sequence when you type them.)  `ICFunction keys`IC
+.sp 2
+.ul
+Edit Functions `ICEdit functions`IC
+.sp
+     The most commonly used editing functions in Visual Mode are the
+"`IXCursor movement`IX" functions which only
+move the cursor around on the screen and scroll the screen to display
+different parts of the file, but do not change the file in any way.
+Look at the keyboard layout you are using and try typing the control
+codes for some of the cursor movement functions such as [UP] [DOWN]
+[RIGHT] and [LEFT].  The following pages describe all of the cursor
+movements, and you are advised to briefly try them all out.  Don't be
+concerned about remembering them all now.  Some are more important
+than others, and you will get along quite well knowing only [UP],
+[DOWN], [RIGHT], [LEFT], [ZIP], [PAGE UP] and [PAGE DOWN].
+.bp
+.ta 5 33 43
+.nf
+.nj
+.ce
+.ul
+CURSOR MOVEMENT `ICCursor movement`IC `TC~~~~~Cursor Movement`TC
+.sp 2
+.ul
+Operation                  Command Sequence
+.sp 3
+Move cursor right	CURSOR
+		RIGHT
+`IC[CURSOR RIGHT]`IC
+.sp 3
+Move cursor left	CURSOR
+		 LEFT
+`IC[CURSOR LEFT]`IC
+.sp 3
+Move cursor up	CURSOR
+		  UP
+`IC[CURSOR UP]`IC
+.sp 3
+Move cursor down	CURSOR
+		 DOWN
+`IC[CURSOR DOWN]`IC
+.sp 3
+First character of	~BACK
+current line	 TAB
+`IC[BACK TAB]`IC
+.sp 3
+Move cursor to next	 TAB
+tab position	CURSOR
+`IC[TAB CURSOR]`IC
+.sp 3
+Last character of	 ZIP
+current line
+`IC[ZIP]`IC
+.sp 3
+First and last character	 LINE
+of current line	TOGGLE
+`IC[LINE TOGGLE]`IC
+.sp 3
+First character of	 NEXT
+next line	 LINE
+`IC[NEXT LINE]`IC
+.bp
+.ul
+Operation                  Command Sequence
+.sp 3
+First character of	 PREV
+the previous word	 WORD
+`IC[PREVIOUS WORD]`IC
+.sp 3
+First character of	 NEXT
+the next word	 WORD
+`IC[NEXT WORD]`IC
+.sp 3
+Beginning of current	 PREV
+paragraph	 PARA
+`IC[PREVIOUS PARAGRAPH]`IC
+.sp 3
+Beginning of next	 NEXT
+paragraph	 PARA
+`IC[NEXT PARAGRAPH]`IC
+.sp 3
+Top and bottom	SCREEN
+screen lines	TOGGLE
+.sp 3
+`IC[SCREEN TOGGLE]`IC
+Move cursor up	SCROLL
+by scrolling	  UP
+`IC[SCROLL UP]`IC
+.sp 3
+Move cursor down	SCROLL
+by scrolling	 DOWN
+`IC[SCROLL DOWN]`IC
+.sp 3
+Move cursor right	SCROLL
+by scrolling	RIGHT
+horizontally
+`IC[SCROLL RIGHT]`IC
+.sp 2
+Move cursor left	SCROLL
+by scrolling	 LEFT
+horizontally
+`IC[SCROLL LEFT]`IC
+.bp
+.fi
+.ju
+.ce
+.ul
+PAGE MOVEMENT `ICPage movement`IC `TC~~~~~Page Movement`TC
+.sp 2
+.ta 27 33
+.of 10
+Purpose:~~To rapidly access other regions of the file not currently
+displayed on the screen.
+.nf
+.nj
+.sp 2
+.ul
+Operation                  Command Sequence
+.sp 3
+Previous Page of		 PAGE
+text	 	~~UP
+`IC[PAGE UP]`IC
+.sp 3
+Next Page of text		 PAGE
+		 DOWN
+`IC[PAGE DOWN]`IC
+.sp 3
+First Page of text		 HOME
+(First character)
+`IC[HOME]`IC
+.sp 3
+Last Page of text		 ZEND
+(Last character)
+`IC[ZEND]`IC
+.sp 3
+Set invisible text	1.)	 SET
+marker at cursor		 TEXT
+position		MARKER
+`IC[SET TEXT MARKER]`IC `ICText markers`IC
+.sp 2
+	2.) Type digit "0 - 9" to specify which
+	    marker to set.  Or set marker "0" by
+	    typing [SET TEXT MARKER] or RETURN.
+.sp 2
+Move cursor to	1.)	 GOTO
+previously set		 TEXT
+text marker		MARKER
+`IC[GOTO TEXT MARKER]`IC
+.sp 2
+	2.) Type digit "0 - 9" to specify which
+	    marker to goto. Or goto marker "0" by
+	    typing [SET TEXT MARKER] or RETURN.
+
+.fi
+.ju
+.bp
+.ul
+`IXEntering New Text`IX `ICAdding new text (See Entering new text)`IC
+`ICInserting new text (See Entering new text)`IC
+.sp
+     The three edit functions relating to the "`IXInsert Mode`IX" give
+you two choices for switching between the "Insert" and "Normal" modes.
+`ICNormal mode`IC You  started in Normal mode, and the displayable
+characters you typed over-wrote any existing characters.
+`ICOver-writing text`IC When you switch to Insert mode you will see
+the `IX"INSERT" message`IX on the status line and any character at the cursor
+position will be squeezed to the right when you type in new
+characters.  Try it to see the difference between the two modes.
+.sp
+     You may be wondering about how to insert entire lines into the
+text. `ICInserting lines`IC
+To start a new line you simply type the `IXRETURN key`IX.  If the
+cursor is at the end of a line, this opens up a blank line on the
+screen on which you can enter text.  If you enter a lot of new lines,
+one after another, the screen will automatically scroll to keep up with
+you. `ICScrolling of screen`IC
+If the cursor is in the middle of a line when you type RETURN, the
+line is split into two lines, with the character at the cursor position
+and all following characters moving to the new line.
+`ICSplitting lines`IC With the [DELETE]
+function, explained in a few pages, you can also concatenate lines
+together.
+.bp
+.nj
+.nf
+.ce
+.ul
+ENTERING NEW TEXT `ICEntering new text`IC `TC~~~~~Entering New Text`TC
+.sp 2
+.ul
+Operation                  Command Sequence
+.sp 2
+.ta 31 50
+Entering text into the	NONE - Move cursor wherever
+edit buffer --- beginning	you like and begin typing.
+an empty file or continu-	What you see is what you get.
+ing at the end of a file.
+.sp 3
+Overtyping (typing over	1.)~Position cursor over first
+existing text)	    character to be overtyped.
+`ICOver-writing text`IC
+.sp 2
+	2.)~Retype.
+.sp 5
+Inserting new characters~~~~~~1.)~~~INSERT~~~~~~~Watch for "Insert"
+in between existing~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~message on status
+characters~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~line
+.sp  2
+	2.)~Type new text
+.sp 4
+	3.)~~~INSERT	"Insert" message
+		disappears
+		(or leave INSERT on.)
+.bp
+.fi
+.ju
+.ul
+`IXVisual Functions`IX `TC~~~~~Visual Functions`TC
+.sp
+     "Visual Functions" are those edit functions which perform such
+operations as deleting characters or lines, indenting on the left side
+and moving sections of text to other parts of the file.  The following
+pages describe each of these functions. `ICDeleting text`IC
+.sp 2
+.ul
+Deleting Text
+.sp
+     VEDIT has functions to delete the character at the cursor
+position, the previous character, the previous word and the next word.
+Two functions will delete partial or entire lines.
+`ICDeleting lines`IC  These are
+described on the next page. Go ahead and try out the [DELETE],
+[BACKSPACE], [EREOL], and [ERLINE] functions.  Notice that the `IX[UNDO]`IX
+function will bring back the original text on the line unless you
+erased the entire line with the [ERLINE].
+.sp
+      You can delete an entire line with the [ERLINE] function. You
+can also concatenate two lines by moving the cursor to the end of the
+first line and typing [DELETE]. Go ahead and try all of this,
+especially splitting lines with a RETURN and concatenating lines with
+a [DELETE].  `ICConcatenating lines`IC `ICSplitting lines`IC
+.sp
+     Paragraphs or blocks of text can easily be deleted by moving them to a
+text register and then emptying the text register. `ICDeleting text blocks`IC
+.bp
+.ce
+.ul
+DELETING TEXT `ICDeleting text`IC `TC~~~~~Deleting Text`TC
+.nf
+.nj
+.sp 2
+.ta 27 33
+.ul
+Operation                  Command Sequence
+.sp 3
+Delete character at left		  BACK
+of cursor; shift		 SPACE
+following characters left
+`IC[BACKSPACE]`IC
+.sp 2
+Delete character at		 DELETE
+cursor; shift following
+characters left
+`IC[DELETE]`IC
+.sp 2
+Erase from cursor to		 EREOL
+end of line
+`IC[EREOL]`IC
+.sp 3
+Erase entire line cursor		~ERLINE
+is on and close up text
+`IC[ERLINE]`IC
+.sp 3
+Delete word to left		  DEL
+of cursor		PREVIOUS
+		  WORD
+`IC[DEL PREVIOUS WORD]`IC
+.sp 3
+Delete word to right		  DEL
+of cursor		  NEXT
+		  WORD
+`IC[DEL NEXT WORD]`IC
+.sp 3
+Delete paragraphs and	1.) Position cursor over first character
+blocks of text	    in the paragraph to be deleted.
+	    `ICDeleting text blocks`IC
+.sp 2
+	2.)	MOVE TO
+	       ~TEXT
+	      REGISTER
+`IC[MOVE TO TEXT REGISTER]`IC
+.sp 2
+.cp 4
+	3.) Position cursor past last character
+	    in paragraph to be deleted.
+.sp 2
+	4.)   MOVE TO
+	        TEXT
+	      REGISTER
+.sp 2
+	5.) Type digit "0 - 9" to specify which
+	    text register to use.   Or use
+	    register 0" by typing [MOVE ...] again
+	    or RETURN.
+
+.sp  2
+	6.)   MOVE TO
+	        TEXT
+	      REGISTER
+.sp 2
+	7.)   MOVE TO
+	        TEXT
+	      REGISTER
+.sp 2
+	8.) Type same digit "0 - 9", or [MOVE ...]
+	    or RETURN to empty the text register.
+
+.sp 5
+.cp 15
+.ce
+.ul
+CORRECTING MISTAKES MADE TO A LINE `ICCorrecting Mistakes (See [UNDO])`IC
+`TC~~~~~Correcting Mistakes Made To A Line`TC
+.ta 40
+.sp 2
+This command restores the
+current line to its previous	UNDO
+contents before any changes
+you just made to it.
+`IC[UNDO]`IC
+.sp
+Once you move the cursor
+off a line you can no longer
+"undo" that line to its
+previous contents.
+.sp
+WARNING! [UNDO] will delete
+a newly typed line if the
+line was empty when you
+first started typing on it.
+.bp
+.ce
+.ul
+REPEATING OPERATIONS `ICRepeat function`IC `TC~~~~~Repeating Operations`TC
+.fi
+.ju
+.sp 2
+.of 10
+Purpose:~~It is often necessary to repeat an edit operation such as
+inserting the same character, deleting many lines, or moving the cursor
+many "pages" forwards or backwards.  `ICPage movement`IC
+By using the [REPEAT] function
+key, you can perform these repeated operations without having
+to type the same key over and over again.  Pressing the [REPEAT] key
+once gives a `IXrepeat value`IX of "4" (see status line).  Pressing it again
+multiplies the value to "16", then to "64" and finally "256".  Any
+other value may be selected by typing a number between 00 and 256.
+Once the repeat value is correct, simply type the desired key or
+control sequence which is to be repeated.
+`IC[REPEAT]`IC
+.nf
+.nj
+.sp 2
+.ta 30 44 58
+.ul
+Operation                  Command Sequence
+.sp 2
+Delete four lines~~~~~~~~~~~~REPEAT~~~~~~~~ERASE
+of text		LINE
+.sp 3
+Page forward by	REPEAT	REPEAT	  PAGE
+16 pages			  DOWN
+.sp 3
+Delete 30	REPEAT	3      0	 DELETE
+characters
+.sp 3
+Insert 20	REPEAT	2      0	 RETURN
+blank lines
+.sp 3
+Insert 40 "*"	REPEAT	4      0	  *
+characters
+.sp 3
+Re-format the	REPEAT	1      0	 FORMAT
+next 10 paragraphs			PARAGRAPH
+.sp 2
+.fi
+.ju
+.of 6
+Note:~If you want to cancel the [REPEAT] operation type in 000 and any
+character, or press [CANCEL].
+.bp
+.ul
+`IXIndenting Text`IX `TC~~~~~Indenting Text`TC
+.sp
+.fi
+.ju
+     If you don't want your text to begin in the first column, you can let
+VEDIT automatically indent your text with the [INDENT] and [UNDENT]
+functions.  The section "Visual Mode - Indent and Undent"
+explains these functions, but it is easier to understand
+them through experimentation.  Type a RETURN `ICmargins`IC to start a new blank line,
+then type the control sequence for [INDENT]. `ICRETURN key`IC
+Notice that the cursor has moved
+right by 4 spaces to column 5 (unless you have changed this parameter).
+`ICCursor movement`IC
+Type a few words and another RETURN.  This time the cursor will begin
+immediately in column 5.  You have set the "`IXIndent Position`IX" to column
+5, and it will stay there until you increase it with another [INDENT] or
+move it back with [UNDENT].  To achieve the indentation, VEDIT inserts the
+most Tabs and fewest spaces to the indent position.  `ICTab character (key)`IC
+You can confirm this by
+moving the cursor over these leading Tabs and spaces, and if you like, you
+can also delete them or insert characters before this "Left margin".  VEDIT
+only creates this indentation when you type RETURN, when "`IXWord Wrap`IX" is
+being used and when paragraphs are formatted. `ICFormatting paragraphs`IC
+.bp
+.ce
+.ul
+INDENTING TEXT `ICIndenting text`IC
+.nf
+.nj
+.sp 2
+.ul
+Operation                       Command Sequence
+.sp 3
+Increase the amount of               INDENT
+Indentation. (Move left
+margin to the right)
+`IC[INDENT]`IC
+.sp 2
+Decrease the amount of               UNDENT
+Indentation. (Move left
+margin to the left)
+`IC[UNDENT]`IC
+.sp 2
+To change Indent/Undent
+increment:
+.sp
+1.)  Enter command mode              VISUAL
+                                      EXIT
+.sp 3
+2.)  Issue command, where            EP 3 n$$
+     n= # of columns indented
+     each time. EX: EP 3 4
+     will indent to 5th column,
+     9th column, etc.
+`ICEP`IC
+.sp
+3.)  Enter visual mode again         V
+.bp
+.fi
+.ju
+.ce
+.ul
+WORD WRAP AND FORMATTING PARAGRAPHS `ICWord wrap`IC `ICFormatting Paragraphs`IC `TC~~~~~Word Wrap and Formatting Paragraphs`TC
+.sp 2
+.ta 5 35 50
+.of 7
+Note:~~Before the Word Wrap or the Format Paragraph function will work,
+the `IXright margin`IX must be set in command mode (unless it was set during
+customization). `ICMargins`IC
+The `IXleft margin`IX is set with the INDENT and UNDENT
+functions.  A right margin of "0" turns Word Wrap off and disables the
+Format Paragraph function.
+.nf
+.nj
+.sp 2
+1.) Set right margin and~~~~~~~~~~EP 7 n~~~~~~~~~If 'n' = 0 word
+	invoke word wrap at~~~~~~~~~~~~~~~~~~~~~~~~~~wrap is disabled.
+	column n. This allows
+	n columns to be used.
+	Word wrap begins at
+	column n + 1.
+`ICEP`IC
+.sp 2
+2.) Move left margin to	 INDENT
+    the right.
+`IC[INDENT]`IC
+.sp 3
+3.) Move left margin to	 UNDENT
+	the left.
+`IC[UNDENT]`IC
+.sp 3
+4.) Set additional indent	 SPACE
+	for the beginning of a	~~BAR
+	paragraph with spaces.
+.sp 2
+		-- OR --
+.sp 2
+	Use a tab.  See ET	  TAB
+	command to change tab	  CHAR
+	positions.
+.sp 2
+5.)	Type in the paragraph. Words will be wrapped as needed.
+.sp 3
+6.)	Format a paragraph	 FORMAT
+	to current left and	PARAGRAPH
+	right margins.
+`IC[FORMAT PARAGRAPH]`IC
+.bp
+.ju
+.ce
+.ul
+JUSTIFYING PARAGRAPHS `ICJustifying Paragraphs`IC `TC~~~~~Justifying Paragraphs`TC
+.sp 2
+.of 10
+Purpose:~~When formatting a paragraph you may want it "justified"
+so that it has a straight right margin as do the paragraphs in this
+manual.  Justification causes spaces to be added between the words
+on each line.  The last line of a paragraph is not justified. The
+justification option is controlled with the command switch "ES~11".
+.sp 2
+.nj
+1.)	Set right margin in	EP 7 n	'n' is the right
+	same way as for word		margin
+	wrap.
+.sp 2
+2.)	Enable justification.	ES 11 1
+.sp 2
+3.)	Set left margin if
+	needed with [INDENT]
+	and [UNDENT]
+.sp 2
+4.)	Format the paragraph	 FORMAT
+	to current left and	PARAGRAPH
+	right margins and
+	justify the right
+	margin.
+.sp 3
+.ju
+    If you need to edit text which has been justified, you will find
+the editing easier if you first let VEDIT remove the spaces added by
+the justification process. This is referred to as "unjustifying" the
+text and is selected with the command switch "ES~11~2".
+.nj
+.sp 2
+1.)	Set command switch	ES 11 2
+	to allow paragraphs to
+	be "unjustified".
+.sp 2
+2.)	Format the paragraph	 FORMAT
+	to current left and	PARAGRAPH
+	right margins and
+	remove any additional
+	spaces between words.
+.bp
+.fi
+.ju
+.fm 1
+.ul
+Moving and Copying Blocks of Text `TC~~~~~Moving and Copying Blocks of Text`TC
+.sp
+     A useful facility in VEDIT is the ability to move blocks of text
+to other regions in the file, to duplicate blocks of text and to
+delete blocks of text. `ICMoving text`IC `ICDeleting text blocks`IC
+These are done through the use of the "Text
+Registers" and the functions [COPY TO TEXT REGISTER], [MOVE TO TEXT
+REGISTER] and [INSERT TEXT REGISTER].  The `IXtext registers`IX are simply
+regions in memory in which VEDIT can store text which is independent
+of the main text you are editing.  A block of text is any amount of text
+from one character to an entire file.  You can COPY a block of text to
+a text register, in which case your main text is unaltered, or you can
+MOVE a block of text to a text register, in which case it is also deleted
+from your main text.  Alternately, these copy and move operations can
+append the block of text to any existing text in the register.
+`ICAppend to text register`IC
+At any `ICInserting text register`IC `ICText registers (inserting) (See Inserting text register)`IC
+time you can insert a text register into your main text, which does
+not alter the text register.
+.sp
+     The following page describes the steps to copy a block of text
+from one area of the file to another.  Note that at step (3.), the
+cursor must be positioned just AFTER the block of text.  If you wish
+to include the end of a line, this would be the first column of the
+following line. You could, of course, position the cursor at the end of
+the line, but in this case the carriage return which ends the line
+would not be included in the text move.
+.sp
+     If you wanted to move the text, you would use the same procedure,
+except use the [MOVE TO TEXT REGISTER] function instead of [COPY TO TEXT
+REGISTER].  In this case the text will also be deleted from your main text
+and from the screen.
+.sp
+     If you type [COPY TO TEXT REGISTER] or [MOVE TO TEXT REGISTER]
+twice at the same location, the specified text register will be
+emptied.  If all registers are empty, the "TEXT" message will
+disappear from the status line.  You can therefore delete a block of
+text by moving it to a text register and then emptying the text
+register. `ICEmptying a text register`IC
+.sp
+     Since there are ten text registers, the status line will prompt
+you for a digit "0 - 9" to specify which text register to use.
+If you only need to use one register, you can simply answer the prompt
+by typing the function key again or a RETURN to specify register "0".
+.sp
+     In practice it doesn't matter whether you type [COPY TO TEXT
+REGISTER], [MOVE TO TEXT REGISTER] or even [PRINT] at step 2.  Only
+after you have marked one end, and the message "1~END" is on the status
+line, must you be sure to type the correct key.  If you do type the
+incorrect key and get the status line prompt, you have two options.
+You can type the DEL key on your keyboard (if you have one - not
+necessarily the same as the [DELETE] function), the prompt will clear and
+you get another chance to type the correct key.  Otherwise type
+[CANCEL] to cancel the entire function.
+.bp
+.fm 3
+.ce
+.ul
+MOVING TEXT WITHIN THE FILE `ICMoving text`IC
+.sp 2
+.nf
+.nj
+.ta 5 40
+1.) Position cursor over first
+	character in block to be
+	moved.
+.sp 2
+2.)   MOVE TO	Message "1 END" on status line
+        TEXT
+      REGISTER
+`IC[MOVE TO TEXT REGISTER]`IC
+.sp 2
+3.) Position cursor past last
+    character in block to be
+    moved.
+.sp 2
+4.)   MOVE TO	Message "REGISTER [+] 0-9" on
+        TEXT	status line
+      REGISTER
+.sp 2
+5.) Type a digit "0 - 9" to	Type optional "+" before digit
+    specify which register	if new text is to be appended
+    to put text into, or	to any existing text in regis-
+    [MOVE ...] or RETURN to	ter, instead of overwriting it.
+    use register "0".
+.sp 2
+6.) Position cursor at position
+    to insert the text.
+.sp 2
+7.)   INSERT	Message "REGISTER [+] 0-9"
+        TEXT	appears
+      REGISTER
+.sp 2
+8.) Type the digit of the
+    register you wish to
+    insert in the text. `ICInserting text register`IC
+.sp 3
+.ce
+.ul
+See NOTES on next page.
+.bp
+.fi
+.ju
+.ul
+NOTES:
+.sp
+.of 4
+1.)~If you get a `IX"FULL" message`IX at step 4, there is insufficient
+memory for the Text Register to contain the entire text block.
+Nothing was inserted into the Text Register.  See task "Making More
+Memory Space".
+.sp
+.of 4
+2.)~Following the text insert in step 6, the cursor is positioned
+at either the beginning or end of the inserted text depending
+upon ES command switch 4.
+.sp 1
+.of 4
+3.)~In step 3, in order to include the CR-LF of the line, position
+the cursor at the beginning of the next line.`ICCursor position`IC
+.sp 1
+.of 4
+4.)~Alternately you may reverse steps 1) and 3), i.e. either end
+of the block may be set first.
+.sp
+.of 4
+5.)~[CANCEL] will cancel the operation any time "1 END" appears or you
+have a status line prompt.
+.nf
+.nj
+.sp 6
+.ce
+.ul
+EMPTYING A TEXT REGISTER `ICEmptying a text register`IC `TC~~~~~Emptying a Text Register`TC
+`ICText registers (emptying) (See Emptying a text register)`IC
+.ta 5 40
+.sp 2
+.of 10
+Purpose:~~It is best to empty a text register when its contents are no
+longer needed.  This frees up more memory space. `ICMemory space (saving)`IC
+.sp 2
+1.)   MOVE TO
+        TEXT
+      REGISTER
+`IC[MOVE TO TEXT REGISTER]`IC
+.sp 3
+2.)   MOVE TO	Type command key twice with
+        TEXT	cursor at same position to
+      REGISTER	empty the register.
+.sp 2
+3.) Type a digit "0 - 9" to
+    specify which register
+    to empty out.  Or type
+    [MOVE ...] or RETURN to
+    empty register "0".
+.bp
+.ce
+.ul
+PRINTING TEXT `ICPrinting text`IC `TC~~~~~Printing Text`TC
+.sp 2
+.ta 5 40
+1.) Be certain your printer is on, and
+    the "on line" or "select" function
+    on the printer is enabled.
+    (See your printer manual).
+.sp
+2.) Position cursor at beginning
+    of text block.
+.sp 2
+3.)   PRINT	Will get "1 END" message on
+      TEXT	status line.
+`IC[PRINT TEXT]`IC
+.sp 2
+4.)  Position cursor at end of
+     text block.
+.sp 2
+5.)   PRINT	Printer should start now.
+      TEXT
+.sp 2
+6.) <CTRL-C>	To stop the printing.
+.sp 4
+.ce
+.ul
+ENTERING CONTROL CHARACTERS INTO THE TEXT `TC~~~~~Entering Control Characters into the Text`TC
+`ICControl characters - in text`IC
+.sp 2
+.of 10
+Purpose:~~Sometimes you will need "control characters" in your text for
+special purposes such as controlling the print size and character type
+on your printer.  Control characters types on the keyboard usually
+perform edit operations or are ignored.
+.sp 2
+1.)    NEXT	This will enter the next
+       CHAR	character into the text, even
+      LITERAL	a control character.  You
+		probably want to be in INSERT
+		mode before this command. `ICInserting control characters`IC
+`IC[NEXT CHAR LITERAL]`IC
+.sp
+2.) Type the control character
+    which is to be entered into
+    the text at the cursor
+    position.
+.bp
+.ce
+.ul
+SEARCHING `TC~~~~~Searching`TC
+`ICSearch (ing)`IC
+.ta 5 40
+.sp 2
+     The search or replace operation always moves forward from the
+current cursor position.
+.sp 3
+1.)    FIND	Status line will clear and
+		give FIND? prompt.
+`IC[FIND]`IC
+.sp
+2.) Type up to 30 characters that	Screen will rewrite with cursor
+    you are searching for. Pattern	past the found text.  Will give
+    matching codes are allowed.	error if text not found - You
+    End with a RETURN.  Use	must then type any key to
+    <CTRL-N> to search for RETURN.	continue.
+.sp 3
+3.)    FIND	Type [FIND] to search for the
+		next occurrence. To find "nth"
+		occurrence use `IX[REPEAT]`IX n [FIND]
+.sp 2
+4.)   CANCEL	Allows another string to be
+		searched.  Automatically
+		cancels if string not found. `ICCancel search operation`IC
+`IC[CANCEL]`IC
+.sp 2
+     If you enter an immediate RETURN in Step 2, you can select from
+the search options.  The prompt changes to:
+.sp
+~~~~~OPTIONS (Begin / Global / Reuse)?
+.sp
+`ICSearch options`IC
+Select one or more options by typing the corresponding letters "B",
+"G", and "R", followed by a RETURN.
+.ju
+.fi
+.sp
+.of 8
+Begin~~~Allows the search to start at the beginning of the edit buffer.
+If "Global" option is also selected, the search starts
+at the beginning of the file.
+.sp
+.of 8
+Global~~Allows the search to operate to the end of the file, if
+necessary, instead of just the end of the edit buffer.
+.sp
+.of 8
+Reuse~~~Allows the previous searched characters to be reused.  Useful
+following a `IX"CANNOT FIND"`IX message to restart the search from the
+beginning of the file with the "Begin" option.
+.sp
+     Following the options and a RETURN, the prompt will change back to
+"FIND?", unless the "Reuse" option was selected, in which case the
+previously entered characters will be searched for again.
+.nj
+.nf
+.bp
+.ce
+.ul
+REPLACING `ICSearch and Replace`IC `TC~~~~~Replacing`TC `ICSelective replace`IC
+.sp 2
+1.)   REPLACE	Status line will clear and
+		give FIND? prompt.`IC[REPLACE]`IC
+.sp 2
+2.) Type up to 30 characters that	Screen will rewrite with cursor
+    you are searching for. Pattern	past the found text.  Will give
+    matching codes are allowed.	error if text not found - You
+    End with a RETURN.  Use	must then type any key to
+    <CTRL-N> to search for RETURN.	continue.
+.sp
+		Status line will now prompt
+		"REPLACE WITH? "
+.sp
+3.) Type up to 30 characters
+    which is the replacement
+    string.  End with a RETURN.
+.sp
+		Screen will rewrite as in step 2.)
+		Screen now prompts:
+		REPLACE (Y / N / REST / CANCEL)
+.sp
+4.) Type "Y" to make the replace-
+    ment, "N" not to make it, "R"
+    to replace this and all
+    following occurrences, "C" to
+    cancel the operation.
+.sp 3
+5.)   REPLACE	Type [REPLACE] to search for
+		and prompt for the next
+		replacement.  To prompt for
+		"nnn" replacements use:
+		`IX[REPEAT]`IX nnn [REPLACE]
+		in step 1.
+.sp
+6.)   CANCEL	Allows another string to be
+		replaced.  Automatically
+		cancels if string not found.
+`IC[CANCEL]`IC
+.ju
+.fi
+.bp
+.fi
+.ju
+.ul
+Entering `IXCommand Mode`IX `TC~~~~~Switching Between Visual and Command Mode`TC
+`ICExiting visual mode`IC
+.sp
+	 Besides the "Visual Mode" in which all editing is done on the
+screen at the cursor position, VEDIT has a command mode, where all
+editing is done by typing command lines consisting of single commands or
+sequences of commands.  Each command line ends in a RETURN at which
+time the commands on the line are executed. You do not have to use the
+Command Mode for simple editing, although its use will simplify many
+complicated editing tasks. One thing you do have to know is how to
+enter Command Mode in order to end the `IXedit session`IX.  This is
+done by pressing the key for for `IX[VISUAL EXIT]`IX or `IX[VISUAL
+ESCAPE]`IX.  Go ahead and try it.  The screen will scroll up one line
+and the `IXcommand mode prompt`IX "COMMAND:" will appear below the
+status line. The command to go back to visual mode is "V" (remember the
+RETURN). `ICEntering visual mode`IC Notice that the cursor is at the
+same position in the text (but not necessarily on the screen) as it was
+when you exited visual mode. `ICCursor position`IC
+.sp 4
+.nf
+.nj
+.ce
+.ul
+SWITCHING FROM VISUAL MODE TO COMMAND MODE
+.sp 2
+.ta 5 35
+Exit visual mode into	VISUAL
+command mode.  "Edit	~EXIT
+Pointer" takes on last
+position of cursor. Any
+currently running macro
+will resume operation.
+`IC[VISUAL EXIT]`IC `ICEdit pointer`IC
+
+.sp 2
+Same as above, but also	VISUAL
+aborts any command,	ESCAPE
+such as an iteration or
+a macro.
+`IC[VISUAL ESCAPE]`IC
+.sp 6
+.ce
+.ul
+SWITCHING FROM COMMAND MODE TO VISUAL MODE
+.sp 2
+Command to enter visual	V~~~~~~~~(Remember the RETURN key)
+mode.  Text registers are
+preserved.  Cursor takes on
+last position of command
+mode "Edit pointer".
+`ICV`IC
+.br
+.bp
+.fi
+.ju
+.ce
+.ul
+SAVE EDITED TEXT AND CONTINUE `TC~~~~~Save Edited Text and Continue`TC `ICRestart edit session`IC
+`ICSave text on disk`IC
+.sp 2
+.ta 5 35
+.of 9
+Purpose:~You should make it a habit to regularly save your text on
+disk during a long `IXedit session`IX.  This way you will lose less work in
+case of a power or hardware failure, or if someone accidentally turns
+off the computer.  Saving the text every hour and whenever you leave
+the computer is suggested.
+.sp 2
+.nf
+.nj
+1.)   VISUAL	If in visual mode,
+       EXIT 	enter command mode.
+.sp 2
+2.) `IXEA`IX	Write file to disk; same file
+		will be used to continue edit
+		session.
+.sp 4
+.ce
+.ul
+BEGIN EDITING NEW FILE `TC~~~~~Begin Editing New File`TC `ICEditing second file`IC
+.sp 2
+.fi
+.ju
+.of 10
+Purpose:~~It is not necessary to exit VEDIT and invoke VEDIT again
+from the operating system in order to edit another file.`ICInvoking VEDIT`IC
+Since the contents of the `IXtext registers`IX are not lost
+when you begin editing another file from within VEDIT, it is very
+easy to copy or move portions of one file to another. `ICCopying text`IC
+.sp 2
+.nf
+.nj
+1.)   VISUAL	If in visual mode,
+       EXIT	enter command mode.
+.sp 2
+2.) `IXEY`IX	Save current file on disk and
+		empty the edit buffer.
+.sp 2
+3.) `IXEB`IX newfile.ext	Begin editing the file
+		"newfile.ext", which may be an
+		existing file, or a file to be
+		created. Note: a space before
+		the filename is optional.
+.sp 2
+4.) V	Enter visual mode for full
+		screen editing of the file.
+.bp
+.fi
+.ju
+.ce
+.ul
+MAKING MORE MEMORY SPACE `TC~~~~~Making More Memory Space`TC
+`ICMemory space (saving)`IC
+.sp 2
+.ta 5 35
+.of 10
+Purpose:~~When using the `IXtext registers`IX extensively, you may run out
+of memory space for performing the desired operations.  This is
+usually indicated by a `IX*BREAK*`IX in command mode, or a `IX"FULL" message`IX
+in visual mode.  First try and empty any text registers which are no longer
+needed.  If this does not give you enough memory space, you can write
+out the first part of the text if it is already edited.
+.nf
+.nj
+.sp
+1.) Position cursor past end
+	of text which does not
+	need changing (it's been
+	corrected already).
+.sp 2
+2).   VISUAL	Enter command mode.
+       EXIT
+.sp 2
+3). 0`IXW`IX	Write this text out to disk.
+		More room is now available.
+.sp 2
+4.) V	Enter visual mode for full
+		screen editing of the file.
+.sp 3
+.ce
+.ul
+DISK DIRECTORY DISPLAY `TC~~~~~Disk Directory Display`TC
+`ICDirectory display`IC
+.sp 2
+.fi
+.ju
+.of 10
+Purpose:~~The disk directory on any drive can be displayed.  This is
+useful when editing, merging or splitting multiple files.  In the event
+that you run out of disk space, you can then also see if any files can
+be deleted.
+.nf
+.nj
+.sp
+.ul
+Operation                       Command Sequence
+.sp 2
+Display directory on	`IXED`IX
+default drive.
+.sp
+Display directory on	ED B:
+drive B:
+.sp
+Display directory of all	ED A:*.ASM
+files with extension
+".ASM" on drive A:.
+.bp
+.ce
+.ul
+INSERTING A LINE RANGE OF ANOTHER FILE `TC~~~~~Inserting a Line Range of Another File`TC
+`ICInserting files`IC `ICMerging files`IC
+.sp
+.fi
+.ju
+.of 10
+Purpose:~~It is often desirable to insert a portion of another file,
+such as a paragraph or a subroutine, into the text being edited.
+VEDIT lets you extract a specified line range of another file and
+insert it into your text.  The "EL" command to used to look at another
+file with line numbers, and the "EG" command is then used to insert
+the desired line range.
+.nf
+.nj
+.sp 2
+.ta 5 35
+.of 7
+Note:~~"file1" can include a drive specifier and CP/M user number.
+.sp 2
+1.) EL file1[m,n]	The line range 'm' through 'n' of
+		'file1' is typed on the screen. If
+		'[m,n]' is not specified, the entire
+		file is typed out.  Specifying a
+		line range lets you zero in on the
+		correct lines without displaying
+		the entire file.  Use `IX<CTRL-S>`IX
+		to stop/start the screen display.
+		Note the desired line range. `ICDisplaying files`IC
+`ICEL`IC
+.sp 2
+2.) EG file1[m,n]	Lines 'm' through 'n' of 'file1'
+		will be inserted into the text
+		at the edit (cursor) position.
+		To copy an entire file, leave off
+		the '[m,n]'.  Note: the comma in
+		'[m,n]' can be replaced by a space,
+		i.e. '[m n]'.
+`ICEG`IC
+.sp 3
+.fi
+.ju
+     If you get a *BREAK* message there was insufficient memory space to
+insert the entire text, and as much as possible was inserted.  To make
+more space for other files, text, etc., try emptying some of the text
+registers or writing the first part of the text out to disk, as
+described earlier.
+.bp
+.fi
+.ju
+.ce
+.ul
+CONCATENATING TWO FILES `TC~~~~~Concatenating Files`TC `ICMerging files`IC
+`ICConcatenating files`IC
+.sp 2
+.of 10
+Purpose:~~It is sometimes desirable to append one file to the end of
+another.  `ICAppend to edit buffer (See Concatenating files)`IC
+This is readily done with VEDIT.  In this example the text
+in file "file2" is appended to the end of the text in "file1" and the
+combined text is written to the file "file3".  The three files can be
+on different disks. `ICMultiple drives`IC
+.sp
+Note:~This assumes that the entire file 'file1' fits into memory.
+.nf
+.nj
+.sp 2
+.ta 5 35
+1.) VEDIT	Invoke VEDIT without a filename.
+		VEDIT will come up in command mode.
+.sp 2
+2.) `IXER`IX file1$0A	Setup the first input file for
+		reading, and read it in.  This
+		assumes that the entire 'file1'
+		fits into memory.
+.sp 2
+3.) (optional)	Only needs to be done if the disk
+		with 'file2' is not in one of the
+	`IXEC`IX	drives.  After the EC, make sure
+		that the disk with 'file2' and the
+		disk to hold 'file3' are in the
+		drives.
+.sp 1
+4.) `IXEW`IX file3	Setup the output file which will
+		hold the combined text.
+.sp 2
+5.)	ER file2$0A	Read the second input file.  All of
+		it does not need to fit into
+		memory.
+.sp 2
+6.)	EX	This writes out the complete file
+		'file3' and exits VEDIT.
+.sp 3
+.of 7
+Note:~In the example above, "$" is the <ESC> key, and "0A" is the
+digit zero followed by "A".
+.bp
+.fi
+.ju
+.ce
+.ul
+SPLITTING A FILE INTO TWO OR MORE FILES `TC~~~~~Splitting a File into Two or More Files`TC
+`ICSplitting files`IC
+.sp 2
+.of 10
+Purpose:~~VEDIT allows you to split a large file into several
+smaller ones. `ICFiles - large (long)`IC
+This example assumes that the splits are simple -- the
+front, middle and end sections of a large file are copied to their own
+files.  More complex splitting can be done with the text registers. In
+this example  'file1' is split into 'file2', 'file3' and file4'.
+.sp 2
+.nf
+.nj
+1.) VEDIT	Invoke VEDIT without a filename.
+		VEDIT will come up in command mode.
+.sp 2
+2.) `IXER`IX file1$0A	Setup the large input file for
+		reading, and read it in. The entire
+		'file1' need not fit into memory.
+.sp
+3.)	`IXEW`IX file2	Setup first output file.
+.sp 2
+4.)	V	In visual mode, position the cursor
+		on the first character of the
+		second part of the large file.
+		Return to command mode.
+.sp 2
+5.)	0`IXW`IX `IXEF`IX	Write the first part of 'file1' to
+	0`IXA`IX	'file2' and close it.  0A will read
+	EW file3	read in more of 'file1' if neces-
+		sary.  Setup the second output file.
+.sp 2
+6.)	V	See step 4.  Not needed if only
+		splitting into two parts.
+.sp 2
+7.)	(optional)	Not needed if splitting into two
+		parts.  Write the 2nd part of
+	0W EF	'file1' to 'file3' and close it.
+	0A	0A will read in more of 'file1' if
+	EW file4	necessary.  Setup the third output
+		file.  (Repeat as necessary.)
+.sp 2
+8.)	EX	Write the rest of 'file1' to the
+		last output file and exit VEDIT.
+.sp 2
+.fi
+.ju
+.of 7
+Note:~~In the example above, "$" is the <ESC> key, "0W" and "0A" are the
+digit zero followed by "W" or "A".
+.bp
+.ce
+.ix
+.ul
+RECOVERY FROM FULL DISK ERRORS `TC~~~~~Recovery From Full Disk Errors`TC
+`ICDisk full error (recovery)`IC
+.sp 2
+.ta 5 35
+.of 10
+Purpose:~~If you attempt to write more text to disk than the disk can
+hold, you will get a `IX"NO DISK SPACE"`IX error and a return to command
+mode. Occasionally you may get a `IX"NO DIR SPACE"`IX error which means the
+disk has insufficient directory space to hold the rest of the file.
+You can recover from both of these errors by deleting old files on the
+disk, or by writing the rest of the file to another disk.
+.sp 2
+.nf
+.nj
+1.)	EX	You attempt to finish the edit
+		session, but you get the disk full
+	NO DISK SPACE	error.
+	*BREAK*
+.sp
+2.)	`IXED`IX	Issue the directory command to
+		see what files can be deleted.
+.sp
+3.)	`IXEK`IX oldfile	Delete one or more old files on the
+		disk.  DON'T DELETE ANY ".$$$"
+		OR ".$R$ FILES.
+.sp
+4.)	EX	Continue finishing the edit session.
+.sp 2
+              -- OR --
+.sp 2
+2.)	`IXEF`IX	Save whatever was already written
+		to disk.  We will call this Part 1.
+.sp 2
+3.)	`IXEW`IX a:part2	Setup to write the rest of the text
+		to the file 'part2' on another disk
+		drive, in this case drive "A:".
+.sp
+4.)	EX	Write the rest of the text out to
+		'a:part2', and exit VEDIT.
+.sp 2
+.ju
+You will now have to concatenate the two parts on the two disks back
+into one file.  See "Concatenating Two Files" discussed previously.
+.sp
+.of 6
+Note:~See the section "Disk Write Error Recovery" if you do not have
+enough space on any drive to save all of the file.  The procedure
+becomes more complicated, but you can still save all of your changes
+and additions to the file.
+.bp
+.ju
+.ul
+.ce
+COMMAND MACROS `ICCommand macro`IC `TC~~~~~Command Macros`TC
+.sp 2
+.of 10
+Purpose:~~Any sequence of commands, from a single command to hundreds
+of commands can be saved in a text register.  The sequence of commands
+can then be executed with the "M" command or the Visual Mode [MACRO]
+function.  This saves the trouble of having to type a long sequence of
+commands over and over again. Any sequence of commands executed in a
+text register is called a "command macro" or just "macro" for short.
+.sp
+	 In the following exercise you will create a very simple "macro",
+which although not particularly useful, introduces VEDIT's macro
+capabilities. The command sequence is "ED*.*~U", which first displays
+the disk directory and then displays three memory usage numbers.
+.sp 2
+.nf
+.nj
+.ta 5 35
+1.)	Write the macro in 	For this example, type "ED*.*~U" on
+	Visual mode, by typing	its own line.  You may want to first
+	the desired command	position yourself to the end of the
+	sequence on its own	edit buffer by pressing [ZEND].
+	line or lines.
+.sp 2
+2.) Move the lines con-	Use the [MOVE~TO~TEXT~REGISTER]
+	taining the commands	function to move the "ED*.*~U"
+	to the desired text	commands to text register 9.
+	register.
+.sp 2
+3.) Execute the macro from	Press [MACRO] followed by "9". The
+	Visual Mode by using	macro executes!  Since the macro
+	the [MACRO] function.	displayed something on the screen,
+		you are prompted to press any key
+		before returning to Visual Mode.
+.sp 2
+4.)	Execute the macro from	Enter Command Mode by pressing
+	Command Mode by using	[VISUAL EXIT].  Type the command
+	the "M" command.	line "M9" and a RETURN.  The macro
+		executes in the same way, but
+		returns to the "COMMAND:" prompt.
+.bp
+.fi
+.ju
+.ul
+Ending the Edit Session `ICExiting VEDIT`IC `TC~~~~~Ending the Edit Session`TC
+`ICEnding edit session`IC
+.sp
+     To end the edit session and exit VEDIT, you must be in the
+command mode and issue one of the commands "`IXEX`IX" or "`IXEQ`IX".   There is a
+world of difference between these two commands.  "EX" is the normal
+command to end an edit session, and the text you were editing will be
+saved on disk.  The "EQ" command, on the other hand, quits the
+edit session and DOES NOT save the text on disk. `ICQuit edit session`IC
+.sp
+	 The "EQ" command has several uses.  One is to actually abort the
+edit session, because you didn't really want to modify the file at all
+or you made a big mistake in editing.  Another use is for just viewing
+files - instead of using the MS-DOS (CP/M) TYPE command, you can VEDIT
+the file.  When you are finished examining the file, give the "EQ"
+command.  Finally, if you save your file with the "EY" command or close
+your file with the "EF" command, you must use "EQ" to exit VEDIT.
+.sp
+	 Since this is just a practice session with VEDIT, the text you
+are currently editing is probably all scrambled and you don't want
+it saved on disk.  Therefore the "EQ" command is the appropriate way
+to exit VEDIT now.  Of course, if you would like to save your current
+text, you should exit with the normal "EX" command.  If you give the
+"EQ" command, VEDIT will ask for verification before it actually
+aborts the edit session.
+.sp 2
+.nf
+.nj
+.ce
+.ul
+EXIT VEDIT
+.sp 3
+1.) Exit Visual mode to	VISUAL
+    Command mode.	 EXIT
+`IC[VISUAL ESCAPE]`IC
+.sp 2
+2.) Exit Command mode to	EX       Text is written out to
+	Operating System.	         disk and saved.
+.sp
+		-- OR --
+.sp
+		EQ       Abort - This does not save
+		         the text on disk.
+.sp
+		-- OR --
+.sp
+		`IXEZ`IX       Abort - like EQ, but stay
+		         in VEDIT.
+
+		-- OR --
+
+		EY       Like EX, but stay in VEDIT.
+.br
+

@@ -1,0 +1,2081 @@
+.cm Last Change: Ted - Aug. 09, 1985
+.bp
+.pw 70
+.rm 70
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.he /VEDIT//Page #/
+.sh /Command Mode///
+.fo ////
+.il `
+.ta 16 32 36 40 44 48 52
+.ce
+.ul
+nA~~~~~Append
+.sp
+.of 15
+Example:	100A	0`IXA`IX~~~~~~~~-0A
+.sp
+.ju
+.of 15
+Description:	This command will append 'n' lines from the `IXinput file`IX
+to the end of the `IXedit buffer`IX.  Fewer lines will be appended if
+there is insufficient memory space for 'n' lines, or there are
+not 'n' lines remaining in the input file. If 'n' is 0, an
+`IXauto-read`IX is performed, which reads all of the input file or
+until the edit buffer is almost full. The command can be issued (with
+'n' not zero) after an auto-read to read in more of the file. The
+command is ignored if there is no input file open. The input file can
+be opened with the "`IXEB`IX" and "`IXER`IX" commands, or when VEDIT
+is invoked.
+.br
+.in 15
+.sp
+The special forms "-nA" and "-0A" will read back 'n' lines from the
+`IXOutput file`IX into the beginning of the edit buffer.  "-0A" reads all of
+the Output file back or until the edit buffer is almost full.  Nothing
+is read back if there is no Output file or it is empty.
+.br
+.in 0
+.sp
+.of 15
+Notes:	No indication is given if fewer than 'n' lines were
+appended. Use the "U" command to see if anything was appended. If the
+edit buffer is completely full, the text registers cannot be used and
+Visual Mode will not work well.
+.sp
+.of 15
+See Also:~~~~~~Commands: U, W, EB, EG, ER
+.br
+~~~~~~~~~~~~~~~Automatic Disk Buffering
+.sp
+Examples:	ERTEXT.DOC
+.of 31
+.ib
+	0A	The file 'TEXT.DOC' is opened and all of the
+file is read in, or until the memory is almost full.
+.sp
+.ib
+.of 31
+	-0A	Read as much of the Output file as will
+fit back into the beginning of the edit buffer.
+.bp
+.ce
+.ul
+B~~~~~Beginning
+.sp
+.of 15
+Example:	`IXB`IX	~~~~~~_B
+.sp
+.of 15
+Description:	This command moves the `IXedit pointer`IX to the
+beginning of the edit buffer.  The beginning of the edit buffer will
+not be the beginning of the text file if a "W" command or an auto-write
+was done.  In this case, use the command "_B" to move back to the
+beginning of the text file.
+.sp
+.of 15
+Notes:
+.sp
+.of 15
+See Also:	Commands: EA, Z
+.br
+	Backward Disk Buffering
+.sp
+.of 31
+Examples:	B12T	Moves the edit pointer to the beginning
+of the edit buffer and types the first 12 lines.
+.sp 5
+.ce
+.ul
+m`IXC`IX~~~~~Change
+.sp
+.of 15
+Example:	12C	-4C
+.sp
+.of 15
+Description:	This command moves the `IXedit pointer`IX by 'm'
+character positions, forwards if 'm' is positive and backwards
+if 'm' is negative.  The edit pointer cannot be moved beyond
+the beginning or the end of the edit buffer, and an attempt to
+do so will leave the edit pointer at the beginning or the end
+respectively.  Remember that every line normally ends in a
+<CR>~<LF> (carriage return, line feed), which represents two
+character positions. `ICEnd of line`IC
+.sp
+.of 15
+Notes:
+.sp
+.of 15
+See Also:	Commands: D, L
+.sp
+.of 31
+Examples:~~~~~~`IXF`IXhello$-5C$$~~~~Searches for the word "hello",
+and if it is found, positions the edit pointer at the
+beginning of the word.
+.bp
+.ce
+.ul
+m`IXD`IX~~~~~Delete
+.sp
+.of 15
+Example:	12D	-4D
+.sp
+.of 15
+Description:	This command deletes 'm' characters from the
+edit buffer, starting at the current edit pointer.  If 'm'
+is positive, the 'm' characters immediately at and following
+the edit pointer are deleted. If 'm' is negative, the 'm'
+characters preceding the edit pointer are deleted.  Fewer
+than 'm' characters will be deleted if the ends of the text
+buffer are reached. `ICDeleting text`IC
+.sp
+.of 15
+Notes:
+.sp
+.of 15
+See Also:	Commands: C, K
+.sp
+.of 34
+Examples:~~~~~~100[FBIKES$-D$]~~~~The 'S' will be
+deleted from up to 100 occurrences of the word 'BIKES'. `ICF`IC
+.sp 5
+.ce
+.ul
+E~~~~~Extended~Commands
+.sp
+.of 15
+Example:	EX	EV
+.sp
+.of 15
+Description:	This is not a command by itself but just
+the first letter of all the `IXextended commands`IX.
+.sp
+.of 15
+Notes:	No error is given if just "E" is typed.
+.sp
+.of 15
+See Also:	Extended commands.
+.sp
+.of 31
+Examples:
+.bp
+.ce
+.ul
+n`IXF`IX~string<ESC>~~~~~Find `ICSearch (ing)`IC
+.sp
+.of 15
+Example:	Fmispell$$~~~~~10Fwords$$~~~~~F$$~~~~~@F/|Sword|S/
+.sp
+.of 15
+Description:	This command searches the edit buffer, beginning from
+the edit pointer, for the 'n'th occurrence of 'string'. The edit
+pointer will be positioned after 'n'th occurrence of 'string' if it is
+found.  If the 'n'th occurrence of 'string' is not found, an error
+will be given (unless suppressed) and the edit pointer will be
+positioned after the last occurrence of 'string' found, or be left at
+its original position if no occurrences were found. The command "F$$"
+will search for the previously specified string. The switch "Ignore
+Upper/Lower case distinction" `ICUpper/lower case search`IC will
+determine if the search will ignore the distinction between upper and
+lower case letters. The form "n_Fstring<ESC>" will perform a global
+search to the end of the file for "string" instead of just to the end
+of the edit buffer.
+.sp
+.of 15
+Notes:	The search is always forward, never backwards.  Remember
+that Pattern Matching Codes can be used.  The "`IX@`IX"
+option allows an explicit delimiting character.  For
+the command form "#Fstring<ESC>", an error is only given if
+no occurrences of 'string' are found.
+.sp
+.of 15
+See Also:	Command: N
+.sp
+.of 31
+Examples:	BFhello$$	Searches for the word "hello"
+from the beginning of the edit buffer.
+.sp
+.ib
+.of 31
+	#[3Ffirst$-5DIthird$]	Changes every third occurrence of
+the word "first" to "third".
+.sp
+.ib
+.of 31
+	Z-100LFend$$	Find the word "end" if it occurs
+in the last 100 lines of the edit buffer.
+.sp
+.ib
+.of 31
+	#[@F/fix up/V]	Finds the next occurrence of the string
+"fix~up" and enters Visual Mode.  Any changes can be made in Visual
+mode. When [VISUAL EXIT] is pressed, the next occurrence of "fix up" is
+found and so on.
+.sp
+.ib
+.of 31
+	F$V	The next occurrence of the previously specified
+string is found, and Visual Mode is then entered.
+.bp
+.ce
+.ul
+`IXG`IXr~~~~~~Get `ICText registers`IC `ICInserting text register`IC
+.sp
+.of 15
+Example:	G4
+.sp
+.of 15
+Description:	This command inserts a copy of text register 'r' at
+the position of the edit pointer.  If there is insufficient memory space for
+the entire copy, nothing is inserted and an error message is given.
+If the text register is empty, nothing is inserted. The edit pointer
+is moved just past the inserted text. The contents of the text
+register are not affected by this command.
+.sp
+.of 15
+Notes:	The "`IXP`IX", "RL", "RI" commands or Visual Mode are used to
+place text into a text register.
+.sp
+.of 15
+See Also:	Commands: P
+.br
+	Visual Mode Text Registers
+.sp
+.of 31
+Examples:	BG9	Inserts the contents of text
+register 9 at the beginning of the edit buffer.
+.sp
+.ib
+.of 31
+	12[G2]	Inserts the contents of text register 2
+twelve times at the edit pointer position.
+.sp
+	132P3$132K
+.br
+	_B
+.br
+.of 31
+	10LG3	Moves 132 lines of text, by saving it in
+text register 3, killing the original lines and inserting the
+text after the tenth line of the file.
+.bp
+.ce
+.ul
+`IXH`IX~~~~~Help `ICHelp (Command)`IC
+.sp
+.of 15
+Example:	H	HES~~~~~~~~~~H|
+.sp
+.of 15
+Description:	This command performs interactive On-line help using
+the help file "VHELP.HLP" which contains most of the information in
+the "Brief Command Summary".  The help file displays several menu
+screens of commands and topics for which help is available.  The user
+enters the desired command or topic name and the selected help text is
+displayed.   The help command then ends automatically.
+The user can also follow the "H" with the desired command or topic
+name and the menu will be skipped.
+.sp
+.of 15
+Notes:	All three ".HLP" help files are user changeable and expandable.
+They have the capability to display menus and sub-menus.  The internal
+structure of the help files is described under "Modifying On-line Help
+Files".
+.sp
+See~Also:	Commands: EH
+.br
+~~~~~~~~~~~~~~~Sample Edit Session, Modifying On-line Help Files
+.sp
+.of 31
+Examples:	HES	Skip the help menu and directly display the
+help text for the "ES" command, which consists of a summary of all the
+editing switches.
+.sp
+.of 31
+	H|	Skip the help menu and directly display the help text
+for all of the pattern matching codes.
+.bp
+.ce
+.ul
+`IXI`IX~text<ESC>~~~~~Insert `ICInserting text`IC
+.sp
+.of 15
+Example:	Ia word$$	I<CR>new line$$
+.sp
+.of 15
+Description:	This command inserts the text 'text' into the edit
+buffer, starting at the current edit pointer.  The insertion is
+complete when the <ESC> (or explicit delimiter) character is
+encountered. The inserted text does not overwrite any existing text.
+The 'text' may contain  the RETURN key, which is expanded to carriage
+return - line feed. If insufficient memory space exists for the 'text',
+an error will be given and only part of the 'text' will have been
+inserted.  The `IXedit pointer`IX is moved just past the inserted text.
+This command is probably best used in iteration loops, since normal
+text insertion is much easier to do in Visual Mode.
+.sp
+.of 15
+Notes:	Control characters can be inserted by
+preceding them with the literal character `IX<CTRL-Q>`IX.
+`ICControl characters - in text`IC
+The "`IX@`IX" command modifier
+allows explicit delimiters to be used.
+Explicit delimiters must be used to insert an <ESC> character.
+The Tab character is not expanded with spaces as is optional in Visual Mode.
+`ICTab character (key)`IC
+.sp
+.of 15
+See Also:	Commands: `IXEI`IX
+.sp
+.of 31
+Examples:	200[I<CR><TAB>$]	Inserts 200
+new lines, each beginning with a tab character.
+.sp
+.sc ~
+.ib
+.of 31
+	Iunder<CTRL-Q><CTRL-H>_$$	Inserts the text "under", a
+BACKSPACE and the underline character.  This will underline the "r" on
+some printers.
+.sc ~
+.sp
+.ib
+.of 31
+	@I/a~word/	Inserts the text "a~word" into the edit buffer.
+.sp
+.of 31
+	@I/EP~7~70<ESC><CR>/	Inserts the command line
+"EP~7~70~<ESC>" into the text, including a RETURN.
+.bp
+.ce
+.ul
+m`IXK`IX~~~~~Kill `ICDeleting text`IC
+.sp
+.of 15
+Example:	4K	-3K~~~~~~~~~0K~~~~~~~~~#K
+.sp
+.of 15
+Description:	This command kills (deletes) the specified number of
+lines. If 'm' is positive, all text from the
+current edit point up to and including the 'm'th <LF> is deleted.
+If 'm' is negative, all text preceding the edit pointer on the
+current line and the 'm' preceding lines are deleted. If 'm' is 0,
+all characters preceding the edit point on the current line are
+deleted. Fewer than 'm' lines will be killed if either end of the
+edit buffer is reached.
+.sp
+.of 15
+Notes:
+.sp
+.of 15
+See Also:	Command: D, T
+.sp
+.of 31
+Examples:	#[Ftemp~line$0LK]	Kills all lines which
+contain the string "temp~line". `ICF`IC
+.sp
+.of 31
+	-#K	Kills all text before the edit point.
+.sp
+.ib
+.of 31
+~~~~~~~~~~~~~~~#P6#K~~~~~~~~~~~Saves the rest of the text from the
+edit point in text register 6 and then deletes it from the edit
+buffer.
+.bp
+.ce
+.ul
+m`IXL`IX~~~~~Lines
+.sp
+.of 15
+Example:	120L	-14L~~~~~~~~~0L~~~~~~~~~1000_L
+.sp
+.of 15
+Description:	This command moves the
+`IXedit pointer`IX by 'm' lines. If 'm' is positive, the edit
+pointer is moved to the beginning of the 'm'th following line. If 'm'
+is negative, the edit pointer is moved to the beginning of the 'm'th
+preceding line.  If 'm' is 0, the edit pointer it moved to the
+beginning of the current line.  Attempting to move past either end of
+the edit buffer will leave the edit pointer at the respective end.
+The global command "m_L" will move past the end of the edit buffer,
+with automatic disk buffering if necessary.
+.sp
+.of 15
+Notes:	If an "L" command in an iteration loop attempts to go past
+the end of the edit buffer it will end the current iteration level.
+.sp
+.of 15
+See Also:	Commands: C, T
+.sp
+.of 34
+Examples:~~~~~~#[Stypo$type$0LT]~~Changes all occurrences of "typo" to
+"type" and types out every line that was changed.
+.sp 3
+.ce
+.ul
+`IXM`IXr~~~~~Macro `ICCommand macro`IC
+`ICText register macros (See Command macro)`IC
+.sp
+.of 15
+Example:	M1
+.sp
+.of 15
+Description:	This command executes the contents of text register 'r' as
+a command macro.  Any legitimate command or sequence of commands may
+be executed as a macro.  Macros are most easily created and edited in
+Visual Mode.  They may also be saved and loaded from disk or inserted
+with the "RI" command.  A macro may invoke another text register,
+which in turn may invoke another, up to a nesting depth of 5.  Macros
+are very convenient for holding long command sequences which are
+repeatedly used, saving the effort of retyping them each time.
+`ICText registers`IC
+.sp
+.of 15
+Notes:	RETURNs may be used to separate commands in order to improve
+readability. The error `IX"MACRO ERROR"`IX results if a macro attempts to
+change a text register which contains the executing command macro.  An
+"M" without a following digit is interpreted as "M0".
+.sp
+.of 15
+See Also:	Commands: G, P, RI, RL, RS, R*
+.br
+	Visual Mode Text Registers, Command Macros.
+.sp
+.of 31
+Examples:	See heading "Text Register Macros" for an example.
+.sp
+.of 31
+.bp
+.ce
+.ul
+n`IXN`IXs1<ESC>~~~~~Next `ICSearch (ing)`IC
+.sp
+.of 15
+Example:	Nbad line$$	3@N/third/~~~~~~~~~~~~N$$
+.sp
+.of 15
+Description:	This command is very similar to the "`IXF`IX" command,
+except that if the 'n'th occurrence of 's1' is not found in the edit
+buffer, `IXforward disk buffering`IX is performed to read in more of the
+input file until the 'n'th occurrence is found or the end of the
+file is reached.  `ICFiles - large (long)`IC
+If the 'n'th occurrence still is not found, an error
+is given.  The edit pointer is positioned very similarly to the "F"
+command.  However, with the "N" command it is possible that the 'n'th
+occurrence is not found, and that the previous occurrence is no longer
+in the edit buffer due to `IXauto-buffering`IX. In this case the edit
+pointer is positioned at the beginning of the edit buffer.
+.sp
+.of 15
+Notes:	All Notes for the "F" command also apply. "_F" is identical to
+"N" and "_F" should be used, since "N" may be discontinued in a future
+release.  The error `IX"NO OUTPUT FILE"`IX occurs if no output file is open
+for performing forward disk buffering.
+.sp
+.of 15
+See Also:	Command: F, _F
+.br
+	Auto Buffering
+.sp
+.of 31
+Examples:	#[Ntypo$-4DItype$]	Changes all occurrences
+of the string "typo" to "type" in the rest of the file.
+.sp
+.ib
+.of 31
+	#[@N/typo/-4D@I/type/]	Alternate form of the same
+command using explicit delimiters.
+.bp
+.ce
+.ul
+m`IXP`IXr~~~~~Put `ICMoving text`IC
+.sp
+.of 15
+Example:	40P1	-20P+2~~~~~~~~~0P3
+.sp
+.of 15
+Description:	This command saves a copy of the specified text lines
+in text register 'r'. `ICText registers`IC `ICAppend to text register`IC
+The previous contents of the text register are
+destroyed, unless the 'r' is preceded with a "+" indicating that the
+text is to be appended. The range of lines saved is the same as for
+the "K" or "T" commands.  If 'm' is zero, the text register is simply
+emptied, `ICEmptying a text register`IC
+and nothing is saved in it.  Since the edit buffer and the
+text registers share the same memory space, saving text in the text
+registers decreases the amount of memory available to the edit buffer.
+Thus the "0Pr" command should be given when the text in a register is
+no longer needed.  This command does not change the edit buffer. If
+there is insufficient memory space for the text copy, the text
+register is only emptied, nothing is saved in it and an error is
+given.  The saved text is inserted in the edit buffer with the "`IXG`IX"
+command or in Visual Mode.
+.sp
+.of 15
+Notes:	The error `IX"MACRO ERROR"`IX results if a macro attempts to change
+a text register which contains an executing command macro.
+.sp
+.of 15
+See Also:	Commands: G, K, T
+.br
+	Visual Mode text move
+.sp
+.of 31
+Examples:~~~~~~120P1$120K~~~~~~The text lines are saved in
+text register 1 and are then deleted from the edit buffer. `ICK`IC
+.sp
+	-23T
+.ib
+.of 31
+	-23P6	The text lines are typed for
+verification before they are saved in the text register.
+.bm 2
+.bp
+.ce
+.ul
+n`IXS`IXs1<ESC>s2<ESC>~~~~~Substitute `ICSearch and Replace`IC
+`ICSubstitute (See Search and Replace)`IC
+.sp
+.of 15
+Example:	Stypo$type$$	#Sname$Mr.~Smith$$	   _Sold$new$$
+.sp
+.of 15
+Description:	This command performs 'n' search and substitute (replace)
+operations. Each operation consists of searching for the next
+occurrence of 's1' in the edit buffer and changing it to 's2'.  An
+error is given if 's1' is not found.  If there is insufficient
+memory space for inserting 's2', 's1' will have been changed to as
+much of 's2' as possible and an error is given. The `IXedit pointer`IX is
+positioned after 's2', if 's1' is found, or else is left at its
+original position if 's1' is not found. For the command form
+"#Ss1<ESC>s2<ESC>, an error is only given if no occurrences of 's1'
+are found.  The form "n_Ss1<ESC>s2<ESC>" will perform a global search
+and replace, searching to the end of the file if necessary.
+`ICGlobal operations`IC `ICStrings (of text)`IC `ICSearch errors`IC
+.sp
+.of 15
+Notes:	All Notes for the "F" command apply here too.  A command like
+#Sfishes$fish$$ will execute much faster than the equivalent command
+#[Sfishes$fish$].
+.sp
+.of 15
+See Also:	Commands: F, N, I
+.sp
+.of 31
+Examples:	#Stypo$type$$	Changes all occurrences of "typo" to
+"type".
+.sp
+.ib
+.of 31
+	#[Stypo$type$0LT]	Changes all occurrences of "typo" to
+"type" and types out every line that was changed.
+.sp
+	ES 9 1
+.ib
+.of 31
+	#[S/typo/type/0LT]	Alternate form of above command.  Explicit
+delimiters can now be used without "@" prefix. `ICDelimiters (text)`IC
+.sp
+.ib
+.of 31
+	#[Sname$smith$V]	Change the next occurrence of "name" to
+"smith" and enter into Visual Mode.  Any changes can be made in Visual Mode
+and when Visual Mode is exited, the next occurrence of "name" will be
+searched and so on.
+.sp
+.ib
+.of 31
+	#_Sgarbage$$	Deletes all occurrences of the string
+"garbage" from the rest of the `ulfile`ul.
+.bp
+.ce
+.ul
+m`IXT`IX~~~~~Type `ICTyping out text`IC
+.sp
+.of 15
+Example:	14T	-6T~~~~~~~~~~0T~~~~~~~~~~66_T
+.sp
+.of 15
+Description:	This command types out (displays) the specified lines.
+If 'm' is positive, all characters from the edit pointer up to and
+including the 'm'th <LF> are typed. If 'm' is negative, the previous
+'m' lines and all characters preceding the edit pointer on the current line
+are typed out.  If 'm' is 0, only the characters on the present line
+preceding the edit pointer are typed out.  Fewer than 'm' lines will be
+typed out if either end of the edit buffer is reached.
+Control characters are expanded and <ESC> is displayed as a "$".
+This command does not move the edit pointer.  This command is useful in
+`IXiteration loop`IXs for displaying selected lines. Visual Mode
+should be used for looking at sections of a file.
+.sp
+.in 15
+The global command "m_T" will perform auto-buffering, if necessary, to
+type out the specified number of lines.  The edit pointer will remain
+in the same position if possible, otherwise as close as possible to
+its original position.  The print formatting macro "PRINT.EXC" is a
+good example of using the "_T" command.
+.sp
+.in 0
+.of 15
+Notes:	The command "0TT" will display the current line regardless
+of the position of the edit pointer on it.
+.sp
+.in 15
+The command "m_T" should only be used in the forward direction, i.e.
+do not use "-n_T", because the lines will not be typed in the correct
+order.  Instead, use the commands "-n_L n_T" to correctly achieve the
+desired effect.
+.sp
+.in 0
+.of 15
+See Also:	Commands: EO, RT, YP
+.sp
+.of 31
+Examples:	#[Fmoney$0TT]	Types out every line
+in the edit buffer with the string "money" in it.
+.bp
+.ce
+.ul
+`IXU`IX~~~~~Usage~(Memory) `ICFree memory`IC
+.sp
+.of 15
+Example:	U
+.sp
+.of 15
+Description:	This command displays the number of memory bytes free
+for use by the `IXedit buffer`IX or text registers, followed by
+the number of characters in the edit buffer, followed by the combined
+number of characters in all the text registers.  (Each character takes
+up one memory byte.)
+.sp
+.of 15
+Notes:	These three numbers will not always add up
+to the same total, since several other smaller buffers also use
+the same memory space.  If the number of free bytes goes below
+260, the `IX"FULL" message`IX will be displayed during Visual Mode.
+.sp
+.of 15
+See Also:
+.sp
+.of 31
+Examples:
+.sp 3
+.ce
+.ul
+`IXV`IX~~~~~Visual
+.sp
+.of 15
+Example:	V
+.sp
+.of 15
+Description:	This command enters `IXVisual Mode`IX.  The
+visual`IX cursor position`IX will be set from the current `IXedit pointer`IX
+position.  Visual Mode is exited with either the `IX[VISUAL EXIT]`IX or
+the `IX[VISUAL ESCAPE]`IX key.  At that time the edit pointer will be set from
+the cursor position.
+.sp
+.of 15
+Notes:	The text registers are preserved.
+.sp
+.of 15
+See Also:	Visual Mode
+.sp
+.of 15
+Examples:	Fhere$V$$	Finds "here" and enters Visual Mode.
+.bp
+.ce
+.ul
+n`IXW`IX~~~~~Write `ICWriting files (See also Saving text on disk)`IC
+.sp
+.of 15
+Example:	20W	#W~~~~~~~~~0W~~~~~~~~-100W
+.sp
+.of 15
+Description:	This command writes 'n' lines from the beginning of
+the edit buffer to the `IXoutput file`IX and then deletes these lines
+from the edit buffer.  If there are less than 'n' lines in the edit
+buffer, the entire edit buffer is written out. If 'n' is zero, the
+entire edit buffer up to the line the edit pointer is on, is written
+out. If no output file is open, an error is given and no text is
+written.  The output file can be opened with an "`IXEW`IX" or
+"`IXEB`IX" command or when VEDIT is invoked.
+.sp
+.in 15
+The special forms "-nW" and "-0W" write the end of the edit buffer
+to the temporary ".$R$" file.  These commands are primarily used to make more
+memory space available for further edit operations. `ICMemory space (saving)`IC
+"_nW" writes the last 'n' lines in the edit buffer out to disk.
+"_0W" writes out the end of the edit buffer beginning with the
+line the cursor is on.
+.br
+.in 0
+.sp
+.of 15
+Notes:	No indication is given if less than 'n' lines
+were written.
+.sp
+.of 15
+See Also:	Commands: A, EB, EW, EX
+.sp
+.nj
+.nf
+Examples:	EW~part1.txt
+	24W
+	EF
+	EW~part2.txt
+.ju
+.fi
+.of 31
+	EX	The first 24 lines of the edit buffer are
+written out to file "PART1.TXT" and the rest of the edit
+buffer is written out to file "PART2".TXT" and the edit session
+is completed.
+.bp
+.ce
+.ul
+`IXZ`IX~~~~~Zip `ICEnd of file`IC
+.sp
+.of 15
+Example:	Z	_Z
+.sp
+.of 15
+Description:	This command moves the `IXedit pointer`IX past the
+last character in the edit buffer.  The command "_Z" moves the edit
+pointer past the last character in the file, if necessary performing
+`IXforward disk buffering`IX.
+.sp
+.of 15
+Notes:
+.sp
+.of 15
+See Also:	Commands: B, `IXN`IX
+.br
+	Disk Buffering
+.sp
+.of 31
+Example:	Z-100L	Positions the edit pointer to
+the 100th line before the end of the edit buffer.
+.sp
+.ib
+.of 31
+	Z-12T	Types out the last twelve lines in the edit buffer.
+.sp
+.ib
+.of 31
+	_Z-12T	Types out the last twelve lines in the
+file.
+.bp
+.ce
+.ul
+`IXEA`IX~~~~~Edit~Again `ICSave text on disk`IC `ICRestart edit session`IC `ICEdit session`IC
+.sp
+.of 15
+Example:	EA
+.sp
+.of 15
+Description:	This command saves the entire file being edited
+(including any un-read portion of the input file) to disk.  It then
+begins a new edit session on the same file.  Your original edit
+position in the file and any text markers are maintained.  In effect,
+it saves your file on disk without disturbing anything else.  The main
+purpose of this command is to save all of your edit changes so far
+as a safeguard against losing the file due to a user error, or
+hardware, software or power failure.
+.in 15
+.sp
+All file backup and renaming is performed as with the "EY" or "EX"
+commands. This command is functionally similar to an "`IXEX`IX" command
+followed by invoking VEDIT again with the name of the current output
+file. The contents of the text registers are not affected by the "EA"
+command.
+.sp
+.in 0
+.of 15
+Notes:	The "EA" command starts a new edit session.  Therefore, if you
+quit with an "EQ" sometime after an "EA", you will only ignore those
+changes made after the "EA" command.  Those changes made before the
+"EA" command will have already been saved on disk.
+.sp
+.of 15
+See Also:	Commands: B, G, EX, EY
+.br
+	Visual [RESTART]
+.sp
+.ib
+.of 31
+	EA~Z~V	Saves the current file on disk, moves the edit pointer
+to the end of the edit buffer and re-enters Visual Mode.  Useful for
+periodic saving of ongoing work.
+.bp
+.ce
+.ul
+`IXEB`IXfile<ESC>~~~~~Edit~Backup `ICOpening a file`IC
+.sp
+.of 15
+Example:	EBfile.txt
+.sp
+.of 15
+Description:	This command opens the file 'file' for both input and
+output and then reads in all of the file, or until the memory is
+nearly full. If an output file is still open, an error is given
+and the command has no other effect.  "EB file" is similar to invoking
+VEDIT with the command:
+.br
+.in 15
+.sp
+VEDIT file
+.sp
+It is also similar to the sequence of commands:
+.sp
+ER file
+EW file
+0A
+.sp
+`ICCreating new file`IC
+.br
+.in 0
+.sp
+.of 15
+Notes:	The term "backup" is used here to describe this command since
+the term is used by some other editors to perform a similar operation.`ICBackup of file`IC
+Remember that VEDIT always creates a "backup" of
+a file on disk, if its name is used as the name of the output file.
+.sp
+.of 15
+See Also:	Commands: W, ER, EW
+.sp
+Example:	EY
+.ib
+.of 31
+	EB~newfile.txt	The entire edit buffer is written
+out to the current output file, that file is closed, and
+the file "NEWFILE.TXT" is opened for input and output and
+read in.
+.sp
+	ER~part1.txt$0A
+.ib
+.of 31
+	EB~part2.txt	The file "PART1.TXT" is read into the
+edit buffer, the file "PART2.TXT" is then made the current
+input and output file and is appended to the end of the
+previous file "PART1.TXT".
+.bp
+.ce
+.ul
+`IXEC`IX~~~~~Edit~Change~(Disk) `ICChange disks`IC
+.sp
+.of 15
+Example:	EC
+.sp
+.of 15
+Description:	This command must be given before you attempt to change
+any logged-in disks `ICLogged-in disks (See Default drive, Multiple drives)`IC
+in order to recovery from a disk
+write error, or to read files from another disk.  `ICDisk full error (recovery)`IC `ICReading files`IC
+An error is given if the current disk still has an output file open.
+This command is used in the event
+of a disk write error where you do not wish to delete any files with
+the "EK" command. In this case the "EF" command should be given
+to close that part of the `IXoutput file`IX which has been written to
+the original disk. Then issue the "EC" command. It will prompt with a
+message when the original disk can be removed and a new disk inserted.
+Type a [RETURN] after the new disk is inserted and then issue an
+"EW" command to open a file for output.  You can then issue any
+"W" command or the "EX" command.  When the edit session is over the
+output file is in two parts on two disks.  They can easily be merged
+with a MSDOS COPY (CP/M PIP) command or with VEDIT.  See the "ER"
+command for this. This command can also be used to switch to another
+disk before an "ER" or "EG" command.
+.sp
+.of 15
+Notes:	Be sure that the entire `IXinput file`IX has been read into
+memory before issuing the "EC" command.
+.sp
+.of 15
+See Also:	Commands: ED, EF
+.br
+	Disk Write Error Recovery.
+.sp
+.of 31
+Example:	EC	Will give prompt: INSERT NEW DISK AND
+TYPE RETURN when the user should remove the old disk and insert a new
+disk.
+.bp
+.ce
+.ul
+`IXED`IX~~~~~Disk~Directory `ICDirectory display`IC
+.sp
+.of 15
+Example:	ED	EDA:~~~~~~~~EDB:*.TXT~~~~~~~~1ED
+.sp
+.of 15
+Description:	This command displays the disk directory of any
+drive. It serves as a reminder of the names of files you wish to edit,
+merge or have already written out.  No file or text is changed.  Drive
+specifiers, the "?" and "*" `IXwildcard characters`IX and CP/M User
+Numbers are allowed. The command form "nED" displays the directory in 'n'
+columns instead of the normal 4 columns.
+.sp
+.of 15
+Notes:
+.sp
+See Also:	Disk Write Error Recovery
+.sp
+.of 31
+Example:	ED~B:*.TXT	Gives the directory of all files
+with extension ".TXT" on drive B.
+.sp
+.of 31
+	ED~B:=3	Gives the directory of all files CP/M drive B, with
+CP/M User Number 3.
+.sp 4
+.ce
+.ul
+`IXEF`IX~~~~~Edit~Finish~(Close)
+.sp
+.of 15
+Example:	EF
+.sp
+.of 15
+Description:	This command closes the output file, saving the text
+which has ALREADY been written to disk. `ICClose files`IC
+Any existing file on disk with the same name as the output file is
+backed-up by renaming it with a file extension of ".BAK". `IC".BAK" file`IC
+The error `IX"NO OUTPUT FILE"`IX is given if no output
+file is open.
+.sp
+.of 15
+Notes:	This command DOES NOT actually write any text to disk.  Use
+the "EY" command to write the text to disk and save it. Since the
+output file is actually opened with the file extension ".$$$", the
+`IX".$$$" file`IX is first closed, then any existing file on disk with
+the same name as the output file is renamed to ".BAK", and last, the
+".$$$" file is renamed to the true output file name. (See EW command
+notes.)
+.sp
+.of 15
+See Also:	Commands: EW, EX, EY
+.sp
+Example:	EW save.txt
+.of 31
+	100W~EF	The first 100 lines of the edit buffer
+are~written~out~as~the~file~"SAVE.TXT".
+.bp
+.ce
+.ul
+`IXEG`IXfile[line range]~~~~~Edit~Get~(File) `ICInserting files`IC
+`ICInserting files (See also EG command)`IC
+.sp
+.of 15
+Example:	EGfile.txt[1,100]	EG file.txt
+.sp
+.of 15
+Description:	This command inserts a specified line number range of
+the file "file" into the edit buffer at the edit pointer.  If insufficient
+memory exists to insert the entire file segment, as much as possible will be
+inserted and a `IX*BREAK*`IX message will be given.  If no line range is
+specified, the entire file is inserted.
+.sp
+.of 15
+Notes:	The line numbers of a file can be displayed using the "EL"
+command. A space may be used instead of a comma in the "line range".
+.sp
+.of 15
+See Also:	Commands: A, EL, ER
+.sp
+.of 31
+Example:	EG library.asm[34 65]	Lines 34 through 65 of the file
+"LIBRARY.ASM" are inserted into the edit buffer at the edit pointer.
+.sp 5
+.ce
+.ul
+`IXEH`IX~~~~~Extended Help `ICHelp (Command)`IC
+.sp
+.of 15
+Example:	EH	EHEXIT
+.sp
+.of 15
+Description:	This command performs interactive On-line help using
+the help file "VEHELP.HLP" which contains help information for common
+Command Mode tasks.  Except for using a different help file, this
+command is identical to the "H" command; thus "EH" may be immediately
+followed by the desired topic name.
+.sp
+.of 15
+Notes:	Once familiar with VEDIT, you may not need the topics contained
+in "VEHELP.HLP" any further.  In this case you may want to create a
+help file for another program, such as the V-PRINT print formatter, and
+make this file accessible by the "EH" command.  This procedure is
+described in the section "Modifying On-line Help Files".
+.sp
+See~Also:	Commands: H
+.br
+~~~~~~~~~~~~~~~Modifying On-line Help Files
+.sp
+.of 31
+Examples:	EHEXIT	Skip the help menu and directly display the
+help text for the topic on how to "exit" VEDIT.
+.sp 3
+.cp 25
+.ce
+.ul
+n`IXEI`IX~~~~~Edit~Insert `ICInserting text`IC `ICInserting control characters`IC
+.sp
+.of 15
+Example:	12EI
+.sp
+.of 15
+Description:	This command inserts the character whose decimal value
+is 'n' into the edit buffer at the edit pointer.  This is useful for
+inserting special control characters, especially characters which
+cannot be generated from the keyboard. `ICKeyboard characters`IC
+Characters with a decimal value between 128 and 255 can also be
+inserted with the EI command.  Only the "End of File" marking
+character with a value of 26 cannot be inserted.
+.br
+`ICControl characters - in text`IC
+.sp
+.of 15
+Notes:	The non-ASCII character with value 255 should not be used.
+This character is internally used as a "Null" and will be deleted by
+the "S" command.
+.sp
+.of 15
+See Also:	Commands: I, [NEXT CHAR LITERAL]
+.sp
+.of 31
+Example:	8EI	A backspace character is inserted into
+the edit buffer at the edit pointer.
+.sp
+.ib
+.of 31
+	92EI	A "\" is inserted into the text with
+the EI command, because it could not be generated from the keyboard.
+.sp 3
+.cp 24
+.ce
+.ul
+`IXEK`IXfile<ESC>~~~~~Edit~Kill `ICDeleting files`IC
+`ICKilling files (See Deleting files)`IC
+.sp
+.of 15
+Example:	EKfile.txt	EK*.bak~~~~~~~-EK file.bak
+.sp
+.of 15
+Description:	This command will erase (kill) the file 'file' from
+the disk.  This is the easiest method of recovering from a disk write
+error in order to make more `IXdisk space`IX or a free entry in the
+directory.  The command first displays a directory of the files to be
+erased and asks for confirmation before erasing them.  Alternatively,
+the command form "-EK" will skip the directory display and
+confirmation prompt.
+.br
+`ICDisk full error (recovery)`IC
+.sp
+.of 15
+Notes:	Never erase any ".$$$" or ".$R$" files from within VEDIT!
+These are the temporary files VEDIT is using. Do not delete the input
+file until all of it has been read into memory.
+.sp
+.of 15
+See Also:	Commands: EC, ED
+.br
+	Disk Write Error Recovery
+.sp
+.of 31
+Example:	EK~oldfile.txt	The file "OLDFILE.TXT" is erased from the
+disk.
+.sp
+.ib
+.of 31
+	EK~*.bak	Deletes all files with a file
+extension of ".BAK" from the default drive.
+.sp 3
+.cp 17
+.ce
+.ul
+`IXEL`IXfile[line range]~~~~~Edit~Look~(File) `ICDisplaying files`IC
+`ICExamining files (See Displaying files)`IC
+.sp
+.of 15
+Example:	EL file.txt	EL b:file.txt[200,400]
+.sp
+.of 15
+Description:	This command allows you to view a range of lines from
+another file. If no line range is specified, the entire file is
+displayed.  Line numbers are displayed ahead of each line.  The
+displayed line numbers may subsequently be used with the "EG" command
+to extract a portion of the file. `ICDisplaying files (See also EL command)`IC
+.sp
+.of 15
+Notes:
+.sp
+.of 15
+See Also:	Commands: EG
+.sp
+.of 31
+Example:~~~~~~~EL~library.asm~~The file "LIBRARY.ASM" is displayed
+with line numbers.
+.sp 3
+.cp 23
+.ce
+.ul
+m`IXEO`IX~~~~~Output~to~Printer `ICPrinting text`IC
+.sp
+Example:	40EO	-20EO	0EO
+.sp
+.of 15
+Description:	This command prints the specified lines.
+If 'm' is positive, all text from the edit pointer up to and
+including the 'm'th line is printed. If 'm' is negative, the previous 'm'
+lines and all characters up to the edit pointer are printed.
+If 'm' is 0, the entire text from the beginning of the edit buffer up to the
+current edit pointer is printed.  Fewer than 'm' lines will be printed if
+either end of the edit buffer is reached. This command does not move the
+edit pointer.
+.sp
+.of 15
+Notes:	The printing can be stopped by typing `IX<CTRL-C>`IX.
+.sp
+See Also:	Commands: L, T, RP, YP
+.br
+  	Printing Text from Visual Mode
+.sp
+.of 31
+Example:	Z0EO	Prints the entire edit buffer and
+positions the edit pointer at text end.
+.sp 4
+.cp 22
+.ce
+.ul
+`IXEP`IX~n~k<ESC>~~~~~Edit~Parameters `ICParameters - setting`IC
+.sp
+.of 15
+Example:	EP 1 2	EP 7 70
+.sp
+.of 15
+Description:	This command changes the value of parameter 'n' to 'k'.
+The command "EP" with no arguments displays the current value of all
+parameters.
+The numbers are specified in decimal and separated by spaces or commas.  The
+default values of these parameters are determined during the customization
+process.  An error is given if 'n' is specified out of range.
+The parameters are:
+.sp
+.nf
+.in 10
+1~~~~Cursor~type~~~~~~~~~~~~~~~~~~~~~~~~~~~(0,~1~or~2)
+2~~~~Cursor~blink~rate~~~~~~~~~~~~~~~~~~~~~(5~-~100)
+3~~~~Indent~Increment~~~~~~~~~~~~~~~~~~~~~~(1~-~20)
+4~~~~Lower~case~convert~~~~~~~~~~~~~~~~~~~~(0,~1,~2~or~3)
+5~~~~Conditional~convert~character~~~~~~~~~(32~-~126)
+6~~~~Display~line~and~column~number~~~~~~~~(0,~1,~2~or~3)
+7~~~~Word~Wrap~column~~~~~~~~~~~~~~~~~~~~~~(0~-~255)
+8~~~~Bit~8~Allowed~~~~~~~~~~~~~~~~~~~~~~~~~(0~-~7)
+9~~~~Cursor~positioning~mode~~~~~~~~~~~~~~~(0~-~2)
+10~~~Horizontal~scrolling~margin~~~~~~~~~~~(40~-~255)
+11~~~Horizontal~scrolling~increment~~~~~~~~(1~-~78)
+.sp 2
+.cp 5
+.in 5
+     Parameter (1) determines the type of cursor `ICCursor type`IC
+displayed in Visual Mode for
+memory mapped versions. The CRT terminal versions use the terminal's
+cursor instead.  The cursor types are: 0=Underline, 1=Blinking Reverse Video
+Block, 2=Solid Reverse Video Block, 3=Attribute (SSM VB3 and IBM PC only)
+.sp
+.cp 3
+     Parameter (2) determines the cursor's blink rate for
+cursor types 0 and 1 above. `ICCursor blink rate`IC `ICcursor`IC
+.sp
+.cp 6
+     Parameter (3) determines how much further the editor will
+indent each time the [INDENT] key is typed.  The indent position
+after typing the [INDENT] key four times is therefore the
+"`IXIndent Increment`IX" multiplied by four. `ICIndent position`IC
+.sp
+.cp 12
+     Parameter (4) determines whether lower case characters are converted to
+upper case. `ICLower to upper case conversion`IC
+For value (0) no conversion takes place, for (1) all lower case
+are converted to upper case. For (2) lower case are converted to upper
+case, unless the cursor is past a "special" character on the text line.  This
+"special" character is set by parameter (5).  Mode (3) is similar to
+(2) except that characters are reversed instead forced to upper case.
+All of this is primarily applicable to `IXassembly language`IX programming, where
+it is desirable to have the Label, Opcode and Operand in upper case and
+the comment in upper and lower case.
+.sp
+.cp 3
+     Parameter (5) sets the conditional upper/lower case convert
+character used for parameter (4) above. `ICConditional convert character`IC
+.sp
+.cp 5
+     Parameter (6) determines whether the cursor's line position in
+the file and horizontal position on the line are displayed on the
+`IXstatus line`IX. The values are: 0 = Both off, 1 = Line number displayed,
+2 = column displayed and 3 = both displayed. `ICLine and column display`IC
+.sp
+.cp 4
+     Parameter (7) is the `IXWord Wrap column`IX.  It is also the `IXright margin`IX
+used when `IXformatting paragraphs`IX.  A value of 0 disables both Word Wrap
+and formatting.  It should be turned off when editing programs!
+.sp
+.cp 11
+     Parameter (8) determines where 8 bit characters are allowed and is
+a 3 bit parameter.  Setting Bit 1 allows 8 bit input characters.  Bit 2
+allows 8 bit characters on output (alternately, the 8th bit will be
+stripped and the character displayed in reverse video if possible).  Bit 3
+allows unused control sequences to be inserted into the edit buffer.
+Normal value is "1" - allow 8 bits on input, display 8 bit characters in
+reverse video.  Users with the IBM PC and NEC APC, which have alternate
+character sets will want to use a value of "3".
+`ICBit 8 characters`IC
+.sp
+     Parameter (9) determines the cursor positioning mode.  The modes
+are 0 = cursor only at real text, 1 = cursor allowed past end of lines,
+2 = pad with spaces when past end of line.
+.sp
+.cp 5
+     Parameter (10) is the `IXhorizontal scroll margin`IX which sets the
+maximum right margin for scrolling.  Text lines longer than this
+"scroll margin" are wrapped to the next screen line.
+.sp
+.cp 5
+     Parameter (11) is the `IXhorizontal scroll increment`IX.  It
+determines how much the screen scrolls right or left when [SCROLL
+RIGHT] and [SCROLL LEFT] are pressed or VEDIT scrolls automatically.
+.br
+.in 0
+.sp
+.of 15
+Notes:	The parameter values are specified in decimal.
+.sp
+.of 15
+See Also:	Commands: ES, H (to help you remember them all)
+.br
+	Customization, Visual Mode, Indent and Undent Functions
+.sp
+.of 31
+Examples:	EP~3~6	This sets the "Indent Increment" to six.
+.sp
+.ib
+.of 31
+	EP 7 70	This sets the Word Wrap column to 70.
+.sp 3
+.cp 30
+.ce
+.ul
+`IXEQ`IX~~~~~Edit~Quit `ICQuit edit session`IC
+.sp
+.of 15
+Example:	EQ
+.sp
+.of 15
+Description:	This command quits the edit session without saving the
+current file and leaves VEDIT. Its main
+purpose is to "quit" after one has finished just looking at a file or one
+doesn't want to save any of the edit changes made. DO NOT confuse this
+command with the "EA" command; their results are quite opposite.
+Remember that the "EA" command saves the file and starts a new edit session.
+.sp
+.of 15
+Notes:	Any output file with the file extension ".$$$" will also be
+deleted.  `IC".$$$" file`IC `IC".BAK" file`IC Any original file on
+disk with the same name as the output file, but with an extension of
+".BAK" will have been deleted if any characters were written to the
+(now deleted) output file.  Any files deleted with the "EK" command
+will remain deleted. With these exceptions, the files will exist on
+disk just as they did before you started the edit session.
+.sp
+.in 15
+If you quit with an "EQ" sometime after an "EA" command, you will only
+ignore those changes made after the "EA" command.  Those changes made
+before the "EA" command will have already been saved on disk.
+.sp
+.in 0
+.of 15
+See Also:	Commands: EA, EZ
+.sp
+.of 31
+Example:	#K	Shoot!! Meant -#K
+.ib
+.of 31
+	EQ	Since a bad mistake was made in the above command, it
+is best to quit this edit session, go back to the operating system and
+start over.  All edit changes are lost, but not your file!!
+.sp 3
+.cp 29
+.ce
+.ul
+`IXER`IXfile<ESC>~~~~~Edit~Read `ICReading files`IC `ICOpening a file`IC
+`ICLoading files (See Reading files)`IC
+.sp
+.of 15
+Example:	ER newfile.txt
+.sp
+.of 15
+Description:	This command opens the file 'file' for input (reading).
+Nothing is read into the edit buffer with this command.  The "`IXA`IX" command or
+an auto-read is used to actually read the input file.  If the same file was
+already open for input, the file is "rewound", so that the file can
+again be read from the beginning.  An error is given if
+'file' does not exist.  Files can also be read from disks which are
+not currently running by using the "`IXEC`IX" command.  Issue the "EC" command,
+insert the new disk into a drive which is not being used for any output
+file and open a file for reading with the "ER" command.  This may be
+necessary in case a file has been split into two parts during a disk write
+error recovery. `ICDisk full error (recovery)`IC
+.sp
+.of 15
+Notes:	File names may be preceded with spaces for readability.
+.sp
+.of 15
+See Also:	Commands: A, EC, EB, EW
+.sp
+Example:	ER parts.inv
+.ib
+.of 31
+	20A	The file "PARTS.INV" is opened for input
+and twenty lines from it are appended to the end of the
+edit buffer.
+.bp
+.ce
+.ul
+`IXES`IX~n~k<ESC>~~~~~Edit~Switches `ICParameters - setting`IC
+`ICSwitch - setting (See also Parameters - setting)`IC
+.sp
+.of 15
+Example:	ES 1 0	ES 3 1
+.sp
+.of 15
+Description:	This command changes the value of switch 'n' to 'k'.
+The command "ES" with no arguments displays the current value of all
+switches.
+The numbers are specified in decimal and
+separated by spaces or commas.  The default values of these switches are
+determined during the `IXcustomization`IX process.  An error is given if 'n' is
+specified out of range.  The switches are:
+.sp
+.nf
+.br
+.in 10
+1~~~~Expand~Tab~with~spaces~~~~~~~~~~~~~~(0=NO~1=YES)
+2~~~~Auto-buffering~in~Visual~Mode~~~~~~~(0=NO~1=YES~2=BACK)
+3~~~~Start~in~Visual~Mode~~~~~~~~~~~~~~~~(0=NO~1=YES)
+4~~~~Point~past~text~reg.~insert~~~~~~~~~(0=NO~1=YES)
+5~~~~Ignore~UC/LC~distinction~in~search~~(0=NO~1=YES)
+6~~~~Clear~screen~on~visual~exit~~~~~~~~~(0=NO~1=YES)
+7~~~~Reverse~Upper~and~Lower~case~~~~~~~~(0=NO~1=YES)
+8~~~~Suppress~search~errors~~~~~~~~~~~~~~(0=NO~1=YES)
+9~~~~Use~explicit~string~delimiters~~~~~~(0=NO~1=YES)
+10~~~Global~file~operations~~~~~~~~~~~~~~(0=NO~1=YES)
+11~~~Justify paragraphs~~~~~~~~~~~~~~~~~~(0=NO~1=YES)
+.fo
+.sp
+~~~~~Switch (1) determines whether or not the tab key in Visual Mode
+is expanded with spaces to the next tab position. `ICTab character (key)`IC `ICTab expansion`IC
+If not, a tab character is
+inserted into the edit buffer. Except for special applications, the
+tab key should not normally be expanded with spaces.
+.sp
+.cp 9
+     Switch (2) determines whether `IXauto-buffering`IX is enabled in
+Visual Mode. "0" disables auto-buffering, "1" enables only
+`IXforward disk buffering`IX, and "2" enables both forward and
+`IXbackward disk buffering`IX.  Unless you have a hard disk we recommend a value of
+"1".  Before using "2", make sure you have sufficient free disk space.
+Use "0" when you are giving explicit Read/Write commands.  This will
+prevent unexpected disk read and write from occurring while you are
+editing in Visual Mode.
+.sp
+.cp 5
+     Switch (3) determines whether or not the `IXedit session`IX
+will begin in `IXVisual Mode`IX.
+.sp
+.cp 7
+     Switch (4) determines the  edit pointer's position (or cursor's
+in Visual Mode)  following insertion of a text register. `ICEdit pointer`IC
+If the switch is off, the edit pointer is not moved, and is
+thus left at the beginning of the newly inserted text.  If the switch
+is on, the edit pointer is moved just past the newly inserted text.
+`ICInserting text register`IC
+.sp
+.cp 8
+     Switch (5) determines whether VEDIT will make a distinction between
+`IXupper and lower case`IX letters in searches and substitutes using the
+"`IXF`IX", "`IXN`IX" and "`IXS`IX" commands and during Visual Mode search and
+replace operations. `ICUpper/lower case search`IC
+Most users will probably wish to ignore the
+distinction, so that the string "why" will match "Why", "WHY" and "why".
+Setting the switch to "1" will make VEDIT ignore the distinction between
+upper and lower case characters during searches.
+.sp
+.cp 6
+`ICClear screen`IC
+     Switch (6) determines whether the screen will be cleared when Visual
+Mode is exited to Command Mode.  If the screen is not cleared, the
+Command Mode prompt "COMMAND:" will appear below the status line.  Setting the
+switch to "1" will clear the screen before displaying the command
+prompt.
+.sp
+.cp 7
+`ICKeyboard characters`IC
+     Switch (7) determines whether all letters typed on the keyboard will
+be reversed with respect to upper and lower case. `ICReverse upper / lower case`IC
+It should normally be
+OFF, but does allow a user with an upper case only keyboard to enter lower
+case letters.  Setting the switch to "1" will make VEDIT reverse all
+keyboard letters in both Command and Visual Mode.
+.sp
+`ICSearch errors`IC
+`ICSuppress search errors`IC
+.br
+     Switch (8) determines whether the "suppress error handling"
+command modifier "`IX:`IX" is set by default for all applicable
+commands.  If not suppressed, a search or "L" command error will cause an
+error message and the command to be aborted.  Search errors are
+usually only suppressed for command macros.
+.sp
+`ICDelimiters (text)`IC
+.br
+     Switch (9) determines whether the "explicit text delimiter" command
+modifier "`IX@`IX" is set by default for all applicable commands. This
+is a matter of personal preference, but is useful with command macros.
+.sp
+`ICGlobal operations`IC
+.br
+     Switch (10) determines whether the "global" command modifier "_" is
+set by default for all applicable commands.  We suggest only enabling
+this switch in command macros.  Otherwise you may find unnecessary
+file buffering occurring.
+.sp
+     Switch (11) determines whether the [FORMAT PARAGRAPH] function
+and "YF" command will also justify the formatted paragraph.  Switch
+value "0" disables justification.  Switch value "1" enables
+justification.   Switch value "2" will "unjustify" the
+paragraph, removing extra spaces.
+.br
+.in 0
+.sp
+.of 15
+Notes:
+.sp
+.of 15
+See Also:	Customization, Visual Mode
+.sp
+.of 31
+Example:	ES~1~1	This enables tabs typed
+in Visual Mode to be expanded with spaces.
+.bp
+.bm 3
+.ce
+.ul
+`IXET`IX~~~~~Edit~Tab
+.sp
+.of 15
+Example:	ET 20 40 60 80 100 120~~~~~~~~~~ET 8
+.sp
+.of 15
+Description:	This command changes the `IXtab positions`IX used by VEDIT
+for displaying tab characters, and in Visual Mode, when the "Expand
+Tab" switch is set, for expanding tab characters.  Up to 30 tab
+positions are allowed and they must be in the range 1 - 254.  The
+default positions are set during customization.  If only one
+number 'n' is given, the tab positions will be set to every 'n' positions.
+For `IX word processing`IX
+the tabs can be set to the same positions as are specified for the
+`IXprint formatter`IX program in order to see how they will look in the
+final product.  An error is displayed if a bad position is given.  No
+tab is needed at position 1, and counting starts at 1 (not at zero).
+Thus the normal tab positions are:
+.sp
+.br
+.in 15
+9 17 25 33 41 49 57 65 73 81 89 97 105 113 121 ...
+.br
+.in 0
+.sp
+.of 15
+Notes:	For use in Visual Mode, there must be at least one tab position per
+screen line, i.e. at least one tab every 64 or 80 positions.
+.sp
+.of 15
+See Also:	Customization, Visual Mode, Indent and Undent Functions
+.sp
+.of 31
+Example:
+.sp 4
+.ce
+.ul
+`IXEV`IX~~~~~Edit~Version
+.sp
+.of 15
+Example:	EV
+.sp
+.of 15
+Description:	This command displays the VEDIT `IXversion number`IX.
+This number should be used in any correspondence you have
+with us concerning the operation of VEDIT.  This command can
+also be used inside iteration loops to give some indication
+of the progress being made in long executing macros.
+.sp
+.of 15
+Notes:
+.sp
+.of 15
+See Also:
+.sp
+.of 31
+Example:
+.bp
+.bm 4
+.ce
+.ul
+`IXEW`IXfile<ESC>~~~~~Edit~Write `ICWriting files`IC `ICOpening a file`IC
+.sp
+.of 15
+Example:	EW newdat.inv
+.sp
+.of 15
+Description:	This command opens the file 'file' for `ICOutput file`IC
+output and subsequent writing.  No text is actually written
+by this command.  An output file must be opened in
+order to save any text on disk.  A file can also be opened by
+the "EB" and "EA" commands and when VEDIT is first invoked.
+If a file is already open for output, an error is given and
+no other action takes place.
+.sp
+.of 15
+Note:	The file opened is actually a temporary file
+with the same name, but with an extension of ".$$$". `IC".$$$" file`IC
+The file is not made permanent and given its true name until it
+is closed with the "EA", "EF", "EX" or "EY" commands.  At that
+time, any existing file on disk with the same name as the
+output file is backed up by renaming it with an extension of
+".BAK".  Any existing file on disk with that name and the .BAK
+extension will be deleted when the first text is written to the output file.
+`IC".BAK" file`IC
+.sp
+.of 15
+See Also:	Commands: W, EA, `IXEF`IX, EX, EY
+.sp
+.of 31
+Example:	EW part1.txt
+.br
+	24W
+.br
+	EF
+.br
+	EW part2.txt
+.br
+.ib
+.of 31
+	EX	The first 24 lines of the edit buffer are
+written out to file "PART1.TXT" and the rest of the edit
+buffer is written out to file "PART2.TXT" and edit session
+is completed.
+.sp
+	ER a:bigfile.asm
+.br
+	EW b:bigfile.asm
+.br
+.ib
+.of 31
+	0AV	Typical procedure for editing a file which is too big for
+both it and its backup to fit on the same disk.  In this case, it is read
+from drive A: and written to drive B:.  Just be sure that disk B: is nearly
+empty.
+.bp
+.ce
+.ul
+EX~~~~~Edit~Exit `ICExiting VEDIT`IC
+.sp
+.of 15
+Example:	EX
+.sp
+.of 15
+Description:	This is the normal way to save the file being
+edited on disk and exit VEDIT. It saves the entire file being edited
+(including any un-read portion of the input file) on disk and exits VEDIT.
+All file backup and renaming is done as with the "EF" command.
+The error `IX"NO OUTPUT FILE"`IX  results  if no output file is open.
+The error `IX"NO DISK SPACE"`IX results if there is insufficient disk space
+to save the entire file. `ICSave text on disk`IC
+.sp
+.of 15
+Notes:	In case of a "NO DISK SPACE" or "NO DIR SPACE" error, see
+the heading "Disk Write Error Recovery" for the procedure to save your
+file.
+.sp
+.of 15
+See Also:	Commands: EA, EB, EF, EQ, EW, EY
+.sp
+Example:	VEDIT FILE.TXT	The editor is invoked in the normal way
+	V	to edit a file in Visual Mode.  The new
+	EX	file is then saved on disk.
+.sp 4
+.bm 2
+.ce
+.ul
+EY~~~~~End~Edit~Session `ICEnding edit session`IC
+.sp
+.of 15
+Example:	EY
+.sp
+.of 15
+Description:	This command saves the entire file being edited on
+disk, in preparation for editing another file. First, the edit buffer
+is written to the output file.  Then any unread portions of the input
+file is transferred to the output file.  Last, the output file is
+closed.  `ICClose files`IC All file backup and renaming of files is
+done as with the "EF" command.  This command is equivalent to "EX",
+but without leaving the editor.  The error `IX"NO OUTPUT FILE"`IX is
+displayed if no output file is open.
+.br
+`ICEditing second file`IC
+.sp
+Notes:	See notes for EF and EX commands.
+.sp
+See Also:	Commands: EX, EF
+.sp
+.of 31
+Example:	EF
+.ib
+.of 31
+	EB~newfile.txt	The current file is saved on disk, and
+the file "NEWFILE.TXT" opened for editing.
+.bp
+.bm 4
+.ce
+.ul
+`IXRD`IXr~~~~Register~Dump `ICTyping a text register`IC
+.sp
+.of 15
+Example:	RD3
+.sp
+.of 15
+Description:	This command types (dumps) out the contents of text
+register 'r' on the console.  Control and Tab characters are not
+expanded.  The command is most useful for sending initialization
+sequences to a CRT terminal, `ICInitializing terminals`IC
+such as sequences to setup `IXprogrammable function keys`IX. The
+"RT" command should be used to view the registers,
+since control characters are then expanded. `ICControl characters - in text`IC
+`ICExpanding control characters`IC
+.sp
+.of 15
+Notes:	Type <CTRL-C> to stop the RD command.
+.sp
+.of 15
+See Also:	Commands: RT
+.br
+	Auto-Startup
+.sp
+.of 31
+Example:	RD5	The contents of text register 5 are dumped
+(typed) to the console.
+.sp 4
+.ce
+.ul
+`IXRI`IXr~text<ESC>~~~~~Register~Insert `ICLoading text registers`IC
+.sp
+.of 15
+Example:	@RI3/B#EO/
+.sp
+.of 15
+Description:	This command places the following 'text' into text
+register 'r'. If 'r' is preceded by a '+' the 'text' is appended to any
+existing contents in the register.  The 'text' may contain the RETURN key,
+which is expanded to carriage return - line feed.  If insufficient
+memory space exists, an error will be given and only part of the 'text'
+will be inserted.  This command is useful for setting up a text
+register within a command macro. `ICInserting text`IC
+.sp
+.of 15
+Notes:	If a register needs to be setup from the keyboard, it is often
+easier to enter the text in Visual Mode and then move it to the text
+register.
+.sp
+.of 15
+See Also:	Function: [MOVE TO TEXT REGISTER]
+.sp
+.of 31
+Example:	@RI3/B#EO/	The command "B#EO" is placed into text
+register 3.
+.sp 4
+.cp 21
+.ce
+.ul
+`IXRL`IXr~file<ESC>~~~~~Register~Load `ICLoading text registers`IC
+`ICText registers (loading) (See Loading text registers)`IC
+.sp
+.of 15
+Example:	RL4 macro1.exc
+.sp
+.of 15
+Description:	This command loads text from `ICReading files`IC the file
+'file'.  The entire file is loaded and the file itself is not affected.
+If there is insufficient memory space to load the entire file, as much
+as possible will be loaded and a `IX*BREAK*`IX message will be given.
+Used to load text files which are then inserted in the edit buffer,
+and to load `IX command macro`IXs.
+.sp
+.of 15
+Notes:	The text register number should always be specified, but if
+left out, register 0 will be used.
+.sp
+.of 15
+See Also:	Commands: RS, EG
+.br
+	Text registers in Visual and Command Modes.
+.sp
+.of 31
+Example:	RL4~macro.exc~~~Loads the file "MACRO.EXC" into text
+register 4.
+.sp 4
+.cp 18
+.ce
+.ul
+`IXRP`IXr~~~~Register~Print `ICPrinting text registers`IC
+.sp
+.of 15
+Example:	RP3
+.sp
+.of 15
+Description:	This command prints the contents of text register
+'r' on the line printer.  Allows a hardcopy of the text or command
+macro in the text register to be made.  Also allows a small disk file
+to be printed after first loading it into a text register.
+Control characters are expanded and <ESC> is represented as a "$".
+`ICExpanding control characters`IC
+.sp
+.of 15
+Notes:	Type <CTRL-C> to stop the printing.  Be sure your printer is
+"On Line".
+.sp
+.of 15
+See Also:	Commands: RD, RT
+.sp
+.of 31
+Example:	RP5	The contents of text register 5 are printed on
+the line printer.
+.sp 4
+.cp 25
+.ce
+.ul
+`IXRS`IXr~file<ESC>~~~~~Register~Save `ICSave text register`IC
+`ICText registers (saving) (See Save text register`IC
+.sp
+.of 15
+Example:~~~~~~~RS4 macro1.exc
+.sp
+.of 15
+Description:	This command saves the contents of text register 'r' in
+the created file 'file'.  The register contents are not affected.  If
+there is insufficient disk space for the entire file, as much as
+possible is saved and the error "NO DISK SPACE" is given.  The error
+"NO DIR SPACE" results if there is insufficient directory space on the
+disk.  This command is commonly used to save a section of text in its own
+disk file, or to save a command macro for later use.
+.sp
+.of 15
+Notes:	See note for "RL" command.  If an existing 'file' already
+exists, you will be prompted for confirmation to overwrite it. If
+there is insufficient disk space to save the register, try deleting
+some files or insert another disk and give the command again.
+.sp
+.of 15
+See Also:	Commands: RL
+.sp
+.of 31
+Example:	RS4~macro.exc	Saves the contents of text register 4
+in the file "MACRO.EXC".
+.sp 4
+.cp 20
+.ce
+.ul
+`IXRT`IXr~~~~Register~Type `ICTyping a text register`IC
+.sp
+.of 15
+Example:	RT3
+.sp
+.of 15
+Description:	This command types out the contents of text register
+'r' on the console. `ICTyping out text`IC  This is
+commonly used to remind oneself what is in a particular register.
+<CTRL-S> can be used to pause the display and <CTRL-C> to quit the
+command. Control characters are expanded and <ESC> is represented as a
+"$". Any imbedded `IX<CTRL-S>`IX will also pause the display. The "RD"
+command will dump out a text register without expanding control
+characters. `ICExpanding control characters`IC
+.sp
+.of 15
+Notes:	It is frequently easier to insert the text register at the end
+of the edit buffer and view it in Visual Mode.
+.sp
+.of 15
+See Also:	Commands: RD
+.sp
+.of 31
+Example:	RT5	The contents of text register 5 are displayed
+on the console.
+.sp 4
+.cp 22
+.ce
+.ul
+`IXRU`IX~~~~~Register~Usage
+.sp
+.of 15
+Example:	RU	50P4$RU
+.sp
+.of 15
+Description:	This command displays the number of characters (size)
+of each text register.  Commonly used to see which registers hold any
+text and how much they hold.
+.sp
+.of 15
+Notes:	The sum of the displayed values is the third number displayed
+by the "`IXU`IX" command.  If any of the registers hold text, the
+status line `IX"TEXT" message`IX is displayed during Visual Mode.
+.sp
+.of 15
+See Also:	Commands: `IXU`IX
+.sp
+.of 31
+Example:	RU	Display the sizes of the text registers.
+.sp
+.ib
+.of 31
+	40P3$RU	Save 40 lines of text in register 3 and then
+check how many bytes are now in the text registers.
+.sp 4
+.cp 14
+.ce
+.ul
+`IXR*`IX~~~~~Register~Comment `ICComments in macros`IC
+.sp
+.of 15
+Example:	R* This is a comment in a command macro
+.sp
+.of 15
+Description:	This command allows a comment to be placed within
+command macros.  All text through the next <CR><LF> is ignored.
+.sp
+.of 15
+Notes:	The "R*" and following comment can appear anywhere in a
+command macro except in the middle of a text string or file name.
+.sp
+.of 15
+See Also:
+.sp
+.of 31
+Example:
+.bp
+.ce
+.ul
+m`IXXA`IXr~~~~~Numeric~Register~Add `ICAddition (numeric)`IC
+.sp
+.of 15
+Example:	XA2	12XA3
+.sp
+.of 15
+Description:	This command adds the positive or negative value 'm' to
+numeric register 'r'.  (If 'm' begins with a '-' the following number is
+subtracted from the numeric register)  The arithmetic is performed as 16
+bit unsigned numbers.
+.sp
+.of 15
+Notes:	The 10 numeric registers are not pre-initialized when VEDIT is
+invoked.
+.sp
+.of 15
+See Also:	Commands: XS, XT
+.sp
+.of 31
+Example:	XA3	This increments (adds "1" to) numeric register 3.
+.sp
+.ib
+.of 31
+	60XA4	This adds 60 to numeric register 4.
+.sp
+.ib
+.of 31
+	-2XA4	This subtracts 2 from numeric register 4.
+.sp 4
+.ce
+.ul
+n`IXXS`IXr~~~~~Numeric~Register~Set `ICSet numeric value`IC
+.sp
+.of 15
+Example:	0XS2	1200XS3
+.sp
+.of 15
+Description:	This command sets numeric register 'r' to 'n'.  'n' is
+treated as a 16 bit unsigned integer.
+.sp
+.of 15
+Notes:	The 10 numeric registers are not pre-initialized when VEDIT is
+invoked.
+.sp
+.of 15
+See Also:	Commands: XA, XT
+.sp
+.of 31
+Example:	0XS9	This clears (sets to 00) numeric register 9.
+.sp
+.ib
+.of 31
+	12XS0	Numeric register 0 is set to 12.
+.bp
+.ce
+.ul
+`IXXT`IXr~~~~~Numeric~Register~Type `ICType numeric value`IC
+.sp
+.of 15
+Example:	XT4	:XT4
+.sp
+.of 15
+Description:	This command types numeric register 'r' in decimal
+followed by a <CR><LF>.  Currently, this is the only way the value of
+a numeric register can be accessed.
+The command may be preceded by a ":", in which case no <CR><LF> will be typed.
+`ICSuppressing <CR>`IC
+.sp
+.of 15
+Notes:	The 10 numeric registers are not pre-initialized when VEDIT is
+invoked.
+.sp
+.of 15
+See Also:	Commands: XA, XS
+.sp
+.of 31
+Example:	10XS2 12XA2
+.br
+	XT2	Types    out   numeric   register   2,
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~displaying the value 22.
+.sp
+.of 31
+~~~~~~~~~~~~~~~YP~XT9~~~~~~~~~~The number in numeric register 9 is
+printed out.
+.sp 3
+.ce
+.ul
+n`IXYF`IX~~~~~Format Paragraph `ICFormatting paragraphs`IC
+.sp
+Example:	YF	1YF	10YF
+.sp
+.of 15
+Description:	This command formats the paragraph of text that the edit
+pointer is in.  "YF" is identical to the Visual Mode [FORMAT
+PARAGRAPH] function.  The left margin is set by the Visual Mode
+indent position and the right margin is the Word Wrap column.
+Alternatively, "nYF" uses a left margin of 'n'.  Use the command
+"1YF" to use a left margin of one (1), independent of the indent
+position.  After formatting, the edit pointer is positioned to the
+beginning of the next paragraph.  If word wrap is off, the command is
+ignored.
+.sp
+.of 15
+Notes:	The paragraph can also be justified by enabling this option
+with the command switch "ES~11~1".  Similarly, the command switch
+"ES~11~2" allows a paragraph to be "unjustified".  Note that you must
+use an iteration loop to justify multiple paragraphs.
+.sp
+See Also:	Visual Mode - Formatting Paragraphs
+.sp
+.of 31
+Examples:	5YF	Format the paragraph with the left margin
+starting at column 5.
+.sp
+.of 31
+	8[YF]	Format eight (8) paragraphs, using a left margin set
+by the Visual Mode indent position.
+.sp 4
+.cp 18
+.ce
+.ul
+`IXYI`IX~~~~~Route~to~Edit~Buffer `ICRe-routing console output`IC
+.sp
+Example:	YI
+.sp
+.of 15
+Description:	This command re-routes any Command Mode console output
+into the buffer at the edit pointer.  For example, this can be used in
+conjunction with the "XT" command to insert numeric information, such
+as a line or page number, into the text.  "-YI" stops the re-routing
+and resumes normal console output. `ICType numeric value`IC
+.sp
+.of 15
+Notes:	The "YI" command will operate very quickly near the end
+of the edit buffer.  However, inserting text at the beginning of a
+large file may take on the order of 1/2 second per character.
+.sp
+.of 15
+See Also:	Commands: YP
+.sp
+.of 31
+Example:~~~~~~~YI~XT3	Insert whatever number is
+in numeric register 3 into the edit buffer.
+.sp
+.of 31
+~~~~~~~~~~~~~~~YI~-ED	Insert the disk directory into the edit
+buffer, one file name per line.
+.br
+.sp 5
+.cp 22
+.ce
+.ul
+`IXYP`IX~~~~~Route~to~List~Device `ICRe-routing console output`IC
+.sp
+.of 15
+Example:	YP
+.sp
+.of 15
+Description:	This command re-routes any Command Mode console output
+to the printer.  The command "-YP" stops the re-routing and resumes
+normal console output. This command can be used in conjunction with
+the commands, RT, T, EL ED, EV, XT etc.,  to send text to the printer.
+`ICPrinting text`IC
+.sp
+.of 15
+Notes:	Do not use the print command "EO" in conjunction with the
+"YP" command.  After an "EO" normal console output will
+resume.  Therefore "EO" turns off any "YP" re-routing.
+.sp
+.of 15
+See Also:	Commands: YI, T, RT, XT
+.sp
+.of 31
+Examples:~~~~~~YP~ED	Print the directory on the printer.
+.sp
+.of 31
+~~~~~~~~~~~~~~~YP~RT6	Print the contents of register 6 on
+the printer. (Equivalent to "RP6".)
+.sp 4
+.cp 12
+.ce
+.ul
+`IXYR`IX/`IXYW`IX~~~~~Display~File~Name `ICDisplay file name`IC
+.sp
+.of 15
+Example:	YR	YW
+.sp
+.of 15
+Description:	These commands type the names of
+the `IXinput file`IX and `IXoutput file`IX.  YR types the input file name,
+YW types
+the output filename.  The input file is never listed on the status line
+in visual mode.
+.sp
+.of 31
+Example:~~~~~~~YR	Lists the input file on the screen.
+.sp
+.of 31
+~~~~~~~~~~~~~~~YW	Lists the output file on the screen.
+.br
+

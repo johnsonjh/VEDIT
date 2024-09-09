@@ -1,0 +1,596 @@
+.cm Last Change: Ted - Aug. 10, 1985
+.pw 70
+.rm 70
+.pi 15
+.il `
+.tm 2
+.hm 2
+.bm 1
+.fm 1
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.fo ////
+.nf
+.sp 8
+.ce
+`OSA P P E N D I X   D`OS `TC~~~~~Appendix D - 8080 / Z80 Computers`TC
+.sp
+.ce
+`OSE X A M P L E   K E Y B O A R D   L A Y O U T S`OS
+.sp
+.ce
+`OSZ 8 0 / 8 0 8 0    C O M P U T E R S`OS
+.bp
+.sh /Appendix D/8080-Z80 Computers//
+~~
+.bp
+.ju
+.sp 2
+.ce
+DESCRIPTION OF FILES FOR THE TRS-80 MODEL II `TC~~~~~~~~~~ TRS-80 MODEL II`TC
+.sp 2
+     The following files are
+supplied for VEDIT on the TRS-80 Model II. In order to let
+you use VEDIT as quickly as possible, two "ready to run" VEDIT files
+are supplied, which do not need to be customized.  These pre-configured
+VEDIT's follow
+the "Example Keyboard Layout for TRS-80 Model II" and the
+"Example Customization for TRS-80 Model II".
+.sp 2
+.ta 16 20
+.of 15
+INSTALL.COM	The program used to perform the customization for the CRT
+versions.    The manual describes the use of this program and the "SET"
+files below.
+.sp
+.of 15
+INSTALL.INI	Data file needed to perform customization.  Must be on
+same drive as INSTALL.COM.
+.sp
+.of 15
+VEDIT2P.COM	The ready to run version of VEDIT for the Pickles &
+Trout CP/M.
+.sp
+.of 15
+VEDIT2G.COM	The ready to run version of VEDIT for all other CP/M
+TRS-80 Model II systems.
+.sp 3
+.of 15
+VEDIT2P.SET	File for producing the VEDIT version for the
+Pickles & Trout CP/M.
+.sp
+.of 15
+VEDIT2G.SET	File for producing the VEDIT version for all
+other CP/M, TRS-80 Model II systems.
+.sp 2
+.of 15
+VHELP.HLP	Help file accessed by "H" command.  It should be
+copied to your System disk.  You may edit this file for your needs.
+.sp
+VEHELP.HLP	Help file accessed by "EH" command.
+.sp
+VVHELP.HLP	Help file accessed by [HELP] function.
+.sp
+.of 15
+PRINT.EXC	Simple print formatting command macro.
+It should be copied to your System disk if you intend to use it.
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR TRS-80 MODEL II
+.nf
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - H
+[ZEND]	ESC - Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<BREAK>
+[TAB CURSOR]	<CTRL-F>	Useful for fast cursor movement.
+[ZIP]	<HOLD>
+[NEXT LINE]	<CTRL-N>
+[LINE TOGGLE]	<CTRL-G>
+[SCROLL UP]	<CTRL-Q>
+[SCROLL DOWN]	<CTRL-Z>
+[SCROLL RIGHT]	<CTRL-Y>
+[SCROLL LEFT]	<CTRL-T>
+[PREVIOUS WORD]	<CTRL-J>
+[NEXT WORD]	<CTRL-K>
+[PREVIOUS PARAGRAPH]	ESC - F1
+[NEXT PARAGRAPH]	ESC - F2
+[PAGE UP]	<F1>
+[PAGE DOWN]	<F2>
+[SCREEN TOGGLE]	<CTRL-W>
+[BACKSPACE]	<BACK SPACE>
+[DELETE]	<CTRL-D>
+[ERASE TO END OF LINE]	<CTRL-L>	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>
+[DEL PREVIOUS WORD]	ESC - J
+[DEL NEXT WORD]	ESC - K
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	ESC - Q
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<CTRL-V>
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	ESC - F
+[REPLACE]	ESC - R
+[CANCEL]	ESC - O
+[COPY TO TEXT REGISTER]	ESC - C
+[MOVE TO TEXT REGISTER]	ESC - M
+[INSERT TEXT REGISTER]	ESC - I
+[PRINT TEXT]	ESC - P
+[SET TEXT MARKER]	ESC - S
+[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	ESC - B
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<CTRL-E>	Normally used exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	ESC - <CTRL-R>
+[HELP]	ESC - ?
+.bp
+.sp
+.ce
+EXAMPLE CUSTOMIZATION FOR TRS-80 MODEL II
+.sp
+.nj
+.ta 53
+.nj
+5.)~~CURSOR TYPE	1
+.in 5
+.ta 48
+CURSOR BLINK RATE	40
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	1
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	AD hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	[
+COMMAND ITERATION RIGHT BRACKET	]
+COMMAND ESCAPE CHARACTER	ESC
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	6
+SIZE OF FILE BUFFERING PAGE (K BYTES)	12
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	24
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	80
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp
+.ta 53
+.in 0
+11.)~CURSOR CHARACTER	5F hex
+.in 5
+.ta 48
+STATUS LINE CHARACTER	2D hex
+TAB EXPAND CHARACTER	20 hex
+CLEAR SCREEN CHARACTER	20 hex
+SCREEN LINE LENGTH	80
+ADDRESS OF SCREEN	F800 hex
+NUMBER OF VIDEO INITIALIZATION BYTES	0
+.br
+.in 0
+.bp
+.sp
+.ce
+VEDIT NOTES FOR APPLE II `TC~~~~~VEDIT NOTES FOR APPLE II`TC
+.sp 2
+     The version of VEDIT supplied for the APPLE is the regular CRT
+version of VEDIT.  It will work with the standard APPLE display as well
+as with most of the 24 X 80 video cards available for the APPLE.
+It will also work with most CRT terminals which might be connected via
+a serial port with the APPLE.
+.sp
+     Installation of VEDIT is done in two steps.  The first is to use
+the Microsoft supplied "CONFIGIO.BAS" program to configure the
+"Software" terminal table to either the SOROC IQ120 or the HAZELTINE
+1500.  If you have never changed your CP/M with "CONFIGIO.BAS", you
+should be able to use VEDIT by selecting the SOROC 120/140 in the INSTALL
+CRT menu.  (There is then no need to use CONFIGIO.BAS.)  The second
+step is to perform the VEDIT customization process, described in Appendix A,
+to configure VEDIT to the selected "Software" terminal and
+keyboard layout.  Note that these two steps need only to be performed
+once.  However, the customization can be performed as often as desired
+to produce new configurations of VEDIT.
+.sp
+     To enable you to use VEDIT as quickly as possible, we have
+included a preconfigured, ready to run VEDIT in the file "VEDIT.COM".
+It supports the standard 40 column Apple II screen and follows the
+customization described in the following "Example Keyboard Layout
+for Apple II" and "Example Customization for Apple II".  If you have an
+80 column board, you can quickly customize VEDIT by performing only
+TASK (10) of the customization.
+.sp
+     When customizing your own keyboard layout, please note that some
+control characters are redefined as displayable characters.
+(See Redefinition of Keyboard Characters in the Microsoft manuals).
+By default, CTRL-K, CTRL-@ and CTRL-B are redefined as "[", RUBOUT and
+BACKSLASH.  CTRL-K and CTRL-B may therefore not be used for Visual Functions,
+although CTRL-@ may be used.
+.sp
+     Also note that the "<--" key generates a <CTRL-H>, "-->"
+generates a <CTRL-I> and typing <CTRL-U> actually generates a <CTRL-I>.
+.sp
+     If an external terminal is to be used, the "CONFIGIO.BAS" program
+must be run and both hardware and software configuration
+tables configured identically, i.e. the Microsoft BIOS must do no
+translations.  Configuring both to the default DATAMEDIA is sufficient,
+regardless of what terminal is connected.
+.sp 2
+IMPORTANT NOTE:
+.sp
+.of 7
+~~~~~~~The command mode iteration brackets, normally "[" and "]", have
+been customized to be "<" and ">" for the Apple II.  Therefore, for all
+command mode examples in the manual using "[" and "]", you should type
+"<" and ">". If you prefer the square brackets you can select them in
+TASK (8) of the customization.
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR APPLE II
+.sp
+.nj
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - H
+[ZEND]	ESC - Z
+[CURSOR UP]	<CTRL-E>
+[CURSOR DOWN]	<CTRL-C>
+[CURSOR RIGHT]	<CTRL-D>
+[CURSOR LEFT]	<CTRL-S>
+[BACK TAB]	<CTRL-A>
+[TAB CURSOR]	<CTRL-F>	Useful for fast cursor movement.
+[ZIP]	<CTRL-G>
+[NEXT LINE]	NOT USED	Not needed in tight layouts
+[LINE TOGGLE]	NOT USED	Or use in place of [ZIP]
+[SCROLL UP]	<CTRL-Q>
+[SCROLL DOWN]	<CTRL-Z>
+[SCROLL RIGHT]	<CTRL-Y>
+[SCROLL LEFT]	<CTRL-T>
+[PREVIOUS WORD]	ESC - 5
+[NEXT WORD]	ESC - 6
+[PREVIOUS PARAGRAPH]	ESC - W
+[NEXT PARAGRAPH]	ESC - X
+[PAGE UP]	<CTRL-W>
+[PAGE DOWN]	<CTRL-X>
+[SCREEN TOGGLE]	ESC - T
+[BACKSPACE]	<CTRL-H>	Or use "<---" key.
+[DELETE]	<CTRL-N>
+[ERASE TO END OF LINE]	<CTRL-L>	Also called [EREOL] in manual.
+[ERASE LINE]	ESC - L
+[DEL PREVIOUS WORD]	ESC - 7
+[DEL NEXT WORD]	ESC - 8
+[UNDO]	<CTRL-J>
+[TAB CHARACTER]	<CTRL-I>	Or use "--->" key.
+[NEXT CHAR LITERAL]	ESC - Q
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<CTRL-V>
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	ESC - 1
+[REPLACE]	ESC - 2
+[CANCEL]	ESC - 3
+[COPY TO TEXT REGISTER]	ESC - C
+[MOVE TO TEXT REGISTER]	ESC - M
+[INSERT TEXT REGISTER]	ESC - I
+[PRINT TEXT]	ESC - P
+[SET TEXT MARKER]	ESC - S
+[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	ESC - F
+[VISUAL ESCAPE]	<CTRL-SHIFT-P>
+[VISUAL EXIT]	ESC - ESC	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	ESC - ?
+.br
+.bp
+.sp
+.ce
+EXAMPLE CUSTOMIZATION FOR APPLE II, CRT VERSION
+.sp
+     The customization values used to create the pre-configured VEDIT are
+listed below.
+.sp 2
+.of 11
+CRT~MENU~-~Normally choose SOROC 120/140, unless you have used the MicroSoft
+supplied CONFIGIO program to select a different "Software" terminal.
+.sp 2
+.ta 53
+.nj
+5.)~~CURSOR TYPE	Not Applicable
+.in 5
+.ta 48
+CURSOR BLINK RATE	Not Applicable
+INDENT INCREMENT	4
+LOWER CASE CONVERT	No Conversion
+CONDITIONAL CONVERSION CHARACTER	;
+LINE AND COLUMN DISPLAY	Line and Column
+RIGHT MARGIN FOR WORD WRAP; 0 = Off	0
+HIGH BIT PROCESSING ON INPUT/OUTPUT	1
+CURSOR POSITIONING OPTION	1
+HORIZONTAL SCROLL MARGIN	210
+HORIZONTAL SCROLL INCREMENT	20
+.in 0
+.ta 53
+.sp
+6.)~~EXPAND TAB WITH SPACES	No
+.in 5
+.ta 48
+AUTO BUFFERING IN VISUAL MODE	Forward
+BEGIN IN VISUAL MODE	Yes
+POINT PAST TEXT REG. INSERT	Yes
+IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH	Yes
+CLEAR SCREEN ON VISUAL EXIT	No
+REVERSE UPPER AND LOWER CASE	No
+SUPPRESS SEARCH ERRORS	No
+EXPLICIT TEXT DELIMITERS	No
+.sp
+.ta 53
+.in 0
+7.)~~TAB POSITIONS	Every 8
+.in 5
+.ta 48
+BEGIN IN INSERT MODE	No
+REVERSE VIDEO ON STATUS LINE	Yes
+SCREEN CONTINUATION CHARACTER	2D hex
+.sp
+.ta 53
+.in 0
+8.)~~PATTERN MATCH CHARACTER	|
+.in 5
+.ta 48
+COMMAND ITERATION LEFT BRACKET	<
+COMMAND ITERATION RIGHT BRACKET	>
+COMMAND ESCAPE CHARACTER	ESC
+SPEED OF YOUR COMPUTER IN MHZ	4
+.sp
+.ta 53
+.in 0
+9.)~~ENABLE AUTO-STARTUP (EXECUTE VEDIT.INI)	Yes
+.in 5
+.ta 48
+LOOK FOR HELP AND VEDIT.INI ON LOG-IN DRIVE	Yes
+ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES	None
+SIZE OF SPARE MEMORY AFTER AUTO READ (K BYTES)	4
+SIZE OF FILE BUFFERING PAGE (K BYTES)	8
+.sp
+.ta 53
+.in 0
+10.)~NUMBER OF SCREEN LINES	24
+.in 5
+.ta 48
+LENGTH OF DISPLAYED LINE	40
+LINE MOVEMENT FOR PAGING	20
+TOP LINE FOR CURSOR	3
+BOTTOM LINE FOR CURSOR	20
+.sp 2
+.in 0
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE XEROX 820 `TC~~~~~~~~~~ XEROX 820`TC
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - CTRL-H
+[ZEND]	ESC - CTRL-Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<CTRL-S>
+[TAB CURSOR]	<CTRL-F>	Useful for fast cursor movement.
+[ZIP]	<CTRL-G>
+[NEXT LINE]	<LINE-FEED>
+[LINE TOGGLE]	NOT USED	Or use in place of [ZIP]
+[SCROLL UP]	ESC - U
+[SCROLL DOWN]	ESC - D
+[SCROLL RIGHT]	<CTRL-Y>
+[SCROLL LEFT]	<CTRL-T>
+[PREVIOUS WORD]	<CTRL-K>
+[NEXT WORD]	<CTRL-L>
+[PREVIOUS PARAGRAPH]	ESC - Q
+[NEXT PARAGRAPH]	ESC - Z
+[PAGE UP]	<CTRL-Q>
+[PAGE DOWN]	<CTRL-Z>
+[SCREEN TOGGLE]	<CTRL-W>
+[BACKSPACE]	<BACK-SPACE>
+[DELETE]	<DEL>
+[ERASE TO END OF LINE]	<CTRL-N>	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-X>
+[DEL PREVIOUS WORD]	ESC - K
+[DEL NEXT WORD]	ESC - L
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	<TAB>
+[NEXT CHAR LITERAL]	ESC - N
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<CTRL-V>
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	ESC - F
+[REPLACE]	ESC - R
+[CANCEL]	ESC - O
+[COPY TO TEXT REGISTER]	ESC - C
+[MOVE TO TEXT REGISTER]	ESC - M
+[INSERT TEXT REGISTER]	ESC - I
+[PRINT TEXT]	ESC - P
+[SET TEXT MARKER]	ESC - S
+[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	ESC - B
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	<CTRL-E>	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	ESC - ?
+.bp
+.ce
+EXAMPLE KEYBOARD LAYOUT FOR THE OSBORNE I `TC~~~~~~~~~~OSBORNE I`TC
+.nj
+.sp
+.ta 27 39 63
+"ESCAPE LEAD-IN #1"	<ESC>	"ESCAPE LEAD-IN #2"	NOT USED
+"COMMON 2ND CHAR. #1"	NOT USED
+"UPPER/LOWER CASE"	Yes
+.ta 27 43
+.sp
+[HOME]	ESC - H
+[ZEND]	ESC - Z
+[CURSOR UP]	<Up Arrow>
+[CURSOR DOWN]	<Down Arrow>
+[CURSOR RIGHT]	<Right Arrow>
+[CURSOR LEFT]	<Left Arrow>
+[BACK TAB]	<CTRL-A>
+[TAB CURSOR]	<CTRL-F>	Useful for fast cursor movement.
+[ZIP]	<CTRL-G>
+[NEXT LINE]	<CTRL-Z>
+[LINE TOGGLE]	NOT USED	Or use in place of [ZIP]
+[SCROLL UP]	ESC - U
+[SCROLL DOWN]	ESC - D
+[SCROLL RIGHT]	<CTRL-Y>	Note: Select the ADM-3A from
+[SCROLL LEFT]	<CTRL-T>	      the CRT terminal menu.
+[PREVIOUS WORD]	<CTRL-S>
+[NEXT WORD]	<CTRL-D>
+[PREVIOUS PARAGRAPH]	ESC - W
+[NEXT PARAGRAPH]	ESC - X
+[PAGE UP]	<CTRL-W>
+[PAGE DOWN]	<CTRL-X>
+[SCREEN TOGGLE]	<CTRL-Q>
+[BACKSPACE]	<CTRL-B>
+[DELETE]	<DEL>
+[ERASE TO END OF LINE]	ESC - N	Also called [EREOL] in manual.
+[ERASE LINE]	<CTRL-N>
+[DEL PREVIOUS WORD]	ESC - S
+[DEL NEXT WORD]	ESC - D
+[UNDO]	<CTRL-U>
+[TAB CHARACTER]	<CTRL-I>	Or use TAB key.
+[NEXT CHAR LITERAL]	ESC - Q
+[SET INSERT MODE]	NOT USED	Type <RETURN>
+[RESET INSERT MODE]	NOT USED	Type <RETURN>
+[SWITCH INSERT MODE]	<CTRL-V>
+[REPEAT]	<CTRL-R>
+[INDENT]	<CTRL-P>
+[UNDENT]	<CTRL-O>
+[FIND]	ESC - F
+[REPLACE]	ESC - R
+[CANCEL]	ESC - O
+[COPY TO TEXT REGISTER]	ESC - C
+[MOVE TO TEXT REGISTER]	ESC - M
+[INSERT TEXT REGISTER]	ESC - I
+[PRINT TEXT]	ESC - P
+[SET TEXT MARKER]	ESC - J
+[GOTO TEXT MARKER]	ESC - G
+[FORMAT PARAGRAPH]	ESC - B
+[VISUAL ESCAPE]	ESC - ESC
+[VISUAL EXIT]	ESC - E	Used to exit to command mode.
+[MACRO]	ESC - /
+[RESTART EDITOR]	NOT USED	Use "EA" Command.
+[HELP]	ESC - ?
+.br
+.bp
+.sp
+.ce
+INFORMATION ON OTHER Z80 / 8080 COMPUTERS
+.sp 2
+.ju
+     We have the following customization notes available for older Z80
+and 8080 computers and S-100 video boards.  In some cases the keyboard
+layouts will be for older versions of VEDIT, but the remaining notes
+may help you get your VEDIT configured correctly. Please contact us
+should you need them.
+.sp 2
+.ta 20
+.of 19
+IMSAI VIOC	Customization notes for this S-100 video board.
+.sp 2
+.of 19
+PIICEON V-100	A special version of VEDIT is available to support
+this S-100 video board.
+.sp 2
+.of 19
+Polymorphic	Customization notes and patches necessary to
+support this S-100 video board.
+.sp 2
+.of 19
+SuperBrain	Keyboard layout notes and a patch to allow the
+cursor keys and numeric keyboard to be used with VEDIT.
+.sp 2
+.of 19
+TDL	A special version of VEDIT is available to support
+this S-100 video board.
+.sp 2
+.of 19
+TRS-80 Model I	Customization notes and keyboard layout.
+.br
+.bp
+.ce
+This Page Reserved For Your Notes
+.br
+

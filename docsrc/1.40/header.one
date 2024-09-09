@@ -1,0 +1,67 @@
+.pw 70
+.rm 70
+.pi 16
+.fo /Last Manual Revision:  Oct. 28, 1985///
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.sp 3
+.ce
+*OSVEDIT 1.18 / 1.40*OS
+.sp 2
+.ce
+*OSFull Screen Editor*OS
+.sp 2
+.ce
+User's Manual
+.sp 4
+.ce
+Written By
+.sp
+.ce
+Theodore Green
+.sp 4
+.ce
+CompuView Products, Inc.
+.sp
+.ce 2
+1955 Pauline Blvd.
+Ann Arbor, MI 48103
+.sp 2
+Copyright (C) 1980, 1985 by Compuview Products, Inc.  All rights reserved
+worldwide.  No part of this publication may be reproduced, in any
+form or by any means, for any purpose without the express written
+permission of Compuview.
+.sp
+.ce
+DISCLAIMER
+.sp
+CompuView Products, Inc. and the author make no
+claims or warranties with respect to the contents
+or accuracy of this publication, or the product
+it describes, including any warranties of fitness
+or merchantability for a particular purpose. Any
+stated or expressed warranties are in lieu of all
+obligations or liability for any damages, whether
+special, indirect, or consequential, arising out
+of or in connection with the use of this
+publication or the product it describes.
+Furthermore, the right is reserved to make any
+changes to this publication without obligation to
+notify any person of such changes.
+.sp 2
+.bp
+.fo ////
+.sp 40
+.ce
+TRADEMARKS
+.sp
+VEDIT, V-SPELL and V-PRINT are trademarks of CompuView Products, Inc.
+.sp
+MS-DOS is a trademark of Microsoft.
+.sp
+CP/M, CP/M-86 and MP/M are trademarks of Digital Research, Inc.
+.sp
+WordStar is a trademark of Micropro, Inc.
+

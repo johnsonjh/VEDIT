@@ -1,0 +1,1412 @@
+.cm Last Change: Ted - Oct. 28, 1985
+.pw 70
+.rm 70
+.pi 16
+.tm 4
+.hm 3
+.bm 4
+.fm 2
+.il `
+.bp
+.he /VEDIT//Page #/
+.sh ////
+.fo ////
+.sp 8
+.ce
+`OSA P P E N D I X   A`OS
+.sp
+.ce
+`OSC U S T O M I Z I N G   V E D I T`OS
+`TCVI.~~~~~~~Appendices`TC
+`TC~~`TC
+`TC~~~~~A - Customizing VEDIT`TC
+.bp
+.sh /Appendix A//Customizing VEDIT/
+~~
+.bp
+.ce
+.ul
+CUSTOMIZING VEDIT
+.sp 2
+.ul
+WHAT IS CUSTOMIZATION? `TC~~~~~~~~~~What is Customization?`TC
+.sp
+     `IXCustomization`IX is the process of installing VEDIT on
+`ICInstalling VEDIT (See Customization)`IC
+your computer in order to adapt it to your particular personal
+computer, CRT terminal or video board and your preference in keyboard
+layout.  It also allows you to set various VEDIT parameters according
+to your applications. The customization is menu driven.  You can easily
+perform some aspects of the customization and leave all other aspects
+at their previously set or default values.  You can also examine all
+current settings without changing any. You therefore do not need to
+understand the entire customization process in order to install VEDIT.
+.sp
+     Setting up a new keyboard layout is one beneficial aspect of
+the customization.  It allows almost any control character, escape
+sequence or function key to be used for the Visual Mode cursor
+movements and editing functions.  You can create your own keyboard
+layout or use one you are already familiar with, perhaps from another
+word processing program.
+.sp
+      The first part of this appendix gives the step by step
+instructions for the customization.  The second part "Customization
+Notes" covers some of the customization issues in greater depth.
+.sp 3
+.ul
+WHEN IS CUSTOMIZATION NECESSARY? `TC~~~~~~~~~~When is Customization Necessary`TC
+.sp
+     For many popular computers, such as the IBM Personal Computer, we
+supply a pre-configured "ready to run" version of VEDIT.  The
+pre-configured versions generally have a file name of "VEDIT.COM". The
+keyboard layout for these pre-configured versions is listed among the
+appendices of this manual.  With a pre-configured version you do not
+initially have to perform any part of the customization.  Indeed, we
+recommend that you use our pre-configured version to gain some
+experience with VEDIT before customizing your own.
+.sp
+     For some versions of VEDIT, such as those intended for use with a
+CRT terminal, a pre-configured version is not supplied. However, you
+can very easily and quickly create a ready to run VEDIT - you
+generally only need to select the CRT terminal from the menu in order
+to complete the customization.  This is described below under "Quick
+Customization".
+.sp
+.bm -1
+     Once you have VEDIT up and running, you may still want to
+customize it sometime in the future.  It may be that you want to try a
+different keyboard layout.  Or you may want to change the default
+values for some of VEDIT's parameters.  Most parameters can be changed
+from within VEDIT, but if you find yourself always changing one, such
+as Tab Positions, you can use the customization to set new default
+values.
+.sp
+.bm +1
+     Keep in mind that you may want to settle on a satisfactory
+keyboard layout fairly soon so that you do not memorize one layout and
+later have to memorize a different one.
+.sp
+     If you are like many of our users, you will re-customize VEDIT several
+times in the first week until you have everything "just right".  You
+can  also create several configurations of VEDIT, each for a
+special application.  To help remind you of which configuration you are
+using, you can create a custom signon message for each, which will be
+displayed when VEDIT is invoked.
+.sp 3
+.ul
+FILES ON YOUR DISK `TC~~~~~~~~~~Files on your Disk`TC
+.sp 2
+.ce
+NOTE
+.in +10
+.rm -10
+In the following discussion, CP/M-86 users should substitute
+".CMD" for the file name extensions ".COM" and ".EXE".  CP/M users
+should substitute ".COM" for the extension ".EXE".
+.sp 2
+.in 0
+.rm +10
+     The pre-configured versions of VEDIT have a file name of
+"VEDITxxx.COM", where "xxx" are mnemonic letters, i.e. "VEDITPC.COM"
+for the IBM PC and "VEDITTI.COM" for the TI Professional.  Those
+versions of VEDIT which are not pre-configured have a file name of
+"VEDITxxx.SET", to remind you that they must be customized before use.
+`IC".SET" file`IC
+Depending upon your version, you may have several .SET
+files.  Refer to the appendices for the pertinent "Description of
+Files".
+.sp
+     The customization program has a file name of "INSTALL.EXE".
+`ICINSTALL.EXE file`IC
+`ICINSTALL.INI file`IC
+`ICINTMOD.EXE file`IC
+When running INSTALL you must also have the file "INSTALL.INI" on the same
+disk (and MS-DOS directory) as "INSTALL.EXE". With CRT versions you
+will also have the file "INTMOD.EXE".  The INTMOD program is only used
+if you need to add a new CRT terminal to the customization menu of
+supported terminals.  Since this program is rarely used, its operation
+is only described in the file "NEWCRT.DOC". `ICNEWCRT.DOC file`IC
+.sp
+     The customization allows you to either create a ready to run
+VEDIT from the ".SET" file. This process does not alter the .SET file,
+but rather creates a new file with the file extension of ".COM", which
+is the runnable VEDIT.  Alternatively, you can modify an existing
+running "VEDIT.COM" file.
+.sp
+     Following customization you can remove the files INSTALL.EXE,
+INSTALL.INI and INTMOD.EXE from your work disks.  They are not needed to run
+VEDIT, but only to customize it.
+.cp 10
+.ul
+CRT TERMINAL AND MEMORY MAPPED `TC~~~~~~~~~~CRT Terminal and Memory Mapped`TC
+`ICCRT terminal versions`IC
+`ICMemory mapped versions`IC
+.sp
+     There are two primary versions of VEDIT - CRT Terminal versions
+and Memory Mapped versions.  The CRT versions support practically
+every terminal on the market.  The particular terminal being used is
+selected from a large menu of terminals during customization.  The CRT
+versions are very "generic" and also support many personal computers,
+but do not update the screen as fast as memory mapped versions.
+.sp
+     The memory mapped versions are highly machine dependent, with a
+different version needed for each machine.  For example, one version only
+supports the IBM PC, another only the DEC Rainbow, another only the
+Tandy 2000.  The advantage of the memory mapped versions is that they
+can update the screen about ten times faster than a CRT version.  Your
+distribution disk should specify whether you have a memory mapped or CRT
+version.  When performing the customization, you will notice that some
+questions or parameters are only applicable to either memory mapped or CRT
+versions.
+.sp
+     A "generic" memory mapped version is also available to support
+most S-100 and Multibus display boards.  Their customization is a
+little more complex with questions pertaining to the screen's
+address, cursor types and others. The generic memory mapped version
+contains a file on disk which describes the patches necessary to
+implement `IXbank select`IX.
+.bp
+.ul
+.ce
+HOW TO PERFORM CUSTOMIZATION `TC~~~~~~~~~~How to Perform Customization`TC
+.sp 2
+.ul
+STEP 1 -  ENTER COMMAND SEQUENCE FROM OPERATING SYSTEM
+.br
+.in 5
+.sp 2
+     To customize VEDIT you need the program "INSTALL.EXE" and the
+appropriate pre-configured VEDIT ".COM" file or non-configured ".SET"
+file on your work disk.  You will also need the file "INSTALL.INI".
+.sp 2
+.ul
+Customizing a Non-Configured VEDIT `IX".SET" file`IX
+.sp
+     A non-configured VEDIT has a file name extension of ".SET". If
+your disk has more than one ".SET" file, refer to the appropriate
+"Description of Files" in the appendices for your version of VEDIT.
+To begin customization, first type INSTALL followed by one or two
+file names:  (Remember to end the line with the RETURN key)
+.sp
+.cp 3
+1.)~~~~~~~~INSTALL infile.SET
+.sp
+2.)~~~~~~~~INSTALL infile.SET outfile.COM
+.sp
+     In the first form, "infile.SET" is the actual ".SET" file you want
+to customize, i.e. "VEDITPC.SET", "VEDITZC.SET", etc.  The
+customization will create a new file with the file name "infile" and
+extension ".COM" which will contain the customized, ready to run VEDIT.
+.sp
+     The second form shows how you can specify separate input and
+output files for the customization.
+.sp
+     With either form, the ".SET" file is not modified or erased.
+Rather, a NEW file containing the customized VEDIT is created.
+.sp
+.cp 3
+EXAMPLES:~~~~~INSTALL VEDITPC.SET
+.sp
+~~~~~~~~~~~~~~INSTALL VEDITPC.SET VEDIT.COM
+.sp 2
+.ul
+Customizing a Pre-Configured VEDIT ".COM" file
+.sp
+     You can customize the pre-configured VEDIT we supplied or the
+VEDIT you are currently using.  This makes it easy to change one small
+aspect of the customization without having to re-customize everything
+again.  Any running VEDIT will have a file name extension of ".COM".
+To begin customization, first type INSTALL followed by one or two
+file names:
+.sp
+.cp 3
+1.)~~~~~~~~INSTALL infile.COM
+.sp
+2.)~~~~~~~~INSTALL infile.COM outfile.COM
+.sp
+     In the first form, "infile.COM" is the actual running VEDIT you
+want to customize, i.e. "VEDIT.COM", "JEFFS.COM", etc.  The
+customization will modify the VEDIT, without creating a new one.
+.sp
+     The second form shows how you can specify separate input and
+output files for the customization, i.e. create a new VEDIT from a
+previously configured one.
+.sp
+EXAMPLES:~~~~~INSTALL VEDIT.COM
+.sp
+~~~~~~~~~~~~~~INSTALL VEDIT.COM TESTV.COM
+.sp 2
+.in 0
+.cp 24
+.ul
+STEP 2 - LOOK OVER MAIN MENU TASKS
+.br
+.in 5
+.sp 3
+.ta 5 10 14
+.nf
+~~~~~~~~~~~~MAIN MENU TASKS
+.sp
+.nj
+.nf
+Keyboard Layout
+
+  1. Display or Print Keyboard Layout
+  2. Modify Keyboard Layout
+  3. Perform All New Keyboard Layout
+  4. Add Alternate Keys to Layout
+
+VEDIT Operational Settings
+
+  5. Change Edit Parameters (EP commands)
+  6. Change Edit Switch Settings (ES commands)
+  7. Change Visual Mode Interface
+  8. Change Command Mode Interface
+  9. Change File Handling Parameters
+
+Machine Related Settings
+
+ 10. Change Screen Display Parameters
+ 11. Additional Memory Mapped Installation Features
+ 12. Select CRT Terminal Type
+
+     Enter the Option number or "E" to exit:
+.ju
+.fi
+.sp 3
+     The customization is performed by selecting the desired task or
+tasks.  All tasks are largely self-prompting and on-line help is
+available in many tasks.  Use TASK 1 to display or print the current
+keyboard layout.  Feel free to explore TASKS 5 - 11. These tasks
+display the current values of the parameters.  When you select a
+parameter to be changed, the allowable range of values will be
+displayed.
+.sp
+     When you have completed all tasks type "E" to exit the INSTALL
+program.  You then have the choice of saving the changes, which will
+write a new VEDIT file to disk, or ignoring any changes you may have
+made. Typing a <CTRL-C> from the main menu aborts the customization.
+.sp 3
+.cp 5
+.in 0
+.ul
+STEP 2.1 - (CRT ONLY) TASK 12 - SELECT CRT TERMINAL TYPE
+.br
+.sp 2
+     INSTALL will display a menu of terminals which is two screens
+long; type a RETURN to see the second screen.  Following the prompt
+enter the number corresponding to the terminal you are using.
+.sp
+     In the rare case that your terminal does not appear on the menu,
+you have two choices.  If you are technically inclined you can add your
+terminal to the menu through the use of the supplied program "INTMOD".
+Its operation is described in the file "NEWCRT.DOC".
+Alternatively, contact us for support.
+.sp
+     Technically inclined users may wish to read the file
+"READCRT.DOC" for related information.  Hazeltine and Intertec terminal
+users should also read this file. `ICIntertec terminals`IC
+.sp 2
+.in +10
+.rm -10
+.ce
+.ul
+NOTE
+.sp
+If you select your CRT terminal type at the beginning of customization, the
+screen updates will occur faster.
+.sp 3
+.rm +10
+.in 0
+.cp 27
+.ul
+Quick Customization `TC~~~~~~~~~~Quick Customization`TC `ICQuick customization`IC
+.sp
+     If you have the generic CRT terminal version of VEDIT, the normal
+screen size of 24 by 80, and wish to bring VEDIT up quickly with the
+"Default Keyboard Layout", you need only to select your terminal from
+the CRT terminal menu and then exit INSTALL to complete the initial
+customization.  If you have a CRT terminal with a size other than 24 by
+80, you will need to also perform TASK (10) "Change Screen Display
+Parameters".  If you like, you can go ahead and do that now, and read
+the rest of this appendix later.
+.sp
+     The generic versions of VEDIT use the "Default Keyboard Layout"
+(Appendix D) until you change the keyboard layout using TASKS (2~-~4).
+This layout does not use any function keys and should work with any
+keyboard.  If you have function keys, or even just a numeric keypad, you
+will most likely want to create a new layout using them.
+.sp
+     The other parameters in the generic versions will have the initial
+values listed under "Default CRT Customization" in Appendix D.  These
+values, including the non-critical memory size parameters, will work
+well in most systems.
+.sp
+.of 7
+Note:~~If you have a Televideo, a Z19, an IBM 3101 or other CRT terminal for
+which we supply a special keyboard layout in appendix D, you must
+perform TASK (3) to give you the keyboard layout.  Just selecting the
+terminal will NOT give you the special layout.
+.sp 4
+.cp 5
+.rm 70
+.in 0
+.ul
+STEP 3 - TASKS 1 - 4:  PERFORM KEYBOARD LAYOUT `ICKeyboard layout`IC
+.sp 2
+     TASK~1 will display or print the current keyboard layout in a
+format similar to those we list in the appendices.  You will likely
+want to print the new layout after you have made any changes.
+.sp
+     TASK~2 is used to modify the keyboard layout.  It is most useful
+for changing a few key assignments.  It allows you to step
+forwards and backwards through the key assignments, leaving them at
+their current settings or changing them.
+.sp
+     TASK~3 is used to create an entirely new keyboard layout.  It will
+be easier to use TASK~3 instead of TASK~2 when the layout is being
+changed a lot.  Like TASK~2, you can step forwards and backwards
+through the assignments.  The difference is that with TASK~3 the
+assignments are first cleared out to "NOT USED".
+.sp
+     TASK~4  allows you to use `IXalternate control codes`IX for any of the
+editing functions.  For example, your keyboard may have cursor keys
+which you have customized as the four basic cursor movements in VEDIT.
+However, out of habit you are still using CTRL-S, CTRL-D, CTRL-E and
+CTRL-C to move the cursor.  You can select TASK~4 to enter the
+alternate control codes to use for any editing function.
+.sp
+     The key assignments in TASKS 2~-~4 are performed by typing
+`IXcontrol sequences`IX - "control characters", "escape sequences" or
+"function keys" in response to each edit function prompt.
+.sp 2
+.ta 17 22
+Control sequences used for VEDIT edit functions:
+.sp
+.cp 6
+.of 21
+CONTROL~CHARACTERS	A control character is entered by holding down
+the `IXCONTROL key`IX (abbreviated as "CTRL" key) and typing one of the
+alphabetic characters or @, [, \, ], ^ or _. `ICControl characters - typing`IC
+.sp
+.ti 21
+`ULNOTE:`UL~~<CONTROL-M> is not allowed.
+.sp
+`ICEscape sequences`IC
+.cp 8
+.of 21
+ESCAPE~SEQUENCES	An escape sequence is a two character sequence
+beginning with an escape "lead-in character", most commonly <ESC>,
+followed by any other character. TASKS (2) and (3) allow
+you to specify up to two escape lead-in characters.  The escape
+sequence is entered by typing the escape character, followed by the
+second character.  The default IBM PC keyboard layout does not use escape
+sequences.
+.sp
+.cp 13
+.of 21
+FUNCTION~KEYS		Many keyboards include `IXfunction keys`IX.  These
+keys actually produce either a control character or an escape sequence.
+In some cases the function keys produce an escape sequence which
+contains a "common second character".  This common character will be
+the same for most keys.  TASKS (2) and (3) allow you to specify up to
+two common characters. You will know what control character or escape
+key is produced by the function key, because the control character or
+escape sequence will appear on the screen when you type the function
+key. `ICCommon second character`IC
+.sp
+.cp 3
+.of 21
+Technical~Note:		Function keys which produce "High Bit" characters or
+"ANSI Standard" escape sequences can also be used. `ICANSI standard terminals`IC
+.sp 2
+.cp 5
+.in 0
+.ul
+TASK (2) AND TASK (3) - DEFINE ESCAPE SEQUENCES
+.sp 2
+     TASKS (2) starts with the following prompts to determine
+the types of escape sequences and/or function keys that will be used.
+.sp 2
+.cp 9
+ESCAPE LEAD-IN CHARACTER #1
+.sp
+.in +5
+If you choose to use `IXescape sequences`IX, or your keyboard's
+function keys produce escape sequences, type the escape lead-in
+character, most commonly <ESC>.  Or type RETURN, which will then also
+skip the remaining questions about escape sequences.  If your keyboard
+cannot produce the lead-in character, type a function key which begins
+with the lead-in character.  For the IBM PC, just type RETURN.
+.sp
+.cp 5
+.in -5
+ESCAPE LEAD-IN CHARACTER #2
+.sp
+.in +5
+A second escape lead-in character may also be specified, typically for
+other function keys.  If not needed, type RETURN. (Type <CTRL-A> for
+`IXTelevideo terminals`IX).
+.sp
+.cp 8
+.in -5
+COMMON SECOND (NOOP) CHARACTER #1 `ICCommon second character`IC
+.sp
+.in +5
+Simply answer with a RETURN if you are typing escape sequences
+in by hand.  (A RETURN will also skip the next question.)
+However, some terminal's function keys send 3 character escape
+sequences where the second character is always the same and should be
+ignored.  In this case type in the second character. (A "?" for the
+Zenith Z19) `ICZenith Z19, Z100 terminals`IC
+(A capital letter "O" for the DEC VT-100) `ICDEC VT-100 terminal`IC
+.sp
+.cp 6
+.in -5
+COMMON SECOND (NOOP) CHARACTER #2
+.sp
+.in +5
+Some terminals have a second character which should be ignored in the
+second character position.  Type the character, or if there is no such
+second character, type RETURN. (A "[" for the DEC VT-100)  (RETURN for
+Z19, Televideo, etc)
+.sp
+.in -5
+UPPER/LOWER CASE ESCAPE SEQUENCES EQUIVALENT (Y/N) ?
+`ICUpper and lower case`IC
+.sp
+.in +5
+If you answer NO, VEDIT will make a distinction between, for
+example, ESC H and ESC h.  This is inconvenient if you hand type
+escape sequences and you should answer with a "Y".  However,
+the function keys on terminals such as a Televideo send escape
+sequences which distinguish between upper and lower case. Here you
+would have to answer "N".
+.sp 2
+.cp 5
+.in 0
+.ul
+TASK (2), TASK (3) and TASK (4) - MAKE KEY ASSIGNMENTS
+.sp 2
+     The actual key assignments for all three tasks are similar in that
+each edit function is displayed followed by the current assignment. A
+new assignment is made by simply typing the control character, pressing
+the function key or entering the escape sequence. The new assignments
+are displayed immediately as you type them in.
+.sp
+.cp 5
+ENTER CONTROL SEQUENCES FOR THE FOLLOWING FUNCTIONS...
+.sp
+.in +5
+To help you "edit" these assignments you can skip forwards and
+backwards over the edit functions with four special keys.
+Additionally, "E" skips the remaining functions and returns to the main
+menu and "H" displays help information.  For example, to change a
+single assignment, press RETURN until you reach the desired function,
+make the new assignment, and type "E" to return to the main menu.
+.sp
+.ta 10 27
+.nj
+.nf
+	<RETURN>	Moves to the next function
+	-	Moves to the previous function
+	<SPACE~BAR>	Disables the function -
+		i.e. removes the assignment
+	B	Moves back to the first function
+.sp
+	D	Display or print current layout
+	E	Returns to the Main Menu
+	H	Displays help information
+.sp 2
+.ta 17 25
+.ju
+If you make a mistake, press "-" to move to any previous function.
+You can then press the correct control sequence or press the
+<SPACE~BAR> to disable the function.
+.sp
+You will notice with TASK (3) that all functions are initially
+disabled - the assignment is displayed as "NOT USED".
+.sp
+You will notice with TASK (4) that any control sequence you type
+is added to the existing assignments for that function.  Therefore, you
+must use the <SPACE~BAR> to first remove any unwanted assignments.
+.sp
+Disallowed characters are the normal displayable characters. Typing one
+of these will give an error and a re-prompt for the function. If you
+inadvertently attempt to use the same control sequence for a second
+edit function, an error and a re-prompt will be given:
+.sp
+~~~~~*** Control sequence already used ***
+.sp
+If you do not want to use a particular function, just set it to "NOT
+USED". Specifically, you will probably want to use either [SET INSERT
+MODE] and [RESET INSERT MODE] or [SWITCH INSERT MODE], but not all
+three functions. You might not want to use [RESTART], since the
+function is also available in command mode.  Otherwise choose
+something for [RESTART] which you are very unlikely to hit by mistake.
+Do not confuse [TAB CURSOR], which is a cursor movement function,
+with the tab character.
+.sp 2
+.in 0
+.br
+.of 8
+NOTES:~~DO NOT ATTEMPT TO USE <CTRL-M> FOR ANY FUNCTION, SINCE <CTRL-M>
+IS THE SAME AS THE RETURN KEY.
+.sp
+.br
+.in 8
+The "Left Arrow" on some terminals, especially Televideos, produces the
+same code as the BACKSPACE key.  Therefore, the [BACKSPACE] function
+needs to be assigned to another key. `ICTelevideo terminals`IC
+.sp
+.cp 3
+It is often convenient to use escape sequences consisting of <ESC> and a
+digit for some functions.  A strip of cardboard can then be placed
+above the digits on the keyboard to indicate their functions.
+.sp 4
+.cp 5
+.ta 5 10 15 20
+.in 0
+.ul
+STEP 4 - TASKS (5) - (10): CHANGE VEDIT OPERATIONAL SETTINGS
+.sp 2
+     Selecting any of these tasks will display the current values for the
+parameters in each task.  To change a parameter, enter the parameter's
+number and you will be prompted for the new value.   For some
+parameters, a sub-menu of choices will appear in order to better
+explain the allowable values.  Typing a RETURN will leave the current
+value unchanged.  The only exception are those parameters (switches)
+which have only two possible values; selecting the parameter's number
+will toggle its value. After any change the screen will re-display the
+current values.
+.br
+.in 0
+.sp 2
+.ul
+TASK 5: CHANGE EDIT PARAMETERS `ICParameters - setting`IC
+.sp
+     This task sets the default values for the "EP" command parameters.
+They can be changed while running VEDIT.  You may want to refer to the
+detailed "EP" command description for a better understanding of each
+parameter.  The range of valid values are shown in brackets, typical
+values in parenthesis.
+.sp 2
+.cp 5
+5.1) (Memory Mapped Only)
+.br
+~~~~~~`IXCURSOR TYPE`IX  [0, 1, 2, 3] (1)
+.sp
+.in +5
+This parameter determines the cursor type in memory mapped versions.
+The cursor types are 0=Blinking Underline, 1=Blinking Reverse Video
+Block, 2=Solid Reverse Video Block.  The IBM PC and the SSM VB-3
+additionally allow a cursor type of 3=Attribute.  Most users seem to
+prefer type "1", but you must use "0" if your display does not produce
+reverse video.
+.sp 2
+.cp 6
+.in -5
+5.2) (Memory Mapped Only)
+.br
+~~~~~~`IXCURSOR BLINK RATE`IX  [5 - 100] (30)
+.sp
+.in +5
+This determines the memory mapped cursor's blink rate. Start with the
+initial value supplied.  A smaller number causes the
+cursor to blink faster.
+.sp 2
+.cp 4
+.in -5
+5.3) `IXINDENT INCREMENT`IX [1 - 20] (4)
+.sp
+.in +5
+This determines the "Indent Increment".  A value of 4 is common
+when structured programming languages are being used.
+.sp 2
+.cp 5
+.in -5
+`ICLower to upper case conversion`IC
+5.4) UPPER/LOWER CASE CONVERSION
+.br
+          [0=NO, 1=YES, 2=CONDITIONAL, 3=REVERSE] (0)
+.sp
+.in +5
+This parameter controls a feature useful for editing assembly language
+programs.  With value "0", no conversion will occur. With value "1",
+all lower case keyboard characters will be converted to upper case.
+With value "2", all characters entered to the left of the "Conditional
+Convert Character" will be converted to upper case. A value of "3"
+is similar to "2", except that the case of letters is REVERSED to the
+left of the "Conditional Convert Character".  See "Lower to upper
+case conversion" in the Index.
+.sp 2
+.cp 5
+.in -5
+`ICConditional convert character`IC
+5.5) CONDITIONAL CONVERSION FLAG CHARACTER (;)
+.sp
+.in +5
+This is the "Conditional Convert Character" used when the previous
+parameter is set to "2" or "3". Note that the desired character is
+typed to change this parameter.
+.sp 2
+.cp 6
+.in -5
+5.6) `IXLINE AND COLUMN DISPLAY`IX
+.br
+          [0=NONE, 1=LINE, 2=COLUMN, 3=BOTH] (3)
+.br
+.in +5
+.sp
+This determines whether the Visual Mode status line will display the
+line number and column position the cursor is on.  It is usually
+useful to know both.
+.sp 2
+.cp 5
+.in -5
+5.7) RIGHT MARGIN FOR WORD WRAP [0 - 250] (0=OFF) `ICWord wrap column`IC
+.sp
+.in +5
+The Word Wrap column determines the maximum `IXright margin`IX for the text.
+A value of "0" turns Word Wrap off.  Words typed beyond the right margin
+will be wrapped to the next line.  The right margin is also used for
+the [FORMAT PARAGRAPH] function.  The right margin can be
+greater than the screen line length.  For word processing, you may wish
+to enter a value around "70".
+.sp 2
+.cp 5
+.in -5
+.of 5
+5.8) HIGH BIT (BIT 8) ALLOWED ON INPUT/OUTPUT [0 - 7] (1)
+.sp
+.in +5
+`ICAlternate character set`IC
+This is a technical topic - refer to "`IXBit 8 Characters`IX" in the Index.
+A value of "1" allows high bit (Bit 8) characters on keyboard
+input, but displays them in reverse video (when possible) after
+stripping their high bit.  This is suggested for most CRT terminals.  A
+value of "3" allows high bit characters on input and causes VEDIT to
+display them unmodified.  This allows accessing alternate character
+sets and graphics on the IBM PC, NEC APC and some other machines.  The
+value of "7" additionally allows control sequences, which are not
+used in the keyboard layout, to be inserted into the text.
+Note:~see the heading "High Bit Character Support" in the Visual Mode
+section for a description of all possible values.
+.br
+`ICinserting control characters`IC
+.sp 2
+.cp 5
+.in -5
+`ICCursor position`IC
+5.9) CURSOR POSITIONING OPTION [0 - 2] (1)
+.sp
+.in +5
+This determines how the cursor will position itself past the end of
+lines.  A value of "0" causes the cursor to only position itself at
+"real" characters, i.e. never past the end of a line.  A value of "1"
+allows the cursor past the end of a line during vertical cursor
+movement.  A value of "2" causes VEDIT to pad with spaces when you
+edit with the cursor past the end of a line.
+.sp 2
+.cp 6
+.in -5
+5.10) `IXHORIZONTAL SCROLL MARGIN`IX [40 - 254] (210)
+.sp
+.in +5
+This determines the maximum right margin with horizontal scrolling.
+Lines longer than this value are wrapped on the screen as "continuation
+lines".  Setting this value at or less than the screen line length
+disables horizontal scrolling.
+.sp 2
+.cp 5
+.in -5
+5.11) `IXHORIZONTAL SCROLL INCREMENT`IX [1 - 100] (20)
+.sp
+.in +5
+This determines how much the screen scrolls sideways when [SCROLL
+RIGHT] and [SCROLL LEFT] are pressed or when VEDIT scrolls the screen
+automatically.
+.sp 3
+.cp 6
+.in 0
+.ul
+TASK 6: CHANGE EDIT SWITCHES `ICParameters - setting`IC
+.sp
+     This task sets the default values for the "ES" command switches.
+They can be changed while running VEDIT.  You may want to refer to the
+detailed "ES" command description for a better understanding of each
+switch.
+.sp 2
+.cp 5
+6.1) `IXEXPAND TAB WITH SPACES`IX    (NO)
+.sp
+.in +5
+This switch determines whether the [TAB CHARACTER] key will be expanded
+with spaces. This is useful if another program interacting with your
+file does not interpret tab characters at the same tab positions.
+Since many spaces use up additional disk space, do not enable this
+switch unless you need to.
+.sp 2
+.cp 5
+.in -5
+6.2) `IXAUTO-BUFFERING`IX IN VISUAL MODE
+.br
+		[0=OFF, 1=FORWARD, 2=AND BACKWARD]  (1)
+.sp
+.in +5
+See "Auto-buffering" in the Index. You may select no auto-buffering
+"0", auto-buffering only in the forward direction "1", or
+auto-buffering in both the forward and backward direction "2". We
+recommend option "1" with floppy disk systems and "2" with hard disk
+systems.
+.sp 2
+.cp 4
+.in -5
+6.3)  BEGIN IN VISUAL MODE  (YES)
+.sp
+.in +5
+This determines whether VEDIT starts in Visual Mode or Command Mode.  We
+suggest you set this switch to "Yes".
+.sp 2
+.cp 6
+.in -5
+6.4)  POINT PAST TEXT REGISTER INSERT  (YES)
+.sp
+.in +5
+This determines whether the cursor (or Edit Pointer in Command Mode)
+will be positioned at the beginning or the end of text inserted from a
+text register. After some practice with the text registers you will
+know which way you prefer it. `ICInserting text register`IC
+.sp 2
+.cp 5
+.in -5
+6.5)  IGNORE UPPER/LOWER CASE DISTINCTION IN SEARCH  (YES)
+`ICUpper/lower case search`IC
+.sp
+.in +5
+This determines whether the difference between upper and lower case
+letters is ignored.  We suggest you set this to "Yes".  A search for
+"the" will then also find "The", "THE", etc.
+.sp 2
+.cp 5
+.in -5
+6.6)  `IXCLEAR SCREEN`IX ON VISUAL EXIT  (NO)
+.sp
+.in +5
+This determines whether the screen is cleared when Visual Mode is
+exited to Command Mode.  For most applications you will want to answer
+"No".
+.sp 2
+.cp 5
+.in -5
+`ICReverse upper / lower case`IC
+6.7) REVERSE ALL UPPER & LOWER CASE LETTERS  (NO)
+.sp
+.in +5
+This determines whether all letters typed on the keyboard will be
+reversed with regard to upper and lower case, i.e., upper case letters
+are converted to lower case and vice versa.  Only in very unusual
+situations would you want to set this switch on.  For the `IXTRS-80 Model I`IX,
+you should set this switch on, since the keyboard reverses upper and
+lower case.
+.sp 2
+.cp 6
+.in -5
+6.8)  `IXSUPPRESS (SEARCH) ERROR HANDLING`IX  (NO)
+.sp
+.in +5
+This determines whether the "suppress error handling" command modifier
+":" is set by default. This switch should normally be off.  Otherwise
+there will be no error message if a Find or Substitute command is
+unsuccessful.  This switch can be set with the ES command inside of
+command macros to ignore search errors.
+.sp 2
+.in -5
+6.9)  USE EXPLICIT TEXT DELIMITERS  (NO)
+.sp
+.in +5
+This determines whether the "explicit text delimiter" command modifier
+"@" is set by default. We suggest customizing this switch off initially,
+because most of our examples use this feature. It may be set with the
+ES command before you begin issuing other commands.
+.sp 2
+.in -5
+6.10) GLOBAL FILE OPERATIONS  (NO)
+.sp
+.in +5
+This determines whether the "global" command modifier "_" is set by
+default.  We suggest customizing this switch off.  Otherwise you may
+find VEDIT performing unnecessary disk buffering.
+.sp 2
+.in -5
+6.11) JUSTIFY PARAGRAPHS  (NO)
+.sp
+.in +5
+This determines whether paragraphs formatted with the [FORMAT
+PARAGRAPH] function or "YF" command will also be justified to have a
+straight right margin.  This is a matter of personal preference.  Note
+that the switch option "2" to unjustify paragraphs cannot be
+customized; it can only be set with the "ES" command.
+.sp 3
+.cp 5
+.in 0
+.ul
+TASK 7 - VISUAL MODE INTERFACE `ICVisual mode`IC
+.sp
+     This task adjusts those parameters which pertain primarily to the
+Visual Mode.  Only the Tab positions can be changed while running VEDIT.
+.sp 2
+.cp 5
+7.1)  CHANGE `IXTAB POSITIONS`IX
+.sp
+.in +5
+The default tab positions are normally set at every 8th position:
+9~17~25~41~49~57~65~73~81~89 etc. This is the most common tab
+setting; if you change the tabs, the change will apply to
+VEDIT only. Tab positions may be changed inside VEDIT by using the
+ET command.
+.sp
+Enter the desired tab positions, separating the numbers with spaces,
+commas or RETURNS.  Follow the last number with two RETURNs. Note that
+you need no tab at position 1 and that the positions are counted
+starting from 1, not 0.  See the "ET" command for additional
+information.
+.sp 2
+.cp 6
+.in -5
+7.2)  BEGIN IN INSERT MODE  (NO)
+.sp
+.in +5
+During full screen editing, the status line indicates whether you are
+either in "Normal" or "Insert" mode. `ICNormal mode`IC `ICInsert mode`IC
+This question lets you select which mode the editor begins in.
+This is a matter of personal preference.
+.sp 2
+.cp 5
+.in -5
+7.3)  REVERSE VIDEO ON STATUS LINE  (YES) `ICReverse video`IC
+.sp
+.in +5
+If your CRT or video display board produces reverse video, answer YES.
+If you have a CRT terminal which does not produce reverse video, answer
+NO.
+.sp 2
+.cp 5
+.in -5
+7.4)  SCREEN `IXCONTINUATION CHARACTER`IX (AD)
+.sp
+.in +5
+This is the line continuation indicator used in Visual Mode in
+reserved column 0. Most common is a hyphen (code 2D hex) or reverse video
+hyphen (code AD hex).
+.sp 3
+.cp 5
+.in -5
+.ul
+TASK 8 - CHANGE COMMAND MODE INTERFACE
+.sp
+     This task adjusts those parameters which pertain primarily to the
+Command Mode.  Note that the "Pattern Match Character" is also
+applicable to the [FIND] and [REPLACE] functions in Visual Mode.
+.sp 2
+.cp 5
+8.1)  CHANGE SIGN-ON MESSAGE `ICSign on message`IC
+.sp
+.in +5
+This message appears briefly when you invoke VEDIT.  It can be
+used to help you identify how the particular VEDIT was customized.
+The message may be up to 64 characters long.  An example message might
+be:
+.sp
+~~~~~Bill's Televideo 920C, Word Wrap = 70, Horiz Scroll = 210
+.sp 2
+.cp 6
+.in -5
+8.2)  PATTERN MATCH CHARACTER  (`IX|`IX)
+`ICPattern matching`IC
+.br
+.in +5
+.sc _
+.sp
+The lead-in character for all search pattern matching codes is shown in this
+manual as a "|".  If your keyboard does not have a "|", you will need
+to change it to some other little used character, perhaps "~".
+.sp 2
+.sc ~
+.cp 5
+.in -5
+8.3)  COMMAND ITERATION LEFT  BRACKET  ([)  -- See 8.4
+`ICIteration Brackets`IC
+.sp
+8.4)  COMMAND ITERATION RIGHT BRACKET  (])
+.sp
+.in +5
+The Command Iteration Brackets delimit iteration loops - groups of
+Command Mode commands. This manual represents these as "[" and "]".
+`IC[ and ]`IC
+You may prefer to use "<" and ">", especially if your
+keyboard does not have the other set. `IC< and >`IC  Use either set,
+but it is convenient if your keyboard produces one set without needing
+the SHIFT key.
+.sp
+.of 7
+`ULNOTE:`UL~~The characters "<" and ">" may not be used as the
+iteration brackets with VEDIT PLUS.  "{" and "}" may alternatively be
+used.
+.sp 2
+.cp 6
+.in -5
+8.5)  COMMAND ESCAPE CHARACTER (ESC) `ICCommand escape character (See <ESC> key)`IC
+.sp
+.in +5
+This is the Command Mode Escape character which should be the "ESC" or
+"ESCAPE" key if your keyboard has it. If your keyboard doesn't have an
+ESC key, choose another control character, perhaps CTRL-Z.
+.sp 2
+.cp 5
+.in -5
+8.6)  (CRT Only)
+.br
+~~~~~SPEED OF YOUR COMPUTER IN MHZ [1 - 20] (4) 'ICProcessor speed'IC
+.br
+.in +5
+.sp
+Enter the number closest to the "processor clock speed" of your
+computer.  Values of "2" and "4" are most common for Z80 processors,
+and "4" and "8" for 8086/8088 processors.  This value is not at all
+critical and fractional values can be rounded. This value is used for
+CRT's which require time delays after control sequences are sent to
+them.  It is also used in computing the delay for updating the status
+line.
+.sp 3
+.cp 5
+.in 0
+.ul
+TASK 9 - CHANGE FILE HANDLING PARAMETERS
+.sp
+     This task allows you to control VEDIT's auto-startup feature, drive
+searching for the three help files and two parameters pertaining to
+auto-buffering.
+.sp 2
+.cp 6
+9.1)  ENABLE `IXAUTO-STARTUP`IX (EXECUTE VEDIT.INI)  (YES)
+.sp
+.in +5
+If you always or occasionally use the auto-startup facility, answer
+with YES.  If you never use it answer with NO.  With a value of NO,
+VEDIT will not even search for the VEDIT.INI file; this speeds up the
+invoking process by a little.
+.sp 2
+`ICLogged-in drive`IC
+`ICFile searching`IC
+.cp 6
+.in -5
+9.2)  LOOK FOR HELP AND VEDIT.INI ON LOGGED-IN DRIVE
+.br
+~~~~~~~~~~[0=NO, 1=YES, 2=ALSO SEARCH CP/M USER 0] (2)
+.sp
+.in +5
+If you want VEDIT to search on the logged-in drive for the ".HLP" help
+files and the optional VEDIT.INI file, answer with a "1" for YES. This
+will search the current directory (or CP/M user number). If you want
+VEDIT to additionally search CP/M user number 0 on the logged-in
+drive, answer with a "2".  Normally you do not want VEDIT to search
+the logged-in drive since you should keep all of the VEDIT file on
+your system disk (hard disk).  The next parameter lets you specify
+which drive contains your system disk.
+.sp 2
+.cp 5
+.in -5
+9.3)  ALTERNATE DRIVE FOR HELP AND VEDIT.INI FILES
+.br
+~~~~~~~~~~[0=NONE, 1=A, 2=B, ...] (0)
+.sp
+.in +5
+In addition to the logged-in drive, VEDIT can search CP/M user number
+0 on any other designated drive for the ".HLP" help and VEDIT.INI
+files.  Drive A is "1", drive B is "2", etc.  Users who keep their
+system disk with VEDIT, the help files and the optional VEDIT.INI on
+drive A should, therefore, answer with "1".  `ULNote:`UL~~If this and
+the previous question are answered with "0", the On-line help cannot
+be accessed.
+.sp 2
+.cp 6
+.in -5
+9.4)  SIZE OF SPARE MEMORY AFTER AUTO-READ
+.sp
+.in +5
+See the table below for a recommended value depending upon your memory
+size.  The number must be in the range 1 - 32.  Note that this
+value in NOT critical.  For more information see the section "Memory
+Size Dependent Parameters" later in this appendix.
+.sp 2
+.cp 15
+.nf
+.nj
+.ul
+MEMORY SIZE     SPARE MEMORY         FILE PAGE
+   32K               4K                   6K
+   48K               6K                  10K
+>= 64K               8K                  12K
+.sp 2
+.ju
+.of 4
+---~Do not make the Spare Memory for Auto Read more than two times
+larger than the value given in the table or it may cause inefficient
+operation. This value represents the number of bytes free in the text
+buffer AFTER a file larger than available memory space is read. For
+example, in a 64K system the available memory is about 44K. If the
+table value of 8K was chosen and a very large file edited, VEDIT would
+initially read in the first 36K of the file, leaving 8 Kbytes free.
+This extra space is available for insertion of new text. Use the "U"
+command to verify actual free space. `ICFree memory`IC
+.sp 2
+.cp 5
+.in -5
+9.5)  SIZE OF FILE BUFFERING "PAGE"
+.sp
+.in +5
+`ICFile page`IC
+Choose the value from the third column of the table in 9.4, which corresponds to
+your memory size. This parameter specifies the approximate amount of
+text which is written to disk or read from disk for each
+"auto-buffering" operation.  The number entered must be in the range
+1~-~32.
+.sp 3
+.cp 8
+.in 0
+.ul
+STEP 4 - TASKS (10) - (12): CHANGE MACHINE RELATED SETTINGS
+.sp 2
+     These tasks adapt VEDIT to a particular personal computer, CRT terminal
+or video display board.  These settings generally will not change after
+the initial customization.  Only one of TASK (11) or TASK (12) will
+apply to your machine.  The other will give you an error message.  Note that
+TASK 12 was described earlier (under STEP 2.5), since it is helpful to perform
+this task first.
+.sp 2
+.cp 5
+.ul
+TASK 10 - CHANGE SCREEN SIZE DEPENDENT PARAMETERS `ICScreen size parameters`IC
+.sp 2
+.cp 5
+10.1) NUMBER OF SCREEN LINES  (24 or 25)
+.sp
+.in +6
+Enter the number of lines on your screen.  The IBM Personal Computer
+has 25 lines. While most terminals have 24 lines, some have a
+25th "`IXStatus Line`IX".  On some of these, it is possible for VEDIT
+to place its status line on the 25th line. These terminals are marked
+with a "*" following the terminal's name in the menu.  To use the 25th
+line, answer this question with a "25".  Note that the Intertec
+Intertube II must be specified as having 25 lines.  Answer with "24"
+for the Televideo 950C, since VEDIT cannot use its status line.
+`ICTelevideo terminals`IC
+.sp 2
+.cp 6
+.in -6
+10.2) LENGTH OF DISPLAYED LINE (80)
+.sp
+.in +6
+`ICScreen line length`IC
+This is the number of characters per line VEDIT will display.  Normally
+you want this value equal to the screen line length, usually 80.
+The `IXTRS-80 Models II and 16`IX, and the `IXIBM Personal Computer`IX
+require a value of 80.
+.sp 2
+.cp 6
+.in -6
+10.3) LINE MOVEMENT FOR PAGING  (20) `ICPage movement`IC
+.sp
+.in +6
+Enter the number of screen lines you wish `IX[PAGE UP]`IX and `IX[PAGE DOWN]`IX
+to move through the text by. About 4/5 of the total number of
+screen lines is suggested, i.e., "12" for a 16 line display and "20"
+for a 24 line display.
+.sp 2
+.cp 4
+.in -6
+10.4) TOP LINE FOR CURSOR  (3)
+.sp
+.in +6
+This sets the top screen line the cursor can normally be on,
+before the screen will begin to scroll down.
+.sp 2
+.cp 5
+.in -6
+10.5) BOTTOM LINE FOR CURSOR  (20)
+.sp
+.in +6
+This is similar to the previous question, except that it sets the
+bottom line range for the cursor. This number must be greater
+than or equal to the "Top Line for Cursor" setting, and at
+most be one less than the "Number of Screen Lines", since the
+very bottom line is only used for status. "4" less than the
+number of screen lines is a good starting point.
+.sp 3
+.cp 5
+.in 0
+.ul
+TASK 11 - ADDITIONAL MEMORY MAPPED INSTALLATION FEATURES
+.sp 2
+.cp 6
+`ICCursor character`IC
+11.1)~HEX CODE FOR CURSOR CHARACTER  (5FH)
+.sp
+.in +6
+This is the character used as the blinking "underline" cursor.  While
+normally the underline character (code 5F hex), some users may wish to
+try a hex code of "7F" which is commonly a solid block.
+.sp 2
+.in -6
+.cp 5
+11.2)~HEX CODE FOR STATUS LINE CHARACTER  (2DH) `ICStatus line`IC
+.br
+11.3)~HEX CODE FOR TAB DISPLAY CHARACTER  (20H) `ICTab display character`IC
+.br
+11.4)~HEX CODE FOR SCREEN CLEAR CHARACTER  (20H) `ICClear screen`IC
+.sp
+.in +6
+VEDIT normally clears the screen with spaces (code 20 hex), uses a '-'
+(code 2D hex) on the status line and displays tab characters with
+spaces.  These may be changed for special applications, or if your
+display requires other characters.  For example, the Polymorphic VTI
+requires that Bit 8 be set for normal characters.  Therefore, the
+character codes would be "A0", "AD" and "A0" respectively.
+.sp 2
+.cp 4
+.in -6
+`ICIBM Personal Computer`IC
+11.5) (IBM PC ONLY) SCREEN ATTRIBUTE FOR NORMAL VIDEO  (07H)
+.sp
+.in +6
+This sets the attribute used to create normal characters on the IBM PC and
+other computer displays.
+.sp 2
+.cp 5
+.in -6
+11.6) (IBM PC ONLY) SCREEN ATTRIBUTE FOR REVERSE VIDEO  (70H)
+.sp
+.in +6
+This sets the attribute used to create reverse video on the IBM PC and
+other computer displays which alternate characters and attributes.
+.sp 2
+.cp 4
+.in -6
+11.7) (IBM PC ONLY) SCREEN ATTRIBUTE FOR CURSOR  (F0H)
+.sp
+.in +6
+This sets the attribute used to to create the "attribute" cursor
+(Cursor Type = 3) on the IBM PC and other computer displays.  Note
+that the attribute cursor does not blink when it is sitting between
+words.
+.sp 2
+.cp 5
+.in -6
+11.8) SCREEN LINE LENGTH   (80)
+.sp
+.in +6
+This is the number of bytes (words) per screen line in a memory mapped
+display.  This number must be in the range 20~-~255.  It will be 64 or
+80 for most Memory Mapped Displays. However, it will be greater for
+displays which have invisible attribute bytes at the end of each line.
+The MATROX display board is an example, and requires a value of
+128.  The IBM PC requires a value of 80.
+.sp 2
+.cp 5
+.in -6
+11.9) (GENERIC ONLY)  ADDRESS OF SCREEN `ICScreen address`IC
+.sp
+.in +6
+For 8080/Z80 generic versions this is the memory address of the
+beginning of the video memory. Many 16 x 64 boards have an
+address of CC00 hex. The TRS-80 Model II has an address of F800 hex.
+For 8086 generic versions this is the segment address for the beginning
+of video memory.
+.sp 2
+.cp 5
+.in -6
+11.10) (GENERIC ONLY)
+.br
+~~~~~~~NUMBER OF VIDEO BOARD INITIALIZATION BYTES `ICVideo board initialization`IC
+.sp
+.in +6
+Enter "0" if your board requires no initialization.  Otherwise enter a
+number between "1" and "5" for the number of "data byte"-"port address"
+pairs needed for initialization.  Most memory mapped systems need no
+initialization (including TRS-80 Models I, II and 16).
+.sp
+.br
+.in +5
+ENTER DATA BYTE
+.br
+ENTER PORT ADDRESS
+.sp
+.in  -5
+The specified number of "data byte"-"port address" pairs is entered in
+hexadecimal with each number followed by RETURN.
+.br
+.in 0
+.sp 4
+.cp 5
+.ul
+STEP 5 - CUSTOMIZATION COMPLETE; RETURN TO OPERATING SYSTEM
+.sp 2
+     Type "E" at the main menu.  This saves the newly customized VEDIT
+on disk.  At this point the new VEDIT is ready for use.
+.br
+.in 0
+.bp
+.ce
+.ul
+Customization Notes`TC~~~~~~~~~~Customization Notes`TC
+.sp
+      This section describes some aspects of the customization in more
+detail. You do not need to read this section in order to get VEDIT up and
+running.  However, once you are more familiar with VEDIT, you will
+probably want to gain a better understanding of the customization in
+order to create a more "personalized" version of VEDIT.
+.sp 2
+.ul
+Keyboard Layout`TC~~~~~~~~~~Keyboard Layout`TC `ICKeyboard layout`IC
+.sp
+     The ability to determine one's own keyboard layout for the
+Visual Mode editing functions is a very popular feature of VEDIT.
+Since designing a useful layout can be difficult, several example
+keyboard layouts are enclosed to help the new user.  The best layout
+will depend largely upon your keyboard, especially if you have one
+with cursor and other function keys. The more extra keys you have, the
+easier it becomes to design and remember the layout.
+.sp
+     The editing functions in Visual Mode are performed by typing
+control characters, escape sequences, and if your keyboard has them,
+function keys. One organizational strategy to use in designing a keyboard
+layout uses mnemonic letters, such as CTRL-D for [DELETE] and
+CTRL-U for [UNDO]. Another strategy is to arrange the keys in
+some geometric manner, such as having the cursor movement keys on one
+side of the keyboard and the visual function keys on the other side.
+You can also simplify the layout by using escape sequences, especially
+for functions you do not use often, or do not want to press by mistake.
+You will want to avoid placing the keys you least want to hit by
+mistake, such as [ERASE LINE] or [HOME], right next to the cursor
+movement keys.
+.sp
+     VEDIT supports a wide range of keyboard generated `IXescape sequences`IX.
+They may be user typed, or may result from pressing `IXfunction keys`IX
+on your keyboard. All escape sequences begin with one of two
+user defined escape lead-in characters. While the <ESC> key is almost
+universally used as the escape lead-in character, any other ASCII
+character may be used, even displayable ones like "@". Some terminals,
+like the IBM 3101, `ICIBM 3101 terminal`IC
+also send a Carriage Return at the end of escape
+sequences.  The keyboard customization detects this automatically and
+you need not be concerned with it.  VEDIT also supports the newest
+type of "ANSI" escape sequences.
+.sp
+     The function keys on some personal computers generate special
+characters with the "high" or 8th bit set.  Since INSTALL and VEDIT
+process all 8 bits of keyboard characters, such function keys are also
+fully supported.  The function keys on the IBM PC, running under
+PCDOS, produce escape sequences with a "Null" as the escape lead-in
+character.  However, under CP/M-86, VEDIT decodes the function keys as
+"high" bit characters.  The difference is not noticeable to the user.
+.sp
+`ICUpper and lower case`IC
+.br
+     When performing the keyboard customization, INSTALL asks the
+question: "Upper/Lower Case Escape Sequences Equivalent?"  If you
+answer NO to this question, VEDIT will make a distinction between, for
+example, "ESC-H" and "ESC-h". Therefore, if you entered the escape
+sequence with a lower case "h" during customization, VEDIT would not
+respond to the escape sequence with an upper case "H".  This is
+annoying if you hand type most of the escape sequences, since at times
+you may have the SHIFT or a CAPS-LOCK depressed.  In this case you
+would want to answer the question with a YES.  However, the function
+keys on some terminals, such as a Televideo, send escape sequences
+which distinguish between upper and lower case letters.  In this case
+you will want to answer the question with NO.
+.sp
+     When laying out the keyboard, you may use any combination of
+control characters, special function keys and escape sequences for the
+editing functions.  Usually, function keys and control characters are
+assigned to the most used visual functions, and escape sequences for
+the less used functions. Many keyboards have a `IXnumeric keypad`IX and
+these numbers can be used in escape sequences.  For example, use
+ESC~-~8 for [CURSOR UP], ESC~-~2 for [CURSOR DOWN], ESC~-~4 for
+[CURSOR LEFT] and so on.  In this case you may wish to attach
+descriptive labels to the tops of the numeric keys.  Alternatively,
+you can use the digits on the top row of any keyboard in escape
+sequences and attach a strip of cardboard describing their assigned
+editing functions. An escape sequence with a control character as the
+second character is a good choice for functions you do not want to
+press
+by mistake, like [HOME], [ZEND] or [RESTART]. You may use an escape
+sequence consisting of two escape characters in a row.  In fact, if
+ESC is the escape character, then "ESC~-~ESC" is the suggested
+sequence for the function [VISUAL ESCAPE]. In the unusual case that a
+displayable character like "@" is used as the escape character, a
+"@~-~@" cannot be used for an editing function, since in this case,
+"@~-~@" will be treated by VEDIT as the normal "@" character.
+.sp
+      While all of this is complicated enough already, there are a few
+pitfalls to avoid too.  (You are well advised to use one of the
+example keyboard layouts at first.) The only key which is predefined
+is the RETURN or CR key which is also CTRL-M and cannot be used for
+any visual operation.  The special function keys on some keyboards
+send a code identical to a control character.  You might, therefore,
+unintentionally attempt to use the same control code for two editing
+functions.  In this case, INSTALL will give an error message and
+request a new key for that function.
+.sp 2
+.cp 6
+.ul
+Screen Size Parameters`TC~~~~~~~~~~Screen Size Parameters`TC `ICScreen size parameters`IC
+.sp
+     VEDIT can be customized for any screen size up to 70 lines by 250
+columns.  To set these parameters you need to know the number of lines
+and the number of characters per line that your CRT terminal or video
+display board produces. 24 by 80 and 25 by 80 are the most common
+values. You also have the choice of how many columns on a line are
+actually used.  Use all of them, unless you have a special
+application or unusual hardware.
+.sp
+     For the generic `IX memory mapped versions`IX, you also need to know the
+beginning address of the display board in memory in hexadecimal and
+whether it requires any data bytes output to a port to initialize it.
+.sp 2
+.cp 6
+.ul
+Memory Size Dependent Parameters `TC~~~~~~~~~~Memory Size Dependent Parameters`TC
+.sp
+`ICSpare memory after auto-read`IC
+.br
+     The first parameter "Spare Memory after Auto-Read" determines
+how many bytes of memory are free after VEDIT does an `IXauto-read`IX
+(such as following an EB command). This size must be specified
+in Kbytes between 1 and 32.  The table shown in Task 9.4
+lists suggested
+values for different memory sizes.
+.sp
+     Selecting a value which is much larger than shown in the table
+may lead to slow operation. This value is NOT the amount of
+memory VEDIT will use for the edit buffer, since VEDIT always sizes
+memory and uses all that is available. Rather, this value is the
+amount of memory that is free after a file is read which is larger
+than the available memory space. For example, in a 64K system the
+available memory is about 44K.  If the table value of "8K" is used,
+and a very large file edited, VEDIT will initially read in only the
+first 36K of the file, leaving 8 Kbytes free. This can be verified
+with the "U" command.
+.sp
+     The second parameter "File Page Size" `ICFile page`IC determines
+the approximate amount of text (in Kbytes) which is involved in each
+auto-buffering operation. A value of about 1/3 the maximum size of the
+edit buffer is recommended. When VEDIT auto-buffers, it attempts to
+append one "Page" of new text from the input file to the edit buffer.
+If there is insufficient memory space for appending this much text,
+one "Page" of text is first written from the beginning of the edit
+buffer to the output file.  VEDIT then performs an auto-read, appending
+the rest of the input file, or until the memory is filled to within
+the number of free bytes specified by "Spare Memory after Auto-Read".
+.br
+
