@@ -392,11 +392,11 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 
 ### Older Binaries
 
-* The [`oldbin`](oldbin) directory contains several older binaries of
-  versions of VEDIT ⧸ VEDIT‑PLUS released between 1981 and 1985.
-  These distributions may be incomplete, but useful for
-  "archaeological" purposes, or testing on extraordinarily obscure or
-  extremely memory constrained platforms.
+* The [`oldbin`](oldbin) directory contains several older binary
+  versions of VEDIT ⧸ VEDIT‑PLUS.  These distributions may be
+  incomplete, but useful for "archaeological" purposes, or testing
+  on extraordinarily obscure or extremely memory constrained
+  platforms.
 
 ## Future
 
