@@ -141,13 +141,13 @@ the output sent to the list device.*
 The HEX output produced by these assemblers can be directly converted
 to an executable COM file using the `HEXCOM` utility.
 
-For Z80 variants, the final executable can be reduced in size by
-about 25% while remaining directly executable using the  `POPCOM`
-compressor.
+For Z80 variants, the final (configured) executable can be reduced
+in size by about 25% while remaining directly executable using the
+`POPCOM` compressor.
 
 * Working versions of these tools are included in the [`dev`](dev)
   directory of this repository for convenience — they are *not* an
-  official part of the VEDIT ⧸ VEDIT‑PLUS source distribution.
+  official part of any VEDIT ⧸ VEDIT‑PLUS source distribution.
 
 ### Cross-development
 
@@ -388,15 +388,15 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 ### Older Source Code
 
 * The [`oldsrc`](oldsrc) directory contains source code for older
-  versions of VEDIT.
+  versions of VEDIT ⧸ VEDIT‑PLUS.
 
 ### Older Binaries
 
 * The [`oldbin`](oldbin) directory contains several older binaries of
-  versions of VEDIT released between 1981 and 1985.  These
-  distributions may be incomplete, but useful for "archaeological"
-  purposes, or testing on extraordinarily obscure or extremely memory
-  constrained platforms.
+  versions of VEDIT ⧸ VEDIT‑PLUS released between 1981 and 1985.
+  These distributions may be incomplete, but useful for
+  "archaeological" purposes, or testing on extraordinarily obscure or
+  extremely memory constrained platforms.
 
 ## Future
 
@@ -425,7 +425,7 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * Add other CompuView products V-PRINT, V-SPELL, V-COM, etc. (sources
   or binaries) to the repository.
 
-* Find and archive other ancient VEDIT distributions.
+* Find and archive other ancient VEDIT ⧸ VEDIT‑PLUS distributions.
 
 Can you help with any of the above?  If you can, please open an
 [issue](https://github.com/johnsonjh/VEDIT/issues) and let us know.
@@ -449,7 +449,7 @@ VEDIT Manual (*1987*):
 
 ### Manual Source Code
 
-* [VEDIT Manual (1.40, *1985*) Source Code](docsrc/1.40)
+* [VEDIT Manual (*1.40*, *1985*) Source Code](docsrc/1.40)
 
 ### Older Manuals
 
