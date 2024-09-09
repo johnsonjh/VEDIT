@@ -116,9 +116,11 @@ not yet been tested.
 
 VEDIT ⧸ VEDIT‑PLUS is built using either the
 *Technical Design Labs, Inc.* Z80 Relocating/Linking Disk Assembler
-([*TDL ZASM*](doc/TDL_ZASM.pdf)) version 2.21 (1978), or the
+([*TDL ZASM*](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/TDL_ZASM.pdf))
+version 2.21 (1978), or the
 *Phoenix Software Associates Ltd.* Macro Assembler
-([*PSA PASM*](doc/PSA_PASM.pdf)) version 1.0 (1980).
+([*PSA PASM*](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/PSA_PASM.pdf))
+version 1.0 (1980).
 
 The VEDIT ⧸ VEDIT‑PLUS sources are closely integrated with the TDL
 ZASM ⧸ PSA PASM conditional build system, and rely heavily on the
