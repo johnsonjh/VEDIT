@@ -137,7 +137,7 @@ or specify the appropriate options to generate a `PRN` file on disk.
 between non-fatal warnings and fatal errors in the build summary.
 Some (non-fatal) errors currently occur and are not of major concern.
 Determining the actual error severity requires carefully examining
-the output sent to the list device.*
+the output of the assembler.*
 
 The HEX output produced by these assemblers can be directly converted
 to an executable COM file using the `HEXCOM` utility.
