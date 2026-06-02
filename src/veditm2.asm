@@ -25,6 +25,9 @@
 	BPROC	VSTART
 VSTART:
 ;
+	IF	DOSVID, [	;IBM-PC direct video: set screen segment, no CRLF scroll
+	VESSEG			;ES = 0B800H IBM-PC text segment
+	] [
 	IF	IBMPC & CCPM86, [
 	CALL	MPMCHK		;;Is this CCP/M-86?
 	JRZ	#2		;;No, branch
@@ -35,6 +38,7 @@ VSTART:
 ..1:	CALL	CRLF		;(Saves A)
 	DCR	A
 	JRNZ	..1
+	]
 	]
 	]
 ;
@@ -97,10 +101,17 @@ UPDONE:	CALL	CHKCUR		;Update cursor pos
 	LHLD	SCRPNT		;Get current cursor pos
 
 	IFNOT	P8086, [
+	IF	DOSVID, [	;IBM-PC: 2-byte cell read/write
+	VSGETC
+	STA	UPDSVC		;Save it
+	XRI	80H		;Switch top bit
+	VSPUTK			;Put secondary cursor on screen (cursor attribute)
+	] [
 	MOV	A,M		;Get character at cursor pos
 	STA	UPDSVC		;Save it
 	XRI	80H		;Switch top bit
 	MOV	M,A		;Put secondary cursor on screen
+	]
 	] [
 	CALL	XSREAD		;Get char/attribute at cursor pos
 ;6	MOV	UPDSVC,AX	;Save it
@@ -119,7 +130,11 @@ UPDRTC: TSTW	UPDCUR		;Is old cursor on screen?
 
 	IFNOT	P8086, [
 	LDA	UPDSVC		;A = character there
+	IF	DOSVID, [	;IBM-PC: 2-byte cell write
+	VSPUTC			;Restore char on screen
+	] [
 	MOV	M,A		;Restore char on screen
+	]
 	] [
 ;6	MOV	AX,UPDSVC	;AL = char, AH = its attribute
 	LXI	B,1		;Only injecting 1 char
@@ -224,7 +239,11 @@ WIEOL2:	LDA	WWENCO		;Get last physical column for window
 	JRZ	..2		;;No, branch
 	ORI	80H		;;Yes, get reverse bit
 ..2:	LHLD	SCRPNT		;HL-> first pos. to clear
+	IF	DOSVID, [	;IBM-PC: fill 2-byte cells (char+attribute)
+	JMP	SCRFIL
+	] [
 	JMP	FILL		;Fill with spaces
+	]
 	] [
 	LHLD	SCRPNT		;HL-> first pos. to clear
 ;6	MOV	AH,WWBKAT	;AH = erase-attribute
@@ -268,15 +287,14 @@ WISFWD:	CALL	SCRIN		;
 	LD16	B,WWLLEN	;BC = window line length
 	MVI	B,00		;Only 8 bit count
 
-;6	IF	VWRD
-;6	ADD	CX,CX		;IBM PC -- Mult. by 2
-;6	ENDIF
-;6
-;6	PUSH	DS
-;6	PUSH	ES
-;6	POP	DS
+	IF	DOSVID, [	;IBM-PC: 2 bytes/cell, screen-to-screen copy
+	VBCX2			;double the byte count
+	VDSSCR			;DS = screen segment for RTLDIR
+	CALL	RTLDIR
+	VDSRST			;restore DS
+	] [
 	CALL	RTLDIR		;Make the window line copy
-;6	POP	DS
+	]
 	POPA			;A = original line #
 	INR	A		;Next line
 	JMPR	..2		;Loop
@@ -317,15 +335,14 @@ WISLBK:	LDA	WWNLIN
 	LD16	B,WWLLEN	;BC = window line length
 	MVI	B,00		;Only 8 bit count
 
-;6	IF	VWRD
-;6	ADD	CX,CX		;IBM PC -- Mult. by 2
-;6	ENDIF
-;6
-;6	PUSH	DS
-;6	PUSH	ES
-;6	POP	DS
+	IF	DOSVID, [	;IBM-PC: 2 bytes/cell, screen-to-screen copy
+	VBCX2			;double the byte count
+	VDSSCR			;DS = screen segment for RTLDIR
+	CALL	RTLDIR
+	VDSRST			;restore DS
+	] [
 	CALL	RTLDIR		;Make the window line copy
-;6	POP	DS
+	]
 	POPA			;A = original line #
 	DCR	A		;Previous line
 	JMPR	..1		;Loop
@@ -363,10 +380,10 @@ PICSET:	PUSH	B		;Save character in C
 	MOV	A,B		;Get column pos
 	CALL	ADDAHL		;Add column pos
 
-;6	IF	VWRD, [
-;6	MOV	A,B
-;6	CALL	ADDAHL
-;6	]
+	IF	DOSVID, [	;IBM-PC: 2 bytes/cell -> add column twice
+	MOV	A,B
+	CALL	ADDAHL
+	]
 
 	SHLD	SCRPNT		;Save as screen pointer
 	POP	B		;Restore char. in C

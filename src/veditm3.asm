@@ -37,8 +37,14 @@ OUTCHR:	TST$	BANKFL		;Is screen selected in?
 	JRZ	..2		;No, branch
 	ORI	80H		;Yes display char in reverse video
 ..2:	LHLD	SCRPNT		;HL-> where on screen to write
+	IF	DOSVID, [	;IBM-PC: write char+attribute cell, advance 2 bytes
+	VSPUTC			;ES:[BX] = char (AL) + attribute (from bit 7)
+	INX$	H
+	INX$	H
+	] [
 	MOV	M,A		;Put character on screen
 	INX$	H		;Bump screen pointer
+	]
 	SHLD	SCRPNT		;Save screen pointer
 	INCM	PHYHOR		;Physical write pos. moves right
 	RET
@@ -65,7 +71,11 @@ CURSON:	LDA	CURTYP		;Get the cursor flag. (Bit 7 if cursor On)
 	PUSH	PSW		;No, save the cursor type
 	CALL	SCRIN		;Bank select the screen in
 	LHLD	SCRPNT		;Get current cursor pos
+	IF	DOSVID, [	;IBM-PC: read char byte from 2-byte cell
+	VSGETC
+	] [
 	MOV	A,M		;Get character at cursor pos
+	]
 	STA	HOLD		;Save it
 	POP	PSW		;Get the cursor type
 	JNZ	..1		;Branch if not underline
@@ -76,7 +86,11 @@ CURSON:	LDA	CURTYP		;Get the cursor flag. (Bit 7 if cursor On)
 	STA	CURTYP		;Save cursor flag
 	CPI	83H		;Is cursor hardware attribute type?
 	JZ	CURSO3		;Yes, branch
+	IF	DOSVID, [	;IBM-PC: read char byte from 2-byte cell
+	VSGETC
+	] [
 	MOV	A,M		;No, get the screen char. again
+	]
 	ORI	80H		;Make into reverse video
 	JMP	CURSO5		;Put cursor on screen
 ;
@@ -89,7 +103,12 @@ CURSO4:	LXI	B,1000H		;Offset to the hardware attributes
 ;	DAD	B		;HL-> attribute byte for char on screen
 	NOP			;Space for above DAD B
 				;{CURSON,CUROFF}
-CURSO5:	MOV	M,A		;Put on screen, (or change attribute)
+CURSO5:
+	IF	DOSVID, [	;IBM-PC: write cursor cell (CURATR / reverse of ATTRIB)
+	VSPUTK
+	] [
+	MOV	M,A		;Put on screen, (or change attribute)
+	]
 	JMP	SCROUT		;Bank select the screen out
 ;
 ; CUROFF - Restore character under the cursor or turn cursor off.
@@ -247,8 +266,10 @@ VERSC1:	PUSH	D
 	MVI	D,0		;Put multiplier in DE
 	LHLD	MMLLEN		;HL = length of screen line
 	CALL	MULTIP		;HL = offset
+	IFNOT	DOSVID, [	;non-IBM: add flat screen base (IBM: ES holds it, offset 0)
 	LDED	SCRBAS		;+DE = base address of screen
 	DAD	D		;HL = address for desired line
+	]
 	POP	D
 	RET
 ;;
@@ -257,4 +278,25 @@ VERSC1:	PUSH	D
 				;;{WDGET}
 KDISPY:	MVI	A,1
 	RET
+;
+	IF	DOSVID, [
+;
+; SCRFIL - IBM-PC direct-video fill: write BC cells of (char,attribute)
+;	   starting at screen offset HL.  A = fill char (bit 7 = reverse).
+;	   Mirrors FILL() but for 2-byte cells; preserves DE.
+;
+SCRFIL:	PUSH	D
+	MOV	D,A		;Save fill char
+SCRFI1:	MOV	A,B		;Count zero?
+	ORA	C
+	JRZ	SCRFI2
+	MOV	A,D		;Recover fill char
+	VSPUTE			;ES:[BX] = char + WWBKAT (screen-erase attribute)
+	INX$	H		;Advance one cell (2 bytes)
+	INX$	H
+	DCX	B
+	JMPR	SCRFI1
+SCRFI2:	POP	D
+	RET
+	]
 

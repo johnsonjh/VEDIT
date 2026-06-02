@@ -1351,6 +1351,15 @@ SBRDAT:	DB	0		;Attribute for window border
 SBMSAT:	DB	1		;Attribute for WINDOW message
 CURATR:	DB	00		;;Attribute for MM cursor
 	] [
+	IF	DOSVID, [	;IBM-PC direct video: default visible attributes
+SFORAT:	DB	07H		;text characters: white on black
+SBCKAT:	DB	07H		;screen-erase background
+SSTAAT:	DB	70H		;status line (reverse)
+SSMSAT:	DB	70H		;status line messages
+SBRDAT:	DB	07H		;window border
+SBMSAT:	DB	70H		;window border message
+CURATR:	DB	00H		;cursor (0 = auto)
+	] [
 SFORAT:	DB	0		;Foreground attribute for normal characters
 SBCKAT:	DB	0		;Background attribute for empty screen
 SSTAAT:	DB	1		;Attribute for status line
@@ -1358,6 +1367,7 @@ SSMSAT:	DB	1		;Attribute for status line messages
 SBRDAT:	DB	0		;Attribute for window border
 SBMSAT:	DB	1		;Attribute for WINDOW message
 CURATR:	DB	00		;;Attribute for MM cursor
+	]
 	]
 	] [
 	IF	IBMPC, [
@@ -1410,8 +1420,13 @@ CURATR:	DB	00		;;Attribute for cursor
 	]
 ;
 	IF	MEMVRS, [
+	IF	DOSVID, [	;IBM-PC direct video: 2-byte cells, ES-relative
+MMLLEN:	DW	LINLEN+LINLEN	;bytes per screen line (char+attribute)
+SCRBAS:	DW	0B800H		;screen SEGMENT -> ES (install "Address of screen")
+	] [
 MMLLEN:	DW	LINLEN
 SCRBAS:	DW	VRAM
+	]
 FSTCGA:	DB	0		;Fast CGA/EGA board
 	]
 	.PAGE

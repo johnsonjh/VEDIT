@@ -337,9 +337,9 @@ BEGIN:	XTSTAK			;Setup temporary stack pointer
 	CALL	INIT0		;Things that MUST be initialized immediately
 	CALL	DOSINI		;Perform DOS dependent ini
 
-;6	IF	MEMVRS
-;6	CALL	MMINIT
-;6	ENDIF
+	IF	DOSVID, [	;IBM-PC direct video: 80x25 text mode
+	VMODE3
+	]
 	CALL	VSTART		;Setup hardware (sets PYLINE)
 				;CRT - enable status line, keypad mode
 	CALL	MSCINI		;Init BUFTBL & Qvals

@@ -1,0 +1,9 @@
+compile_commands.json
+instcore
+*.log
+*.o
+.pvs*
+pvs-report*
+*.PVS-Studio.*
+vcfg
+vintmod
