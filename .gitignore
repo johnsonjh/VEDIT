@@ -2,3 +2,4 @@
 *.hex
 *.org
 output.txt
+build/

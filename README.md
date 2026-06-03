@@ -17,6 +17,8 @@ VEDIT PLUS Ver. 2.33b 04/27/87
   - [Cross-development](#cross-development)
   - [Build Example](#build-example)
   - [Configuration Example](#configuration-example)
+  - [16-bit MS‑DOS and CP/M‑86 builds](#16‑bit-ms‑dos-and-cpm‑86-builds)
+- [Utility Source](#utility-source)
 - [Extras](#extras)
   - [Older Source Code](#older-source-code)
   - [Older Binaries](#older-binaries)
@@ -146,9 +148,10 @@ For Z80 variants, the final (configured) executable can be reduced
 in size by about 25% while remaining directly executable using the
 `POPCOM` compressor.
 
-* Working versions of these tools are included in the [`dev`](dev)
-  directory of this repository for convenience — they are *not* an
-  official part of any VEDIT ⧸ VEDIT‑PLUS source distribution.
+* Working versions of these (and other) tools are included in the
+  [`dev`](dev) directory of this repository for convenience — they
+  are *not* an official part of the VEDIT ⧸ VEDIT‑PLUS source code
+  distribution.
 
 ### Cross-development
 
@@ -267,7 +270,7 @@ RECORDS WRITTEN 12
 
 In the following example we configure a `VEDIT` executable that will
 work on most modern terminal emulators, such as `xterm`.  Many
-additional options are available in the various menus.
+additional options are also available in the various menus.
 
 ```
 V>INSTALL VEDPLUS.COM VEDIT.COM
@@ -359,15 +362,78 @@ Enter the number of your terminal: 10
 Ok to save changes in VEDIT.COM (Y/N)? Y
 ```
 
-* You will now have a working — and configured — `VEDIT.COM`
-  executable.
+* You will now have a working — and fully configured — CP/M‑80
+  `VEDIT.COM` executable.
+
+### 16-bit MS‑DOS and CP/M‑86 builds
+
+The historical CompuView 8086 builds, done by the company themselves,
+seem to have used a multiple module segmented approach using `PASM86`
+and it's special features.  Also the source code for the 8086‑specific
+modules were seemingly not preserved, or at least remain unrecovered at
+this time.
+
+Complete 16‑bit builds for CP/M‑86 and MS‑DOS *have* been fully
+reconstructed and now can build directly from the CP/M‑80 assembly,
+by means of automatic 8080 to 8086 translation software that was built
+especially for this purpose ([`xlate`](xlate)).
+
+The translator is based largely on the historical CompuView Z80 to 8086
+translation product, available in the [`zilint`](zilint) directory.
+
+It "flattens" the entire editor source code by resolving every `.INSERT`,
+expanding all macros, processing all conditionals, and then translating
+all (approximately 30,000 SLOC) of 8080 TDL ZASM ⧸ PSA PASM assembly into
+Intel `ASM86` form.  Intel ASM86 is then used normally for assembly
+and linking.
+
+The following targets can be built using this technique:
+
+|     Target | Operating system         | Description                   |
+|-----------:|:-------------------------|:------------------------------|
+|      `dos` | MS‑DOS&nbsp;(`INT 21h`)  | "CRT"&nbsp;(terminal)         |
+|   `dosvid` | MS‑DOS&nbsp;(`INT 21h`)  | IBM‑PC&nbsp;direct&nbsp;video |
+|    `cpm86` | CP/M‑86&nbsp;(`INT 224`) | "CRT"&nbsp;(terminal)         |
+| `cpm86vid` | CP/M‑86&nbsp;(`INT 224`) | IBM‑PC&nbsp;direct&nbsp;video |
+
+```sh
+cd xlate
+./build.sh           # ‑> build/out-dos/vedit.com       (MS‑DOS, "CRT")
+./build.sh dosvid    # ‑> build/out-dosvid/vedit.com    (MS‑DOS, direct)
+./build.sh cpm86     # ‑> build/out-cpm86/vedit.cmd     (CP/M‑86, "CRT")
+./build.sh cpm86vid  # ‑> build/out-cpm86vid/vedit.cmd  (CP/M‑86, PC direct)
+```
+
+All four targets build, run, and can be configured (with a small workaround
+for the CP/M‑86 verisons) using the original CompuView's `INSTALL` program.
+
+The direct‑video targets draw to IBM‑PC‑compatible video hardware directly,
+so they are much faster for the local display when running on now‑vintage
+original machines.
+
+Like the other contents of [`dev`](dev), the [`xlate`](xlate) directory
+contains **modern code** and is **not** part of any historical CompuView
+VEDIT ⧸ VEDIT‑PLUS distribution.
 
 ## Utility Source
 
-* The [`utl`](utl) directory contains the source code for the tools
-  used to configure the editor, such as the installation and setup
-  programs. *Please note that we have not yet recovered the sources
-  for the 2.33 versions of these tools.*
+* The [`utl`](utl) directory contains the original CompuView *source code*
+  for the tools used to configure the editor, such as the installation and
+  setup programs. *Please note that we have not yet recovered the original
+  sources for the 2.33 versions of these tools.*
+
+* The [`vinstall`](vinstall) directory contains a modern, portable ANSI C89
+  reimplementation of the 2.33 `INSTALL` ⧸ `INTMOD` utilities, reconstructed
+  from examination of the source code.
+  * `vcfg` configures a VEDIT ⧸ VEDIT‑PLUS binary like `INSTALL`, used to
+  install terminal maps, set screen parameters and switches, and to edit or
+  display parameters, tab stops, keyboard layouts, and other flags).
+  * `vintmod` edits the `install.ini` terminal database, and `instcore` dumps
+  the editor's configuration chain.
+
+These new tools should build are designed to run on UNIX, MS‑DOS, CP/M‑86,
+and CP/M‑80.  They also work with (and can be debugged using) the excellent
+SoftIntegration Ch interpreter.
 
 ## Extras
 
@@ -384,7 +450,7 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
   "shipping to the customer".
 
 * The [`zilint`](zilint) directory contains the final release of
-  CompuView's Z80‑8086 Translator macros.
+  CompuView's Z80‑8086 Translation macro product.
 
 ### Older Source Code
 
@@ -396,29 +462,15 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * The [`oldbin`](oldbin) directory contains several older binary
   versions of VEDIT ⧸ VEDIT‑PLUS.  These distributions may be
   incomplete, but useful for "archaeological" purposes, or testing
-  on extraordinarily obscure or extremely memory constrained
+  on extraordinarily obscure (or extremely memory constrained)
   platforms.
 
 ## Future
 
-* Building these sources for CP/M‑86 or DOS should be possible:
-  * It seems that when building for 8086, the sources would be
-    further translated by means of a currently unknown program; many
-    such programs were historically commercially available, including
-    CompuView's own Translator (which, unfortunately, does *not*
-    include the required `MACx` source files as mentioned below).
-  * When trying to assemble with `P8086` defined, two missing source
-    files, `MAC1.ASM` and `MAC2.ASM`, are referenced.  It is assumed
-    that these files would have been part of the currently unknown
-    translation package (or cross-assembler software).
-  * Further investigation is required.  Once solved, the procedures
-    need to be worked out and properly documented.
-
-* Find VEDIT-PLUS 2.33b for DOS (or earlier releases) configured for
-  IBM PC memory mapped video hardware.
-
-* Find the source code for the latest versions of the `INSTALL`,
-  `INTCOM`, and other utilities.
+* Find and recover the source code for the latest (2.33b) versions of
+  the `INSTALL`, `INTCOM`, and other utilities.
+  * In the meantime [`vinstall`](vinstall) reimplements all the required
+  `INSTALL` ⧸ `INTMOD` portably.
 
 * Document `xterm`-compatible terminal settings for enabling arrow
   directional keys, etc.
