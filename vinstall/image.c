@@ -9,11 +9,11 @@ static long
 #ifdef ANSI_COMPILER
 fileoff (
   const image *im,
-  vword        addr)
+  vword addr)
 #else
 fileoff (im, addr)
   const image *im;
-  vword        addr;
+  vword addr;
 #endif
 {
   return im->origin + (long) addr;
@@ -23,11 +23,11 @@ static int
 #ifdef ANSI_COMPILER
 raw_byte (
   image *im,
-  long   off)
+  long off)
 #else
 raw_byte (im, off)
   image *im;
-  long   off;
+  long off;
 #endif
 {
   int c;
@@ -35,35 +35,42 @@ raw_byte (im, off)
   if (0 != fseek (im->fp, off, SEEK_SET))
     {
       im->err++;
+
       return -1;
     }
+
   c = getc (im->fp);
+
   if (EOF == c)
     {
       im->err++;
+
       return -1;
     }
+
   return c & 0xFF;
 }
 
 int
 #ifdef ANSI_COMPILER
 img_open (
-  image      *im,
+  image *im,
   const char *path,
-  int         writable)
+  int writable)
 #else
 img_open (im, path, writable)
-  image      *im;
+  image *im;
   const char *path;
-  int         writable;
+  int writable;
 #endif
 {
   int b0;
 
   im->fp = vfopen (path, (writable ? "rb+" : "rb"));
+
   if ((FILE *) 0 == im->fp)
     return -1;
+
   im->writable = writable;
   im->err = 0;
   im->origin = 0;
@@ -122,11 +129,11 @@ int
 #ifdef ANSI_COMPILER
 img_get_byte (
   image *im,
-  vword  addr)
+  vword addr)
 #else
 img_get_byte (im, addr)
   image *im;
-  vword  addr;
+  vword addr;
 #endif
 {
   return raw_byte (im, fileoff (im, addr));
@@ -136,11 +143,11 @@ vword
 #ifdef ANSI_COMPILER
 img_get_word (
   image *im,
-  vword  addr)
+  vword addr)
 #else
 img_get_word (im, addr)
   image *im;
-  vword  addr;
+  vword addr;
 #endif
 {
   int lo, hi;
@@ -158,30 +165,33 @@ int
 #ifdef ANSI_COMPILER
 img_put_byte (
   image *im,
-  vword  addr,
-  int    val)
+  vword addr,
+  int val)
 #else
 img_put_byte (im, addr, val)
   image *im;
-  vword  addr;
-  int    val;
+  vword addr;
+  int val;
 #endif
 {
   if (!im->writable)
     {
       im->err++;
+
       return -1;
     }
 
   if (0 != fseek (im->fp, fileoff (im, addr), SEEK_SET))
     {
       im->err++;
+
       return -1;
     }
 
   if (EOF == putc (val & 0xFF, im->fp))
     {
       im->err++;
+
       return -1;
     }
 
@@ -192,13 +202,13 @@ int
 #ifdef ANSI_COMPILER
 img_put_word (
   image *im,
-  vword  addr,
-  vword  val)
+  vword addr,
+  vword val)
 #else
 img_put_word (im, addr, val)
   image *im;
-  vword  addr;
-  vword  val;
+  vword addr;
+  vword val;
 #endif
 {
   if (0 != img_put_byte (im, addr, (int) (val & 0xFF)))
@@ -211,15 +221,15 @@ int
 #ifdef ANSI_COMPILER
 img_get_block (
   image *im,
-  vword  addr,
+  vword addr,
   vbyte *buf,
-  int    n)
+  int n)
 #else
 img_get_block (im, addr, buf, n)
   image *im;
-  vword  addr;
+  vword addr;
   vbyte *buf;
-  int    n;
+  int n;
 #endif
 {
   int i;
@@ -242,16 +252,16 @@ img_get_block (im, addr, buf, n)
 int
 #ifdef ANSI_COMPILER
 img_put_block (
-  image       *im,
-  vword        addr,
+  image *im,
+  vword addr,
   const vbyte *buf,
-  int          n)
+  int n)
 #else
 img_put_block (im, addr, buf, n)
-  image       *im;
-  vword        addr;
+  image *im;
+  vword addr;
   const vbyte *buf;
-  int          n;
+  int n;
 #endif
 {
   int i;
@@ -265,9 +275,11 @@ img_put_block (im, addr, buf, n)
 
 vword
 #ifdef ANSI_COMPILER
-img_addtbl ( image *im )
+img_addtbl (
+  image *im )
 #else
-img_addtbl (im) image *im;
+img_addtbl (im)
+  image *im;
 #endif
 {
   return img_get_word (im, (vword) V_PADDR);
@@ -275,9 +287,11 @@ img_addtbl (im) image *im;
 
 vword
 #ifdef ANSI_COMPILER
-img_flags ( image *im )
+img_flags (
+  image *im)
 #else
-img_flags (im) image *im;
+img_flags (im)
+  image *im;
 #endif
 {
   return img_get_word (im, (vword) V_PFLAG);
@@ -285,9 +299,11 @@ img_flags (im) image *im;
 
 vword
 #ifdef ANSI_COMPILER
-img_vrsnum ( image *im )
+img_vrsnum (
+  image *im)
 #else
-img_vrsnum (im) image *im;
+img_vrsnum (im)
+  image *im;
 #endif
 {
   return img_get_word (im, img_addtbl (im));
@@ -295,9 +311,11 @@ img_vrsnum (im) image *im;
 
 int
 #ifdef ANSI_COMPILER
-img_has_crt ( image *im )
+img_has_crt (
+  image *im)
 #else
-img_has_crt (im) image *im;
+img_has_crt (im)
+  image *im;
 #endif
 {
   return ((img_flags (im) & 0x0004) ? 1 : 0);
@@ -306,15 +324,15 @@ img_has_crt (im) image *im;
 vword
 #ifdef ANSI_COMPILER
 img_table (
-  image      *im,
+  image *im,
   const char *name)
 #else
 img_table (im, name)
-  image      *im;
+  image *im;
   const char *name;
 #endif
 {
-  int   idx;
+  int idx;
   vword at;
 
   idx = chain_index (img_has_crt (im), name);
@@ -331,14 +349,14 @@ img_table (im, name)
 int
 #ifdef ANSI_COMPILER
 img_set_table (
-  image      *im,
+  image *im,
   const char *name,
-  vword       addr)
+  vword addr)
 #else
 img_set_table (im, name, addr)
-  image      *im;
+  image *im;
   const char *name;
-  vword       addr;
+  vword addr;
 #endif
 {
   int idx;

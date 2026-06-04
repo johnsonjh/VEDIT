@@ -18,7 +18,7 @@ static struct { char *name; tdesc *desc; } g_tables[] = {
 #define KFF 0xFF
 
 static vbyte g_keymsg[768];
-static int   g_keymsg_len;
+static int g_keymsg_len;
 static vbyte g_kbuf[640];
 static vbyte g_obuf[640];
 
@@ -44,8 +44,11 @@ ieq (a, b)
       ca = a[i];
       cb = b[i];
 
-      if ('a' <= ca && 'z' >= ca) ca -= 32;
-      if ('a' <= cb && 'z' >= cb) cb -= 32;
+      if ('a' <= ca && 'z' >= ca)
+        ca -= 32;
+
+      if ('a' <= cb && 'z' >= cb)
+        cb -= 32;
 
       if (ca != cb)
         {
@@ -553,6 +556,7 @@ do_keys (im)
   if (0 == len)
     {
       error_msg ("this build has no keyboard table", (char *) 0, 0);
+
       return 1;
     }
 
@@ -609,6 +613,7 @@ do_keys (im)
 
       printf ("  %s\n", (((const char *) 0 != nm) ? nm : ""));
     }
+
   return 0;
 }
 
@@ -616,11 +621,11 @@ static vword
 #ifdef ANSI_COMPILER
 key_maxend (
   image *im,
-  vword  kt)
+  vword kt)
 #else
 key_maxend (im, kt)
   image *im;
-  vword  kt;
+  vword kt;
 #endif
 {
   vword at, a, best;
@@ -649,13 +654,13 @@ static int
 #ifdef ANSI_COMPILER
 do_bind (
   image *im,
-  const char  *code,
+  const char *code,
   const vbyte *bytes,
   int n)
 #else
 do_bind (im, code, bytes, n)
   image *im;
-  const char  *code;
+  const char *code;
   const vbyte *bytes;
   int n;
 #endif
@@ -814,11 +819,11 @@ usage ()
 int
 #ifdef ANSI_COMPILER
 main (
-  int    argc,
+  int argc,
   char **argv)
 #else
 main (argc, argv)
-  int    argc;
+  int argc;
   char **argv;
 #endif
 {

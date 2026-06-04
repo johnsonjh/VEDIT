@@ -1,5 +1,6 @@
 #ifndef INIFILE_H
 #define INIFILE_H
+
 #include "port.h"
 
 #define INI_RECLEN 115 /* == CRT_TABLE.len */

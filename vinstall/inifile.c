@@ -9,18 +9,18 @@
 int
 #ifdef ANSI_COMPILER
 ini_load (
-  inifile    *f,
+  inifile *f,
   const char *path)
 #else
 ini_load (f, path)
-  inifile    *f;
+  inifile *f;
   const char *path;
 #endif
 {
-  FILE  *fp;
-  long   n;
+  FILE *fp;
+  long n;
   vbyte *p;
-  char  *q;
+  char *q;
 
   fp = vfopen (path, "rb");
 
@@ -91,11 +91,11 @@ int
 #ifdef ANSI_COMPILER
 ini_save (
   const inifile *f,
-  const char    *path)
+  const char *path)
 #else
 ini_save (f, path)
   const inifile *f;
-  const char    *path;
+  const char *path;
 #endif
 {
   FILE *fp;
@@ -118,9 +118,11 @@ ini_save (f, path)
 
 void
 #ifdef ANSI_COMPILER
-ini_free ( inifile *f )
+ini_free (
+  inifile *f)
 #else
-ini_free (f) inifile *f;
+ini_free (f)
+  inifile *f;
 #endif
 {
   if ((vbyte *) 0 != f->buf)
@@ -129,9 +131,11 @@ ini_free (f) inifile *f;
 
 int
 #ifdef ANSI_COMPILER
-ini_count ( const inifile *f )
+ini_count (
+  const inifile *f )
 #else
-ini_count (f) const inifile *f;
+ini_count (f)
+  const inifile *f;
 #endif
 {
   return f->count;
@@ -141,15 +145,15 @@ const char *
 #ifdef ANSI_COMPILER
 ini_name (
   const inifile *f,
-  int            k)
+  int k)
 #else
 ini_name (f, k)
   const inifile *f;
-  int            k;
+  int k;
 #endif
 {
   const char *q;
-  int         i;
+  int i;
 
   if (0 > k || k >= f->count)
     return (const char *) 0;
@@ -182,8 +186,11 @@ ci_prefix (a, b)
       ca = a[i];
       cb = b[i];
 
-      if (ca >= 'a' && ca <= 'z') ca -= 32;
-      if (cb >= 'a' && cb <= 'z') cb -= 32;
+      if (ca >= 'a' && ca <= 'z')
+        ca -= 32;
+
+      if (cb >= 'a' && cb <= 'z')
+        cb -= 32;
 
       if (ca != cb)
         return 0;
@@ -196,14 +203,14 @@ int
 #ifdef ANSI_COMPILER
 ini_find (
   const inifile *f,
-  const char    *name)
+  const char *name)
 #else
 ini_find (f, name)
   const inifile *f;
-  const char    *name;
+  const char *name;
 #endif
 {
-  int         k;
+  int k;
   const char *nm;
 
   for (k = 0; k < f->count; k++)
@@ -245,13 +252,13 @@ ini_record (f, k)
 int
 #ifdef ANSI_COMPILER
 ini_add (
-  inifile     *f,
-  const char  *name,
+  inifile *f,
+  const char *name,
   const vbyte *rec)
 #else
 ini_add (f, name, rec)
-  inifile     *f;
-  const char  *name;
+  inifile *f;
+  const char *name;
   const vbyte *rec;
 #endif
 {

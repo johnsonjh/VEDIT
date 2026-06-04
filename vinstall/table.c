@@ -113,11 +113,11 @@ const tfield *
 #ifdef ANSI_COMPILER
 tbl_field (
   const tdesc *t,
-  const char  *name)
+  const char *name)
 #else
 tbl_field (t, name)
   const tdesc *t;
-  const char  *name;
+  const char *name;
 #endif
 {
   int i;
@@ -134,18 +134,18 @@ int
 tbl_get (
   const tdesc *t,
   const vbyte *buf,
-  const char  *name,
-  vbyte       *dst)
+  const char *name,
+  vbyte *dst)
 #else
 tbl_get (t, buf, name, dst)
   const tdesc *t;
   const vbyte *buf;
-  const char  *name;
-  vbyte       *dst;
+  const char *name;
+  vbyte *dst;
 #endif
 {
   const tfield *f;
-  int           n, i;
+  int n, i;
 
   f = tbl_field (t, name);
 
@@ -165,14 +165,14 @@ int
 tbl_set (
   const tdesc *t,
   vbyte *buf,
-  const char  *name,
+  const char *name,
   const vbyte *src,
   int n)
 #else
 tbl_set (t, buf, name, src, n)
   const tdesc *t;
   vbyte *buf;
-  const char  *name;
+  const char *name;
   const vbyte *src;
   int n;
 #endif
@@ -318,6 +318,7 @@ chain_index (has_crt, name)
 
         k++;
       }
+
   return -1;
 }
 

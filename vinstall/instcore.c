@@ -5,17 +5,17 @@
 int
 #ifdef ANSI_COMPILER
 main (
-  int    argc,
+  int argc,
   char **argv)
 #else
 main (argc, argv)
-  int    argc;
+  int argc;
   char **argv;
 #endif
 {
   image im;
   vword addtbl, flags;
-  int   has_crt, n, i;
+  int has_crt, n, i;
 
   if (2 > argc)
     {

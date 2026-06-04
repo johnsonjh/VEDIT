@@ -38,9 +38,9 @@ typedef unsigned long vaddr;
 #define TRIM_BUFSIZE 256
 #define TRIM_RING 2
 
-char *trim_str  P_((const char *s));
+char *trim_str P_((const char *s));
 void  error_msg P_((const char *m, const char *n, int e));
-FILE *vfopen    P_((const char *path, const char *mode));
+FILE *vfopen P_((const char *path, const char *mode));
 
 static const int never = 0;
 
