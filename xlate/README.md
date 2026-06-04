@@ -20,7 +20,7 @@ One command rebuilds the whole editor from [`../src`](../src):
   * **emu2** in your `PATH`.
   * The **Intel ASM-86 V3.2** tools (`asm86.exe link86.exe loc86.exe oh86.exe`)
     and **Digital Research** `gencmd.cmd` are provided in [`../dev`](../dev);
-    set `${ASM86DIR}` can override where the Intel tools are found.
+    setting `${ASM86DIR}` can override where the Intel tools are found.
 
 * What `build.sh` does:
   1. `expand.py` flattens `.INSERT`/`.DEFINE`/`REPT`/conditionals to Z80 stream.
@@ -70,9 +70,10 @@ table through the binary's own `ADDTBL` pointer chain (`DW ADDTBL` at offset
 6 -> per-table pointers, never a fixed offset or byte-signature)
 
 The binary we build here is ~5% larger than the shipped ones (44,002 vs.
-41,856 bytes) that we know of from CompuView.  This is overheadfrom the 582
-`INX`/`DCX` wrapped into `PUSHF ... POPF` (the 8080 16-bit inc/dec don't
-touch flags, but 8086's do) and then every unconditional `JMP` forced to 3 bytes.
+41,856 bytes) that we know of from CompuView.  This is overhead from the 582
+`INX`/`DCX` instructions wrapped into `PUSHF ... POPF` (the 8080 16-bit
+inc/dec don't touch flags, but 8086's do) and every unconditional `JMP`
+forced to 3 bytes.
 
 **CP/M-86 builds** (`build/out-cpm86/vedit.cmd`, `build/out-cpm86vid/vedit.cmd`)
 tested to run under my custom emu2 CP/M-86 mode.  To *configure* one (terminal,

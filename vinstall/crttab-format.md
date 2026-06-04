@@ -69,22 +69,22 @@ typedef struct {            /* off  crt.asm field                             */
 ### Record detail
 
 The 2.33 records are **115 bytes**, identical to 1.40 (see `TBLLEN` in
-`vedset.asm`).  Verified by alignment at stride 115 the first records
-`CURSOR LEADIN` reads `01 14 00` (ACT-IV `1,14H`) then `02 1B 59` four
-times (ESC `Y` for the ADDS terminals) which is matching `crt.asm` exactly,
-and 63/64 records yield a well-formed leadin, so each record is exactly
-the 115-byte `crt_table` above and there is no per-record header.
+`vedset.asm`).  Verified by alignment at stride 115, the first record's
+`CURSOR LEADIN` reads `01 14 00` (ACT-IV `1,14H`), followed by `02 1B 59`
+four times (ESC `Y` for the ADDS terminals). This matches `crt.asm` exactly.
+All 64 records yield a well-formed leadin, confirming that each record is
+exactly the 115-byte `crt_table` above and that there is no per-record header.
 
-The binary section is `count * 115` plus a trailer, for DOS `64*115 = 7360`
-of 7583 leaves 223 after the last record.  This 115-byte record is also th
-e format of the editor `ADDLED` table (see `src/veditt3.asm` for the same
+The binary section is `count * 115` plus a trailer; for DOS, `64*115 = 7360`
+of 7583 leaves 223 after the last record.  This 115-byte record is also the
+format of the editor `ADDLED` table (see `src/veditt3.asm` for the same
 16 sequence slots plus ADDOFF).  Installing a terminal is a direct copy.
 
 ## Notes
 
 The tools are **not** a re-creation of `INSTALL` version-gated menus and UI.
 The `vcfg` and `vintmod` expose every field a table defines, regardless of
-the target build so you can set any capability even if your build would
+the target build, so you can set any capability even if your build would
 ever use it.
 
 Also note the descriptor (`tfield` in `table.c`) carries, per field name,
@@ -95,4 +95,4 @@ the `addoff` mode byte, and the `INSTALL`-specific version-flags word which
 is a bitfield (edited as named bits) and the conditional `ADDLED` and `SCRINI`
 slots (present per build type, `flags & CRT`).
 
-Everything else is a single-purpose only field and is freely editable.
+Everything else is a single-purpose field and is freely editable.

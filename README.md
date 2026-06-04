@@ -115,8 +115,8 @@ keyboard, applications, and preferences.
 
 Currently, the full VEDIT‑PLUS (both Z80 and 8080) CRT
 configurations, along with the TRS‑80 Model II variants, have been
-built and tested.  The Pπceon V‑100 memory mapped video variant has
-not yet been tested.
+built and tested.  The Pπceon (Piiceon) V‑100 memory mapped video
+variant has not yet been tested.
 
 VEDIT ⧸ VEDIT‑PLUS is built using either the
 *Technical Design Labs, Inc.* Z80 Relocating/Linking Disk Assembler
@@ -165,7 +165,7 @@ The following cross-development tools are highly recommended:
 
 * [**cpm**](https://github.com/jhallen/cpm) is *Joe Allen*'s portable
   CP/M‑80 2.2 emulator.  Although it does not support saving the list
-  device output, it's `BDOS` simulation makes it suitable for running
+  device output, its `BDOS` simulation makes it suitable for running
   the `POPCOM` executable compressor.
 
 * [**tnylpo**](https://gitlab.com/gbrein/tnylpo) is yet another
@@ -367,10 +367,10 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 
 ### 16-bit MS‑DOS and CP/M‑86 builds
 
-The historical CompuView 8086 builds, done by the company themselves,
+The historical CompuView 8086 builds, done by the company itself,
 seem to have used a multiple module segmented approach using `PASM86`
-and it's special features.  Also the source code for the 8086‑specific
-modules were seemingly not preserved, or at least remain unrecovered at
+and its special features.  Also, the source code for the 8086‑specific
+modules was seemingly not preserved, or at least remains unrecovered at
 this time.
 
 Complete 16‑bit builds for CP/M‑86 and MS‑DOS *have now been fully*
@@ -405,7 +405,7 @@ cd xlate
 ```
 
 All four targets build, run, and can be configured (with a small workaround
-for the CP/M‑86 verisons) using the original CompuView's `INSTALL` program.
+for the CP/M‑86 verisons) using the original CompuView `INSTALL` program.
 
 The direct‑video targets draw to IBM‑PC‑compatible video hardware directly,
 so they are much faster for the local display when running on now‑vintage
@@ -431,7 +431,7 @@ VEDIT ⧸ VEDIT‑PLUS distribution.
   * `vintmod` edits the `install.ini` terminal database, and `instcore` dumps
   the editor's configuration chain.
 
-These new tools should build are designed to run on UNIX, MS‑DOS, CP/M‑86,
+These new tools are designed to build and run on UNIX, MS‑DOS, CP/M‑86,
 and CP/M‑80.  They also work with (and can be debugged using) the excellent
 SoftIntegration Ch interpreter.
 
@@ -469,8 +469,8 @@ SoftIntegration Ch interpreter.
 
 * Find and recover the source code for the latest (2.33b) versions of
   the `INSTALL`, `INTCOM`, and other utilities.
-  * In the meantime [`vinstall`](vinstall) reimplements all the required
-  `INSTALL` ⧸ `INTMOD` portably.
+  * In the meantime, [`vinstall`](vinstall) portably reimplements all the
+  required `INSTALL` ⧸ `INTMOD` functionality.
 
 * Document `xterm`-compatible terminal settings for enabling arrow
   directional keys, etc.
@@ -528,3 +528,6 @@ including:
 * [PMATE](https://texteditors.org/cgi-bin/wiki.pl?PMATE)
 * [TED](https://geezer.org/sw/cpm/ted/)
 * [Z-TEL](https://usenet.trashworldnews.com/?thread=101928)
+8)
+
+8)

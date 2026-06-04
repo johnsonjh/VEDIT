@@ -4,7 +4,7 @@ A modern, portable ANSI C reimplementation of CompuView's `INSTALL` and
 `INTMOD` utilities.
 
 These are the programs that tailor a new or existing VEDIT‑PLUS binary to
-a specific terminal map, keyboard, and non-default preferences, and includes
+a specific terminal map, keyboard, and non-default preferences, and include
 the tooling to maintain the terminal database.
 
 Like [`../xlate`](../xlate) and [`../dev`](../dev), **nothing here** is part
@@ -78,5 +78,5 @@ make  # builds instcore, vcfg, and vintmod
 ## Future
 
 * Create a nice menu‑driven TUI front‑end?
-* Add keystroke macro editing capability and the editor grows `KEYTBL` in the
-  runtime register beyond the file's reserved space?
+* Add keystroke macro editing capability (ensure the editor grows `KEYTBL`
+  in the runtime register beyond the file's reserved space).
