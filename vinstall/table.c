@@ -2,7 +2,7 @@
 #define TABLE_OWNER
 #include "table.h"
 
-/* ---- the 115-byte terminal capability table (install.ini record) ---------- */
+/* ---- the 115-byte terminal capability table (install.ini record) ---------------- */
 static tfield crt_fields[] = {
   { "cursor_leadin",    0, FK_SEQ,    0,         "before a cursor address"           },
   { "cursor_between",   7, FK_SEQ,    0,         "between the row and the column"    },
@@ -24,7 +24,7 @@ static tfield crt_fields[] = {
 };
 tdesc CRT_TABLE = { "crt", 115, crt_fields, 17 };
 
-/* ---- the editor's screen-parameter block (PYLINE) ------------------------- */
+/* ---- the editor's screen-parameter block (PYLINE) ---------------------- */
 static tfield pyline_fields[] = {
   { "nlines",       0, FK_BYTE, 0, "number of screen lines (NLINES)"        },
   { "vtop",         1, FK_BYTE, 0, "visual window top row (ACRVTTP)"        },
@@ -42,7 +42,11 @@ static tfield pyline_fields[] = {
 };
 tdesc PYLINE_TABLE = { "pyline", 14, pyline_fields, 13 };
 
-/* ---- edit-switch settings (SWTBL, ES commands; 0=off/1=on) ---------------- */
+/* ---- edit-switch settings (SWTBL, ES commands; 0=off/1=on) ------------ */
+/* lrbcsw sits in SWTBL's reserved tail (offset 11), past the SWCHNM=11    */
+/* switches the ES command and CompuView INSTALL know about.  Bits:        */
+/* 1 = don't use CP/M 3+ byte counts when reading, 2 = don't set them when */
+/* writing, 4 = ISX convention (# bytes unused) instead of DOS Plus (used) */
 static tfield swtbl_fields[] = {
   { "exptsw",  0, FK_BYTE, 0, "expand tabs to spaces"        },
   { "atbfsw",  1, FK_BYTE, 0, "auto buffer fill"             },
@@ -54,9 +58,10 @@ static tfield swtbl_fields[] = {
   { "colsw",   7, FK_BYTE, 0, "column mode"                  },
   { "attsw",   8, FK_BYTE, 0, "attribute mode"               },
   { "globsw",  9, FK_BYTE, 0, "global mode"                  },
-  { "justsw", 10, FK_BYTE, 0, "justify mode"                 }
+  { "justsw", 10, FK_BYTE, 0, "justify mode"                 },
+  { "lrbcsw", 11, FK_BYTE, 0, "CP/M 3+ byte count: 1=no read, 2=no write, 4=ISX" }
 };
-tdesc SWTBL_TABLE = { "swtbl", 11, swtbl_fields, 11 };
+tdesc SWTBL_TABLE = { "swtbl", 15, swtbl_fields, 12 };
 
 /* ---- edit parameter values (PRMTBL, EP commands) ------------------------- */
 static tfield prmtbl_fields[] = {

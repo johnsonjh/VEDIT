@@ -546,6 +546,17 @@ LASINI:				;{VEDIT}
 ;
 CPMVER:	DSW	1		;Saved value of BDOS #12
 ;
+;	CP/M 3+ last-record byte count (LRBC) support.  See LRBCSW
+;	and the BC---- routines in VEDIT-F1.
+;
+INBCNT:	DS	1		;Input file's last-record byte count
+				;(1-127 = # bytes used; 0 = full/unknown)
+OUTBCT:	DS	1		;# bytes in last record given to CLOSE
+RDSTAT:	DS	1		;BDOS code from READSC's last DISKR
+RDFCB:	DSW	1		;-> FCB of READSC's last good record
+RDBASE:	DSW	1		;DMA address at READSC entry
+BCMXEX:	DSW	1		;Highest extent # seen by BCFTCH
+;
 ;6	IF	MSDOS
 ;6MSDOSV	EQU	THIS WORD	;For storing/retrieving Major & Minor version #
 ;6VERMAJ	DB	?		;For accessing MSDOS major version #
@@ -1204,8 +1215,12 @@ SWTBL:	DB	FALSE		;EXPTSW
 	DB	00		;JUSTSW
 SWTEND:
 SWCHNM	=	SWTEND - SWTBL
+LRBCSW:	DB	00		;CP/M 3+ last-record byte count switches:
+				;BCNORD (01H) = don't use to size files read
+				;BCNOWR (02H) = don't set exact size written
+				;BCISX  (04H) = ISX (# unused) convention
+				;Not reachable from ES - set with VINSTALL
 	DB	00		;Reserved bytes for INSTALL
-	DB	00
 	DB	00
 	DB	00		;Must be 15 bytes to correspond w/buffer header
 ;

@@ -112,6 +112,7 @@ CREATE	=	22
 RENAME	=	23
 INTDSK	=	25
 SETDMA	=	26
+SETATR	=	30		;Set attributes (& byte count with F6')
 CPMUSR	=	32
 
 	IF	P8086,[
@@ -120,6 +121,15 @@ GETVER	=	30H
 CHGDIR	=	3BH
 	]
 	]
+;
+;	LRBCSW bits - CP/M 3+ last-record byte count handling.
+;	All bits 0 (the default) = use byte counts, DOS Plus style.
+;
+BCNORD	=	01H		;Don't use byte count to size files read
+BCNOWR	=	02H		;Don't set exact byte count when writing
+BCISX	=	04H		;Byte counts use the ISX convention (the
+				;# of bytes UNUSED in the last record)
+				;instead of DOS Plus/CP/M 3 (the # USED)
 ;
 CTRLA	=	01
 CTRLB	=	02
