@@ -34,7 +34,7 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 
 ## Overview
 
-This is the source code for **VEDIT** ⧸ **VEDIT‑PLUS** for CP/M,
+This is the source code for **VEDIT** ⧸ **VEDIT‑PLUS**,
 version 2.33b (04/27/87), the commercial text editing system and
 (TECO-derived) text-oriented programming language, produced by
 Theodore Green and Greenview Data Inc. (formerly CompuView Products,
@@ -373,8 +373,8 @@ and it's special features.  Also the source code for the 8086‑specific
 modules were seemingly not preserved, or at least remain unrecovered at
 this time.
 
-Complete 16‑bit builds for CP/M‑86 and MS‑DOS *have* been fully
-reconstructed and now can build directly from the CP/M‑80 assembly,
+Complete 16‑bit builds for CP/M‑86 and MS‑DOS *have now been fully*
+*reconstructed* and now can build directly from the CP/M‑80 assembly,
 by means of automatic 8080 to 8086 translation software that was built
 especially for this purpose ([`xlate`](xlate)).
 
@@ -488,7 +488,7 @@ Can you help with any of the above?  If you can, please open an
 
 ## License
 
-* VEDIT ⧸ VEDIT‑PLUS for CP/M is [freely redistributable for
+* VEDIT ⧸ VEDIT‑PLUS is [freely redistributable for
   non-commercial purposes](LICENSE).
 
 ## Documentation
