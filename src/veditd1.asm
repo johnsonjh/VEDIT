@@ -1467,7 +1467,7 @@ USRMSG:	DC	'Welcome to VEDIT '
 	ORG	USRMSG + 65
 ;
 	DC	'Copyright (C) 1979,1987 by Theodore Green.'
-	DC	'04/27/87' [ESC]
+	DC	'06/05/26' [ESC]
 ;
 VDTMSG:	DC	'VEDIT.INI' [CR] [00]
 ;

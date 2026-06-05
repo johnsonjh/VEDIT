@@ -147,9 +147,9 @@ VRSNUM	=	141
 	DB	'.'
 	DB	'0' + (VRSNUM-(VRSNUM/100)*100)/10
 	DB	'0' + (VRSNUM-(VRSNUM/10)*10)
-	DC	'b '
+	DC	'u '
 
-	DC	'04/27/87' [00]
+	DC	'06/05/26' [00]
 ;
 ;	Console output control values
 ;

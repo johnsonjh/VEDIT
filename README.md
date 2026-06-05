@@ -4,7 +4,7 @@
 
 ```
 COMMAND: EV
-VEDIT PLUS Ver. 2.33b 04/27/87
+VEDIT PLUS Ver. 2.33u 06/05/26
 ```
 
 ## Table of Contents
@@ -34,11 +34,15 @@ VEDIT PLUS Ver. 2.33b 04/27/87
 
 ## Overview
 
-This is the source code for **VEDIT** ⧸ **VEDIT‑PLUS**,
-version 2.33b (04/27/87), the commercial text editing system and
-(TECO-derived) text-oriented programming language, produced by
+This is the source code for **VEDIT** ⧸ **VEDIT‑PLUS**, derived from
+version 2.03b/2.33b (04/27/87), the commercial text editing system
+and (TECO-derived) text-oriented programming language, produced by
 Theodore Green and Greenview Data Inc. (formerly CompuView Products,
 Inc.) of Ann Arbor, Michigan.
+
+* **Version 2.03u/2.33u (06/05/26) is the first new VEDIT 2 release**
+  **in more than 39 years**, adding automatic Last Record Byte Count
+  (LRBC) support when VEDIT is running on CP/M‑Plus (CP/M 3+)!
 
 This incarnation of VEDIT was created in 1979 and was commercially
 supported until 1988 (when it was superseded by VEDIT 3.x) and is the
@@ -420,14 +424,14 @@ VEDIT ⧸ VEDIT‑PLUS distribution.
 * The [`utl`](utl) directory contains the original CompuView *source code*
   for the tools used to configure the editor, such as the installation and
   setup programs. *Please note that we have not yet recovered the original
-  sources for the 2.33 versions of these tools.*
+  sources for the 2.03/2.33 versions of these tools.*
 
 * The [`vinstall`](vinstall) directory contains a modern, portable ANSI C89
-  reimplementation of the 2.33 `INSTALL` ⧸ `INTMOD` utilities, reconstructed
-  from examination of the source code.
+  reimplementation of the 2.03/2.33 `INSTALL` ⧸ `INTMOD` utilities,
+  reconstructed from examination of the source code and existing binaries.
   * `vcfg` configures a VEDIT ⧸ VEDIT‑PLUS binary like `INSTALL`, used to
   install terminal maps, set screen parameters and switches, and to edit or
-  display parameters, tab stops, keyboard layouts, and other flags).
+  display parameters, tab stops, keyboard layouts, and other flags.
   * `vintmod` edits the `install.ini` terminal database, and `instcore` dumps
   the editor's configuration chain.
 
@@ -467,8 +471,8 @@ SoftIntegration Ch interpreter.
 
 ## Future
 
-* Find and recover the source code for the latest (2.33b) versions of
-  the `INSTALL`, `INTCOM`, and other utilities.
+* Find and recover the original source code for the latest (2.03b/2.33b)
+  versions of the `INSTALL`, `INTCOM`, and other utilities.
   * In the meantime, [`vinstall`](vinstall) portably reimplements all the
   required `INSTALL` ⧸ `INTMOD` functionality.
 
@@ -481,7 +485,7 @@ SoftIntegration Ch interpreter.
 * Find and archive other ancient VEDIT ⧸ VEDIT‑PLUS distributions.
 
 * Collect and archive any significant commercial or community add-ons
-  or macros compatible with VEDIT ⧸ VEDIT‑PLUS up to 2.33b.
+  or macros compatible with VEDIT ⧸ VEDIT‑PLUS up to 2.03b/2.33b.
 
 Can you help with any of the above?  If you can, please open an
 [issue](https://github.com/johnsonjh/VEDIT/issues) and let us know.

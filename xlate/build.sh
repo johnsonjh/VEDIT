@@ -1,5 +1,5 @@
 #!/bin/sh
-# Rebuild VEDIT-PLUS 2.33b for 16-bit x86 from the recovered CP/M-80 sources
+# Rebuild VEDIT-PLUS 2.33 for 16-bit x86 from the recovered CP/M-80 sources
 # in ../src, using the modern translator (expand.py + xlate.py) and either of
 # two interchangeable assembler backends -- the old-school Intel ASM-86 DOS
 # toolchain run under emu2, and/or modern NASM (>= 2.16) via a86tonasm.py:
