@@ -17,7 +17,7 @@ One command rebuilds the whole editor from [`../src`](../src):
 ```
 
 * Prerequisites: either assembler backend works for the build but with
-  both installed every build is verified against each other:
+  both installed each build is verified against the other:
   * *Non-free old-school tools:* Needs `emu2` in your `PATH` plus the
     Intel ASM-86 V3.2 binaries (`asm86.exe`, `link86.exe`, `loc86.exe`,
     `oh86.exe`) and Digital Research `gencmd.cmd`, by default these are
@@ -31,7 +31,7 @@ One command rebuilds the whole editor from [`../src`](../src):
 ```sh
 ./build.sh dos          # auto: use what is installed; BOTH -> byte-compare
 ./build.sh dos nasm     # force NASM only
-./build.sh dos intel    # force the period Intel toolchain only
+./build.sh dos intel    # force the Intel toolchain only
 ./build.sh dos both     # require both + byte-compare (CI-style verification)
 ```
 
@@ -51,7 +51,7 @@ One command rebuilds the whole editor from [`../src`](../src):
      byte-identical to GENCMD's output, also cross-checked when both run).
 
 The two backends (Intel ASM86 and NASM) will produce identical binaries:
-`a86tonasm.py` replicates all the Intel ASM86 V3.2 artifact like its
+`a86tonasm.py` replicates all the Intel ASM86 V3.2 artifacts like its
 unconditional-`JMP` sizing (backward-short `EB`, forward-short `EB`+`NOP`,
 else `E9`), the worst-case `NOP` padding of forward-referenced symbolic
 immediates, and its `reg<-r/m` encoding direction for register-register
@@ -64,7 +64,7 @@ test harness and Gemini AI for analysis with radare2. See the
 non-interactively (VEDIT-PLUS, "Full, 8080, CRT").  Expanding it reproduces the
 committed `expanded.asm` byte-for-byte.
 
-NOTE that `loc86` returns non-zero but is normal:
+NOTE that `loc86` returns non-zero but this is normal:
 WARNING 66 (no start address so expected for a 100h image), just ignore.
 
 `build.sh dosvid` runs the same but with `vedita1-dosvid.cfg` (8080 memory-mapped,
@@ -78,14 +78,14 @@ a flat `vedit-cpm.com` for the install round-trip described below.
 
 ## Running and configuring
 
-**CRT build** (`build/out-dos/vedit.com`) does console output escapes and is
+**CRT build** (`../build/out-dos/vedit.com`) does console output escapes and is
 portable to any terminal:
 
 ```sh
 emu2 install.exe vedit.com newvedit.com
 ```
 
-**Direct-video build** (`build/out-dosvid/vedit.com`) writes directly to the
+**Direct-video build** (`../build/out-dosvid/vedit.com`) writes directly to the
 IBM-PC video memory at `B800` so it renders fast with **no** terminal install:
 
 ```sh
@@ -97,18 +97,18 @@ auto-detects the type as `0Ch` (Crt|MS-DOS) or `8h` (MS-DOS) instead of
 prompting "Enter a version number" (8H=MS-DOS OS and 4H=CRT video are
 combined bits; the CRT build sets both, matching the shipped binary).
 
-That the original installer accepts our from-source binaries finding every
+The original installer accepts our from-source binaries, finding every
 table through the binary's own `ADDTBL` pointer chain (`DW ADDTBL` at offset
-6 -> per-table pointers, never a fixed offset or byte-signature)
+6 -> per-table pointers, never a fixed offset or byte-signature).
 
-The binary we build here is ~5% larger than the shipped ones (44,002 vs.
-41,856 bytes) that we know of from CompuView.  This is overhead from the 582
+The binary we build here is ~5% larger than the shipped ones from CompuView
+that we know of (44,002 vs. 41,856 bytes).  This is overhead from the 582
 `INX`/`DCX` instructions wrapped into `PUSHF ... POPF` (the 8080 16-bit
 inc/dec don't touch flags, but 8086's do) and every unconditional `JMP`
 forced to 3 bytes.
 
-**CP/M-86 builds** (`build/out-cpm86/vedit.cmd`, `build/out-cpm86vid/vedit.cmd`)
-tested to run under my custom emu2 CP/M-86 mode.  To *configure* one (terminal,
+**CP/M-86 builds** (`../build/out-cpm86/vedit.cmd`, `../build/out-cpm86vid/vedit.cmd`)
+tested to run under the custom emu2 CP/M-86 mode.  To *configure* one (terminal,
 keyboard, colours): `install.cmd` **can't** parse the flat 8080-model image,
 **but** the DOS **`install.exe` can** because it's the identical flat format, so
 the build also emits `vedit-cpm.com`.
