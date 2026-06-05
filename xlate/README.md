@@ -16,17 +16,49 @@ One command rebuilds the whole editor from [`../src`](../src):
 ./build.sh cpm86vid  # -> ../build/out-cpm86vid/vedit.cmd  (CP/M-86 PC direct)
 ```
 
-* Prerequisites (the period tools are run under emu2):
-  * **emu2** in your `PATH`.
-  * The **Intel ASM-86 V3.2** tools (`asm86.exe link86.exe loc86.exe oh86.exe`)
-    and **Digital Research** `gencmd.cmd` are provided in [`../dev`](../dev);
-    setting `${ASM86DIR}` can override where the Intel tools are found.
+* Prerequisites: either assembler backend works for the build but with
+  both installed every build is verified against each other:
+  * *Non-free old-school tools:* Needs `emu2` in your `PATH` plus the
+    Intel ASM-86 V3.2 binaries (`asm86.exe`, `link86.exe`, `loc86.exe`,
+    `oh86.exe`) and Digital Research `gencmd.cmd`, by default these are
+    provided in [`../dev`](../dev).  Setting `${ASM86DIR}` can be used
+    to override where the Intel tools are found.
+  * *Modern NASM tools:* Uses NASM 2.16 or later from your `PATH`.
+    This needs no `emu2` and none of the old-school tools at all to work.
+
+* Assembler selection (optional 2nd argument, default `auto`):
+
+```sh
+./build.sh dos          # auto: use what is installed; BOTH -> byte-compare
+./build.sh dos nasm     # force NASM only
+./build.sh dos intel    # force the period Intel toolchain only
+./build.sh dos both     # require both + byte-compare (CI-style verification)
+```
 
 * What `build.sh` does:
-  1. `expand.py` flattens `.INSERT`/`.DEFINE`/`REPT`/conditionals to Z80 stream.
-  2. `xlate.py expanded.asm dos` does 8080 to Intel ASM86 with the MS-DOS `INT 21h` shim.
-  3. `asm86` then `link86` then `loc86` (CODE at 0 -> offset == address) then `oh86` to Intel HEX-86
-  4. `mkcom.py` takes Intel HEX and makes flat MS-DOS `.COM` (loaded at 100h)
+  1. `expand.py` flattens `.INSERT`/`.DEFINE`/`REPT`/conditionals to Z80
+     stream.
+  2. `xlate.py expanded.asm dos` does 8080 to Intel ASM86 with the MS-DOS
+     `INT 21h` shim.
+  3. Assembles the `.A86` to the flat program image.  With the Intel chain
+     (`asm86` then `link86` then `loc86` (CODE at 0 -> offset == address) then
+     `oh86` to Intel HEX-86, then `mkcom.py` maps it flat), with NASM
+     (`a86tonasm.py` converts to NASM source, `nasm -f bin` emits the image
+     directly), or with both, which does tests and fails the build unless the
+     two images end up identical.
+  4. Packages the image: flat MS-DOS `.COM` (loaded at 100h), or the CP/M-86
+     `.CMD` via GENCMD (Intel path) / `wrapcmd.py wrap` (NASM-only path —
+     byte-identical to GENCMD's output, also cross-checked when both run).
+
+The two backends (Intel ASM86 and NASM) will produce identical binaries:
+`a86tonasm.py` replicates all the Intel ASM86 V3.2 artifact like its
+unconditional-`JMP` sizing (backward-short `EB`, forward-short `EB`+`NOP`,
+else `E9`), the worst-case `NOP` padding of forward-referenced symbolic
+immediates, and its `reg<-r/m` encoding direction for register-register
+MOV/ALU (NASM picks `r/m<-reg`, so all sites are emitted as `DB` with the
+real mnemonics in a comment).  Differences were worked out using an automatic
+test harness and Gemini AI for analysis with radare2. See the
+[`a86tonasm.py`](a86tonasm.py) file for more details.
 
 `vedita1.cfg` is `src/vedita1.asm` with the interactive install prompts answered
 non-interactively (VEDIT-PLUS, "Full, 8080, CRT").  Expanding it reproduces the

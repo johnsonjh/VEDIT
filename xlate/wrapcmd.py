@@ -53,10 +53,12 @@ def wrap(flat_path, out_path, orig_path=None):
     hdr[0] = 0x01  # one 8080-model code Group Descriptor
     hdr[1], hdr[2] = glen & 0xFF, glen >> 8  # G-Length
     hdr[7], hdr[8] = 0xFF, 0x0F  # G-Max = 0FFFh (edit buffer grows to 64KB)
-    open(out_path, "wb").write(bytes(hdr) + bytes(image))
+    out = bytearray(hdr) + image
+    out += bytes(-len(out) % 128)  # GENCMD pads to CP/M 128-byte records
+    open(out_path, "wb").write(bytes(out))
     print(
         "wrap   %s -> %s : %d bytes, G-Length 0x%X, .cmd flags = 0x%02X"
-        % (flat_path, out_path, 128 + len(image), glen, image[0x108])
+        % (flat_path, out_path, len(out), glen, image[0x108])
     )
 
 
