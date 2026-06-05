@@ -283,9 +283,12 @@ CKROOT:	TST$	AUXUSR		;User 0?
 ;
 				;{OPNIOX,ERCMD}
 OPNSRC:	CALL	CLRSRC		;Set Extent & NR to 0, DE -> INFCB/USER #
-;	JMP	OPNFIL		;Open file from FCB/USER #, 'NZ' if open OK
+	CLR$	INBCNT		;Forget previous file's byte count
+	CALL	OPNFIL		;Open file from FCB/USER #, 'NZ' if open OK
 				;Does not return if MP/M error
 				;Sets INFLG if file opened OK
+	RC			;Return 'C' (and 'Z') if file not found
+	JMP	BCFTCH		;Fetch CP/M 3+ byte count, return 'NC' 'NZ'
 ;
 ; OPNFIL - Open file with DE-> FCB/USER #.
 ;	   Return: 'C' and A = 00 if file not found.
@@ -835,6 +838,7 @@ READTX:	LXI	D,INFCB		;Normally read from input FCB/USER #
 				;{NEXFIL,ACMD}
 	BPROC	READSC
 READSC:	PUSH	B		;Save initial # sectors to be read
+	SHLD	RDBASE		;Save begin DMA for byte count trimming
 	CALL	SETSEC		;Save BC as sector count
 	CALL	VISMSS		;Put up wait message, set NWSCFL = 089H
 				;Save all regs
@@ -846,12 +850,16 @@ READSC:	PUSH	B		;Save initial # sectors to be read
 	XCHG			;DE-> FCB, HL-> DMA
 	PUSH	H		;Save DMA address
 	CALL	DISKR		;Read one sector, DE-> FCB/USER #
+	STA	RDSTAT		;Save BDOS code for byte count trimming
 	POP	H		;HL-> start of record just read
 	PUSH	D		;Save -> FCB
 	CALL	CHKEOF		;Was EOF reached?
 	POP	D		;DE-> FCB/USER #
-	JRNC	..1		;No, continue reading, HL -> past record
+	JRC	..2		;Yes, branch
+	SDED	RDFCB		;Save -> FCB which read good data
+	JMPR	..1		;and continue reading, HL -> past record
 ;
+..2:	CALL	BCTRIM		;CP/M 3+: use byte count to drop pad tail
 	PUSH	H
 	CALL	CLSSRC		;Yes, close current FCB/USER #'s file
 	POP	H
@@ -1033,6 +1041,9 @@ RENBDS:	MVI	C,RENAME
 CLOSE:	PUSH	D		;Save DE-> FCB
 	LHLD	AUXPUT		;HL-> past last text char
 	LXI	D,DEFDMA	;DE-> buffer
+	MOV	A,L		;Compute # data bytes in the final
+	SUB	E		;record for the CP/M 3+ byte count
+	STA	OUTBCT		;(00 = the last record is full)
 	CALL	CMHLDE		;Is purge buffer empty?
 	JRZ	..2		;Yes, branch
 ;
@@ -1057,6 +1068,7 @@ CLOSE:	PUSH	D		;Save DE-> FCB
 	POP	D		;DE-> FCB to close
 	CALL	IFCLOS		;;Close the FCB, return 'C' if close error
 	JRC	..ERR		;;
+	CNZ	BCSTMP		;;Closed OK - set CP/M 3+ exact byte count
 	TST$	WTERFL		;;Write error?
 	RZ			;;No, return
 ;;
@@ -1405,6 +1417,263 @@ MPMCHK:	PUSH	B
 	RET
 	]
 	.PAGE
+;************************************************
+;*						*
+;*	CP/M 3+ Byte Count (LRBC) Routines	*
+;*						*
+;************************************************
+;
+;	CP/M Plus, MP/M II, Concurrent CP/M, and DOS Plus record the
+;	number of bytes used in a file's last 128-byte record in
+;	byte 13 of its directory entries, giving the file an exact
+;	byte size.  These routines use that "Last Record Byte Count"
+;	to drop the padding when reading from a file and to set the
+;	exact file size when writing one, whenever BDOS function 12
+;	reports version 30H or higher.  A ^Z is still written after
+;	the last byte and the final record is still padded (EOFPAD),
+;	so files remain exactly as before for CP/M 2.2 and for any
+;	programs which know nothing about Last Record Byte Counts.
+;
+;	Under MS-DOS the BDOS version is reported as 22H, so these
+;	routines never activate there.  CP/M-86 1.x also reports
+;	22H;  Concurrent CP/M-86 reports 31H so it qualifies.
+;
+;	INSTALL-able switches in LRBCSW (see VEDIT-D1):
+;	  BCNORD (01H) - don't use byte counts when reading
+;	  BCNOWR (02H) - don't set byte counts when writing
+;	  BCISX  (04H) - byte counts use the ISX convention
+;			 (the # of bytes UNUSED in the last record),
+;			 instead of the DOS-PLUS convention (the # USED)
+;
+; BCCHK - Check whether byte count processing is enabled.
+;	  Enter:  A = LRBCSW disable mask (BCNORD or BCNOWR).
+;	  Return: 'C' if disabled or BDOS is below version 30H.
+;	  Saves BC, DE, HL.
+;
+				;{BCFTCH,BCSTMP}
+	BPROC	BCCHK
+BCCHK:	PUSH	B
+	MOV	B,A		;Save the disable mask
+	LDA	CPMVER		;BDOS version from GETENV's BDOS #12
+	CPI	30H		;CP/M Plus / MP/M II class BDOS?
+	JRC	..1		;No, return 'C' - no byte counts
+	LDA	LRBCSW		;Get INSTALLed byte count switches
+	ANA	B		;Disabled by INSTALL? (clears carry)
+	JRZ	..1		;No, return 'NC'
+	STC			;Yes, return 'C'
+..1:	POP	B
+	RET
+	EPROC	BCCHK
+;
+; BCCNV - Convert a byte count between its directory field value and
+;	  the # of bytes used, per the configured convention.
+;	  DOS Plus/MP/M II/CP/M Plus store the # of bytes USED in the
+;	  last record (00 = a full record);  ISX stores the # UNUSED.
+;	  (128 - n) AND 7FH is its own inverse, so this one routine
+;	  converts in both directions.
+;
+;	  Enter:  A = byte count (0 - 127).
+;	  Return: A = converted byte count.
+;	  Saves BC, DE, HL.
+;
+				;{BCFTCH,BCSTMP}
+	BPROC	BCCNV
+BCCNV:	PUSH	B
+	MOV	B,A		;Save the count
+	LDA	LRBCSW		;Get byte count switches
+	ANI	BCISX		;ISX (unused count) convention?
+	MOV	A,B		;Restore the count
+	JRZ	..1		;No, DOS Plus convention - use as is
+	CMA			;Yes, A = (128 - count) AND 7FH:
+	INR	A		;negate,
+	ANI	7FH		;modulo 128
+..1:	POP	B
+	RET
+	EPROC	BCCNV
+;
+; BCFTCH - Fetch the just-opened input file's last record byte count
+;	   into INBCNT.  Searches the directory and keeps the byte
+;	   count from the HIGHEST extent's entry.  INBCNT was cleared
+;	   by OPNSRC;  it stays 00 unless a usable count is found.
+;
+;	   Enter:  DE-> INFCB.  (User # already set by the open.)
+;	   Return: 'NC' and 'NZ' - the file IS open (OPNSRC contract).
+;
+				;{OPNSRC}
+	BPROC	BCFTCH
+BCFTCH:	MVI	A,BCNORD	;Byte counts disabled for reading,
+	CALL	BCCHK		;or not a CP/M 3+ class BDOS?
+	JRC	..9		;Yes, done - INBCNT stays 00
+;
+	CALL	RSTDMA		;Directory entries land in DEFDMA
+	LXI	H,0
+	SHLD	BCMXEX		;Highest extent # seen so far = 0
+	LXI	H,INFCB+12	;Set the FCB extent field to '?'
+	MVI	M,'?'		;to match ALL extents of the file
+	MVI	C,SRCHF		;Search for first directory entry
+;
+..1:	LXI	D,INFCB		;DE-> input FCB (search pattern)
+	CALL	BDOSSV		;Search;  BC, DE and HL are saved
+	CPI	0FFH		;Found a directory entry?
+	BEQ	..8		;No, all entries seen - finish up
+;
+;	Point HL at the matched directory entry in DEFDMA.
+;
+	ANI	03H		;A = directory code 0-3
+	RRC
+	RRC
+	RRC			;A = directory code * 32
+	MOV	E,A
+	MVI	D,0
+	LXI	H,DEFDMA
+	DAD	D		;HL-> the directory entry
+;
+;	This entry's extent # = (S2 AND 3FH) * 32 + (EX AND 1FH).
+;
+	PUSH	H		;Save -> entry
+	LXI	D,12
+	DAD	D		;HL-> EX field of the entry
+	MOV	A,M
+	ANI	1FH
+	MOV	C,A		;C = EX AND 1FH
+	INX$	H
+	INX$	H		;HL-> S2 field of the entry
+	MOV	A,M
+	ANI	3FH		;A = S2 AND 3FH
+	MOV	L,A
+	MVI	H,0		;HL = S2
+	DAD	H
+	DAD	H
+	DAD	H
+	DAD	H
+	DAD	H		;HL = S2 * 32
+	MVI	B,0
+	DAD	B		;HL = this entry's extent #
+	XCHG			;DE = this entry's extent #
+	LHLD	BCMXEX		;HL = highest extent # seen
+	CALL	CMHLDE		;Compare:  'C' = this one is higher
+	POP	H		;HL-> entry.  (POP keeps the flags)
+	JRC	..2		;The highest extent # so far - keep
+	JRNZ	..3		;A higher extent was already seen
+;
+..2:	SDED	BCMXEX		;New highest extent #
+	LXI	D,13
+	DAD	D		;HL-> S1, the byte count field
+	MOV	A,M
+	STA	INBCNT		;Keep its byte count (raw)
+;
+..3:	MVI	C,SRCHN		;Search for the next entry
+	JMPR	..1
+;
+;	Restore the FCB and validate the byte count found.
+;
+..8:	LXI	H,INFCB+12	;Restore the FCB extent field
+	MVI	M,00		;which was set to '?' above
+	LDA	INBCNT		;Get the raw byte count field
+	ORA	A		;Garbage? (high bit set)
+	JM	..BAD		;Yes, ignore it
+	CALL	BCCNV		;Convert if ISX convention configured
+	STA	INBCNT		;INBCNT = # bytes used (00 = full)
+;
+..9:	MVI	A,1		;Return 'NC' and 'NZ' - the file IS
+	ORA	A		;open (OPNSRC's contract)
+	RET
+;
+..BAD:	CLR$	INBCNT		;No usable byte count
+	JMPR	..9
+	EPROC	BCFTCH
+;
+; BCTRIM - At end of the input file, use the last record byte count
+;	   to drop the ^Z/padding tail of the final record just read.
+;
+;	   Enter:  HL-> past the last byte read (from CHKEOF),
+;		   DE-> the FCB which returned EOF.
+;	   Return: HL backed up by (128 - INBCNT) when it applies.
+;	   Saves BC, DE.
+;
+;	   The trim happens only when ALL of these hold:
+;	   - INBCNT is 1-127 (00 = full/unknown - nothing to trim;
+;	     also 00 whenever byte count reading is disabled)
+;	   - the EOF came from BDOS (RDSTAT = 1), not an in-band ^Z
+;	   - the EOF is on the input file (DE = INFCB)
+;	   - the last good record also came from the input file
+;	     (RDFCB = INFCB), not from the .REV file
+;	   - this READSC call read at least one record (HL <> RDBASE),
+;	     so the bytes below HL are the file's final record
+;
+				;{READSC}
+	BPROC	BCTRIM
+BCTRIM:	LDA	RDSTAT		;Did BDOS return the EOF code?
+	CPI	1
+	RNZ			;No (in-band ^Z) - nothing to trim
+	LDA	INBCNT		;A = # bytes used in the last record
+	ORA	A
+	RZ			;00 = full or unknown - don't trim
+	PUSH	H		;Save the EOF position
+	LXI	H,INFCB
+	CALL	CMHLDE		;Is the EOF on the input file?
+	POP	H
+	RNZ			;No, don't trim
+	PUSH	D		;Save DE-> FCB
+	PUSH	H
+	LDED	RDFCB		;DE-> FCB of the last good record
+	LXI	H,INFCB
+	CALL	CMHLDE		;Did it also come from the input file?
+	POP	H
+	JRNZ	..9		;No (.REV file data), don't trim
+	LDED	RDBASE		;DE = the DMA at READSC entry
+	CALL	CMHLDE		;Did this READSC call read anything?
+	JRZ	..9		;No - the tail may not be the record
+	LDA	INBCNT
+	ADI	80H		;DE = count - 128  (-127 to -1)
+	MOV	E,A
+	MVI	D,0FFH
+	DAD	D		;Drop the final record's padding tail
+..9:	POP	D		;DE-> FCB
+	RET
+	EPROC	BCTRIM
+;
+; BCSTMP - Set the last record byte count of the file just closed,
+;	   giving it an exact byte size under CP/M 3+ class systems.
+;
+;	   Enter:  DE-> FCB of the file just closed.
+;		   OUTBCT = # data bytes in its last record (0 = full).
+;	   Errors are ignored - the file is fine without the count.
+;	   Saves BC, DE.
+;
+				;{CLOSE}
+	BPROC	BCSTMP
+BCSTMP:	TST$	WTERFL		;Is a write error pending?
+	RNZ			;Yes - the file is no good anyway
+	MVI	A,BCNOWR	;Byte counts disabled for writing,
+	CALL	BCCHK		;or not a CP/M 3+ class BDOS?
+	RC			;Yes, return
+;
+	PUSH	B
+	PUSH	D
+	LXI	H,32
+	DAD	D		;HL-> CR field of the FCB
+	LDA	OUTBCT		;Get # data bytes in the last record
+	CALL	BCCNV		;Convert if ISX convention configured
+	MOV	M,A		;CR = byte count for SETATR
+	LXI	H,6
+	DAD	D		;HL-> FCB byte F6
+	MOV	A,M
+	ORI	80H		;Set interface attribute F6' to make
+	MOV	M,A		;SETATR also set the byte count
+	PUSH	H		;Save -> F6
+	MVI	C,SETATR	;Set attributes & byte count
+	CALL	BDSUSR		;(Sets user #.  Errors are ignored -
+				;the file is valid without the count)
+	POP	H		;HL-> F6
+	MOV	A,M
+	ANI	7FH		;Clear F6' again - OUTFCB is reused
+	MOV	M,A		;for the rename to the real filename
+	POP	D
+	POP	B
+	RET
+	EPROC	BCSTMP
+	.PAGE
 
 	IF	VPLUS, [
 ;
@@ -1416,7 +1685,7 @@ EUCMD:	CALL	FCBCHX		;Get next non-blank Upper-Cased command char
 	BNE	..1		;No, skip
 	SUI	'A'-1		;Conver to binary, A=1, B=2, etc
 	CALL	SETDRV		;Login the specified drive, set DEFDRV
-	CALL	FCBCHR		;Get next Upper-Cased command char, 'Z'=>terminator
+	CALL	FCBCHR		;Get next Upper-Cased cmd char, 'Z'=>terminator
 ;
 ..1:	CALL	DIGCHK		;Digit?
 	BNE	..2		;No, skip

@@ -54,6 +54,22 @@ vcfg <image> bind <code> <hexbyte>...    # rebind a functions key
   is installed by just copying it in, except on direct‑video builds, which
   have no `ADDLED`.
 
+* `set swtbl lrbcsw <val>` configures the CP/M 3+ *Last Record Byte Count*
+  (LRBC) feature, a restoration addition (`BC----` routines in
+  `src/veditf1.asm`).  On any BDOS reporting version >= 30h (so CP/M‑Plus,
+  MP/M II, Concurrent CP/M, DOS‑PLUS and not MS‑DOS or CP/M‑86 1.x, which
+  report 22H), the editor will read directory metadata byte 13 to drop the
+  `^Z`/padding of a file's final record on load, and then sets the exact
+  byte count (using BDOS 30 + interface attribute F6) on saving.  Files keep
+  the `^Z` + `EOFPAD` padding, so nothing changes for a byte‑count‑unaware
+  system.  `lrbcsw` lives at `SWTBL+11`, in the reserved tail beyond the
+  `SWCHNM`=11 switches that the `ES` command and the CompuView `INSTALL`
+  manages, with 0 meaning use the defaults.  Bit `1` means don't use byte
+  counts when reading, `2` means don't set them when writing, and `4` means
+  interpret the field using the ISX LRBC convention (# bytes *unused* in the
+  last record) instead of the standard DOS‑PLUS convention of # bytes *used*
+  where 0 is a full record).
+
 ### vintmod
 
 ```
