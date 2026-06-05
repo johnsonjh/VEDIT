@@ -398,14 +398,14 @@ The following targets can be built using this technique:
 
 ```sh
 cd xlate
-./build.sh           # ‑> build/out-dos/vedit.com       (MS‑DOS, "CRT")
-./build.sh dosvid    # ‑> build/out-dosvid/vedit.com    (MS‑DOS, direct)
-./build.sh cpm86     # ‑> build/out-cpm86/vedit.cmd     (CP/M‑86, "CRT")
-./build.sh cpm86vid  # ‑> build/out-cpm86vid/vedit.cmd  (CP/M‑86, PC direct)
+./build.sh           # ‑> ../build/out-dos/vedit.com       (MS‑DOS, "CRT")
+./build.sh dosvid    # ‑> ../build/out-dosvid/vedit.com    (MS‑DOS, direct)
+./build.sh cpm86     # ‑> ../build/out-cpm86/vedit.cmd     (CP/M‑86, "CRT")
+./build.sh cpm86vid  # ‑> ../build/out-cpm86vid/vedit.cmd  (CP/M‑86, PC direct)
 ```
 
 All four targets build, run, and can be configured (with a small workaround
-for the CP/M‑86 verisons) using the original CompuView `INSTALL` program.
+for the CP/M‑86 versions) using the original CompuView `INSTALL` program.
 
 The direct‑video targets draw to IBM‑PC‑compatible video hardware directly,
 so they are much faster for the local display when running on now‑vintage
@@ -528,6 +528,3 @@ including:
 * [PMATE](https://texteditors.org/cgi-bin/wiki.pl?PMATE)
 * [TED](https://geezer.org/sw/cpm/ted/)
 * [Z-TEL](https://usenet.trashworldnews.com/?thread=101928)
-8)
-
-8)

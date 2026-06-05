@@ -64,11 +64,11 @@ vcfg <image> bind <code> <hexbyte>...    # rebind a functions key
   the `^Z` + `EOFPAD` padding, so nothing changes for a byte‑count‑unaware
   system.  `lrbcsw` lives at `SWTBL+11`, in the reserved tail beyond the
   `SWCHNM`=11 switches that the `ES` command and the CompuView `INSTALL`
-  manages, with 0 meaning use the defaults.  Bits `1` means don't use byte
+  manages, with 0 meaning use the defaults.  Bit `1` means don't use byte
   counts when reading, `2` means don't set them when writing, and `4` means
   interpret the field using the ISX LRBC convention (# bytes *unused* in the
   last record) instead of the standard DOS‑PLUS convention of # bytes *used*
-  where is 0 is a full record).
+  where 0 is a full record).
 
 ### vintmod
 
