@@ -17,7 +17,7 @@ VEDIT PLUS Ver. 2.33u 06/05/26
   * [Cross-development](#cross-development)
   * [Build Example](#build-example)
   * [Configuration Example](#configuration-example)
-  * [16-bit MS‑DOS and CP/M‑86 builds](#16-bit-ms%E2%80%91dos-and-cpm%E2%80%9186-builds)
+  * [16-bit MS-DOS and CP/M-86 builds](#16-bit-ms-dos-and-cpm-86-builds)
 - [Utility Source](#utility-source)
 - [Extras](#extras)
   * [Older Source Code](#older-source-code)
@@ -369,7 +369,7 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 * You will now have a working — and fully configured — CP/M‑80
   `VEDIT.COM` executable.
 
-### 16-bit MS‑DOS and CP/M‑86 builds
+### 16-bit MS-DOS and CP/M-86 builds
 
 The historical CompuView 8086 builds, done by the company itself,
 seem to have used a multiple module segmented approach using `PASM86`
