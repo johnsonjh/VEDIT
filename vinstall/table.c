@@ -1,6 +1,17 @@
+/*
+ * VINSTALL - table.c
+ * Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+ * SPDX-License-Identifier: MIT-0
+ * scspell-id: d4fa6526-6290-11f1-80d0-80ee73e9b8e7
+ */
+
+/******************************************************************************/
+
 #include <string.h>
 #define TABLE_OWNER
 #include "table.h"
+
+/******************************************************************************/
 
 /* ---- the 115-byte terminal capability table (install.ini record) ---------------- */
 static tfield crt_fields[] = {
@@ -24,6 +35,8 @@ static tfield crt_fields[] = {
 };
 tdesc CRT_TABLE = { "crt", 115, crt_fields, 17 };
 
+/******************************************************************************/
+
 /* ---- the editor's screen-parameter block (PYLINE) ---------------------- */
 static tfield pyline_fields[] = {
   { "nlines",       0, FK_BYTE, 0, "number of screen lines (NLINES)"        },
@@ -41,6 +54,8 @@ static tfield pyline_fields[] = {
   { "cursor_attr", 13, FK_BYTE, 0, "memory-mapped cursor attribute (CURATR)"}
 };
 tdesc PYLINE_TABLE = { "pyline", 14, pyline_fields, 13 };
+
+/******************************************************************************/
 
 /* ---- edit-switch settings (SWTBL, ES commands; 0=off/1=on) ------------ */
 /* lrbcsw sits in SWTBL's reserved tail (offset 11), past the SWCHNM=11    */
@@ -63,6 +78,8 @@ static tfield swtbl_fields[] = {
 };
 tdesc SWTBL_TABLE = { "swtbl", 15, swtbl_fields, 12 };
 
+/******************************************************************************/
+
 /* ---- edit parameter values (PRMTBL, EP commands) ------------------------- */
 static tfield prmtbl_fields[] = {
   { "curtyp",  0, FK_BYTE, 0, "cursor type"                  },
@@ -79,6 +96,8 @@ static tfield prmtbl_fields[] = {
 };
 tdesc PRMTBL_TABLE = { "prmtbl", 11, prmtbl_fields, 11 };
 
+/******************************************************************************/
+
 /* ---- print parameters (PRNTBL, PP commands) ------------------------------ */
 static tfield prntbl_fields[] = {
   { "ppxpl",  0, FK_BYTE, 0, "physical lines per page"       },
@@ -88,6 +107,8 @@ static tfield prntbl_fields[] = {
 };
 tdesc PRNTBL_TABLE = { "prntbl", 4, prntbl_fields, 4 };
 
+/******************************************************************************/
+
 /* ---- the INSTALL version-flags word (an overloaded bitfield) -------------- */
 vflag VFLAGS[] = {
   { 0x0001, "8080mm" }, { 0x0002, "8086mm" }, { 0x0004, "crt"     },
@@ -95,6 +116,8 @@ vflag VFLAGS[] = {
   { 0x0040, "tipc"   }, { 0x0080, "trs80"  }, { 0x0100, "piiceon" },
   { 0x0000, (char *) 0 }
 };
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -113,6 +136,8 @@ tf_size (f)
     default:        return 1;
     }
 }
+
+/******************************************************************************/
 
 const tfield *
 #ifdef ANSI_COMPILER
@@ -133,6 +158,8 @@ tbl_field (t, name)
 
   return (tfield *) 0;
 }
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -164,6 +191,8 @@ tbl_get (t, buf, name, dst)
 
   return n;
 }
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -214,6 +243,8 @@ tbl_set (t, buf, name, src, n)
   return 0;
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 seq_count (
@@ -226,6 +257,8 @@ seq_count (slot)
   return slot[0] & 0x7F;
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 seq_clr (
@@ -237,6 +270,8 @@ seq_clr (slot)
 {
   return ((slot[0] & 0x80) ? 1 : 0);
 }
+
+/******************************************************************************/
 
 #define C_ALWAYS 0
 #define C_CRT 1
@@ -253,6 +288,8 @@ static struct { char *name; int cond; } chain_slots[] = {
 };
 
 #define NCHAIN ((int) (sizeof (chain_slots) / sizeof (chain_slots[0])))
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -272,6 +309,8 @@ chain_take (cond, has_crt)
     default:    return 1;
     }
 }
+
+/******************************************************************************/
 
 const char *
 #ifdef ANSI_COMPILER
@@ -300,6 +339,8 @@ chain_name (has_crt, idx)
   return (char *) 0;
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 chain_index (
@@ -327,6 +368,8 @@ chain_index (has_crt, name)
   return -1;
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 chain_count (
@@ -346,3 +389,5 @@ chain_count (has_crt)
 
   return k;
 }
+
+/******************************************************************************/

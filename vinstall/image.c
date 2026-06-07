@@ -1,9 +1,22 @@
+/*
+ * VINSTALL - image.c
+ * Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+ * SPDX-License-Identifier: MIT-0
+ * scspell-id: 4ab591c4-6290-11f1-8053-80ee73e9b8e7
+ */
+
+/******************************************************************************/
+
 #include "image.h"
 #include "table.h"
+
+/******************************************************************************/
 
 #define V_LOAD  0x0100 /* 8080-model programs ORG at 0100H */
 #define V_PADDR 0x0106 /* runtime addr of "DW ADDTBL" */
 #define V_PFLAG 0x0108 /* runtime addr of the INSTALL version-flags word */
+
+/******************************************************************************/
 
 static long
 #ifdef ANSI_COMPILER
@@ -18,6 +31,8 @@ fileoff (im, addr)
 {
   return im->origin + (long) addr;
 }
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -50,6 +65,8 @@ raw_byte (im, off)
 
   return c & 0xFF;
 }
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -109,6 +126,8 @@ img_open (im, path, writable)
   return -2; /* unrecognized (e.g., segment .CMD) */
 }
 
+/******************************************************************************/
+
 void
 #ifdef ANSI_COMPILER
 img_close (
@@ -125,6 +144,8 @@ img_close (im)
     }
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 img_get_byte (
@@ -138,6 +159,8 @@ img_get_byte (im, addr)
 {
   return raw_byte (im, fileoff (im, addr));
 }
+
+/******************************************************************************/
 
 vword
 #ifdef ANSI_COMPILER
@@ -160,6 +183,8 @@ img_get_word (im, addr)
 
   return (vword) lo | ((vword) hi << 8);
 }
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -198,6 +223,8 @@ img_put_byte (im, addr, val)
   return 0;
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 img_put_word (
@@ -216,6 +243,8 @@ img_put_word (im, addr, val)
 
   return img_put_byte (im, (vword) (addr + 1), (int) ((val >> 8) & 0xFF));
 }
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -249,6 +278,8 @@ img_get_block (im, addr, buf, n)
   return 0;
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 img_put_block (
@@ -273,6 +304,8 @@ img_put_block (im, addr, buf, n)
   return 0;
 }
 
+/******************************************************************************/
+
 vword
 #ifdef ANSI_COMPILER
 img_addtbl (
@@ -284,6 +317,8 @@ img_addtbl (im)
 {
   return img_get_word (im, (vword) V_PADDR);
 }
+
+/******************************************************************************/
 
 vword
 #ifdef ANSI_COMPILER
@@ -297,6 +332,8 @@ img_flags (im)
   return img_get_word (im, (vword) V_PFLAG);
 }
 
+/******************************************************************************/
+
 vword
 #ifdef ANSI_COMPILER
 img_vrsnum (
@@ -309,6 +346,8 @@ img_vrsnum (im)
   return img_get_word (im, img_addtbl (im));
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 img_has_crt (
@@ -320,6 +359,8 @@ img_has_crt (im)
 {
   return ((img_flags (im) & 0x0004) ? 1 : 0);
 }
+
+/******************************************************************************/
 
 vword
 #ifdef ANSI_COMPILER
@@ -345,6 +386,8 @@ img_table (im, name)
   return img_get_word (im, (vword) (at + (vword) (2 * idx)));
 }
 
+/******************************************************************************/
+
 /* rewrite the ADDTBL pointer for a named table (e.g., KEYTBN). */
 int
 #ifdef ANSI_COMPILER
@@ -368,3 +411,5 @@ img_set_table (im, name, addr)
 
   return img_put_word (im, (vword) (img_addtbl (im) + (vword) (2 * idx)), addr);
 }
+
+/******************************************************************************/

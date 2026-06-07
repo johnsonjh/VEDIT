@@ -1,9 +1,24 @@
+/*
+ * VINSTALL - inifile.h
+ * Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+ * SPDX-License-Identifier: MIT-0
+ * scspell-id: a013abc4-6290-11f1-8a2b-80ee73e9b8e7
+ */
+
+/******************************************************************************/
+
 #ifndef INIFILE_H
 #define INIFILE_H
 
+/******************************************************************************/
+
 #include "port.h"
 
+/******************************************************************************/
+
 #define INI_RECLEN 115 /* == CRT_TABLE.len */
+
+/******************************************************************************/
 
 typedef struct {
   vbyte *buf;
@@ -14,6 +29,8 @@ typedef struct {
   long rec_base; /* offset of the first record */
 } inifile;
 
+/******************************************************************************/
+
 int ini_load P_((inifile *f, const char *path)); /* 0 ok, <0 error */
 int ini_save P_((const inifile *f, const char *path)); /* 0 ok */
 void ini_free P_((inifile *f));
@@ -23,4 +40,8 @@ int ini_find P_((const inifile *f, const char *name)); /* exact then case-insens
 vbyte *ini_record P_((const inifile *f, int k)); /* mutable pointer to the k-th 115-byte record */
 int ini_add P_((inifile *f, const char *name, const vbyte *rec)); /* append; rec NULL = blank; -> index or <0 */
 
+/******************************************************************************/
+
 #endif
+
+/******************************************************************************/

@@ -1,6 +1,17 @@
+/*
+ * VINSTALL - instcore.c
+ * Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+ * SPDX-License-Identifier: MIT-0
+ * scspell-id: b743552e-6290-11f1-911f-80ee73e9b8e7
+ */
+
+/******************************************************************************/
+
 #include <stdio.h>
 #include "image.h"
 #include "table.h"
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -81,3 +92,5 @@ main (argc, argv)
 
   return (im.err ? 1 : 0);
 }
+
+/******************************************************************************/

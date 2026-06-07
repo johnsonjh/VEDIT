@@ -1,3 +1,12 @@
+/*
+ * VINSTALL - vcfg.c
+ * Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+ * SPDX-License-Identifier: MIT-0
+ * scspell-id: f66e7aee-6290-11f1-bc2e-80ee73e9b8e7
+ */
+
+/******************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,7 +14,11 @@
 #include "table.h"
 #include "inifile.h"
 
+/******************************************************************************/
+
 #define TABPOS_LEN 34
+
+/******************************************************************************/
 
 static struct { char *name; tdesc *desc; } g_tables[] = {
   { "PYLINE", &PYLINE_TABLE },
@@ -15,12 +28,18 @@ static struct { char *name; tdesc *desc; } g_tables[] = {
 };
 #define NTAB ((int) (sizeof (g_tables) / sizeof (g_tables[0])))
 
+/******************************************************************************/
+
 #define KFF 0xFF
+
+/******************************************************************************/
 
 static vbyte g_keymsg[768];
 static int g_keymsg_len;
 static vbyte g_kbuf[640];
 static vbyte g_obuf[640];
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -63,6 +82,8 @@ ieq (a, b)
   return r;
 }
 
+/******************************************************************************/
+
 static void
 #ifdef ANSI_COMPILER
 print_flags (
@@ -82,6 +103,8 @@ print_flags (f)
 
   printf ("\n");
 }
+
+/******************************************************************************/
 
 static void
 #ifdef ANSI_COMPILER
@@ -126,6 +149,8 @@ dump_table (im, name, t)
     }
 }
 
+/******************************************************************************/
+
 static void
 #ifdef ANSI_COMPILER
 show_tabs (
@@ -155,6 +180,8 @@ show_tabs (im)
   printf ("\n");
 }
 
+/******************************************************************************/
+
 static int
 #ifdef ANSI_COMPILER
 do_show (
@@ -180,6 +207,8 @@ do_show (im)
   return 0;
 }
 
+/******************************************************************************/
+
 static int
 #ifdef ANSI_COMPILER
 table_index (
@@ -197,6 +226,8 @@ table_index (name)
 
   return -1;
 }
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -264,6 +295,8 @@ do_set (im, tname, field, valstr)
   return 0;
 }
 
+/******************************************************************************/
+
 static int
 #ifdef ANSI_COMPILER
 do_flag (
@@ -307,6 +340,8 @@ do_flag (im, name, on)
 
   return 0;
 }
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -364,6 +399,8 @@ do_tabs (im, argc, argv)
   return 0;
 }
 
+/******************************************************************************/
+
 static int
 #ifdef ANSI_COMPILER
 resolve_term (
@@ -383,6 +420,8 @@ resolve_term (f, s)
 
   return ((s[0]) ? atoi (s) : -1);
 }
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -439,6 +478,8 @@ do_apply (im, inipath, term)
   return rc;
 }
 
+/******************************************************************************/
+
 static void
 #ifdef ANSI_COMPILER
 load_keymsg (
@@ -466,6 +507,8 @@ load_keymsg (im)
   if (0 == img_get_block (im, msg, g_keymsg, len))
     g_keymsg_len = len;
 }
+
+/******************************************************************************/
 
 static const char *
 #ifdef ANSI_COMPILER
@@ -506,6 +549,8 @@ find_name (c0, c1)
   return (const char *) 0;
 }
 
+/******************************************************************************/
+
 static int
 #ifdef ANSI_COMPILER
 load_keytbl (
@@ -538,6 +583,8 @@ load_keytbl (im, at)
 
   return len;
 }
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -617,6 +664,8 @@ do_keys (im)
   return 0;
 }
 
+/******************************************************************************/
+
 static vword
 #ifdef ANSI_COMPILER
 key_maxend (
@@ -649,6 +698,8 @@ key_maxend (im, kt)
 
   return best;
 }
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -799,6 +850,8 @@ do_bind (im, code, bytes, n)
   return 0;
 }
 
+/******************************************************************************/
+
 static void
 #ifdef ANSI_COMPILER
 usage ( void )
@@ -815,6 +868,8 @@ usage ()
     "       vcfg <image> keys\n"
     "       vcfg <image> bind <code> <hexbyte>...\n");
 }
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -892,3 +947,5 @@ main (argc, argv)
 
   return rc;
 }
+
+/******************************************************************************/

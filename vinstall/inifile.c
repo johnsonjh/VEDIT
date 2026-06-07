@@ -1,10 +1,23 @@
+/*
+ * VINSTALL - inifile.c
+ * Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+ * SPDX-License-Identifier: MIT-0
+ * scspell-id: 93eabd2e-6290-11f1-b4b3-80ee73e9b8e7
+ */
+
+/******************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "inifile.h"
 
+/******************************************************************************/
+
 #define MAGIC "*CRT.TBL*"
 #define MAGLEN 9
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -87,6 +100,8 @@ ini_load (f, path)
   return 0;
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 ini_save (
@@ -116,6 +131,8 @@ ini_save (f, path)
   return 0;
 }
 
+/******************************************************************************/
+
 void
 #ifdef ANSI_COMPILER
 ini_free (
@@ -129,6 +146,8 @@ ini_free (f)
     FREE (f->buf);
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 ini_count (
@@ -140,6 +159,8 @@ ini_count (f)
 {
   return f->count;
 }
+
+/******************************************************************************/
 
 const char *
 #ifdef ANSI_COMPILER
@@ -165,6 +186,8 @@ ini_name (f, k)
 
   return q;
 }
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -199,6 +222,8 @@ ci_prefix (a, b)
   return 1;
 }
 
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 ini_find (
@@ -232,6 +257,8 @@ ini_find (f, name)
   return -1;
 }
 
+/******************************************************************************/
+
 vbyte *
 #ifdef ANSI_COMPILER
 ini_record (
@@ -248,6 +275,8 @@ ini_record (f, k)
 
   return f->buf + f->rec_base + (long) k * INI_RECLEN;
 }
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -320,3 +349,5 @@ ini_add (f, name, rec)
 
   return new_count - 1;
 }
+
+/******************************************************************************/

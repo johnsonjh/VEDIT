@@ -1,3 +1,8 @@
+# VINSTALL - Makefile
+# Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+# SPDX-License-Identifier: MIT-0
+# scspell-id: 27999482-6291-11f1-b86d-80ee73e9b8e7
+
 CC = cc
 CFLAGS = -O
 CORE = image.o table.o port.o

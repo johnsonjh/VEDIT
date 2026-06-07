@@ -1,6 +1,17 @@
+/*
+ * VINSTALL - port.c
+ * Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+ * SPDX-License-Identifier: MIT-0
+ * scspell-id: c5f31aa0-6290-11f1-9298-80ee73e9b8e7
+ */
+
+/******************************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include "port.h"
+
+/******************************************************************************/
 
 char *
 #ifdef ANSI_COMPILER
@@ -69,6 +80,8 @@ trim_str (s)
   return buf;
 }
 
+/******************************************************************************/
+
 void
 #ifdef ANSI_COMPILER
 error_msg (
@@ -98,6 +111,8 @@ error_msg (m, n, e)
 
   fprintf (stderr, ".\n");
 }
+
+/******************************************************************************/
 
 FILE *
 #ifdef ANSI_COMPILER
@@ -129,3 +144,5 @@ vfopen (path, mode)
 
   return fopen (path, m);
 }
+
+/******************************************************************************/

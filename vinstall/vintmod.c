@@ -1,8 +1,19 @@
+/*
+ * VINSTALL - vintmod.c
+ * Copyright (c) 2026 Jeffrey H. Johnson <johnsonjh.dev@gmail.com>
+ * SPDX-License-Identifier: MIT-0
+ * scspell-id: 00712802-6291-11f1-bc87-80ee73e9b8e7
+ */
+
+/******************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "inifile.h"
 #include "table.h"
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -23,6 +34,8 @@ resolve (f, s)
 
   return ((s[0]) ? atoi (s) : -1);
 }
+
+/******************************************************************************/
 
 static void
 #ifdef ANSI_COMPILER
@@ -68,6 +81,8 @@ show_term (f, idx)
       printf ("   ; %s\n", fld->help);
     }
 }
+
+/******************************************************************************/
 
 static int
 #ifdef ANSI_COMPILER
@@ -117,6 +132,8 @@ do_set (f, idx, field, argc, argv)
   return 0;
 }
 
+/******************************************************************************/
+
 static int
 #ifdef ANSI_COMPILER
 do_clr (
@@ -148,6 +165,8 @@ do_clr (f, idx, on)
   return 0;
 }
 
+/******************************************************************************/
+
 static void
 #ifdef ANSI_COMPILER
 usage ( void )
@@ -163,6 +182,8 @@ usage ()
     "       vintmod <ini> add   <name>\n"
     "       vintmod <ini> clone <n|name> <newname>\n");
 }
+
+/******************************************************************************/
 
 int
 #ifdef ANSI_COMPILER
@@ -268,3 +289,5 @@ main (argc, argv)
 
   return rc;
 }
+
+/******************************************************************************/
