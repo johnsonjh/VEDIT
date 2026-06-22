@@ -18,9 +18,14 @@
 #        forward,  fits rel8  ->  EB disp8 + NOP 90  (3 bytes, one-pass:
 #                                 forward distance unknown, 3 bytes reserved)
 #        otherwise            ->  E9 disp16          (3 bytes)
-#     Computed as a fixpoint: emit explicit JMP SHORT/NEAR (+NOP), assemble
+#     Computed as a fixpoint: emit explicit JMP SHORT/STRICT NEAR (+NOP), assemble
 #     with `nasm -l`, re-derive each choice from the listing addresses,
 #     repeat until stable (converges in 2 iterations in practice).
+#     "STRICT NEAR" is required (rather than bare "NEAR") because NASM >=3
+#     optimizes "JMP NEAR" to short form when it fits; using STRICT forces the
+#     3-byte layout during trials so fit decisions are made against worst-case
+#     (3-byte) preceding sizes and the fixpoint does not propose out-of-range
+#     SHORTs.
 #  2. A symbolic immediate not yet resolvable when ASM86 reaches the line
 #     ("forward": label/EQU defined later, or an EQU whose RHS chain isn't
 #     resolvable yet) reserves the WORST-CASE form -- the symbol might turn
@@ -337,7 +342,7 @@ def emit(recs, choices, fwd, pads):
             jmpline[i] = len(lines) + 1
             ch = choices.get(i, "near")
             lines.append(
-                "\tJMP %s %s" % ("SHORT" if ch != "near" else "NEAR", r["target"])
+                "\tJMP %s %s" % ("SHORT" if ch != "near" else "STRICT NEAR", r["target"])
             )
             if ch == "shortnop":
                 lines.append("\tNOP")
