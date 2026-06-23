@@ -531,4 +531,4 @@ including:
 
 * [PMATE](https://texteditors.org/cgi-bin/wiki.pl?PMATE)
 * [TED](https://geezer.org/sw/cpm/ted/)
-* [Z-TEL](https://usenet.trashworldnews.com/?thread=101928)
+* [Z-TEL](https://github.com/johnsonjh/VEDIT/raw/refs/heads/master/dev/ztel.com)
