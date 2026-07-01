@@ -27,6 +27,7 @@ VEDIT PLUS Ver. 2.33u 06/05/26
 - [Documentation](#documentation)
   * [Manual Source Code](#manual-source-code)
   * [Older Manuals](#older-manuals)
+- [Code statistics](#code-statistics)
 - [Links](#links)
 - [See Also](#see-also)
 
@@ -517,6 +518,118 @@ VEDIT Manual (*1987*):
 * [VEDIT Manual (*1981*)](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/Compuview_VEDIT_1981.pdf)
 * [VEDIT Manual (*1983*)](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/PT_VEDIT_Users_Manual_1983.pdf)
 * [VEDIT Manual (*1984*)](https://nbviewer.org/github/johnsonjh/VEDIT/blob/master/doc/VEDIT_Users_Manual_Nov84.pdf)
+
+## Code statistics
+
+Code statistics (excludes [`oldsrc/`](oldsrc)) 📈 generated
+by [`scc`](https://github.com/boyter/scc):
+
+<!-- scc-start -->
+<table id="scc-table">
+        <thead><tr>
+                <th>Language</th>
+                <th>Files</th>
+                <th>Lines</th>
+                <th>Blank</th>
+                <th>Comment</th>
+                <th>Code</th>
+                <th>Complexity</th>
+                <th>Bytes</th>
+                <th>Uloc</th>
+        </tr></thead>
+        <tbody><tr>
+                <th>Assembly</th>
+                <th>49</th>
+                <th>34670</th>
+                <th>585</th>
+                <th>11219</th>
+                <th>22866</th>
+                <th>0</th>
+                <th>924083</th>
+                <th>20854</th>
+        </tr><tr>
+                <th>Text</th>
+                <th>6</th>
+                <th>4059</th>
+                <th>1940</th>
+                <th>0</th>
+                <th>2119</th>
+                <th>0</th>
+                <th>126870</th>
+                <th>2004</th>
+        </tr><tr>
+                <th>C</th>
+                <th>7</th>
+                <th>2649</th>
+                <th>550</th>
+                <th>146</th>
+                <th>1953</th>
+                <th>420</th>
+                <th>54183</th>
+                <th>1039</th>
+        </tr><tr>
+                <th>Python</th>
+                <th>6</th>
+                <th>1801</th>
+                <th>135</th>
+                <th>267</th>
+                <th>1399</th>
+                <th>496</th>
+                <th>66931</th>
+                <th>1428</th>
+        </tr><tr>
+                <th>C Header</th>
+                <th>4</th>
+                <th>276</th>
+                <th>80</th>
+                <th>67</th>
+                <th>129</th>
+                <th>6</th>
+                <th>8294</th>
+                <th>128</th>
+        </tr><tr>
+                <th>Shell</th>
+                <th>1</th>
+                <th>174</th>
+                <th>8</th>
+                <th>61</th>
+                <th>105</th>
+                <th>32</th>
+                <th>9656</th>
+                <th>153</th>
+        </tr><tr>
+                <th>Markdown</th>
+                <th>1</th>
+                <th>98</th>
+                <th>16</th>
+                <th>0</th>
+                <th>82</th>
+                <th>0</th>
+                <th>5266</th>
+                <th>81</th>
+        </tr><tr>
+                <th>Makefile</th>
+                <th>2</th>
+                <th>90</th>
+                <th>19</th>
+                <th>32</th>
+                <th>39</th>
+                <th>6</th>
+                <th>2904</th>
+                <th>64</th>
+        </tr></tbody>
+        <tfoot><tr>
+                <th>Total</th>
+                <th>76</th>
+                <th>43817</th>
+                <th>3333</th>
+                <th>11792</th>
+                <th>28692</th>
+                <th>960</th>
+                <th>1198187</th>
+                <th>25727</th>
+        </tr></tfoot></table>
+<!-- scc-end -->
 
 ## Links
 
