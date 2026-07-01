@@ -6,9 +6,10 @@
 #
 #   Usage:  build.sh [dos|cpm86|dosvid|cpm86vid] [auto|intel|nasm|both]
 #           (defaults: dos auto)
-#   Output: build/out-<target>/vedit.com     (MS-DOS .COM:  dos=CRT, dosvid=direct video)
-#           build/out-<target>/vedit.cmd     (CP/M-86 .CMD: cpm86=CRT, cpm86vid=direct video)
-#           build/out-cpm86*/vedit-cpm.com   (flat image for the DOS install.exe round-trip)
+#
+#   Output: build/out-<target>/vedit.com    (MS-DOS .COM:  dos=CRT, dosvid=direct video)
+#           build/out-<target>/vedit.cmd    (CP/M-86 .CMD: cpm86=CRT, cpm86vid=direct video)
+#           build/out-cpm86*/vedit-cpm.com  (flat image for the DOS install.exe round-trip)
 #
 # Assembler selection (2nd argument):
 #   auto   -  use whichever toolchains are present; if BOTH are, assemble with
@@ -23,11 +24,11 @@
 #
 # Prerequisites (either toolchain is enough but both enables cross-verification):
 #   - Intel: emu2 in PATH + the old-school tools vendored in ../dev (lower-case):
-#       Intel ASM-86 V3.2:   asm86.exe link86.exe loc86.exe oh86.exe
-#       Digital Research:    gencmd.cmd   (CP/M-86 targets only)
+#       Intel ASM-86 V3.2: asm86.exe link86.exe loc86.exe oh86.exe
+#       Digital Research:  gencmd.cmd   (CP/M-86 targets only)
 #     (${ASM86DIR} overrides where the Intel .exe tools are found)
 #
-#   - NASM:  nasm in PATH (no emu2 or old-school tools needed, and the CP/M-86
+#   - NASM: nasm in PATH (no emu2 or old-school tools needed, and the CP/M-86
 #     CMD is then packaged by wrapcmd.py, byte-identical to using GENCMD.
 #
 set -e
@@ -67,11 +68,11 @@ command -v nasm >/dev/null || HAVE_NASM=
 case "$ASM" in
     auto)  [ -n "$HAVE_INTEL$HAVE_NASM" ] || {
                echo "error: no assembler toolchain found:" >&2
-               echo "  Intel: needs emu2 on PATH + asm86/link86/loc86/oh86.exe in $ASM86DIR (set ASM86DIR)" >&2
-               echo "  NASM:  needs nasm (>= 2.16) on PATH" >&2; exit 1; } ;;
-    intel) [ -n "$HAVE_INTEL" ] || { echo "error: emu2 not on PATH or Intel tools missing in $ASM86DIR (set ASM86DIR)" >&2; exit 1; }
+               echo "  Intel: needs emu2 in PATH + asm86/link86/loc86/oh86.exe in $ASM86DIR (set ASM86DIR)" >&2
+               echo "  NASM:  needs nasm (>= 2.16) in PATH" >&2; exit 1; } ;;
+    intel) [ -n "$HAVE_INTEL" ] || { echo "error: emu2 not in PATH or Intel tools missing in $ASM86DIR (set ASM86DIR)" >&2; exit 1; }
            HAVE_NASM= ;;
-    nasm)  [ -n "$HAVE_NASM" ] || { echo "error: nasm not on PATH" >&2; exit 1; }
+    nasm)  [ -n "$HAVE_NASM" ] || { echo "error: nasm not in PATH" >&2; exit 1; }
            HAVE_INTEL= ;;
     both)  [ -n "$HAVE_INTEL" ] && [ -n "$HAVE_NASM" ] || {
                echo "error: '$ASM' needs BOTH toolchains (emu2 + Intel tools in $ASM86DIR, and nasm)" >&2; exit 1; } ;;
