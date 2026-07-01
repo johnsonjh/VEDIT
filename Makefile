@@ -22,7 +22,7 @@ scc: README.md
 			--count-as-pattern *.vdm:VEDIT:\"Plain Text\" \
 			--count-as-pattern *.exc:VEDIT:\"Plain Text\" \
 			--exclude-file LICENSE,README.md,README.awk \
-			--exclude-dir LICENSES,.git,oldsrc \
+			--exclude-dir LICENSES,.git,oldsrc,oldbin \
 			--exclude-ext art,ini \
 			--no-cocomo -u --no-size -s lines -f html-table; \
 			printf \"\n%s\n\" \"<!-- scc-end -->\""); \
