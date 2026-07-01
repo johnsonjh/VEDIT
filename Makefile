@@ -17,6 +17,10 @@ scc: README.md
 	awk '/<!-- scc-start -->/ { \
 		print; system("scc \
 			--count-as-pattern *.txt:Text:\"Plain Text\" \
+			--count-as-pattern *.hlp:Text:\"Plain Text\" \
+			--count-as-pattern *.crt:Text:\"Plain Text\" \
+			--count-as-pattern *.vdm:VEDIT:\"Plain Text\" \
+			--count-as-pattern *.exc:VEDIT:\"Plain Text\" \
 			--exclude-file LICENSE,README.md,README.awk \
 			--exclude-dir LICENSES,.git,oldsrc \
 			--exclude-ext art,ini \

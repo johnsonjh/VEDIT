@@ -549,14 +549,24 @@ by [`scc`](https://github.com/boyter/scc):
                 <th>20854</th>
         </tr><tr>
                 <th>Text</th>
-                <th>6</th>
-                <th>4059</th>
-                <th>1940</th>
+                <th>18</th>
+                <th>11574</th>
+                <th>4554</th>
                 <th>0</th>
-                <th>2119</th>
+                <th>7020</th>
                 <th>0</th>
-                <th>126870</th>
-                <th>2004</th>
+                <th>360770</th>
+                <th>4577</th>
+        </tr><tr>
+                <th>VEDIT</th>
+                <th>22</th>
+                <th>5238</th>
+                <th>915</th>
+                <th>0</th>
+                <th>4323</th>
+                <th>0</th>
+                <th>126766</th>
+                <th>1438</th>
         </tr><tr>
                 <th>C</th>
                 <th>7</th>
@@ -610,24 +620,24 @@ by [`scc`](https://github.com/boyter/scc):
         </tr><tr>
                 <th>Makefile</th>
                 <th>2</th>
-                <th>90</th>
+                <th>94</th>
                 <th>19</th>
                 <th>32</th>
-                <th>39</th>
+                <th>43</th>
                 <th>6</th>
-                <th>2904</th>
-                <th>64</th>
+                <th>3106</th>
+                <th>68</th>
         </tr></tbody>
         <tfoot><tr>
                 <th>Total</th>
-                <th>76</th>
-                <th>43857</th>
-                <th>3328</th>
+                <th>110</th>
+                <th>56614</th>
+                <th>6857</th>
                 <th>11828</th>
-                <th>28701</th>
+                <th>37929</th>
                 <th>955</th>
-                <th>1199188</th>
-                <th>25742</th>
+                <th>1560056</th>
+                <th>29753</th>
         </tr></tfoot></table>
 <!-- scc-end -->
 
