@@ -95,13 +95,13 @@ print_flags (f)
 {
   int i;
 
-  printf ("flags     0x%04X =", f);
+  (void)printf ("flags     0x%04X =", f);
 
   for (i = 0; VFLAGS[i].name; i++)
     if (f & VFLAGS[i].bit)
-      printf (" %s", VFLAGS[i].name);
+      (void)printf (" %s", VFLAGS[i].name);
 
-  printf ("\n");
+  (void)printf ("\n");
 }
 
 /******************************************************************************/
@@ -131,7 +131,7 @@ dump_table (im, name, t)
   if (0 != img_get_block (im, at, blk, t->len))
     return;
 
-  printf ("%-7s @ 0x%04X:\n", name, at);
+  (void)printf ("%-7s @ 0x%04X:\n", name, at);
 
   for (i = 0; i < t->nfields; i++)
     {
@@ -145,7 +145,7 @@ dump_table (im, name, t)
       else
         v = blk[fld->off];
 
-      printf ("  %-12s = %3u  (0x%02X)   %s\n", fld->name, v, v, fld->help);
+      (void)printf ("  %-12s = %3u  (0x%02X)   %s\n", fld->name, v, v, fld->help);
     }
 }
 
@@ -172,12 +172,12 @@ show_tabs (im)
   if (0 != img_get_block (im, at, tab, TABPOS_LEN))
     return;
 
-  printf ("TABPOS  @ 0x%04X:", at);
+  (void)printf ("TABPOS  @ 0x%04X:", at);
 
   for (i = 0; i < 32 && 0xFF != tab[i] && 0 != tab[i]; i++)
-    printf (" %u", tab[i]);
+    (void)printf (" %u", tab[i]);
 
-  printf ("\n");
+  (void)printf ("\n");
 }
 
 /******************************************************************************/
@@ -193,9 +193,9 @@ do_show (im)
 {
   int i;
 
-  printf ("format    %s (%ld bytes)\n", im->fmt, im->size);
-  printf ("VRSNUM    %u  (VEDIT %u.%02u)\n",
-          img_vrsnum (im), img_vrsnum (im) / 100, img_vrsnum (im) % 100);
+  (void)printf ("format    %s (%ld bytes)\n", im->fmt, im->size);
+  (void)printf ("VRSNUM    %u  (VEDIT %u.%02u)\n",
+                img_vrsnum (im), img_vrsnum (im) / 100, img_vrsnum (im) % 100);
 
   print_flags (img_flags (im));
 
@@ -279,9 +279,9 @@ do_set (im, tname, field, valstr)
   val = strtol (valstr, (char **) 0, 0);
 
   if (FK_WORD == fld->kind)
-    img_put_word (im, (vword) (at + (vword) fld->off), (vword) val);
+    (void)img_put_word (im, (vword) (at + (vword) fld->off), (vword) val);
   else
-    img_put_byte (im, (vword) (at + (vword) fld->off), (int) val);
+    (void)img_put_byte (im, (vword) (at + (vword) fld->off), (int) val);
 
   if (im->err)
     {
@@ -290,7 +290,8 @@ do_set (im, tname, field, valstr)
       return 1;
     }
 
-  printf ("set %s.%s = %ld (0x%lX)\n", g_tables[ti].name, field, val, (unsigned long) val);
+  (void)printf ("set %s.%s = %ld (0x%lX)\n",
+                g_tables[ti].name, field, val, (unsigned long) val);
 
   return 0;
 }
@@ -328,7 +329,7 @@ do_flag (im, name, on)
   f = img_flags (im);
   f = (vword) ((on) ? (f | bit) : (f & ~bit));
 
-  img_put_word (im, (vword) 0x0108, f);
+  (void)img_put_word (im, (vword) 0x0108, f);
 
   if (im->err)
     {
@@ -376,7 +377,7 @@ do_tabs (im, argc, argv)
       return 0;
     }
 
-  memset (tab, 0, TABPOS_LEN);
+  (void)memset (tab, 0, TABPOS_LEN);
   n = argc - 3;
 
   if (32 < n)
@@ -394,7 +395,7 @@ do_tabs (im, argc, argv)
       return 1;
     }
 
-  printf ("set %d tab stop(s)\n", n);
+  (void)printf ("set %d tab stop(s)\n", n);
 
   return 0;
 }
@@ -470,8 +471,8 @@ do_apply (im, inipath, term)
       rc = 1;
     }
   else
-    printf ("applied terminal '%s' to ADDLED @ 0x%04X (%d bytes)\n",
-            ini_name (&f, idx), at, CRT_TABLE.len);
+    (void)printf ("applied terminal '%s' to ADDLED @ 0x%04X (%d bytes)\n",
+                  ini_name (&f, idx), at, CRT_TABLE.len);
 
   ini_free (&f);
 
@@ -608,7 +609,7 @@ do_keys (im)
     }
 
   load_keymsg (im);
-  printf ("KEYTBL @ 0x%04X (%d bytes):  key bytes -> code  function\n", kt, len);
+  (void)printf ("KEYTBL @ 0x%04X (%d bytes):  key bytes -> code  function\n", kt, len);
   pos = 0;
 
   if (pos < len && KFF == g_kbuf[pos])
@@ -640,25 +641,25 @@ do_keys (im)
         break;
 
       pos++; /* KFF after the code */
-      printf ("  ");
+      (void)printf ("  ");
 
       for (i = ks; i < ke; i++)
-        printf ("%02X ", g_kbuf[i]);
+        (void)printf ("%02X ", g_kbuf[i]);
 
       for (i = ke - ks; i < 6; i++)
-        printf ("   "); /* align the code column */
+        (void)printf ("   "); /* align the code column */
 
-      printf ("-> ");
+      (void)printf ("-> ");
 
       for (i = cs; i < ce; i++)
-        printf ("%c", ((32 <= g_kbuf[i] && 127 > g_kbuf[i]) ? (char) g_kbuf[i] : '.'));
+        (void)printf ("%c", ((32 <= g_kbuf[i] && 127 > g_kbuf[i]) ? (char) g_kbuf[i] : '.'));
 
       for (i = ce - cs; i < 4; i++)
-        printf (" "); /* align the name column */
+        (void)printf (" "); /* align the name column */
 
       nm = find_name ((int) g_kbuf[cs], ((2 <= ce - cs) ? (int) g_kbuf[cs + 1] : 0));
 
-      printf ("  %s\n", (((const char *) 0 != nm) ? nm : ""));
+      (void)printf ("  %s\n", (((const char *) 0 != nm) ? nm : ""));
     }
 
   return 0;
@@ -836,7 +837,7 @@ do_bind (im, code, bytes, n)
       return 1;
     }
 
-  img_set_table (im, "KEYTBN", (vword) (kt + (vword) out)); /* move the end pointer */
+  (void)img_set_table (im, "KEYTBN", (vword) (kt + (vword) out)); /* move the end pointer */
 
   if (im->err)
     {
@@ -845,7 +846,8 @@ do_bind (im, code, bytes, n)
       return 1;
     }
 
-  printf ("rebound %s (keyboard table now %d, reserved %d bytes)\n", code, out, max_region);
+  (void)printf ("rebound %s (keyboard table now %d, reserved %d bytes)\n",
+                code, out, max_region);
 
   return 0;
 }
@@ -859,7 +861,7 @@ usage ( void )
 usage ()
 #endif
 {
-  fprintf (stderr,
+  (void)fprintf (stderr,
     "usage: vcfg <image> show\n"
     "       vcfg <image> set <table> <field> <value>   (PYLINE SWTBL PRMTBL PRNTBL)\n"
     "       vcfg <image> flag <name> <0|1>             (8080mm crt msdos cpm86 ...)\n"
@@ -926,7 +928,7 @@ main (argc, argv)
       vbyte b[16];
       int i, nb;
 
-      memset (b, 0, sizeof (b));
+      (void)memset (b, 0, sizeof (b));
       nb = argc - 4;
 
       if (16 < nb)

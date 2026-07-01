@@ -91,7 +91,7 @@ img_open (im, path, writable)
   im->writable = writable;
   im->err = 0;
   im->origin = 0;
-  fseek (im->fp, 0L, SEEK_END);
+  (void)fseek (im->fp, 0L, SEEK_END);
   im->size = ftell (im->fp);
 
   b0 = raw_byte (im, 0L);
@@ -120,7 +120,7 @@ img_open (im, path, writable)
         }
     }
 
-  fclose (im->fp);
+  (void)fclose (im->fp);
   im->fp = (FILE *) 0;
 
   return -2; /* unrecognized (e.g., segment .CMD) */
@@ -139,14 +139,14 @@ img_close (im)
 {
   if ((FILE *) 0 != im->fp)
     {
-      fclose (im->fp);
+      (void)fclose (im->fp);
       im->fp = (FILE *) 0;
     }
 }
 
 /******************************************************************************/
 
-int
+static int
 #ifdef ANSI_COMPILER
 img_get_byte (
   image *im,

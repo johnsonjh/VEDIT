@@ -52,7 +52,7 @@ show_term (f, idx)
   int i, j, n;
 
   rec = ini_record (f, idx);
-  printf ("[%d] %s\n", idx, ini_name (f, idx));
+  (void)printf ("[%d] %s\n", idx, ini_name (f, idx));
 
   for (i = 0; i < CRT_TABLE.nfields; i++)
     {
@@ -60,25 +60,25 @@ show_term (f, idx)
       const vbyte  *slot;
 
       fld = &CRT_TABLE.fields[i];
-      printf ("  %-14s ", fld->name);
+      (void)printf ("  %-14s ", fld->name);
       slot = rec + fld->off;
 
       if (FK_ADDOFF == fld->kind)
-        printf ("mode=0x%02X  row+=%d  col+=%d", slot[0], slot[1], slot[2]);
+        (void)printf ("mode=0x%02X  row+=%d  col+=%d", slot[0], slot[1], slot[2]);
       else
         {
           n = seq_count (slot);
           if (0 == n)
-            printf ("(none)");
+            (void)printf ("(none)");
 
           for (j = 0; j < n; j++)
-            printf ("%02X ", slot[1 + j]);
+            (void)printf ("%02X ", slot[1 + j]);
 
           if (fld->flags & FF_CLRBIT)
-            printf (" [no-preclear=%d]", seq_clr (slot));
+            (void)printf (" [no-preclear=%d]", seq_clr (slot));
         }
 
-      printf ("   ; %s\n", fld->help);
+      (void)printf ("   ; %s\n", fld->help);
     }
 }
 
@@ -104,7 +104,7 @@ do_set (f, idx, field, argc, argv)
   vbyte bytes[8];
   int i, n, r;
 
-  memset (bytes, 0, sizeof (bytes));
+  (void)memset (bytes, 0, sizeof (bytes));
   n = argc - 5;
 
   if (8 < n)
@@ -174,7 +174,7 @@ usage ( void )
 usage ()
 #endif
 {
-  fprintf (stderr,
+  (void)fprintf (stderr,
     "usage: vintmod <ini> list\n"
     "       vintmod <ini> show  <n|name>\n"
     "       vintmod <ini> set   <n|name> <field> <hexbyte>...\n"
@@ -221,14 +221,17 @@ main (argc, argv)
   if (0 == strcmp (cmd, "list"))
     {
       for (idx = 0; idx < ini_count (&f); idx++)
-        printf ("%3d  %s\n", idx, ini_name (&f, idx));
+        (void)printf ("%3d  %s\n", idx, ini_name (&f, idx));
     }
   else if (0 == strcmp (cmd, "show") && 4 <= argc)
     {
       idx = resolve (&f, argv[3]);
 
       if (0 > idx || idx >= ini_count (&f))
-        { error_msg ("no such terminal", argv[3], 0); rc = 1; }
+        {
+          error_msg ("no such terminal", argv[3], 0);
+          rc = 1;
+        }
       else
         show_term (&f, idx);
     }
@@ -237,40 +240,71 @@ main (argc, argv)
       idx = resolve (&f, argv[3]);
 
       if (0 > idx || idx >= ini_count (&f))
-        { error_msg ("no such terminal", argv[3], 0); rc = 1; }
+        {
+          error_msg ("no such terminal", argv[3], 0);
+          rc = 1;
+        }
       else
-        { rc = do_set (&f, idx, argv[4], argc, argv); save = (0 == rc); }
+        {
+          rc = do_set (&f, idx, argv[4], argc, argv);
+          save = (0 == rc);
+        }
     }
   else if (0 == strcmp (cmd, "clr") && 5 <= argc)
     {
       idx = resolve (&f, argv[3]);
 
       if (0 > idx || idx >= ini_count (&f))
-        { error_msg ("no such terminal", argv[3], 0); rc = 1; }
+        {
+          error_msg ("no such terminal", argv[3], 0);
+          rc = 1;
+        }
       else
-        { rc = do_clr (&f, idx, atoi (argv[4])); save = (0 == rc); }
+        {
+          rc = do_clr (&f, idx, atoi (argv[4]));
+          save = (0 == rc);
+        }
     }
   else if (0 == strcmp (cmd, "add") && 4 <= argc)
     {
       idx = ini_add (&f, argv[3], (vbyte *) 0);
 
-      if (0 > idx) { error_msg ("add failed", (char *) 0, 0); rc = 1; }
-      else { printf ("added [%d] %s\n", idx, argv[3]); save = 1; }
+      if (0 > idx)
+        {
+          error_msg ("add failed", (char *) 0, 0);
+          rc = 1;
+        }
+      else
+        {
+          (void)printf ("added [%d] %s\n", idx, argv[3]);
+          save = 1;
+        }
     }
   else if (0 == strcmp (cmd, "clone") && 5 <= argc)
     {
       idx = resolve (&f, argv[3]);
 
       if (0 > idx || idx >= ini_count (&f))
-        { error_msg ("no such terminal", argv[3], 0); rc = 1; }
+        {
+          error_msg ("no such terminal", argv[3], 0);
+          rc = 1;
+        }
       else
         {
           vbyte tmp[INI_RECLEN];
-          memcpy (tmp, ini_record (&f, idx), INI_RECLEN);
+          (void)memcpy (tmp, ini_record (&f, idx), INI_RECLEN);
           idx = ini_add (&f, argv[4], tmp);
 
-          if (0 > idx) { error_msg ("clone failed", (char *) 0, 0); rc = 1; }
-          else { printf ("cloned to [%d] %s\n", idx, argv[4]); save = 1; }
+          if (0 > idx)
+            {
+              error_msg ("clone failed", (char *) 0, 0);
+              rc = 1;
+            }
+          else
+            {
+              (void)printf ("cloned to [%d] %s\n", idx, argv[4]);
+              save = 1;
+            }
         }
     }
   else

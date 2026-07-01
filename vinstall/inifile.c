@@ -40,13 +40,13 @@ ini_load (f, path)
   if ((FILE *) 0 == fp)
     return -1;
 
-  fseek (fp, 0L, SEEK_END);
+  (void)fseek (fp, 0L, SEEK_END);
   n = ftell (fp);
-  fseek (fp, 0L, SEEK_SET);
+  (void)fseek (fp, 0L, SEEK_SET);
 
   if (0L > n || 1000000L < n) /* ftell failed or far too big for a *CRT.TBL* */
     {
-      fclose (fp);
+      (void)fclose (fp);
 
       return -6;
     }
@@ -55,20 +55,20 @@ ini_load (f, path)
 
   if ((vbyte *) 0 == p)
     {
-      fclose (fp);
+      (void)fclose (fp);
 
       return -2;
     }
 
   if (fread (p, 1, (size_t) n, fp) != (size_t) n)
     {
-      fclose (fp);
+      (void)fclose (fp);
       FREE (p);
 
       return -3;
     }
 
-  fclose (fp);
+  (void)fclose (fp);
   p[n] = 0;
 
   if (0 != strncmp ((char *) p, MAGIC, MAGLEN))
@@ -122,11 +122,11 @@ ini_save (f, path)
 
   if (fwrite (f->buf, 1, (size_t) f->size, fp) != (size_t) f->size)
     {
-      fclose (fp);
+      (void)fclose (fp);
       return -2;
     }
 
-  fclose (fp);
+  (void)fclose (fp);
 
   return 0;
 }
@@ -305,8 +305,8 @@ ini_add (f, name, rec)
   if (0 > trailer_len)
     trailer_len = 0;
 
-  sprintf (cbuf, "%d", new_count);
-  sprintf (nbuf, "%ld", f->namelen + add_nl);
+  (void)sprintf (cbuf, "%d", new_count);
+  (void)sprintf (nbuf, "%ld", f->namelen + add_nl);
   hdr_len = 10 + (long) strlen (cbuf) + 1 + (long) strlen (nbuf) + 1;
   new_size = hdr_len + (f->namelen + add_nl)
            + (long) new_count * INI_RECLEN + trailer_len;
@@ -315,25 +315,25 @@ ini_add (f, name, rec)
   if ((vbyte *) 0 == nb)
     return -1;
 
-  memcpy (nb, MAGIC, MAGLEN);
+  (void)memcpy (nb, MAGIC, MAGLEN);
   nb[MAGLEN] = 0;
   pos = 10;
-  strcpy ((char *) nb + pos, cbuf); pos += (long) strlen (cbuf) + 1;
-  strcpy ((char *) nb + pos, nbuf); pos += (long) strlen (nbuf) + 1;
-  memcpy (nb + pos, f->buf + f->name_base, (size_t) f->namelen); pos += f->namelen;
-  memcpy (nb + pos, name, (size_t) add_nl); pos += add_nl;
-  memcpy (nb + pos, f->buf + f->rec_base, (size_t) old_rec); pos += old_rec;
+  (void)strcpy ((char *) nb + pos, cbuf); pos += (long) strlen (cbuf) + 1;
+  (void)strcpy ((char *) nb + pos, nbuf); pos += (long) strlen (nbuf) + 1;
+  (void)memcpy (nb + pos, f->buf + f->name_base, (size_t) f->namelen); pos += f->namelen;
+  (void)memcpy (nb + pos, name, (size_t) add_nl); pos += add_nl;
+  (void)memcpy (nb + pos, f->buf + f->rec_base, (size_t) old_rec); pos += old_rec;
 
   if ((vbyte *) 0 != rec)
-    memcpy (nb + pos, rec, INI_RECLEN);
+    (void)memcpy (nb + pos, rec, INI_RECLEN);
   else
-    memset (nb + pos, 0, INI_RECLEN);
+    (void)memset (nb + pos, 0, INI_RECLEN);
 
   pos += INI_RECLEN;
 
   if (0 < trailer_len)
     {
-      memcpy (nb + pos, f->buf + trailer_off, (size_t) trailer_len);
+      (void)memcpy (nb + pos, f->buf + trailer_off, (size_t) trailer_len);
       pos += trailer_len;
     }
 

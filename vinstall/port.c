@@ -13,7 +13,7 @@
 
 /******************************************************************************/
 
-char *
+static char *
 #ifdef ANSI_COMPILER
 trim_str (
   const char *s)
@@ -95,21 +95,21 @@ error_msg (m, n, e)
   int e;
 #endif
 {
-  fprintf (stderr, "ERROR: %s", m);
+  (void)fprintf (stderr, "ERROR: %s", m);
 
   if ((const char *) 0 != n)
-    fprintf (stderr, " %s", n);
+    (void)fprintf (stderr, " %s", n);
 
   if (0 != e)
     {
-      fprintf (stderr, " (error %d", e);
+      (void)fprintf (stderr, " (error %d", e);
 #if defined(ANSI_COMPILER) && !defined(NO_STRERROR)
-      fprintf (stderr, ": %s", trim_str (strerror (e)));
+      (void)fprintf (stderr, ": %s", trim_str (strerror (e)));
 #endif
-      fprintf (stderr, ")");
+      (void)fprintf (stderr, ")");
     }
 
-  fprintf (stderr, ".\n");
+  (void)fprintf (stderr, ".\n");
 }
 
 /******************************************************************************/

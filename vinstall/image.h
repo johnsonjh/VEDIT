@@ -33,7 +33,7 @@ void  img_close P_((image *im));
 
 /******************************************************************************/
 
-int   img_get_byte  P_((image *im, vword addr)); /* -1 error */
+/* int   img_get_byte  P_((image *im, vword addr)); */ /* -1 error */
 vword img_get_word  P_((image *im, vword addr));
 int   img_put_byte  P_((image *im, vword addr, int val)); /* 0 ok */
 int   img_put_word  P_((image *im, vword addr, vword val));

@@ -30,7 +30,7 @@ main (argc, argv)
 
   if (2 > argc)
     {
-      fprintf (stderr, "usage: instcore <vedit-image.com|.cmd>\n");
+      (void)fprintf (stderr, "usage: instcore <vedit-image.com|.cmd>\n");
 
       return 2;
     }
@@ -46,23 +46,24 @@ main (argc, argv)
   flags   = img_flags (&im);
   has_crt = img_has_crt (&im);
 
-  printf ("file     : %s (%ld bytes)\n", argv[1], im.size);
-  printf ("format   : %s\n", im.fmt);
-  printf ("ADDTBL   : 0x%04X  (file 0x%lX)\n",
-          addtbl, (unsigned long) (im.origin + (long) addtbl));
-  printf ("VRSNUM   : %u  (VEDIT %u.%02u)\n",
-          img_vrsnum (&im), img_vrsnum (&im) / 100, img_vrsnum (&im) % 100);
-  printf ("flags    : 0x%04X =", flags);
+  (void)printf ("file     : %s (%ld bytes)\n", argv[1], im.size);
+  (void)printf ("format   : %s\n", im.fmt);
+  (void)printf ("ADDTBL   : 0x%04X  (file 0x%lX)\n",
+                addtbl, (unsigned long) (im.origin + (long) addtbl));
+  (void)printf ("VRSNUM   : %u  (VEDIT %u.%02u)\n",
+                img_vrsnum (&im), img_vrsnum (&im) / 100, img_vrsnum (&im) % 100);
+  (void)printf ("flags    : 0x%04X =", flags);
 
   for (i = 0; VFLAGS[i].name; i++)
     if (flags & VFLAGS[i].bit)
-      printf (" %s", VFLAGS[i].name);
+      (void)printf (" %s", VFLAGS[i].name);
 
-  printf ("\n");
+  (void)printf ("\n");
 
   n = chain_count (has_crt);
-  printf ("\nADDTBL: %d entries (%s build)\n", n, (has_crt ? "CRT" : "memory-mapped"));
-  printf ("  idx  entry    value    file-off   note\n");
+  (void)printf ("\nADDTBL: %d entries (%s build)\n",
+                n, (has_crt ? "CRT" : "memory-mapped"));
+  (void)printf ("  idx  entry    value    file-off   note\n");
 
   for (i = 0; i < n; i++)
     {
@@ -73,7 +74,8 @@ main (argc, argv)
 
       if (0 == i)
         {
-          printf ("  %2d   %-7s  %5u    --         version\n", i, chain_name (has_crt, i), v);
+          (void)printf ("  %2d   %-7s  %5u    --         version\n",
+                        i, chain_name (has_crt, i), v);
 
           continue;
         }
@@ -81,11 +83,11 @@ main (argc, argv)
       fo = im.origin + (long) v;
 
       if (0 <= fo && fo < im.size)
-        printf ("  %2d   %-7s  0x%04X   0x%05lX  in image\n",
-                i, chain_name (has_crt, i), v, (unsigned long) fo);
+        (void)printf ("  %2d   %-7s  0x%04X   0x%05lX  in image\n",
+                      i, chain_name (has_crt, i), v, (unsigned long) fo);
       else
-        printf ("  %2d   %-7s  0x%04X   --         out of image\n",
-                i, chain_name (has_crt, i), v);
+        (void)printf ("  %2d   %-7s  0x%04X   --         out of image\n",
+                      i, chain_name (has_crt, i), v);
     }
 
   img_close (&im);

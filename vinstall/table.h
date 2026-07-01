@@ -63,9 +63,9 @@ extern vflag VFLAGS[];
 
 /******************************************************************************/
 
-int tf_size P_((const tfield *f));
+/* int tf_size P_((const tfield *f)); */
 const tfield *tbl_field P_((const tdesc *t, const char *name));
-int tbl_get P_((const tdesc *t, const vbyte *buf, const char *name, vbyte *dst)); /* -> nbytes, -1 */
+/* int tbl_get P_((const tdesc *t, const vbyte *buf, const char *name, vbyte *dst)); */ /* -> nbytes, -1 */
 int tbl_set P_((const tdesc *t, vbyte *buf, const char *name, const vbyte *src, int n));
 
 /******************************************************************************/

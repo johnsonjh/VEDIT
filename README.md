@@ -560,13 +560,13 @@ by [`scc`](https://github.com/boyter/scc):
         </tr><tr>
                 <th>C</th>
                 <th>7</th>
-                <th>2649</th>
-                <th>550</th>
-                <th>146</th>
-                <th>1953</th>
-                <th>420</th>
-                <th>54183</th>
-                <th>1039</th>
+                <th>2689</th>
+                <th>545</th>
+                <th>178</th>
+                <th>1966</th>
+                <th>415</th>
+                <th>55160</th>
+                <th>1054</th>
         </tr><tr>
                 <th>Python</th>
                 <th>6</th>
@@ -582,10 +582,10 @@ by [`scc`](https://github.com/boyter/scc):
                 <th>4</th>
                 <th>276</th>
                 <th>80</th>
-                <th>67</th>
-                <th>129</th>
+                <th>71</th>
+                <th>125</th>
                 <th>6</th>
-                <th>8294</th>
+                <th>8318</th>
                 <th>128</th>
         </tr><tr>
                 <th>Shell</th>
@@ -621,13 +621,13 @@ by [`scc`](https://github.com/boyter/scc):
         <tfoot><tr>
                 <th>Total</th>
                 <th>76</th>
-                <th>43817</th>
-                <th>3333</th>
-                <th>11792</th>
-                <th>28692</th>
-                <th>960</th>
-                <th>1198187</th>
-                <th>25727</th>
+                <th>43857</th>
+                <th>3328</th>
+                <th>11828</th>
+                <th>28701</th>
+                <th>955</th>
+                <th>1199188</th>
+                <th>25742</th>
         </tr></tfoot></table>
 <!-- scc-end -->
 

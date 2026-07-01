@@ -65,7 +65,7 @@ typedef unsigned long vaddr;
 
 /******************************************************************************/
 
-char *trim_str P_((const char *s));
+/* char *trim_str P_((const char *s)); */
 void  error_msg P_((const char *m, const char *n, int e));
 FILE *vfopen P_((const char *path, const char *mode));
 
