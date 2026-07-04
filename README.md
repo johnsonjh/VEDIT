@@ -149,33 +149,31 @@ the output of the assembler.*
 The HEX output produced by these assemblers can be directly converted
 to an executable COM file using the `HEXCOM` utility.
 
-For Z80 variants, the final (configured) executable can be reduced
-in size by about 25% while remaining directly executable using the
-`POPCOM` compressor.
-
 * Working versions of these (and other) tools are included in the
   [`dev`](dev) directory of this repository for convenience — they
   are *not* an official part of the VEDIT ⧸ VEDIT‑PLUS source code
   distribution.
 
+For all CP/M‑80 builds, the final (configured) executable can be
+reduced in size by about 30% while remaining directly executable
+using the [`LZPACK`](https://github.com/johnsonjh/lzpack)
+executable compressor.
+
 ### Cross-development
 
 The following cross-development tools are highly recommended:
 
-* **ccom** is a cross-platform CP/M‑80 2.2 emulator *that supports
-  easily redirecting the list device output to a file*, suitable for
+* **ccom** is a cross-platform CP/M‑80 2.2 emulator, suitable for
   running the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX-like
   host.  It is available as part of the
   [Portable MINCE](https://github.com/johnsonjh/pmince) repository.
 
-* [**cpm**](https://github.com/jhallen/cpm) is *Joe Allen*'s portable
-  CP/M‑80 2.2 emulator.  Although it does not support saving the list
-  device output, its `BDOS` simulation makes it suitable for running
-  the `POPCOM` executable compressor.
-
-* [**tnylpo**](https://gitlab.com/gbrein/tnylpo) is yet another
+* [**tnylpo**](https://gitlab.com/gbrein/tnylpo) is another
   CP/M‑80 2.2 emulator, written by *Georg Brein*, with excellent
   compatibility and curses-based VT‑52/VT‑100 terminal emulation.
+
+* [**cpm**](https://github.com/jhallen/cpm) is *Joe Allen*'s portable
+  CP/M‑80 2.2 emulator.
 
 Full system simulators (*e.g.*
 [Z80PACK](https://www.icl1900.co.uk/unix4fun/z80pack/),
