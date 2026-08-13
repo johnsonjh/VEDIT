@@ -135,6 +135,12 @@ The VEDIT ⧸ VEDIT‑PLUS sources are closely integrated with the TDL
 ZASM ⧸ PSA PASM conditional build system, and rely heavily on the
 features and quirks of these particular assemblers.
 
+* [**TPZASM**](https://github.com/johnsonjh/tpzasm) is a new,
+  portable TDL ZASM ⧸ PSA PASM compatible cross-assembler that
+  runs on many platforms (MS‑DOS, Atari ST, AmigaOS, OS/2,
+  Windows, AIX, Linux, Haiku, etc.) and can also be used to
+  build VEDIT ⧸ VEDIT‑PLUS.
+
 TDL ZASM ⧸ PSA PASM, by default, outputs diagnostics to the CP/M
 `LIST` device, usually a line printer.  Be sure to have a list device
 configured and online if you need to examine the assembler output,
@@ -387,8 +393,8 @@ translation product, available in the [`zilint`](zilint) directory.
 It "flattens" the entire editor source code by resolving every `.INSERT`,
 expanding all macros, processing all conditionals, and then translating
 all (approximately 30,000 SLOC) of 8080 TDL ZASM ⧸ PSA PASM assembly into
-Intel `ASM86` form.  Intel ASM86 is then used normally for assembly
-and linking.
+both Intel `ASM86` and `NASM` format.  Intel `ASM86` and `NASM` are then
+used normally for assembly and linking.
 
 The following targets can be built using this technique:
 
