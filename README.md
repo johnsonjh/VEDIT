@@ -56,7 +56,7 @@ operating systems (CP/M, MP/M, CDOS, etc.).
 
 Historically, compatible VEDIT ⧸ VEDIT‑PLUS versions were adapted to
 run on nearly any CP/M‑80, MP/M‑80, CDOS, CP/M‑86, MP/M‑86, Concurrent
-CP/M‑86, REAL/32, SCP 86‑DOS, MS‑DOS, MSX‑DOS, Cromix, Turbo DOS, Cromix,
+CP/M‑86, REAL/32, SCP&nbsp;86‑DOS, MS‑DOS, MSX‑DOS, Cromix, Turbo DOS,
 Cromemco DOS, and PC‑MOS/386 system.
 
 Later versions were available for CP/M‑68K, IBM 4960/FlexOS, IBM OS/2,
