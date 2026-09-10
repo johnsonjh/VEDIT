@@ -37,7 +37,7 @@ VEDIT PLUS Ver. 2.33u 06/05/26
 
 This is the source code for **VEDIT** ⧸ **VEDIT‑PLUS**, derived from
 version 2.03b/2.33b (04/27/87), the commercial text editing system
-and (TECO-derived) text-oriented programming language, produced by
+and (TECO‑derived) text‑oriented programming language, produced by
 Theodore Green and Greenview Data Inc. (formerly CompuView Products,
 Inc.) of Ann Arbor, Michigan.
 
@@ -60,8 +60,8 @@ CP/M‑86, REAL/32, SCP&nbsp;86‑DOS, MS‑DOS, MSX‑DOS, Cromix, Turbo DOS,
 Cromemco DOS, and PC‑MOS/386 system.
 
 Later versions were available for CP/M‑68K, IBM 4960/FlexOS, IBM OS/2,
-UNIX/Xenix, QNX, and Microsoft Windows (both 16-bit Windows 3.1 and
-32-bit Windows 95/NT).
+UNIX/Xenix, QNX, and Microsoft Windows (both 16‑bit Windows 3.1 and
+32‑bit Windows 95/NT).
 
 Companion programs (*i.e.* V‑PRINT, V‑SPELL, V‑COM, Z80‑8086
 Translator, etc.) were also produced.
@@ -73,7 +73,7 @@ Translator, etc.) were also produced.
 VEDIT is an editor designed to take full advantage of a CRT display
 to make your word processing and program development editing as fast
 and easy as possible.  VEDIT's "Visual Mode" offers true
-"What-you-see-is-what-you-get" type editing, which continuously
+"What‑you‑see‑is‑what‑you‑get" type editing, which continuously
 displays a region of your file on the screen and allows any changes
 made to the screen display to become the changes in the file.  You
 can change the screen display by moving the displayed cursor to any
@@ -136,7 +136,7 @@ ZASM ⧸ PSA PASM conditional build system, and rely heavily on the
 features and quirks of these particular assemblers.
 
 * [**TPZASM**](https://github.com/johnsonjh/tpzasm) is a new,
-  portable TDL ZASM ⧸ PSA PASM compatible cross-assembler that
+  portable TDL ZASM ⧸ PSA PASM compatible cross‑assembler that
   runs on many platforms (MS‑DOS, Atari ST, AmigaOS, OS/2,
   Windows, AIX, Linux, Haiku, etc.) and can also be used to
   build VEDIT ⧸ VEDIT‑PLUS.
@@ -147,8 +147,8 @@ configured and online if you need to examine the assembler output,
 or specify the appropriate options to generate a `PRN` file on disk.
 
 *Be aware that TDL ZASM ⧸ PSA PASM make minimal distinctions
-between non-fatal warnings and fatal errors in the build summary.
-Some (non-fatal) errors currently occur and are not of major concern.
+between non‑fatal warnings and fatal errors in the build summary.
+Some (non‑fatal) errors currently occur and are not of major concern.
 Determining the actual error severity requires carefully examining
 the output of the assembler.*
 
@@ -167,16 +167,16 @@ executable compressor.
 
 ### Cross-development
 
-The following cross-development tools are highly recommended:
+The following cross‑development tools are highly recommended:
 
-* **ccom** is a cross-platform CP/M‑80 2.2 emulator, suitable for
-  running the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX-like
+* **ccom** is a cross‑platform CP/M‑80 2.2 emulator, suitable for
+  running the `ZASM`, `PASM`, and `HEXCOM` programs on a UNIX‑like
   host.  It is available as part of the
   [Portable MINCE](https://github.com/johnsonjh/pmince) repository.
 
 * [**tnylpo**](https://gitlab.com/gbrein/tnylpo) is another
   CP/M‑80 2.2 emulator, written by *Georg Brein*, with excellent
-  compatibility and curses-based VT‑52/VT‑100 terminal emulation.
+  compatibility and curses‑based VT‑52/VT‑100 terminal emulation.
 
 * [**cpm**](https://github.com/jhallen/cpm) is *Joe Allen*'s portable
   CP/M‑80 2.2 emulator.
@@ -185,7 +185,7 @@ Full system simulators (*e.g.*
 [Z80PACK](https://www.icl1900.co.uk/unix4fun/z80pack/),
 [Open SIMH](https://opensimh.org/),
 [YAZE‑AG](https://www.mathematik.uni-ulm.de/users/ag/yaze-ag/), etc.)
-are also available and useful for cross-development.
+are also available and useful for cross‑development.
 
 ### Build Example
 
@@ -376,6 +376,11 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 
 ### 16-bit MS-DOS and CP/M-86 builds
 
+> [!WARNING]
+> **The 16‑bit MS‑DOS and CP/M‑86 builds are still a work in progress!**
+> End users are recommended to use the distributed [CP/M‑86](disk/86)
+> and [MS‑DOS](disk/dos) binaries until all the bugs are worked out.
+
 The historical CompuView 8086 builds, done by the company itself,
 seem to have used a multiple module segmented approach using `PASM86`
 and its special features.  Also, the source code for the 8086‑specific
@@ -476,20 +481,22 @@ SoftIntegration Ch interpreter.
 
 ## Future
 
+* Fix all remaining bugs in the 16‑bit CP/M‑86 and MS‑DOS source builds.
+
 * Find and recover the original source code for the latest (2.03b/2.33b)
   versions of the `INSTALL`, `INTCOM`, and other utilities.
   * In the meantime, [`vinstall`](vinstall) portably reimplements all the
   required `INSTALL` ⧸ `INTMOD` functionality.
 
-* Document `xterm`-compatible terminal settings for enabling arrow
+* Document `xterm`‑compatible terminal settings for enabling arrow
   directional keys, etc.
 
-* Add other CompuView products V-PRINT, V-SPELL, V-COM, etc. (sources
+* Add other CompuView products V‑PRINT, V‑SPELL, V‑COM, etc. (sources
   or binaries) to the repository.
 
 * Find and archive other ancient VEDIT ⧸ VEDIT‑PLUS distributions.
 
-* Collect and archive any significant commercial or community add-ons
+* Collect and archive any significant commercial or community add‑ons
   or macros compatible with VEDIT ⧸ VEDIT‑PLUS up to 2.03b/2.33b.
 
 Can you help with any of the above?  If you can, please open an
@@ -498,7 +505,7 @@ Can you help with any of the above?  If you can, please open an
 ## License
 
 * VEDIT ⧸ VEDIT‑PLUS is [freely redistributable for
-  non-commercial purposes](LICENSE).
+  non‑commercial purposes](LICENSE).
 
 ## Documentation
 
