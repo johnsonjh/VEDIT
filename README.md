@@ -377,7 +377,7 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 ### 16-bit MS-DOS and CP/M-86 builds
 
 > [!WARNING]
-> **The 16‑bit MS‑DOS and CP/M‑86 builds are still a work in progress!**
+> **The 16‑bit MS‑DOS and CP/M‑86 builds are still a work in progress!**<br>
 > End users are recommended to use the distributed [CP/M‑86](disk/86)
 > and [MS‑DOS](disk/dos) binaries until all the bugs are worked out.
 
