@@ -445,6 +445,10 @@ VEDIT ⧸ VEDIT‑PLUS distribution.
   * `vintmod` edits the `install.ini` terminal database, and `instcore` dumps
   the editor's configuration chain.
 
+> [!IMPORTANT]
+> The new [`vinstall`](vinstall) currently works to configure any CP/M‑80
+> build, but *does not yet* configure the historical DOS and CP/M‑86 binaries.
+
 These new tools are designed to build and run on UNIX, MS‑DOS, CP/M‑86,
 and CP/M‑80.  They also work with (and can be debugged using) the excellent
 SoftIntegration Ch interpreter.
