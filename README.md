@@ -447,10 +447,11 @@ VEDIT ⧸ VEDIT‑PLUS distribution.
 
 > [!IMPORTANT]
 > • The new [`vinstall`](vinstall) currently works to configure all CP/M‑80
->   and MS‑DOS VEDIT ⧸ VEDIT‑PLUS builds.<br>
+>   and MS‑DOS builds.<br>
 > • It *does not yet* configure "historical" CP/M‑86 builds.<br>
 > • The [`wrapcmd.py`](xlate/wrapcmd.py) helper script is required to
->   configure our own (work‑in‑progress) CP/M‑86 builds.
+>   configure our own (work‑in‑progress) CP/M‑86 builds.<br>
+> • Not all `INSTALL` options are implemented.
 
 These new tools are designed to build and run on UNIX, MS‑DOS, CP/M‑86,
 and CP/M‑80.  They also work with (and can be debugged using) the excellent
@@ -492,8 +493,8 @@ SoftIntegration Ch interpreter.
 
 * Find and recover the original source code for the latest (2.03b/2.33b)
   versions of the `INSTALL`, `INTCOM`, and other utilities.
-  * In the meantime, [`vinstall`](vinstall) portably reimplements all the
-  required `INSTALL` ⧸ `INTMOD` functionality.
+  * In the meantime, [`vinstall`](vinstall) portably reimplements *most*
+    `INSTALL` ⧸ `INTMOD` functionality.
 
 * Document `xterm`‑compatible terminal settings for enabling arrow
   directional keys, etc.
