@@ -21,6 +21,7 @@
 /******************************************************************************/
 
 static struct { char *name; tdesc *desc; } g_tables[] = {
+  { "CHRTBL", &CHRTBL_TABLE },
   { "PYLINE", &PYLINE_TABLE },
   { "SWTBL",  &SWTBL_TABLE  },
   { "PRMTBL", &PRMTBL_TABLE },
@@ -863,7 +864,7 @@ usage ()
 {
   (void)fprintf (stderr,
     "usage: vcfg <image> show\n"
-    "       vcfg <image> set <table> <field> <value>   (PYLINE SWTBL PRMTBL PRNTBL)\n"
+    "       vcfg <image> set <table> <field> <value>   (CHRTBL PYLINE SWTBL PRMTBL PRNTBL)\n"
     "       vcfg <image> flag <name> <0|1>             (8080mm crt msdos cpm86 ...)\n"
     "       vcfg <image> tabs [<col> ...]\n"
     "       vcfg <image> apply <install.ini> <terminal>\n"

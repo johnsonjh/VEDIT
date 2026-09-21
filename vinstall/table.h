@@ -54,6 +54,7 @@ typedef struct { vword bit; char *name; } vflag;
 
 #ifndef TABLE_OWNER
 extern tdesc CRT_TABLE;
+extern tdesc CHRTBL_TABLE;
 extern tdesc PYLINE_TABLE;
 extern tdesc SWTBL_TABLE;
 extern tdesc PRMTBL_TABLE;

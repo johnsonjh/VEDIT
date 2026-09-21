@@ -37,6 +37,20 @@ tdesc CRT_TABLE = { "crt", 115, crt_fields, 17 };
 
 /******************************************************************************/
 
+/* ---- command/visual interface characters (CHRTBL) --------------------------- */
+static tfield chrtbl_fields[] = {
+  { "kb_input",     0,  FK_BYTE, 0, "keyboard input (0=ROM call, 1=system call)" },
+  { "statlinechar", 1,  FK_BYTE, 0, "hex code for status line character"         },
+  { "scrn_conchar", 8,  FK_BYTE, 0, "hex code for screen continuation character" },
+  { "command_esc",  9,  FK_BYTE, 0, "command escape character"                   },
+  { "iter_left",    10, FK_BYTE, 0, "command iteration left bracket"             },
+  { "iter_right",   11, FK_BYTE, 0, "command iteration right bracket"            },
+  { "pat_match",    12, FK_BYTE, 0, "pattern match character"                    },
+};
+tdesc CHRTBL_TABLE = { "chrtbl", 18, chrtbl_fields, 7 };
+
+/******************************************************************************/
+
 /* ---- the editor's screen-parameter block (PYLINE) ---------------------- */
 static tfield pyline_fields[] = {
   { "nlines",       0, FK_BYTE, 0, "number of screen lines (NLINES)"        },
