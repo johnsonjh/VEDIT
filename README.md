@@ -589,13 +589,13 @@ Code statistics (excludes [`oldsrc/`](oldsrc) and
         </tr><tr>
                 <th>C</th>
                 <th>7</th>
-                <th>2689</th>
-                <th>545</th>
-                <th>178</th>
-                <th>1966</th>
-                <th>415</th>
-                <th>55160</th>
-                <th>1054</th>
+                <th>2882</th>
+                <th>582</th>
+                <th>192</th>
+                <th>2108</th>
+                <th>443</th>
+                <th>59090</th>
+                <th>1115</th>
         </tr><tr>
                 <th>Python</th>
                 <th>6</th>
@@ -609,13 +609,13 @@ Code statistics (excludes [`oldsrc/`](oldsrc) and
         </tr><tr>
                 <th>C Header</th>
                 <th>4</th>
-                <th>276</th>
+                <th>279</th>
                 <th>80</th>
                 <th>71</th>
-                <th>125</th>
-                <th>6</th>
-                <th>8318</th>
                 <th>128</th>
+                <th>6</th>
+                <th>8525</th>
+                <th>131</th>
         </tr><tr>
                 <th>Shell</th>
                 <th>1</th>
@@ -627,6 +627,16 @@ Code statistics (excludes [`oldsrc/`](oldsrc) and
                 <th>9656</th>
                 <th>153</th>
         </tr><tr>
+                <th>Makefile</th>
+                <th>2</th>
+                <th>98</th>
+                <th>19</th>
+                <th>33</th>
+                <th>46</th>
+                <th>6</th>
+                <th>3229</th>
+                <th>72</th>
+        </tr><tr>
                 <th>Markdown</th>
                 <th>1</th>
                 <th>98</th>
@@ -636,27 +646,17 @@ Code statistics (excludes [`oldsrc/`](oldsrc) and
                 <th>0</th>
                 <th>5266</th>
                 <th>81</th>
-        </tr><tr>
-                <th>Makefile</th>
-                <th>2</th>
-                <th>94</th>
-                <th>19</th>
-                <th>32</th>
-                <th>43</th>
-                <th>6</th>
-                <th>3113</th>
-                <th>68</th>
         </tr></tbody>
         <tfoot><tr>
                 <th>Total</th>
                 <th>87</th>
-                <th>50796</th>
-                <th>5681</th>
-                <th>11669</th>
-                <th>33446</th>
-                <th>955</th>
-                <th>1383030</th>
-                <th>28666</th>
+                <th>50996</th>
+                <th>5718</th>
+                <th>11684</th>
+                <th>33594</th>
+                <th>983</th>
+                <th>1387283</th>
+                <th>28734</th>
         </tr></tfoot></table>
 <!-- scc-end -->
 
