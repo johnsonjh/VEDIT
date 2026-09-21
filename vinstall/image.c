@@ -12,9 +12,12 @@
 
 /******************************************************************************/
 
-#define V_LOAD  0x0100 /* 8080-model programs ORG at 0100H */
-#define V_PADDR 0x0106 /* runtime addr of "DW ADDTBL" */
-#define V_PFLAG 0x0108 /* runtime addr of the INSTALL version-flags word */
+#define V_LOAD   0x0100 /* 8080-model programs ORG at 0100H */
+#define V_PADDR  0x0106 /* runtime addr of "DW ADDTBL" */
+#define V_PFLAG  0x0108 /* runtime addr of the INSTALL version-flags word */
+#define V_DSEGBG 0x010E /* runtime addr of historical 8086 DSEGBG word */
+#define V_MSDOS  0x0008 /* INSTALL version-flag bit for MS-DOS */
+#define V_CORE_CHAIN 13 /* VRSNUM through USRMSG */
 
 /******************************************************************************/
 
@@ -30,6 +33,22 @@ fileoff (im, addr)
 #endif
 {
   return im->origin + (long) addr;
+}
+
+/******************************************************************************/
+
+static long
+#ifdef ANSI_COMPILER
+headeroff (
+  const image *im,
+  vword addr)
+#else
+headeroff (im, addr)
+  const image *im;
+  vword addr;
+#endif
+{
+  return im->header_origin + (long) addr;
 }
 
 /******************************************************************************/
@@ -68,6 +87,66 @@ raw_byte (im, off)
 
 /******************************************************************************/
 
+static int
+#ifdef ANSI_COMPILER
+raw_word (
+  image *im,
+  long off)
+#else
+raw_word (im, off)
+  image *im;
+  long off;
+#endif
+{
+  int lo, hi;
+
+  lo = raw_byte (im, off);
+  hi = raw_byte (im, off + 1L);
+
+  if (0 > lo || 0 > hi)
+    return -1;
+
+  return lo | (hi << 8);
+}
+
+/******************************************************************************/
+
+static int
+#ifdef ANSI_COMPILER
+valid_chain_candidate (
+  image *im,
+  long origin,
+  vword addtbl)
+#else
+valid_chain_candidate (im, origin, addtbl)
+  image *im;
+  long origin;
+  vword addtbl;
+#endif
+{
+  long off, p;
+  int v, i;
+
+  off = origin + (long) addtbl;
+  if (0L > off || off > im->size - (long) (2 * V_CORE_CHAIN))
+    return 0;
+
+  v = raw_word (im, off);
+  if (0 > v || 1 > v || 1000 <= v)
+    return 0;
+
+  for (i = 1; i < V_CORE_CHAIN; i++)
+    {
+      p = raw_word (im, off + (long) (2 * i));
+      if (0 >= p || 0L > origin + p || origin + p >= im->size)
+        return 0;
+    }
+
+  return 1;
+}
+
+/******************************************************************************/
+
 int
 #ifdef ANSI_COMPILER
 img_open (
@@ -91,18 +170,67 @@ img_open (im, path, writable)
   im->writable = writable;
   im->err = 0;
   im->origin = 0;
+  im->header_origin = 0;
   (void)fseek (im->fp, 0L, SEEK_END);
   im->size = ftell (im->fp);
 
   b0 = raw_byte (im, 0L);
 
-  if (0xC3 == b0 || 0xE9 == b0) /* 8080/8086 JMP -> flat .COM */
+  if (0xC3 == b0) /* 8080 JMP -> flat .COM */
     {
       im->origin = -(long) V_LOAD;
-      im->fmt = ((0xC3 == b0) ? "flat .COM (8080, CP/M-80)"
-                              : "flat .COM (8086, MS-DOS)");
+      im->header_origin = -(long) V_LOAD;
+      im->fmt = "flat .COM (8080, CP/M-80)";
 
       return 0;
+    }
+
+  if (0xE9 == b0) /* 8086 JMP -> flat or historical segmented .COM */
+    {
+      vword addtbl, flags, dsegbg;
+
+      im->origin = -(long) V_LOAD;
+      im->header_origin = -(long) V_LOAD;
+
+      /*
+       * Use the modern flat representation when
+       * its ADDTBL chain decodes correctly.
+       */
+
+      addtbl = img_get_header_word (im, (vword) V_PADDR);
+      flags = img_get_header_word (im, (vword) V_PFLAG);
+      dsegbg = img_get_header_word (im, (vword) V_DSEGBG);
+
+      if (0 != addtbl
+          && valid_chain_candidate (im, im->origin, addtbl))
+        {
+          im->fmt = "flat .COM (8086, MS-DOS)";
+
+          return 0;
+        }
+
+      /*
+       * Historical PASM86(???) used to assemble stores ADDTBL entries as offsets
+       * within a paragraph-aligned data segment.  Real INSTALL.EXE rounds DSEGBG
+       * up to the next paragraph, then subtracts the load COM origin.
+       */
+
+      if ((flags & V_MSDOS) && 0 != dsegbg)
+        {
+          long dseg_origin;
+
+          dseg_origin = (((long) dsegbg + 0x0FL) & ~0x0FL)
+                       - (long) V_LOAD;
+
+          if (0 != addtbl
+              && valid_chain_candidate (im, dseg_origin, addtbl))
+            {
+              im->origin = dseg_origin;
+              im->fmt = "\"historical\" segmented .COM (8086, MS-DOS)";
+
+              return 0;
+            }
+        }
     }
 
   if (0x01 == b0 || 0x02 == b0) /* CP/M-86 .CMD group descriptor */
@@ -114,6 +242,7 @@ img_open (im, path, writable)
       if (0xC3 == b180 || 0xE9 == b180) /* flat 8080-model layout */
         {
           im->origin = 0x0180L - (long) V_LOAD; /* runtime 0100H is at file 0180H */
+          im->header_origin = im->origin;
           im->fmt = "CP/M-86 .CMD (flat 8080 model)";
 
           return 0;
@@ -158,6 +287,30 @@ img_get_byte (im, addr)
 #endif
 {
   return raw_byte (im, fileoff (im, addr));
+}
+
+/******************************************************************************/
+
+vword
+#ifdef ANSI_COMPILER
+img_get_header_word (
+  image *im,
+  vword addr)
+#else
+img_get_header_word (im, addr)
+  image *im;
+  vword addr;
+#endif
+{
+  int lo, hi;
+
+  lo = raw_byte (im, headeroff (im, addr));
+  hi = raw_byte (im, headeroff (im, (vword) (addr + 1)));
+
+  if (0 > lo || 0 > hi)
+    return 0;
+
+  return (vword) lo | ((vword) hi << 8);
 }
 
 /******************************************************************************/
@@ -248,6 +401,46 @@ img_put_word (im, addr, val)
 
 int
 #ifdef ANSI_COMPILER
+img_put_header_word (
+  image *im,
+  vword addr,
+  vword val)
+#else
+img_put_header_word (im, addr, val)
+  image *im;
+  vword addr;
+  vword val;
+#endif
+{
+  if (!im->writable)
+    {
+      im->err++;
+
+      return -1;
+    }
+
+  if (0 != fseek (im->fp, headeroff (im, addr), SEEK_SET))
+    {
+      im->err++;
+
+      return -1;
+    }
+
+  if (EOF == putc (val & 0xFF, im->fp)
+      || EOF == putc ((val >> 8) & 0xFF, im->fp))
+    {
+      im->err++;
+
+      return -1;
+    }
+
+  return 0;
+}
+
+/******************************************************************************/
+
+int
+#ifdef ANSI_COMPILER
 img_get_block (
   image *im,
   vword addr,
@@ -315,7 +508,7 @@ img_addtbl (im)
   image *im;
 #endif
 {
-  return img_get_word (im, (vword) V_PADDR);
+  return img_get_header_word (im, (vword) V_PADDR);
 }
 
 /******************************************************************************/
@@ -329,7 +522,7 @@ img_flags (im)
   image *im;
 #endif
 {
-  return img_get_word (im, (vword) V_PFLAG);
+  return img_get_header_word (im, (vword) V_PFLAG);
 }
 
 /******************************************************************************/

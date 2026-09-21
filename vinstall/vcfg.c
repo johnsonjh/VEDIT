@@ -329,7 +329,7 @@ do_flag (im, name, on)
   f = img_flags (im);
   f = (vword) ((on) ? (f | bit) : (f & ~bit));
 
-  (void)img_put_word (im, (vword) 0x0108, f);
+  (void)img_put_header_word (im, (vword) 0x0108, f);
 
   if (im->err)
     {

@@ -377,7 +377,7 @@ Ok to save changes in VEDIT.COM (Y/N)? Y
 ### 16-bit MS-DOS and CP/M-86 builds
 
 > [!WARNING]
-> **The 16‑bit MS‑DOS and CP/M‑86 builds are still a work in progress!**<br>
+> **The 16‑bit MS‑DOS and CP/M‑86 builds are still a work‑in‑progress!**<br>
 > End users are recommended to use the distributed [CP/M‑86](disk/86)
 > and [MS‑DOS](disk/dos) binaries until all the bugs are worked out.
 
@@ -446,8 +446,11 @@ VEDIT ⧸ VEDIT‑PLUS distribution.
   the editor's configuration chain.
 
 > [!IMPORTANT]
-> The new [`vinstall`](vinstall) currently works to configure any CP/M‑80
-> build, but *does not yet* configure the historical DOS and CP/M‑86 binaries.
+> • The new [`vinstall`](vinstall) currently works to configure all CP/M‑80
+>   and MS‑DOS VEDIT ⧸ VEDIT‑PLUS builds.<br>
+> • It *does not yet* configure "historical" CP/M‑86 builds.<br>
+> • The [`wrapcmd.py`](xlate/wrapcmd.py) helper script is required to
+>   configure our own (work‑in‑progress) CP/M‑86 builds.
 
 These new tools are designed to build and run on UNIX, MS‑DOS, CP/M‑86,
 and CP/M‑80.  They also work with (and can be debugged using) the excellent

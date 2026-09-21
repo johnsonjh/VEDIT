@@ -24,7 +24,11 @@ vintmod: vintmod.o inifile.o table.o port.o
 clean:
 	rm -f instcore vcfg vintmod ./*.o
 
-instcore.o vcfg.o vintmod.o image.o table.o inifile.o port.o: port.h
-instcore.o vcfg.o image.o: image.h
-instcore.o vcfg.o vintmod.o table.o: table.h
-vcfg.o vintmod.o inifile.o: inifile.h
+# Generated with "gcc -MM *.c"
+image.o: image.c image.h port.h table.h
+inifile.o: inifile.c inifile.h port.h
+instcore.o: instcore.c image.h port.h table.h
+port.o: port.c port.h
+table.o: table.c table.h port.h
+vcfg.o: vcfg.c image.h port.h table.h inifile.h
+vintmod.o: vintmod.c inifile.h port.h table.h

@@ -19,7 +19,8 @@
 
 typedef struct {
   FILE *fp;
-  long  origin; /* file_offset = origin + runtime_address */
+  long  origin;        /* file_offset = origin + data/DS address */
+  long  header_origin; /* file_offset = header_origin + COM runtime address */
   long  size;
   int   writable;
   int   err;
@@ -35,8 +36,10 @@ void  img_close P_((image *im));
 
 /* int   img_get_byte  P_((image *im, vword addr)); */ /* -1 error */
 vword img_get_word  P_((image *im, vword addr));
+vword img_get_header_word P_((image *im, vword addr));
 int   img_put_byte  P_((image *im, vword addr, int val)); /* 0 ok */
 int   img_put_word  P_((image *im, vword addr, vword val));
+int   img_put_header_word P_((image *im, vword addr, vword val));
 int   img_get_block P_((image *im, vword addr, vbyte *buf, int n));
 int   img_put_block P_((image *im, vword addr, const vbyte *buf, int n));
 
